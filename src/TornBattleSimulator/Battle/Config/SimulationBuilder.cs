@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using TornBattleSimulator.Input;
 using TornBattleSimulator.Input.Build;
-using TornBattleSimulator.Modules;
+using TornBattleSimulator.Mapper;
 
 namespace TornBattleSimulator.Battle.Config;
 

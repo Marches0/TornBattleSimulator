@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
 
-namespace TornBattleSimulator.Modules;
+namespace TornBattleSimulator.Mapper;
 
 public static class ModelWriter
 {
@@ -10,7 +10,6 @@ public static class ModelWriter
     /// </summary>
     /// <param name="source">The source object to apply from.</param>
     /// <param name="destination">The destination object to apply to.</param>
-    /// <returns></returns>
     public static object Apply(object source, object destination)
     {
         foreach (PropertyInfo property in source.GetType().GetProperties())
