@@ -19,6 +19,22 @@
 					"magazines": 3,
 					"magazineSize": 10
 				}
+			},
+			"secondary": {
+				"damage": 23,
+				"accuracy": 100,
+				"rateOfFire": {
+					"min": 1,
+					"max": 5
+				},
+				"ammo": {
+					"magazines": 3,
+					"magazineSize": 10
+				}
+			},
+			"melee": {
+				"damage": 23,
+				"accuracy": 100
 			}
 		},
 		{

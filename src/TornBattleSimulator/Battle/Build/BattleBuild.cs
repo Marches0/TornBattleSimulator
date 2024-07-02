@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Build.Equipment;
 
 namespace TornBattleSimulator.Battle.Build;
 
