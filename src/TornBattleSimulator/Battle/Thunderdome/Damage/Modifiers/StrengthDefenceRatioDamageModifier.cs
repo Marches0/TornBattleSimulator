@@ -5,11 +5,11 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     private static readonly double LowerMitigationModifier = 50 / Math.Log(32);
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
-    public double GetDamageModifier(PlayerContext attacker, PlayerContext defender)
+    public double GetDamageModifier(ThunderdomeContext context)
     {
         // https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
-        double defence = defender.GetStats().Defence;
-        double strength = attacker.GetStats().Strength;
+        double defence = context.Defender.Stats.Defence;
+        double strength = context.Attacker.Stats.Strength;
         double ratio = defence / strength;
 
         double mitigation = ratio switch

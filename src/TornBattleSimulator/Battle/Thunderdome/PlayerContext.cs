@@ -27,7 +27,7 @@ public class PlayerContext
     /// <summary>
     ///  The build's current stats.
     /// </summary>
-    public BattleStats GetStats() => _currentTickStats.Value;
+    public BattleStats Stats => _currentTickStats.Value;
 
     public void Tick()
     {

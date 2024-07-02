@@ -16,9 +16,10 @@ public class StrengthDefenceRatioModifierTests
         // Arrange
         PlayerContext attacker = new PlayerContextBuilder().WithStats(new BattleStats() { Strength = testData.attackerStrength }).Build();
         PlayerContext defender = new PlayerContextBuilder().WithStats(new BattleStats() { Defence = testData.defenderDefence }).Build();
+        ThunderdomeContext ctx = new(attacker, defender);
 
         // Act
-        double mod = _strengthDefenceRatioModifier.GetDamageModifier(attacker, defender);
+        double mod = _strengthDefenceRatioModifier.GetDamageModifier(ctx);
 
         // Assert
         mod.Should().BeApproximately(testData.expectedRatio, 0.0001);
