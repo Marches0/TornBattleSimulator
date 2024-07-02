@@ -16,10 +16,9 @@ public class StrengthDamageModifierTests
         // Arrange
         PlayerContext attacker = new PlayerContextBuilder().WithStats(new BattleStats() { Strength = testData.strength }).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
-        ThunderdomeContext ctx = new(attacker, defender);
 
         // Act
-        double damage = _strengthDamageModifier.GetDamageModifier(ctx);
+        double damage = _strengthDamageModifier.GetDamageModifier(attacker, defender);
 
         // Assert
         damage.Should().BeApproximately(testData.damage, 0.0001);

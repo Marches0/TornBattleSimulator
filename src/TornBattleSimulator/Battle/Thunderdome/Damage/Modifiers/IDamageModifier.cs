@@ -2,5 +2,7 @@
 
 public interface IDamageModifier
 {
-    double GetDamageModifier(ThunderdomeContext context);
+    double GetDamageModifier(
+        PlayerContext attacker,
+        PlayerContext defender);
 }

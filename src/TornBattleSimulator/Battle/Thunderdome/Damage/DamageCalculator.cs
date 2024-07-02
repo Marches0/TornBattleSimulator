@@ -16,6 +16,6 @@ public class DamageCalculator
     public double CalculateDamage(
         ThunderdomeContext context)
     {
-        return _damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(context));
+        return _damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(context.Attacker, context.Defender));
     }
 }

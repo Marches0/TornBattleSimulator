@@ -2,10 +2,12 @@
 
 public class StrengthDamageModifier : IDamageModifier
 {
-    public double GetDamageModifier(ThunderdomeContext context)
+    public double GetDamageModifier(
+        PlayerContext attacker,
+        PlayerContext defender)
     {
         //https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
-        double strength = context.Attacker.Stats.Strength;
+        double strength = attacker.Stats.Strength;
         double logStrength10 = Math.Log(strength / 10, 10);
 
         return 7d
