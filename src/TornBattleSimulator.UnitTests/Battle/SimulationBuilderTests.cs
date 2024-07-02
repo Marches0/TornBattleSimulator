@@ -34,6 +34,7 @@ public class SimulationBuilderTests
         return new BuildInput()
         {
             Name = "Full",
+            Health = 7500,
             BattleStats = new BattleStatsInput()
             {
                 Strength = 1,

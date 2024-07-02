@@ -2,6 +2,7 @@
 	"builds": [
 		{
 			"name": "base",
+			"health": 7500,
 			"battleStats": {
 				"strength": 1000,
 				"defence": 1000,

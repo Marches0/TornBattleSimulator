@@ -8,6 +8,8 @@ public class BattleBuild
 {
     public string Name { get; set; }
 
+    public uint Health { get; set; }
+
     public BattleStats BattleStats { get; set; }
 
     // Make these nullable to support not having the weapon?
