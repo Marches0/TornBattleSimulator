@@ -1,11 +1,8 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
+using TornBattleSimulator.Input;
+using TornBattleSimulator.Input.Build;
+using TornBattleSimulator.Input.Build.Stats;
 
 namespace TornBattleSimulator.UnitTests.Battle;
 
@@ -13,29 +10,29 @@ namespace TornBattleSimulator.UnitTests.Battle;
 public class SimulationBuilderTests
 {
     [TestCaseSource(nameof(Prepare_GivenBase_OverridesAllEmptyProperties_TestCases))]
-    public void Prepare_GivenBase_OverridesAllEmptyProperties((BattleBuild derived, string testName) testData)
+    public void Prepare_GivenBase_OverridesAllEmptyProperties((BuildInput derived, string testName) testData)
     {
         // Arrange
-        BattleBuild baseBuild = GetCompleteBuild();
+        BuildInput baseBuild = GetCompleteBuild();
 
         // Act
-        SimulatorConfig config = SimulationBuilder.Prepare(new SimulatorConfig() { Builds = [baseBuild, testData.derived] });
+        SimulatorInput config = SimulationBuilder.Prepare(new SimulatorInput() { Builds = [baseBuild, testData.derived] });
 
         // Assert
         testData.derived.Should().BeEquivalentTo(baseBuild);
     }
 
-    private static IEnumerable<(BattleBuild derived, string testName)> Prepare_GivenBase_OverridesAllEmptyProperties_TestCases()
+    private static IEnumerable<(BuildInput derived, string testName)> Prepare_GivenBase_OverridesAllEmptyProperties_TestCases()
     {
         yield return (new(), "Empty");
         yield return (new() { BattleStats = new() }, "Empty child object");
     }
 
-    private BattleBuild GetCompleteBuild()
+    private BuildInput GetCompleteBuild()
     {
-        return new BattleBuild()
+        return new BuildInput()
         {
-            BattleStats = new BattleStats()
+            BattleStats = new BattleStatsInput()
             {
                 Strength = 1,
                 Defence = 2,

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Config;
-using TornBattleSimulator.Modules;
+﻿using TornBattleSimulator.Battle.Config;
 
 namespace TornBattleSimulator;
 
@@ -19,6 +11,6 @@ public class Runner
 
     public async Task Start(string configFile)
     {
-        SimulatorConfig simulation = SimulationBuilder.Build(configFile);
+        var simulation = SimulationBuilder.Build(configFile);
     }
 }
