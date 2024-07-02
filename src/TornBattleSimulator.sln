@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator", "TornBattleSimulator.csproj", "{D0DCAD4D-6EF4-4F19-982F-AC638F0A13C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TornBattleSimulator", "TornBattleSimulator\TornBattleSimulator.csproj", "{47DCBFA0-4038-4D03-96CA-844D20EA8D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.UnitTests", "TornBattleSimulator.UnitTests\TornBattleSimulator.UnitTests.csproj", "{3573DFA2-0007-4B8B-86AA-C13AC42255BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D0DCAD4D-6EF4-4F19-982F-AC638F0A13C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0DCAD4D-6EF4-4F19-982F-AC638F0A13C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0DCAD4D-6EF4-4F19-982F-AC638F0A13C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0DCAD4D-6EF4-4F19-982F-AC638F0A13C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DCBFA0-4038-4D03-96CA-844D20EA8D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DCBFA0-4038-4D03-96CA-844D20EA8D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DCBFA0-4038-4D03-96CA-844D20EA8D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DCBFA0-4038-4D03-96CA-844D20EA8D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
