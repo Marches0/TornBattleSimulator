@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Input;
 using TornBattleSimulator.Input.Build;
+using TornBattleSimulator.Input.Build.Gear;
 using TornBattleSimulator.Input.Build.Stats;
 
 namespace TornBattleSimulator.UnitTests.Battle;
@@ -32,12 +33,48 @@ public class SimulationBuilderTests
     {
         return new BuildInput()
         {
+            Name = "Full",
             BattleStats = new BattleStatsInput()
             {
                 Strength = 1,
                 Defence = 2,
                 Dexterity = 3,
                 Speed = 4
+            },
+            Primary = new WeaponInput()
+            {
+                Accuracy = 10,
+                Damage = 20,
+                Ammo = new AmmoInput()
+                {
+                    Magazines = 2,
+                    MagazineSize = 10
+                },
+                RateOfFire = new RateOfFireInput()
+                {
+                    Min = 1,
+                    Max = 5
+                }
+            },
+            Secondary = new WeaponInput()
+            {
+                Accuracy = 10,
+                Damage = 20,
+                Ammo = new AmmoInput()
+                {
+                    Magazines = 2,
+                    MagazineSize = 10
+                },
+                RateOfFire = new RateOfFireInput()
+                {
+                    Min = 1,
+                    Max = 5
+                }
+            },
+            Melee = new WeaponInput()
+            {
+                Accuracy = 10,
+                Damage = 20
             }
         };
     }

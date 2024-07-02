@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using TornBattleSimulator.Battle.Build;
+using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Input;
 using TornBattleSimulator.Input.Build;
+using TornBattleSimulator.Input.Build.Gear;
 using TornBattleSimulator.Input.Build.Stats;
 
 namespace TornBattleSimulator.Mapper;
@@ -13,6 +15,11 @@ public class InputProfile : Profile
     {
         CreateMap<SimulatorInput, SimulatorConfig>();
         CreateMap<BuildInput, BattleBuild>();
+
         CreateMap<BattleStatsInput, BattleStats>();
+
+        CreateMap<WeaponInput, Weapon>();
+        CreateMap<AmmoInput, Ammo>();
+        CreateMap<RateOfFireInput, RateOfFire>();
     }
 }
