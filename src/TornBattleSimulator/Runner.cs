@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Modules;
 
 namespace TornBattleSimulator;
@@ -16,26 +17,8 @@ public class Runner
     {
     }
 
-    public async Task Start(string fightDefinitonFile)
+    public async Task Start(string configFile)
     {
-        var file = JsonSerializer.Deserialize<FileType>(File.ReadAllText(fightDefinitonFile), new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase});
-        var xx = ModelWriter.Apply(file.Things[0], file.Things[1]);
+        SimulatorConfig simulation = SimulationBuilder.Build(configFile);
     }
-}
-
-public class FileType
-{
-    public List<TestThing>? Things { get; set; }
-}
-
-public class TestThing
-{
-    public string? Name { get; set; }
-    public Nested? Nested { get; set; }
-    public List<int>? Numbers { get; set; }
-}
-
-public class Nested
-{
-    public string? Name { get; set; }
 }
