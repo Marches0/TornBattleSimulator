@@ -13,5 +13,6 @@ public enum BattleAction
     AttackMelee,
     ReloadPrimary,
     ReloadSecondary,
-    ThrowTemp
+    ThrowTemp,
+    Stunned
 }
