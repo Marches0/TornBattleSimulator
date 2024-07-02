@@ -11,6 +11,7 @@ public class PlayerContext
     public PlayerContext(BattleBuild build)
     {
         Build = build;
+        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
     /// <summary>
@@ -26,10 +27,19 @@ public class PlayerContext
     /// <summary>
     ///  The build's current stats.
     /// </summary>
-    /// <returns></returns>
-    public BattleStats GetStats()
+    public BattleStats GetStats() => _currentTickStats.Value;
+
+    public void Tick()
     {
-        var baseStats = new BattleStats()
+        // Clear the stats every tick, so we can reevaluate modifiers.
+        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
+    }
+
+    private Lazy<BattleStats> _currentTickStats;
+
+    private BattleStats GetCurrentStats()
+    {
+        BattleStats baseStats = new()
         {
             Strength = Build.BattleStats.Strength,
             Defence = Build.BattleStats.Defence,
