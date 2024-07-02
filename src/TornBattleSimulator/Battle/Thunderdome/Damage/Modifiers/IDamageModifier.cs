@@ -3,6 +3,6 @@
 public interface IDamageModifier
 {
     double GetDamageModifier(
-        PlayerContext attacker,
-        PlayerContext defender);
+        PlayerContext active,
+        PlayerContext other);
 }

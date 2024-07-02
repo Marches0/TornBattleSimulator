@@ -2,7 +2,7 @@
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage;
 
-public class DamageCalculator
+public class DamageCalculator : IDamageCalculator
 {
     // https://www.torn.com/forums.php#/p=threads&f=61&t=16180034&b=0&a=0
     private readonly List<IDamageModifier> _damageModifiers;
@@ -14,8 +14,10 @@ public class DamageCalculator
     }
 
     public double CalculateDamage(
-        ThunderdomeContext context)
+        ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other)
     {
-        return _damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(context.Attacker, context.Defender));
+        return _damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(active, other));
     }
 }

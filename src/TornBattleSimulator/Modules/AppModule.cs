@@ -13,6 +13,7 @@ internal class AppModule : Module
         builder
             .RegisterModule<MapperModule>()
             .RegisterModule<DamageModule>()
-            .RegisterModule<ThunderdomeModule>();
+            .RegisterModule<ThunderdomeModule>()
+            .RegisterModule<ActionModule>();
     }
 }

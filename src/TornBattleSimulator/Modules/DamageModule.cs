@@ -8,7 +8,7 @@ public class DamageModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<DamageCalculator>()
-            .As<DamageCalculator>()
+            .As<IDamageCalculator>()
             .SingleInstance();
 
         builder.RegisterType<StrengthDefenceRatioDamageModifier>()
