@@ -11,4 +11,6 @@ public class TearGasModifier : IStatsModifier
     public float GetSpeedModifier() => 1;
 
     public float GetStrengthModifier() => 1;
+
+    public float TimeRemainingSeconds { get; set; } = 120;
 }

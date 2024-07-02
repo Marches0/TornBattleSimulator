@@ -22,17 +22,31 @@ public class PlayerContext
     /// <summary>
     ///  Stat modifiers currently applied to the build.
     /// </summary>
-    public List<IStatsModifier> StatModifiers { get; set; } = new List<IStatsModifier>();
+    public List<IStatsModifier> StatModifiers { get; private set; } = new List<IStatsModifier>();
 
     /// <summary>
     ///  The build's current stats.
     /// </summary>
     public BattleStats Stats => _currentTickStats.Value;
 
-    public void Tick()
+    public void Tick(ThunderdomeContext context)
     {
         // Clear the stats every tick, so we can reevaluate modifiers.
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
+
+        foreach (IStatsModifier modifier in StatModifiers)
+        {
+            modifier.TimeRemainingSeconds -= context.AttackInterval;
+
+            if (modifier.TimeRemainingSeconds <= 0)
+            {
+                // track
+            }
+        }
+
+        StatModifiers = StatModifiers
+            .Where(m => m.TimeRemainingSeconds > 0)
+            .ToList();
     }
 
     private Lazy<BattleStats> _currentTickStats;

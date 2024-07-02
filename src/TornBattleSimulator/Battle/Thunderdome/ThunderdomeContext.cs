@@ -17,6 +17,7 @@ public class ThunderdomeContext
 
     public void Tick()
     {
-
+        Attacker.Tick(this);
+        Defender.Tick(this);
     }
 }

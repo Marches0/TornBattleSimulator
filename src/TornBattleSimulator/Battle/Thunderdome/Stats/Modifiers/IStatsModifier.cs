@@ -9,4 +9,6 @@ public interface IStatsModifier
     float GetSpeedModifier();
 
     float GetDexterityModifier();
+
+    float TimeRemainingSeconds { get; set; }
 }

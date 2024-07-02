@@ -19,6 +19,12 @@ public class Thunderdome
 
     public void Battle()
     {
+        int turnNumber = 0;
+        do
+        {
+            _context.Tick();
+        } while (turnNumber < 25);
+
         // Temps tick
         // Attacker moves
         // Defender moves
