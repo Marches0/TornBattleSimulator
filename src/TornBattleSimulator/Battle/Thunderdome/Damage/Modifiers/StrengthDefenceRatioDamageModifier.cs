@@ -1,11 +1,11 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
-public class StrengthDefenceRatioModifier
+public class StrengthDefenceRatioDamageModifier : IDamageModifier
 {
     private static readonly double LowerMitigationModifier = 50 / Math.Log(32);
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
-    public double GetModifider(PlayerContext attacker, PlayerContext defender)
+    public double GetDamageModifier(PlayerContext attacker, PlayerContext defender)
     {
         // https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
         double defence = defender.GetStats().Defence;

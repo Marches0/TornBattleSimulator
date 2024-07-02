@@ -1,10 +1,20 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
+
+namespace TornBattleSimulator.Battle.Thunderdome;
 
 public class Thunderdome
 {
-    public Thunderdome(ThunderdomeContext context)
-    {
+    private readonly DamageCalculator _damageCalculator;
+    private readonly ThunderdomeContext _context;
 
+    public delegate Thunderdome Create(ThunderdomeContext context);
+    
+    public Thunderdome(
+        DamageCalculator damageCalculator,
+        ThunderdomeContext context)
+    {
+        _damageCalculator = damageCalculator;
+        _context = context;
     }
 
     public void Battle()
@@ -13,5 +23,6 @@ public class Thunderdome
         // Attacker moves
         // Defender moves
         // ?
+        var dmg = _damageCalculator.CalculateDamage(_context);
     }
 }

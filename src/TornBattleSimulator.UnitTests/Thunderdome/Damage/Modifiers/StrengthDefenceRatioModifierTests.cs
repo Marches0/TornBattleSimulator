@@ -8,7 +8,7 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Damage.Modifiers;
 [TestFixture]
 public class StrengthDefenceRatioModifierTests
 {
-    private readonly StrengthDefenceRatioModifier _strengthDefenceRatioModifier = new();
+    private readonly StrengthDefenceRatioDamageModifier _strengthDefenceRatioModifier = new();
 
     [TestCaseSource(nameof(StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier_TestCases))]
     public void StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier((ulong attackerStrength, ulong defenderDefence, double expectedRatio, string testName) testData)
@@ -18,7 +18,7 @@ public class StrengthDefenceRatioModifierTests
         PlayerContext defender = new PlayerContextBuilder().WithStats(new BattleStats() { Defence = testData.defenderDefence }).Build();
 
         // Act
-        double mod = _strengthDefenceRatioModifier.GetModifider(attacker, defender);
+        double mod = _strengthDefenceRatioModifier.GetDamageModifier(attacker, defender);
 
         // Assert
         mod.Should().BeApproximately(testData.expectedRatio, 0.0001);
@@ -26,12 +26,12 @@ public class StrengthDefenceRatioModifierTests
 
     private static IEnumerable<(ulong attackerStrength, ulong defenderDefence, double expectedRatio, string testName)> StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier_TestCases()
     {
+        // Inverted, since we return "how much damage is remaining" rather than
+        // "how much was mitigated"
         yield return (1000, 1000, 0.5, "Equal = 50%");
         yield return (32000, 999, 1, "Str > 32x Def -> 100%");
         yield return (999, 14000, 0, "Def > 14x Str -> 0%");
 
-        // Inverted, since we return "how much damage is remaining" rather than
-        // "how much was mitigated"
         // https://wiki.torn.com/wiki/Battle_Stats#Stat_Weights
         yield return (10_000_000, 625_000, 0.9, "10%");
         yield return (10_000_000, 1_250_000, 0.8, "20%");

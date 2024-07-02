@@ -9,10 +9,14 @@ namespace TornBattleSimulator;
 public class Runner
 {
     private readonly IMapper _mapper;
+    private readonly Thunderdome.Create _thunderdomeFactory;
 
-    public Runner(IMapper mapper)
+    public Runner(
+        IMapper mapper,
+        Thunderdome.Create thunderdomeFactory)
     {
         _mapper = mapper;
+        _thunderdomeFactory = thunderdomeFactory;
     }
 
     public async Task Start(string configFile)
@@ -40,7 +44,7 @@ public class Runner
 
     private Thunderdome CreateThunderdome(BattleBuild attacker, BattleBuild defender)
     {
-        return new Thunderdome(
+        return _thunderdomeFactory(
             new ThunderdomeContext(
                 new PlayerContext(attacker),
                 new PlayerContext(defender)

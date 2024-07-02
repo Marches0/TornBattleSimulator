@@ -1,9 +1,4 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TornBattleSimulator.Modules;
 
@@ -15,6 +10,9 @@ internal class AppModule : Module
             .As<Runner>()
             .SingleInstance();
 
-        builder.RegisterModule<MapperModule>();
+        builder
+            .RegisterModule<MapperModule>()
+            .RegisterModule<DamageModule>()
+            .RegisterModule<ThunderdomeModule>();
     }
 }
