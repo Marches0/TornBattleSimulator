@@ -14,5 +14,7 @@ internal class AppModule : Module
         builder.RegisterType<Runner>()
             .As<Runner>()
             .SingleInstance();
+
+        builder.RegisterModule<MapperModule>();
     }
 }

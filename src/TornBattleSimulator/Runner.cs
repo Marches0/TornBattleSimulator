@@ -1,16 +1,21 @@
-﻿using TornBattleSimulator.Battle.Config;
+﻿using AutoMapper;
+using TornBattleSimulator.Battle.Config;
+using TornBattleSimulator.Input;
 
 namespace TornBattleSimulator;
 
 public class Runner
 {
+    private readonly IMapper _mapper;
 
-    public Runner()
+    public Runner(IMapper mapper)
     {
+        _mapper = mapper;
     }
 
     public async Task Start(string configFile)
     {
-        var simulation = SimulationBuilder.Build(configFile);
+        SimulatorInput simulation = SimulationBuilder.Build(configFile);
+        SimulatorConfig actual = _mapper.Map<SimulatorInput, SimulatorConfig>(simulation);
     }
 }
