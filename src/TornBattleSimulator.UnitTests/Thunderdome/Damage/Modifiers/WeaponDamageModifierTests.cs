@@ -40,8 +40,8 @@ public class WeaponDamageModifierTests
     private static PlayerContext GetArmedPlayer()
     {
         return new PlayerContextBuilder()
-            .WithPrimary(new Weapon() { Damage = PrimaryDamage })
-            .WithSecondary(new Weapon() { Damage = SecondaryDamage })
+            .WithPrimary(new Weapon() { Damage = PrimaryDamage, Ammo = new Ammo() })
+            .WithSecondary(new Weapon() { Damage = SecondaryDamage, Ammo = new Ammo() })
             .WithMelee(new Weapon() { Damage = MeleeDamage })
             .Build();
     }
