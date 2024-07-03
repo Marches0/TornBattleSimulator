@@ -26,8 +26,16 @@ public class InputProfile : Profile
         CreateMap<StrategyInput, StrategyDescription>();
         CreateMap<StrategyUntilInput, StrategyUntil>();
 
-        // todo
+        // not actually needed? hmm
         /*CreateMap<string, WeaponType>()
-            .ConstructUsing(_ => 0);*/
+            .ConvertUsing(new StringEnumTypeConverter<WeaponType>());*/
+    }
+
+    private class StringEnumTypeConverter<TEnum> : ITypeConverter<string, TEnum> where TEnum : struct, Enum
+    {
+        public TEnum Convert(string source, TEnum destination, ResolutionContext context)
+        {
+            return EnumBuilder.GetAsEnum<TEnum>(source);
+        }
     }
 }
