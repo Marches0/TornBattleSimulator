@@ -1,7 +1,8 @@
 ﻿using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Thunderdome.Action;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Battle.Thunderdome.Stats.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
@@ -33,9 +34,9 @@ public class PlayerContext
     public IStrategy Strategy { get; }
 
     /// <summary>
-    ///  Stat modifiers currently applied to the build.
+    ///  Modifiers currently applied to the player.
     /// </summary>
-    public List<IStatsModifier> StatModifiers { get; private set; } = new List<IStatsModifier>();
+    public List<IModifier> Modifiers { get; private set; } = new List<IModifier>();
 
     public int Health { get; set; }
 
@@ -59,7 +60,7 @@ public class PlayerContext
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
         CurrentAction = 0;
 
-        foreach (IStatsModifier modifier in StatModifiers)
+        foreach (IModifier modifier in Modifiers)
         {
             modifier.TimeRemainingSeconds -= context.AttackInterval;
 
@@ -69,7 +70,7 @@ public class PlayerContext
             }
         }
 
-        StatModifiers = StatModifiers
+        Modifiers = Modifiers
             .Where(m => m.TimeRemainingSeconds > 0)
             .ToList();
     }
@@ -86,7 +87,8 @@ public class PlayerContext
             Dexterity = Build.BattleStats.Dexterity,
         };
 
-        return StatModifiers
+        return Modifiers
+            .OfType<IStatsModifier>()
             .Aggregate(baseStats, (stats, modifier) => stats.Apply(modifier));
     }
 }

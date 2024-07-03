@@ -10,4 +10,9 @@ public class GearModule : Module
         builder.RegisterType<WeaponsFactory>()
             .As<WeaponsFactory>();
     }
+
+    private void RegisterTemporaryWeapons(ContainerBuilder builder)
+    {
+
+    }
 }

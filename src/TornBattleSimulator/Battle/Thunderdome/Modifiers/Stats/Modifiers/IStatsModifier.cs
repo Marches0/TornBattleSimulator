@@ -1,6 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Stats.Modifiers;
+﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
 
-public interface IStatsModifier
+public interface IStatsModifier : IModifier
 {
     float GetStrengthModifier();
 
@@ -9,8 +9,6 @@ public interface IStatsModifier
     float GetSpeedModifier();
 
     float GetDexterityModifier();
-
-    float TimeRemainingSeconds { get; set; }
 
     bool RequiresDamageToApply { get; }
 }
