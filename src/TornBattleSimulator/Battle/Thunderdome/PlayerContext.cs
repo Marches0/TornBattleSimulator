@@ -35,6 +35,7 @@ public class PlayerContext
 
     public WeaponContext? Primary { get; }
     public WeaponContext? Secondary { get; }
+    public WeaponContext? Melee { get; }
 
     /// <summary>
     ///  The build's current stats.

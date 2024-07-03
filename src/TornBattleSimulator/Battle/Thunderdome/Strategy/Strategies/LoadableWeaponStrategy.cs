@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Thunderdome.Action;
-using TornBattleSimulator.Battle.Thunderdome.Player;
+﻿using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
+
 public abstract class LoadableWeaponStrategy
 {
     private readonly StrategyDescription _strategyDescription;

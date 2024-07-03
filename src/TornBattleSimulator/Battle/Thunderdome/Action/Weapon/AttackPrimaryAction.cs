@@ -6,7 +6,8 @@ public class AttackPrimaryAction : AttackWeaponAction, IAction
 {
     public AttackPrimaryAction(
         IDamageCalculator damageCalculator) : base(damageCalculator)
-    {}
+    {
+    }
 
     public void PerformAction(
         ThunderdomeContext context,
