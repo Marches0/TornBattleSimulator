@@ -55,7 +55,12 @@ public class PlayerContextBuilder
                 Melee = _melee
             },
             0,
+            new Weapons(
+                _primary != null ? new WeaponContext(_primary, WeaponType.Primary) : null,
+                _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary) : null,
+                _melee != null ? new WeaponContext(_melee, WeaponType.Melee) : null,
+                null),
             null
-        );
+            );
     }
 }

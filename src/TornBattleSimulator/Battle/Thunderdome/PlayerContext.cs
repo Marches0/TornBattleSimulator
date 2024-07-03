@@ -14,11 +14,12 @@ public class PlayerContext
     public PlayerContext(
         BattleBuild build,
         PlayerType playerType,
+        Weapons weapons,
         IStrategy strategy)
     {
         Build = build;
         Strategy = strategy;
-        Weapons = new Weapons(build);
+        Weapons = weapons;
         Health = (int)build.Health;
         PlayerType = playerType;
 

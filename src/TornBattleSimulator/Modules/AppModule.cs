@@ -15,6 +15,7 @@ internal class AppModule : Module
             .RegisterModule<DamageModule>()
             .RegisterModule<ThunderdomeModule>()
             .RegisterModule<ActionModule>()
-            .RegisterModule<StrategyModule>();
+            .RegisterModule<StrategyModule>()
+            .RegisterModule<GearModule>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
 
 namespace TornBattleSimulator.Battle.Build;
@@ -19,6 +20,8 @@ public class BattleBuild
     public Weapon Secondary { get; set; }
 
     public Weapon Melee { get; set; }
+
+    public TemporaryWeaponType Temporary { get; set; }
 
     public List<StrategyDescription> Strategy { get; set; }
 }

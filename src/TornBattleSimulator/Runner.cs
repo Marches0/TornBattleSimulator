@@ -12,15 +12,18 @@ public class Runner
 {
     private readonly IMapper _mapper;
     private readonly Thunderdome.Create _thunderdomeFactory;
+    private readonly WeaponsFactory _weaponsFactory;
     private readonly StrategyBuilder _strategyBuilder;
 
     public Runner(
         IMapper mapper,
         Thunderdome.Create thunderdomeFactory,
+        WeaponsFactory weaponsFactory,
         StrategyBuilder strategyBuilder)
     {
         _mapper = mapper;
         _thunderdomeFactory = thunderdomeFactory;
+        _weaponsFactory = weaponsFactory;
         _strategyBuilder = strategyBuilder;
     }
 
@@ -53,8 +56,8 @@ public class Runner
     {
         return _thunderdomeFactory(
             new ThunderdomeContext(
-                new PlayerContext(attacker, PlayerType.Attacker, _strategyBuilder.BuildStrategy(attacker)),
-                new PlayerContext(defender, PlayerType.Defender,_strategyBuilder.BuildStrategy(defender))
+                new PlayerContext(attacker, PlayerType.Attacker, _weaponsFactory.Create(attacker), _strategyBuilder.BuildStrategy(attacker)),
+                new PlayerContext(defender, PlayerType.Defender, _weaponsFactory.Create(defender), _strategyBuilder.BuildStrategy(defender))
             )
         );
     }

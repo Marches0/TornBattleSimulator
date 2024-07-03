@@ -17,5 +17,7 @@ public class BuildInput
 
     public WeaponInput? Melee { get; set; }
 
+    public string? Temporary { get; set; }
+
     public List<StrategyInput>? Strategy { get; set; }
 }
