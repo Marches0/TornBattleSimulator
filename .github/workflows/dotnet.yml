@@ -31,8 +31,7 @@ jobs:
       working-directory: src
     - name: Coveralls
       uses: coverallsapp/github-action@v2
-      working-directory: src
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         format: cobertura
-        file: "coverage/**/coverage.cobertura.xml"
+        file: "src/coverage/**/coverage.cobertura.xml"
