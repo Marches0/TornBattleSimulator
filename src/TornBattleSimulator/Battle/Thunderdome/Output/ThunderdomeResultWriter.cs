@@ -9,9 +9,9 @@ public class ThunderdomeResultWriter
         Table table = new Table()
             .NoBorder()
             .LeftAligned()
-            .Title($"{context.Attacker.Build.Name} -> {context.Defender.Build.Name} ({context.GetResult()})");
+            .Title($"{context.Attacker.Build.Name.EscapeMarkup()} attacking {context.Defender.Build.Name.EscapeMarkup()} ({context.GetResult()})");
 
-        table.AddColumns("Turn", "Player", "Event");
+        table.AddColumns("Turn", "Player", "Event", "Details");
         
         foreach(var tEvent in context.Events)
         {
@@ -26,7 +26,8 @@ public class ThunderdomeResultWriter
         return [
             tEvent.Turn.ToString(),
             tEvent.Source.ToString(),
-            GetEventDetails(tEvent)
+            tEvent.Type.ToString(),
+            tEvent.Data.Format()
         ];
     }
 

@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome;
+﻿using TornBattleSimulator.Battle.Thunderdome.Events;
+
+namespace TornBattleSimulator.Battle.Thunderdome;
 
 public class ThunderdomeContext
 {

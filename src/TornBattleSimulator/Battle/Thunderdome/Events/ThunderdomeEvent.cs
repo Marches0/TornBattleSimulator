@@ -1,7 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Player;
 
-namespace TornBattleSimulator.Battle.Thunderdome;
+namespace TornBattleSimulator.Battle.Thunderdome.Events;
 
 public class ThunderdomeEvent
 {
@@ -21,14 +21,4 @@ public class ThunderdomeEvent
     public ThunderdomeEventType Type { get; }
     public int Turn { get; }
     public IEventData Data { get; }
-}
-
-public enum ThunderdomeEventType
-{
-    AttackHit = 1,
-    AttackMiss,
-    Reload,
-    Stunned,
-    EffectBegin,
-    EffectEnd
 }

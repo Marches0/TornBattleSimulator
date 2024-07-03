@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Player;
+﻿using TornBattleSimulator.Battle.Thunderdome.Events.Data;
+using TornBattleSimulator.Battle.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
@@ -12,6 +13,6 @@ public abstract class ReloadWeaponAction
     {
         weapon.Ammo.MagazineAmmoRemaining = weapon.Ammo.MagazineSize;
         --weapon.Ammo.MagazinesRemaining;
-        return new ThunderdomeEvent(active.PlayerType, ThunderdomeEventType.Reload, context.Turn, [weapon.Type]);
+        return new ThunderdomeEvent(active.PlayerType, ThunderdomeEventType.Reload, context.Turn, new ReloadEvent(weapon.Type));
     }
 }

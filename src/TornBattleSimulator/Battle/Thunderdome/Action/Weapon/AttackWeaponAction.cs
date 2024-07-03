@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
+using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
@@ -38,7 +39,7 @@ public abstract class AttackWeaponAction
             active.PlayerType,
             ThunderdomeEventType.AttackHit,
             context.Turn,
-            [damage]
+            new AttackHitEvent(weapon.Type, damage)
         );
     }
 }
