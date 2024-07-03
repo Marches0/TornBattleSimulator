@@ -1,8 +1,8 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Player;
+﻿namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
-public class Weapons
+public class EquippedWeapons
 {
-    public Weapons(WeaponContext? primary, WeaponContext? secondary, WeaponContext? melee, WeaponContext? temporary)
+    public EquippedWeapons(WeaponContext? primary, WeaponContext? secondary, WeaponContext? melee, WeaponContext? temporary)
     {
         Primary = primary;
         Secondary = secondary;

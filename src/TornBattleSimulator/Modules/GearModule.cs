@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using TornBattleSimulator.Battle.Thunderdome.Player;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Modules;
 

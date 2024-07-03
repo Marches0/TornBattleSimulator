@@ -2,7 +2,7 @@
 using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Battle.Thunderdome;
-using TornBattleSimulator.Battle.Thunderdome.Player;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
 

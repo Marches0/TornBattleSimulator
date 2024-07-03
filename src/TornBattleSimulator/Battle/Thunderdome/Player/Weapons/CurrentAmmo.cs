@@ -1,6 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Player;
+namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 public class CurrentAmmo : Ammo
 {

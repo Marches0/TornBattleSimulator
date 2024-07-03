@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Player;
+﻿namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 public enum TemporaryWeaponType
 {

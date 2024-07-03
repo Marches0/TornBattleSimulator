@@ -1,8 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using TornBattleSimulator.Battle.Build;
+﻿using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Build.Equipment;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Player;
+namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 public class WeaponsFactory
 {
     public WeaponsFactory()
@@ -10,9 +9,9 @@ public class WeaponsFactory
 
     }
 
-    public Weapons Create(BattleBuild build)
+    public EquippedWeapons Create(BattleBuild build)
     {
-        return new Weapons(
+        return new EquippedWeapons(
              build.Primary != null ? new WeaponContext(build.Primary, WeaponType.Primary) : null,
              build.Secondary != null ? new WeaponContext(build.Secondary, WeaponType.Secondary) : null,
              build.Melee != null ? new WeaponContext(build.Melee, WeaponType.Melee) : null,
