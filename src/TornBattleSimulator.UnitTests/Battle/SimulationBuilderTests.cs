@@ -76,6 +76,23 @@ public class SimulationBuilderTests
             {
                 Accuracy = 10,
                 Damage = 20
+            },
+            Strategy = new List<StrategyInput>()
+            {
+                new StrategyInput()
+                {
+                    Weapon = "primary",
+                    Reload = true,
+                    Until = new List<StrategyUntilInput>()
+                    {
+                        new StrategyUntilInput()
+                        {
+                            Condition = "effect",
+                            StatusName = "bleed",
+                            Count = 1,
+                        }
+                    }
+                }
             }
         };
     }

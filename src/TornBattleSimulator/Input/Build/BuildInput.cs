@@ -16,4 +16,6 @@ public class BuildInput
     public WeaponInput? Secondary { get; set; }
 
     public WeaponInput? Melee { get; set; }
+
+    public List<StrategyInput>? Strategy { get; set; }
 }

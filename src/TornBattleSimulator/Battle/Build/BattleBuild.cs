@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Build;
 
@@ -18,5 +19,7 @@ public class BattleBuild
     public Weapon Secondary { get; set; }
 
     public Weapon Melee { get; set; }
+
+    public List<StrategyDescription> Strategy { get; set; }
 }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
