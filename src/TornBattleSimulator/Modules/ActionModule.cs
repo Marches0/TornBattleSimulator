@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
-using TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Modules;
 

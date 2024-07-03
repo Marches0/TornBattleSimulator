@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
+﻿using TornBattleSimulator.Battle.Thunderdome.Action;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 public interface IStrategy
 {

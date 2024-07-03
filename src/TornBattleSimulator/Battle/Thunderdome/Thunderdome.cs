@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
+﻿using TornBattleSimulator.Battle.Thunderdome.Action;
+using TornBattleSimulator.Battle.Thunderdome.Damage;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -19,7 +20,7 @@ public class Thunderdome
 
     public void Battle()
     {
-        _context.Attacker.CurrentAction = Strategy.BattleAction.AttackPrimary;
+        _context.Attacker.CurrentAction = BattleAction.AttackPrimary;
         var dmg = _damageCalculator.CalculateDamage(_context, _context.Attacker, _context.Defender);
 
         int turnNumber = 0;

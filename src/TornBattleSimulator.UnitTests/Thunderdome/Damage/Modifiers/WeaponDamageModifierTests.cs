@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage.Modifiers;
 

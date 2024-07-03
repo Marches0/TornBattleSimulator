@@ -1,7 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Build;
+using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Stats.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
