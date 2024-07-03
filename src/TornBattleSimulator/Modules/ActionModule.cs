@@ -11,5 +11,8 @@ public class ActionModule : Module
     {
         builder.RegisterType<AttackPrimaryAction>()
             .Keyed<IAction>(BattleAction.AttackPrimary);
+
+        builder.RegisterType<AttackSecondaryAction>()
+            .Keyed<IAction>(BattleAction.AttackSecondary);
     }
 }
