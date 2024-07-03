@@ -30,7 +30,7 @@ public abstract class AttackWeaponAction
         if (weapon.Ammo != null)
         {
             int ammoConsumed = Random.Shared.Next(weapon.Weapon.RateOfFire.Min, weapon.Weapon.RateOfFire.Max + 1);
-            weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, active.Primary.Ammo.MagazineAmmoRemaining - ammoConsumed);
+            weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, weapon.Ammo.MagazineAmmoRemaining - ammoConsumed);
         }
     }
 }
