@@ -27,19 +27,24 @@ public class StrengthDamageModifierTests
     private static IEnumerable<(ulong strength, double damage)> StrengthDamageModifier_BasedOnStrength_ReturnsDamage_TestCases()
     {
         // https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
-        const double critMultiplier = 3.5;
-        // The quoted values are for crits (3.5x damage)
-        // StrengthDamageModifier doesn't apply a body multiplier, so the values are scaled down.
-        yield return (10, 30 / critMultiplier);
-        yield return (100, 64 / critMultiplier);
-        yield return (1_000, 112 / critMultiplier);
-        yield return (10_000, 174 / critMultiplier);
-        yield return (100_000, 250 / critMultiplier);
-        yield return (1_000_000, 340 / critMultiplier);
-        yield return (10_000_000, 444 / critMultiplier);
-        yield return (100_000_000, 562 / critMultiplier);
-        yield return (1_000_000_000, 694 / critMultiplier);
-        yield return (10_000_000_000, 840 / critMultiplier);
-        yield return (100_000_000_000, 1000 / critMultiplier);
+        yield return (10, GetDamage(30));
+        yield return (100, GetDamage(64));
+        yield return (1_000, GetDamage(112));
+        yield return (10_000, GetDamage(174));
+        yield return (100_000, GetDamage(250));
+        yield return (1_000_000, GetDamage(340));
+        yield return (10_000_000, GetDamage(444));
+        yield return (100_000_000, GetDamage(562));
+        yield return (1_000_000_000, GetDamage(694));
+        yield return (10_000_000_000, GetDamage(840));
+        yield return (100_000_000_000, GetDamage(1000));
+
+        double GetDamage(int quoted)
+        {
+            // The quoted values are for crits (3.5x damage)
+            // StrengthDamageModifier doesn't apply a body multiplier, so the values are scaled down.
+            const double critMultiplier = 3.5;
+            return quoted / critMultiplier;
+        }
     }
 }

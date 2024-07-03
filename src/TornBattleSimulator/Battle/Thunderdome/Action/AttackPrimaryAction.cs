@@ -22,7 +22,7 @@ public class AttackPrimaryAction : IAction
             throw new InvalidOperationException("Attempted to fire primary without ammo.");
         }
 
-        int damage = (int)_damageCalculator.CalculateDamage(context, active, other);
+        int damage = _damageCalculator.CalculateDamage(context, active, other);
         other.Health -= damage;
 
         int ammoConsumed = Random.Shared.Next((int)active.Build.Primary.RateOfFire.Min, (int)active.Build.Primary.RateOfFire.Max + 1);

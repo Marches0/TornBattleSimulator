@@ -8,7 +8,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage;
 
 public interface IDamageCalculator
 {
-    double CalculateDamage(
+    int CalculateDamage(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other);

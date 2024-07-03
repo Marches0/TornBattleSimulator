@@ -14,7 +14,7 @@ public class AttackPrimaryActionTests
     public void AttackPrimary_ReducesOtherHealth()
     {
         // Arrange
-        double expectedDamage = 100;
+        int expectedDamage = 100;
 
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
@@ -35,7 +35,7 @@ public class AttackPrimaryActionTests
     public void AttackPrimary_ReducesCurrentMagazineAmmo()
     {
         // Arrange
-        double expectedDamage = 100;
+        int expectedDamage = 100;
 
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));

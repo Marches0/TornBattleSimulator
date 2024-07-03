@@ -5,14 +5,14 @@ namespace TornBattleSimulator.UnitTests.Thunderdome;
 
 public class StaticDamageCalculator : IDamageCalculator
 {
-    private readonly double _damage;
+    private readonly int _damage;
 
-    public StaticDamageCalculator(double damage)
+    public StaticDamageCalculator(int damage)
     {
         _damage = damage;
     }
 
-    public double CalculateDamage(ThunderdomeContext context, PlayerContext active, PlayerContext other)
+    public int CalculateDamage(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
         return _damage;
     }
