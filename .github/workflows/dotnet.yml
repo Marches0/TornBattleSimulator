@@ -27,12 +27,12 @@ jobs:
       run: dotnet build --no-restore
       working-directory: src
     - name: Test
-      run: dotnet test --no-build --verbosity normal --collect:"Code Coverage" --results-directory ./coverage --settings:ms.runsettings.xml
+      run: dotnet test --no-build --verbosity normal --collect:"Code Coverage" --results-directory ../coverage --settings:ms.runsettings.xml
       working-directory: src
     - name: Coveralls
-      uses: coverallsapp/github-action@v2
+      uses: coverallsapp/github-action@v2.3.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         format: cobertura
         debug: true
-        file: "/home/runner/work/TornBattleSimulator/TornBattleSimulator/src/coverage/**/coverage.cobertura.xml"
+        file: "coverage/**/coverage.cobertura.xml"
