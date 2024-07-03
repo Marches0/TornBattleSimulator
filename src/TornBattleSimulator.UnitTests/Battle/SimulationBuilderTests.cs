@@ -55,6 +55,14 @@ public class SimulationBuilderTests
                 {
                     Min = 1,
                     Max = 5
+                },
+                Modifiers = new List<WeaponModifierInput>()
+                {
+                    new WeaponModifierInput()
+                    {
+                        Percent = 10,
+                        Type = "wither"
+                    }
                 }
             },
             Secondary = new WeaponInput()

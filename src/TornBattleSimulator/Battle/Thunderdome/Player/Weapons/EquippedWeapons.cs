@@ -2,7 +2,12 @@
 
 public class EquippedWeapons
 {
-    public EquippedWeapons(WeaponContext? primary, WeaponContext? secondary, WeaponContext? melee, WeaponContext? temporary)
+    public EquippedWeapons(
+        WeaponContext? primary,
+        WeaponContext? secondary,
+        WeaponContext? melee,
+        WeaponContext? temporary
+    )
     {
         Primary = primary;
         Secondary = secondary;

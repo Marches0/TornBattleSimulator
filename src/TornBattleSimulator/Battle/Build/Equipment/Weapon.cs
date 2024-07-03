@@ -9,6 +9,8 @@ public class Weapon
     public RateOfFire RateOfFire { get; set; }
 
     public Ammo Ammo { get; set; }
+
+    public List<WeaponModifierDescription> Modifiers { get; set; }
 }
 
 public class RateOfFire

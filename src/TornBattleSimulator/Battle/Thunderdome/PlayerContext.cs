@@ -31,6 +31,7 @@ public class PlayerContext
     ///  The build taking part.
     /// </summary>
     public BattleBuild Build { get; }
+
     public IStrategy Strategy { get; }
 
     /// <summary>
