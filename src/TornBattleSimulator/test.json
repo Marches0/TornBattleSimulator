@@ -43,6 +43,7 @@
 				"damage": 40,
 				"accuracy": 100
 			},
+			"temporary": "tearGas",
 			"strategy": [
 				{
 					"weapon": "primary",

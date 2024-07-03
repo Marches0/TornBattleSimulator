@@ -9,4 +9,6 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 public interface IModifier
 {
     float TimeRemainingSeconds { get; set; }
+
+    bool RequiresDamageToApply { get; }
 }

@@ -7,7 +7,7 @@ public class WeaponContext
     public WeaponContext(
         Weapon weapon,
         WeaponType weaponType,
-        List<IModifier> modifiers)
+        List<PotentialModifier> modifiers)
     {
         Description = weapon;
         Type = weaponType;
@@ -27,5 +27,5 @@ public class WeaponContext
     public CurrentAmmo? Ammo { get; }
     public bool CanReload => Ammo?.MagazinesRemaining > 0;
     public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;
-    public List<IModifier> Modifiers { get; }
+    public List<PotentialModifier> Modifiers { get; }
 }

@@ -1,6 +1,4 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
-
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers.Temporary;
+﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers.Temporary;
 
 public class TearGasModifier : IStatsModifier
 {

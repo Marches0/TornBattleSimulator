@@ -9,6 +9,4 @@ public interface IStatsModifier : IModifier
     float GetSpeedModifier();
 
     float GetDexterityModifier();
-
-    bool RequiresDamageToApply { get; }
 }

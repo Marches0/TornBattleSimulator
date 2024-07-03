@@ -5,39 +5,42 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 public class WeaponsFactory
 {
-    private static readonly List<IModifier> NoModifiers = new List<IModifier>(0);
+    private readonly ModifierFactory _modifierFactory;
+    private readonly TemporaryWeaponFactory _temporaryWeaponFactory;
 
-    public WeaponsFactory()
+    public WeaponsFactory(
+        ModifierFactory modifierFactory,
+        TemporaryWeaponFactory temporaryWeaponFactory)
     {
-
+        _modifierFactory = modifierFactory;
+        _temporaryWeaponFactory = temporaryWeaponFactory;
     }
 
     public EquippedWeapons Create(BattleBuild build)
     {
+        Weapon? temporary = build.Temporary != null
+            ? _temporaryWeaponFactory.GetTemporaryWeapon(build.Temporary.Value)
+            : null;
+
         return new EquippedWeapons(
-             build.Primary != null ? new WeaponContext(build.Primary, WeaponType.Primary, NoModifiers) : null,
-             build.Secondary != null ? new WeaponContext(build.Secondary, WeaponType.Secondary, NoModifiers) : null,
-             build.Melee != null ? new WeaponContext(build.Melee, WeaponType.Melee, NoModifiers) : null,
-             build.Temporary != null ? new WeaponContext(GetTemporaryWeapon(build.Temporary.Value), WeaponType.Temporary, NoModifiers) : null
+             GetContext(build.Primary, WeaponType.Primary),
+             GetContext(build.Secondary, WeaponType.Secondary),
+             GetContext(build.Melee, WeaponType.Melee),
+             GetContext(temporary, WeaponType.Temporary)
         );
     }
 
-    private Weapon GetTemporaryWeapon(TemporaryWeaponType type)
+    private WeaponContext? GetContext(Weapon? weapon, WeaponType weaponType)
     {
-        return new Weapon()
-        {
-            Accuracy = 200,
-            Damage = 0,
-            Ammo = new Ammo()
-            {
-                Magazines = 0,
-                MagazineSize = 1
-            },
-            RateOfFire = new RateOfFire()
-            {
-                Min = 1,
-                Max = 1
-            }
-        };
+        return weapon is null
+            ? null
+            : new WeaponContext(weapon, weaponType, GetModifiers(weapon));
+    }
+
+    private List<PotentialModifier> GetModifiers(Weapon weapon)
+    {
+        return weapon.Modifiers
+            .Select(m => _modifierFactory.GetModifier(m.Type, m.Percent))
+            .ToList();
     }
 }
