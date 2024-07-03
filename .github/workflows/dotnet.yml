@@ -35,4 +35,4 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         format: cobertura
         debug: true
-        file: "/src/coverage/**/coverage.cobertura.xml"
+        file: "/home/runner/work/TornBattleSimulator/TornBattleSimulator/src/coverage/**/coverage.cobertura.xml"
