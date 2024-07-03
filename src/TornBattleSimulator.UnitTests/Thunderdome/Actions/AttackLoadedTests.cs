@@ -25,13 +25,13 @@ public class AttackLoadedTests : LoadableWeaponTests
         AttackPrimaryAction attack = autoFake.Resolve<AttackPrimaryAction>();
 
         // Act
-        attacker.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Primary.Ammo.MagazineSize);
+        attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Primary.Ammo.MagazineSize);
         attack.PerformAction(new ThunderdomeContext(attacker, defender), attacker, defender);
 
         // Assert
         using (new AssertionScope())
         {
-            attacker.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
+            attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
             defender.Health.Should().Be(400);
         }   
     }
@@ -51,13 +51,13 @@ public class AttackLoadedTests : LoadableWeaponTests
         AttackSecondaryAction attack = autoFake.Resolve<AttackSecondaryAction>();
 
         // Act
-        attacker.Secondary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Secondary.Ammo.MagazineSize);
+        attacker.Weapons!.Secondary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Secondary.Ammo.MagazineSize);
         attack.PerformAction(new ThunderdomeContext(attacker, defender), attacker, defender);
 
         // Assert
         using (new AssertionScope())
         {
-            attacker.Secondary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
+            attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
             defender.Health.Should().Be(400);
         }
     }

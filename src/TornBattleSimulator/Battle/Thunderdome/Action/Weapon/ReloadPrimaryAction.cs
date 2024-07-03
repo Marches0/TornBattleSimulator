@@ -4,6 +4,6 @@ public class ReloadPrimaryAction : ReloadWeaponAction, IAction
 {
     public ThunderdomeEvent PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
-        return PerformAction(context, active, other, active.Primary!);
+        return PerformAction(context, active, other, active.Weapons.Primary!);
     }
 }

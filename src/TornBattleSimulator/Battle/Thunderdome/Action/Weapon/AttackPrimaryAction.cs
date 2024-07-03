@@ -14,6 +14,6 @@ public class AttackPrimaryAction : AttackWeaponAction, IAction
         PlayerContext active,
         PlayerContext other)
     {
-        return PerformAction(context, active, other, active.Primary!);
+        return PerformAction(context, active, other, active.Weapons.Primary!);
     }
 }

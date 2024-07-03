@@ -17,8 +17,8 @@ public class ReloadTests : LoadableWeaponTests
 
         ReloadPrimaryAction action = new();
 
-        attacker.Primary!.Ammo.MagazineAmmoRemaining = 0;
-        int startMagazines = attacker.Primary.Ammo.MagazinesRemaining;
+        attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = 0;
+        int startMagazines = attacker.Weapons.Primary.Ammo.MagazinesRemaining;
 
         // Act
         action.PerformAction(new ThunderdomeContext(attacker, defender), attacker, defender);
@@ -26,8 +26,8 @@ public class ReloadTests : LoadableWeaponTests
         // Assert
         using (new AssertionScope())
         {
-            attacker.Primary.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Primary.Ammo.MagazineSize);
-            attacker.Primary.Ammo.MagazinesRemaining.Should().Be(startMagazines - 1);
+            attacker.Weapons.Primary.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Primary.Ammo.MagazineSize);
+            attacker.Weapons.Primary.Ammo.MagazinesRemaining.Should().Be(startMagazines - 1);
         }
     }
 
@@ -40,8 +40,8 @@ public class ReloadTests : LoadableWeaponTests
 
         ReloadSecondaryAction action = new();
 
-        attacker.Secondary!.Ammo.MagazineAmmoRemaining = 0;
-        int startMagazines = attacker.Secondary.Ammo.MagazinesRemaining;
+        attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = 0;
+        int startMagazines = attacker.Weapons.Secondary.Ammo.MagazinesRemaining;
 
         // Act
         action.PerformAction(new ThunderdomeContext(attacker, defender), attacker, defender);
@@ -49,8 +49,8 @@ public class ReloadTests : LoadableWeaponTests
         // Assert
         using (new AssertionScope())
         {
-            attacker.Secondary.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Secondary.Ammo.MagazineSize);
-            attacker.Secondary.Ammo.MagazinesRemaining.Should().Be(startMagazines - 1);
+            attacker.Weapons.Secondary.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Secondary.Ammo.MagazineSize);
+            attacker.Weapons.Secondary.Ammo.MagazinesRemaining.Should().Be(startMagazines - 1);
         }
     }
 }

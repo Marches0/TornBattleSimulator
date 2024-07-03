@@ -34,13 +34,13 @@
 				}
 			},
 			"melee": {
-				"damage": 23,
+				"damage": 40,
 				"accuracy": 100
 			},
 			"strategy": [
 				{
 					"weapon": "primary",
-					"reload": true,
+					"reload": false,
 					"until": [
 						{
 							"condition": "effect",
@@ -58,7 +58,23 @@
 			"name": "override",
 			"battleStats": {
 				"defence": 0
-			}
+			},
+			"strategy": [
+				{
+					"weapon": "primary",
+					"reload": true,
+					"until": [
+						{
+							"condition": "effect",
+							"statusName": "wow",
+							"count": 2
+						}
+					]
+				},
+				{
+					"weapon": "melee"
+				}
+			]
 		}
 	]
 }

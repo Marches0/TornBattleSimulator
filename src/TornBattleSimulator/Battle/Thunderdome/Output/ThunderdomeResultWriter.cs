@@ -18,7 +18,7 @@ public class ThunderdomeResultWriter
         
         foreach(var col in table.Columns)
         {
-            col.Padding = new Padding(2, 0);
+            col.Padding = new Padding(3, 0);
         }
 
         foreach(var tEvent in context.Events)

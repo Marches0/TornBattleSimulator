@@ -16,7 +16,7 @@ public class PrimaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
         PlayerContext self,
         PlayerContext other)
     {
-        return GetMove(context, self, other, self.Primary!) switch
+        return GetMove(context, self, other, self.Weapons.Primary!) switch
         {
             LoadableWeaponAction.Attack => BattleAction.AttackPrimary,
             LoadableWeaponAction.Reload => BattleAction.ReloadPrimary,

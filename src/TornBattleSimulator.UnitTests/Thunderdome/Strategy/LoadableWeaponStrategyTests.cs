@@ -17,8 +17,8 @@ public class LoadableWeaponStrategyTests : LoadableWeaponTests
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
-        attacker.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
-        attacker.Primary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
+        attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
+        attacker.Weapons.Primary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
 
         // Act
         BattleAction? action = new PrimaryWeaponStrategy(GetStrategyDescription(WeaponType.Primary, testData.canReload)).GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
@@ -34,8 +34,8 @@ public class LoadableWeaponStrategyTests : LoadableWeaponTests
         PlayerContext attacker = new PlayerContextBuilder().WithSecondary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
-        attacker.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
-        attacker.Secondary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
+        attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
+        attacker.Weapons.Secondary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
 
         // Act
         BattleAction? action = new SecondaryWeaponStrategy(GetStrategyDescription(WeaponType.Secondary, testData.canReload)).GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);

@@ -15,7 +15,7 @@ public class SecondaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
         PlayerContext self,
         PlayerContext other)
     {
-        return GetMove(context, self, other, self.Secondary!) switch
+        return GetMove(context, self, other, self.Weapons.Secondary!) switch
         {
             LoadableWeaponAction.Attack => BattleAction.AttackSecondary,
             LoadableWeaponAction.Reload => BattleAction.ReloadSecondary,
