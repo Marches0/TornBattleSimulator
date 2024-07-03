@@ -1,6 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Action;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
+namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
 public interface IStrategy
 {
