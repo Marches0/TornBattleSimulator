@@ -9,18 +9,24 @@ public class ThunderdomeEvent
         PlayerType source,
         ThunderdomeEventType type,
         int turn,
-        IEventData data)
+        IEventData data,
+        int attackerHealth,
+        int defenderHealth)
     {
         Source = source;
         Type = type;
         Turn = turn;
         Data = data;
+        AttackerHealth = attackerHealth;
+        DefenderHealth = defenderHealth;
     }
 
     public PlayerType Source { get; }
     public ThunderdomeEventType Type { get; }
     public int Turn { get; }
     public IEventData Data { get; }
+    public int AttackerHealth { get; }
+    public int DefenderHealth { get; }
 }
 
 public enum ThunderdomeEventType

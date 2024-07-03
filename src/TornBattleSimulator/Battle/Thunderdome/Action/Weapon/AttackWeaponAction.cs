@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Player;
+using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
@@ -35,11 +36,9 @@ public abstract class AttackWeaponAction
             weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, weapon.Ammo.MagazineAmmoRemaining - ammoConsumed);
         }
 
-        return new ThunderdomeEvent(
-            active.PlayerType,
+        return context.CreateEvent(
+            active,
             ThunderdomeEventType.AttackHit,
-            context.Turn,
-            new AttackHitEvent(weapon.Type, damage)
-        );
+            new AttackHitEvent(weapon.Type, damage));
     }
 }
