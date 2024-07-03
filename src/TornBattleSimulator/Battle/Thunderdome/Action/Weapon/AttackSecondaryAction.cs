@@ -8,11 +8,11 @@ public class AttackSecondaryAction : AttackWeaponAction, IAction
         IDamageCalculator damageCalculator) : base(damageCalculator)
     { }
 
-    public void PerformAction(
+    public ThunderdomeEvent PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other)
     {
-        PerformAction(context, active, other, active.Secondary!);
+        return PerformAction(context, active, other, active.Secondary!);
     }
 }

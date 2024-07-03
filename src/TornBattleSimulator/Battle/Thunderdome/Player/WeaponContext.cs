@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Build.Equipment;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Player;
 public class WeaponContext
 {
     public WeaponContext(
-        Weapon weapon)
+        Weapon weapon,
+        WeaponType weaponType)
     {
         Description = weapon;
+        Type = weaponType;
         Ammo = weapon.Ammo != null ? new CurrentAmmo()
         {
             Magazines = weapon.Ammo.Magazines,
@@ -23,6 +20,7 @@ public class WeaponContext
     }
 
     public Weapon Description { get; }
+    public WeaponType Type { get; }
     public CurrentAmmo? Ammo { get; }
     public bool CanReload => Ammo?.MagazinesRemaining > 0;
     public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;

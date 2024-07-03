@@ -13,7 +13,7 @@ public abstract class AttackWeaponAction
         _damageCalculator = damageCalculator;
     }
 
-    protected void PerformAction(
+    protected ThunderdomeEvent PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
@@ -33,5 +33,12 @@ public abstract class AttackWeaponAction
             int ammoConsumed = Random.Shared.Next(weapon.Description.RateOfFire.Min, weapon.Description.RateOfFire.Max + 1);
             weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, weapon.Ammo.MagazineAmmoRemaining - ammoConsumed);
         }
+
+        return new ThunderdomeEvent(
+            active.PlayerType,
+            ThunderdomeEventType.AttackHit,
+            context.Turn,
+            [damage]
+        );
     }
 }

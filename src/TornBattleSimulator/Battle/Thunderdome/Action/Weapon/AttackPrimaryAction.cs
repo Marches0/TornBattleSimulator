@@ -9,11 +9,11 @@ public class AttackPrimaryAction : AttackWeaponAction, IAction
     {
     }
 
-    public void PerformAction(
+    public ThunderdomeEvent PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other)
     {
-        PerformAction(context, active, other, active.Primary!);
+        return PerformAction(context, active, other, active.Primary!);
     }
 }

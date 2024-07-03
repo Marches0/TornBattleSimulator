@@ -13,6 +13,8 @@ public class ThunderdomeContext
     public PlayerContext Attacker { get; }
     public PlayerContext Defender { get; }
 
+    public List<ThunderdomeEvent> Events { get; } = new List<ThunderdomeEvent>();
+
     // We tick before anyone moves, so start at 0 and consider
     // 1 to be the first turn
     public int Turn { get; private set; } = 0;

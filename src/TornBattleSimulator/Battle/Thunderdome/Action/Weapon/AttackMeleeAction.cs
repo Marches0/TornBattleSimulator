@@ -10,8 +10,8 @@ public class AttackMeleeAction : AttackWeaponAction, IAction
 
     }
 
-    public void PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
+    public ThunderdomeEvent PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
-        PerformAction(context, active, other, active.Melee!);
+        return PerformAction(context, active, other, active.Melee!);
     }
 }

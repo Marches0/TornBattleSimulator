@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
 
@@ -52,8 +53,8 @@ public class Runner
     {
         return _thunderdomeFactory(
             new ThunderdomeContext(
-                new PlayerContext(attacker, _strategyBuilder.BuildStrategy(attacker)),
-                new PlayerContext(defender, _strategyBuilder.BuildStrategy(defender))
+                new PlayerContext(attacker, PlayerType.Attacker, _strategyBuilder.BuildStrategy(attacker)),
+                new PlayerContext(defender, PlayerType.Defender,_strategyBuilder.BuildStrategy(defender))
             )
         );
     }

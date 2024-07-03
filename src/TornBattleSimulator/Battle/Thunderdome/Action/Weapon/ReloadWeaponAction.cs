@@ -4,7 +4,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
 public abstract class ReloadWeaponAction
 {
-    protected void PerformAction(
+    protected ThunderdomeEvent PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
@@ -12,5 +12,6 @@ public abstract class ReloadWeaponAction
     {
         weapon.Ammo.MagazineAmmoRemaining = weapon.Ammo.MagazineSize;
         --weapon.Ammo.MagazinesRemaining;
+        return new ThunderdomeEvent(active.PlayerType, ThunderdomeEventType.Reload, context.Turn, [weapon.Type]);
     }
 }

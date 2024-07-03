@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
 
@@ -52,7 +53,9 @@ public class PlayerContextBuilder
                 Primary = _primary,
                 Secondary = _secondary,
                 Melee = _melee
-            }
+            },
+            0,
+            null
         );
     }
 }

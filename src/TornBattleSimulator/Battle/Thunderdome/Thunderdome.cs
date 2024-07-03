@@ -42,6 +42,8 @@ public class Thunderdome
         active.CurrentAction = move;
 
         IAction action = _actions[active.Strategy.GetMove(_context, active, other)!.Value];
-        action.PerformAction(_context, active, other);
+        ThunderdomeEvent result = action.PerformAction(_context, active, other);
+
+        _context.Events.Add(result);
     }
 }
