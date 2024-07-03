@@ -57,9 +57,9 @@ public class PlayerContextBuilder
             },
             0,
             new EquippedWeapons(
-                _primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<IModifier>()) : null,
-                _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<IModifier>()) : null,
-                _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<IModifier>()) : null,
+                _primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<PotentialModifier>()) : null,
+                _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>()) : null,
+                _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>()) : null,
                 null),
             null
             );

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using NUnit.Framework.Interfaces;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action;
@@ -8,7 +9,7 @@ using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 
 [TestFixture]
-public class LoadableWeaponStrategyTests : LoadableWeaponTests
+public class WeaponStrategyTests : LoadableWeaponTests
 {
     [TestCaseSource(nameof(PrimaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData))]
     public void PrimaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName) testData)
@@ -42,6 +43,17 @@ public class LoadableWeaponStrategyTests : LoadableWeaponTests
 
         // Assert
         action.Should().Be(testData.expected);
+    }
+
+    [Test]
+    public void MeleeWeaponStrategy_ReturnsAttack()
+    {
+        PlayerContext attacker = new PlayerContextBuilder().Build();
+        PlayerContext defender = new PlayerContextBuilder().Build();
+        
+        BattleAction? action = new MeleeWeaponStrategy(new StrategyDescription()).GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
+
+        action.Should().Be(BattleAction.AttackMelee);
     }
 
     private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName)> PrimaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
