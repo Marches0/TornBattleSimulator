@@ -14,5 +14,11 @@ public class ActionModule : Module
 
         builder.RegisterType<AttackSecondaryAction>()
             .Keyed<IAction>(BattleAction.AttackSecondary);
+
+        builder.RegisterType<ReloadPrimaryAction>()
+            .Keyed<IAction>(BattleAction.ReloadPrimary);
+
+        builder.RegisterType<ReloadSecondaryAction>()
+            .Keyed<IAction>(BattleAction.ReloadSecondary);
     }
 }
