@@ -13,12 +13,12 @@ public class Weapon
 
 public class RateOfFire
 {
-    public uint Min { get; set; }
-    public uint Max { get; set; }
+    public int Min { get; set; }
+    public int Max { get; set; }
 }
 
 public class Ammo
 {
-    public uint Magazines { get; set; }
-    public uint MagazineSize { get; set; }
+    public int Magazines { get; set; }
+    public int MagazineSize { get; set; }
 }

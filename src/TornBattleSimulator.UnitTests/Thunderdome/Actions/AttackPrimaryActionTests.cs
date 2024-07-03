@@ -1,9 +1,8 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
-using System;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
-using TornBattleSimulator.Battle.Thunderdome.Action;
+using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
