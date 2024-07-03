@@ -1,5 +1,6 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
+using System;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action;
@@ -46,11 +47,11 @@ public class AttackPrimaryActionTests
         AttackPrimaryAction attackPrimary = autoFake.Resolve<AttackPrimaryAction>();
 
         // Act
-        attacker.PrimaryAmmo!.MagazineAmmoRemaining.Should().Be(attacker.Build.Primary.Ammo.MagazineSize);
+        attacker.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Build.Primary.Ammo.MagazineSize);
         attackPrimary.PerformAction(new ThunderdomeContext(attacker, defender), attacker, defender);
 
         // Assert
-        attacker.PrimaryAmmo!.MagazineAmmoRemaining.Should().Be(0);
+        attacker.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
     }
 
     private Weapon GetStockWeapon()

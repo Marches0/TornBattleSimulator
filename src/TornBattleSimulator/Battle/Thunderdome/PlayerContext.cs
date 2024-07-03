@@ -13,26 +13,11 @@ public class PlayerContext
     public PlayerContext(BattleBuild build)
     {
         Build = build;
-        PrimaryAmmo = build.Primary != null ? new CurrentAmmo()
-        {
-            Magazines = build.Primary.Ammo.Magazines,
-            MagazinesRemaining = build.Primary.Ammo.Magazines,
 
-            MagazineSize = build.Primary.Ammo.MagazineSize,
-            MagazineAmmoRemaining = build.Primary.Ammo.MagazineSize
-        }: null;
-
-        SecondaryAmmo = build.Secondary != null ? new CurrentAmmo()
-        {
-            Magazines = build.Secondary.Ammo.Magazines,
-            MagazinesRemaining = build.Secondary.Ammo.Magazines,
-
-            MagazineSize = build.Secondary.Ammo.MagazineSize,
-            MagazineAmmoRemaining = build.Secondary.Ammo.MagazineSize
-        } : null;
+        Primary = build.Primary != null ? new WeaponContext(build.Primary) : null;
+        Secondary = build.Secondary != null ? new WeaponContext(build.Secondary) : null;
 
         Health = (int)build.Health;
-
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
@@ -48,9 +33,8 @@ public class PlayerContext
 
     public int Health { get; set; }
 
-    public CurrentAmmo? PrimaryAmmo { get; set; }
-
-    public CurrentAmmo? SecondaryAmmo { get; set; }
+    public WeaponContext? Primary { get; }
+    public WeaponContext? Secondary { get; }
 
     /// <summary>
     ///  The build's current stats.

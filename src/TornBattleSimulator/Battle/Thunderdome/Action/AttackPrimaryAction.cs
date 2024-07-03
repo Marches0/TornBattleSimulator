@@ -17,7 +17,7 @@ public class AttackPrimaryAction : IAction
         PlayerContext active,
         PlayerContext other)
     {
-        if (active.PrimaryAmmo.MagazineAmmoRemaining == 0)
+        if (active.Primary.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Attempted to fire primary without ammo.");
         }
@@ -26,6 +26,6 @@ public class AttackPrimaryAction : IAction
         other.Health -= damage;
 
         int ammoConsumed = Random.Shared.Next((int)active.Build.Primary.RateOfFire.Min, (int)active.Build.Primary.RateOfFire.Max + 1);
-        active.PrimaryAmmo!.MagazineAmmoRemaining = (uint)Math.Max(0, active.PrimaryAmmo.MagazineAmmoRemaining - ammoConsumed);
+        active.Primary.Ammo!.MagazineAmmoRemaining = (uint)Math.Max(0, active.Primary.Ammo.MagazineAmmoRemaining - ammoConsumed);
     }
 }
