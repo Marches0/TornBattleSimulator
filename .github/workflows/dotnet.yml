@@ -34,4 +34,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         format: cobertura
-        file: "src/coverage/**/coverage.cobertura.xml"
+        file: "**/coverage/**/coverage.cobertura.xml"
