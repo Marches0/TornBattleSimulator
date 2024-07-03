@@ -18,6 +18,7 @@ public class DamageCalculator : IDamageCalculator
         PlayerContext active,
         PlayerContext other)
     {
+        // Is currently crit damage
         return _damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(active, other));
     }
 }
