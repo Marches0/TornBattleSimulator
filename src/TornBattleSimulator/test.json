@@ -2,7 +2,7 @@
 	"builds": [
 		{
 			"name": "base",
-			"health": 7500,
+			"health": 2500,
 			"battleStats": {
 				"strength": 10000,
 				"defence": 1000,
@@ -48,6 +48,9 @@
 							"count": 2
 						}
 					]
+				},
+				{
+					"weapon": "melee"
 				}
 			]
 		},

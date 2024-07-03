@@ -20,12 +20,7 @@ public abstract class LoadableWeaponStrategy
     {
         if (weapon!.RequiresReload)
         {
-            if (!_strategyDescription.Reload)
-            {
-                return null;
-            }
-
-            if (!weapon.CanReload)
+            if (!_strategyDescription.Reload || !weapon.CanReload)
             {
                 return null;
             }

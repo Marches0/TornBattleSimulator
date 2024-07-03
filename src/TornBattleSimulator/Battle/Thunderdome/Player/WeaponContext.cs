@@ -12,18 +12,18 @@ public class WeaponContext
         Weapon weapon)
     {
         Description = weapon;
-        Ammo = new CurrentAmmo()
+        Ammo = weapon.Ammo != null ? new CurrentAmmo()
         {
             Magazines = weapon.Ammo.Magazines,
             MagazinesRemaining = weapon.Ammo.Magazines,
 
             MagazineSize = weapon.Ammo.MagazineSize,
             MagazineAmmoRemaining = weapon.Ammo.MagazineSize
-        };
+        } : null;
     }
 
     public Weapon Description { get; }
-    public CurrentAmmo Ammo { get; }
-    public bool CanReload => Ammo.MagazinesRemaining > 0;
-    public bool RequiresReload => Ammo.MagazineAmmoRemaining == 0;
+    public CurrentAmmo? Ammo { get; }
+    public bool CanReload => Ammo?.MagazinesRemaining > 0;
+    public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;
 }

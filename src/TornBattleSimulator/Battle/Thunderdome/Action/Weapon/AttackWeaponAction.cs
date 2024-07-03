@@ -20,7 +20,7 @@ public abstract class AttackWeaponAction
         WeaponContext weapon)
     {
         // Should we split into seperate actions for loaded and unloaded?
-        if (weapon.Ammo is { MagazineAmmoRemaining: 0 })
+        if (weapon.Ammo != null && weapon.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }

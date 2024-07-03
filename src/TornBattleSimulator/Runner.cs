@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
 
 namespace TornBattleSimulator;
@@ -10,13 +11,16 @@ public class Runner
 {
     private readonly IMapper _mapper;
     private readonly Thunderdome.Create _thunderdomeFactory;
+    private readonly StrategyBuilder _strategyBuilder;
 
     public Runner(
         IMapper mapper,
-        Thunderdome.Create thunderdomeFactory)
+        Thunderdome.Create thunderdomeFactory,
+        StrategyBuilder strategyBuilder)
     {
         _mapper = mapper;
         _thunderdomeFactory = thunderdomeFactory;
+        _strategyBuilder = strategyBuilder;
     }
 
     public async Task Start(string configFile)
@@ -42,12 +46,14 @@ public class Runner
         }
     }
 
-    private Thunderdome CreateThunderdome(BattleBuild attacker, BattleBuild defender)
+    private Thunderdome CreateThunderdome(
+        BattleBuild attacker,
+        BattleBuild defender)
     {
         return _thunderdomeFactory(
             new ThunderdomeContext(
-                new PlayerContext(attacker),
-                new PlayerContext(defender)
+                new PlayerContext(attacker, _strategyBuilder.BuildStrategy(attacker)),
+                new PlayerContext(defender, _strategyBuilder.BuildStrategy(defender))
             )
         );
     }

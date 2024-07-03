@@ -1,37 +1,47 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Action;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
+﻿using Autofac.Features.Indexed;
+using TornBattleSimulator.Battle.Thunderdome.Action;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
 public class Thunderdome
 {
     private readonly ThunderdomeContext _context;
-    private readonly IDamageCalculator _damageCalculator;
+    private readonly IIndex<BattleAction, IAction> _actions;
 
     public delegate Thunderdome Create(ThunderdomeContext context);
     
     public Thunderdome(
         ThunderdomeContext context,
-        IDamageCalculator damageCalculator)
+        IIndex<BattleAction, IAction> actions)
     {
         _context = context;
-        _damageCalculator = damageCalculator;
+        _actions = actions;
     }
 
     public void Battle()
     {
-        _context.Attacker.CurrentAction = BattleAction.AttackPrimary;
-        var dmg = _damageCalculator.CalculateDamage(_context, _context.Attacker, _context.Defender);
-
-        int turnNumber = 0;
-        do
+        while (_context.GetResult() == null)
         {
             _context.Tick();
-        } while (turnNumber < 25);
+            MakeMove(_context.Attacker, _context.Defender);
 
-        // Temps tick
-        // Attacker moves
-        // Defender moves
-        // ?
+            if (_context.GetResult() != null)
+            {
+                break;
+            }
+
+            MakeMove(_context.Defender, _context.Attacker);
+        }
+
+        Console.WriteLine(_context.GetResult());
+    }
+
+    private void MakeMove(PlayerContext active, PlayerContext other)
+    {
+        BattleAction move = active.Strategy.GetMove(_context, active, other)!.Value;
+        active.CurrentAction = move;
+
+        IAction action = _actions[active.Strategy.GetMove(_context, active, other)!.Value];
+        action.PerformAction(_context, active, other);
     }
 }

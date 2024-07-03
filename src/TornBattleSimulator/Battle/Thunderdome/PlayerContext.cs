@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Stats.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -10,12 +11,15 @@ namespace TornBattleSimulator.Battle.Thunderdome;
 /// </summary>
 public class PlayerContext
 {
-    public PlayerContext(BattleBuild build)
+    public PlayerContext(
+        BattleBuild build,
+        IStrategy strategy)
     {
         Build = build;
-
+        Strategy = strategy;
         Primary = build.Primary != null ? new WeaponContext(build.Primary) : null;
         Secondary = build.Secondary != null ? new WeaponContext(build.Secondary) : null;
+        Melee = build.Melee != null ? new WeaponContext(build.Melee) : null;
 
         Health = (int)build.Health;
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
@@ -25,6 +29,7 @@ public class PlayerContext
     ///  The build taking part.
     /// </summary>
     public BattleBuild Build { get; }
+    public IStrategy Strategy { get; }
 
     /// <summary>
     ///  Stat modifiers currently applied to the build.
