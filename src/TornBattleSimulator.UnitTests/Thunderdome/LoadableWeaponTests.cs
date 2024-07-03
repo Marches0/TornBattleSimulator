@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TornBattleSimulator.Battle.Build.Equipment;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
+namespace TornBattleSimulator.UnitTests.Thunderdome;
 
 public abstract class LoadableWeaponTests
 {

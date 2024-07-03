@@ -11,7 +11,7 @@ public class WeaponContext
     public WeaponContext(
         Weapon weapon)
     {
-        Weapon = weapon;
+        Description = weapon;
         Ammo = new CurrentAmmo()
         {
             Magazines = weapon.Ammo.Magazines,
@@ -22,6 +22,8 @@ public class WeaponContext
         };
     }
 
-    public Weapon Weapon { get; }
+    public Weapon Description { get; }
     public CurrentAmmo Ammo { get; }
+    public bool CanReload => Ammo.MagazinesRemaining > 0;
+    public bool RequiresReload => Ammo.MagazineAmmoRemaining == 0;
 }
