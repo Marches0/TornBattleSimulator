@@ -11,4 +11,6 @@ public interface IStatsModifier
     float GetDexterityModifier();
 
     float TimeRemainingSeconds { get; set; }
+
+    bool RequiresDamageToApply { get; }
 }

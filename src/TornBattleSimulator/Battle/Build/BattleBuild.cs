@@ -21,7 +21,7 @@ public class BattleBuild
 
     public Weapon Melee { get; set; }
 
-    public TemporaryWeaponType Temporary { get; set; }
+    public TemporaryWeaponType? Temporary { get; set; }
 
     public List<StrategyDescription> Strategy { get; set; }
 }
