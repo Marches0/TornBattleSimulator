@@ -1,20 +1,24 @@
 ﻿using Autofac.Features.Indexed;
 using TornBattleSimulator.Battle.Thunderdome.Action;
+using TornBattleSimulator.Battle.Thunderdome.Output;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
 public class Thunderdome
 {
     private readonly ThunderdomeContext _context;
+    private readonly ThunderdomeResultWriter _resultWriter;
     private readonly IIndex<BattleAction, IAction> _actions;
 
     public delegate Thunderdome Create(ThunderdomeContext context);
     
     public Thunderdome(
         ThunderdomeContext context,
+        ThunderdomeResultWriter resultWriter,
         IIndex<BattleAction, IAction> actions)
     {
         _context = context;
+        _resultWriter = resultWriter;
         _actions = actions;
     }
 
@@ -33,7 +37,7 @@ public class Thunderdome
             MakeMove(_context.Defender, _context.Attacker);
         }
 
-        Console.WriteLine(_context.GetResult());
+        _resultWriter.Write(_context);
     }
 
     private void MakeMove(PlayerContext active, PlayerContext other)

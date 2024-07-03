@@ -42,7 +42,7 @@ public class Runner
             for (int j = i + 1;  j < config.Builds.Count; j++)
             {
                 yield return CreateThunderdome(config.Builds[i], config.Builds[j]);
-                yield return CreateThunderdome(config.Builds[j], config.Builds[i]);
+                //yield return CreateThunderdome(config.Builds[j], config.Builds[i]);
             }
         }
     }

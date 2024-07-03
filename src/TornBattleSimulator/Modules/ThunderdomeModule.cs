@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Output;
 
 namespace TornBattleSimulator.Modules;
 
@@ -9,5 +10,7 @@ public class ThunderdomeModule : Module
     {
         builder.RegisterType<Thunderdome>()
             .As<Thunderdome>();
+
+        builder.RegisterType<ThunderdomeResultWriter>();
     }
 }
