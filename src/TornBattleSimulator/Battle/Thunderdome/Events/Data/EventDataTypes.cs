@@ -53,3 +53,18 @@ public class ReloadEvent : IEventData
         return $"{Weapon}";
     }
 }
+
+public class EffectBeginEvent : IEventData
+{
+    public WeaponModifierType ModifierType { get; }
+
+    public EffectBeginEvent(WeaponModifierType modifierType)
+    {
+        ModifierType = modifierType;
+    }
+
+    public string Format()
+    {
+        return $"{ModifierType}";
+    }
+}

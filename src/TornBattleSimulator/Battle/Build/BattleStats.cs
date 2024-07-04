@@ -14,10 +14,10 @@ public class BattleStats
 
     public BattleStats Apply(IStatsModifier modifier)
     {
-        Strength *= (ulong)modifier.GetStrengthModifier();
-        Defence *= (ulong)modifier.GetDefenceModifier();
-        Speed *= (ulong)modifier.GetSpeedModifier();
-        Dexterity *= (ulong)modifier.GetDexterityModifier();
+        Strength = (ulong)(Strength * modifier.GetStrengthModifier());
+        Defence = (ulong)(Defence * modifier.GetDefenceModifier());
+        Speed = (ulong)(Speed * modifier.GetSpeedModifier());
+        Dexterity = (ulong)(Dexterity * modifier.GetDexterityModifier());
 
         return this;
     }

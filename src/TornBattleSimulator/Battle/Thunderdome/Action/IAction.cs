@@ -2,7 +2,7 @@
 
 public interface IAction
 {
-    ThunderdomeEvent PerformAction(
+    List<ThunderdomeEvent> PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other);

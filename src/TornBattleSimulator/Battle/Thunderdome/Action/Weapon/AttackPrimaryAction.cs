@@ -1,15 +1,17 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
 public class AttackPrimaryAction : AttackWeaponAction, IAction
 {
     public AttackPrimaryAction(
-        IDamageCalculator damageCalculator) : base(damageCalculator)
+        IDamageCalculator damageCalculator,
+        ModifierApplier modifierApplier) : base(damageCalculator, modifierApplier)
     {
     }
 
-    public ThunderdomeEvent PerformAction(
+    public List<ThunderdomeEvent> PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other)

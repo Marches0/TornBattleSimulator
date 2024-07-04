@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TornBattleSimulator.Battle.Build.Equipment;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
@@ -11,4 +7,10 @@ public interface IModifier
     float TimeRemainingSeconds { get; set; }
 
     bool RequiresDamageToApply { get; }
+
+    ModifierTarget Target { get; }
+
+    ModifierApplication AppliesAt { get; }
+
+    public WeaponModifierType Effect { get; }
 }

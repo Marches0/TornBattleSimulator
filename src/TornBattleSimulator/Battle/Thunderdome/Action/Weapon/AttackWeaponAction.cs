@@ -1,5 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 
@@ -8,14 +9,17 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 public abstract class AttackWeaponAction 
 {
     private readonly IDamageCalculator _damageCalculator;
+    private readonly ModifierApplier _modifierApplier;
 
     protected AttackWeaponAction(
-        IDamageCalculator damageCalculator)
+        IDamageCalculator damageCalculator,
+        ModifierApplier modifierApplier)
     {
         _damageCalculator = damageCalculator;
+        _modifierApplier = modifierApplier;
     }
 
-    protected ThunderdomeEvent PerformAction(
+    protected List<ThunderdomeEvent> PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
@@ -27,8 +31,19 @@ public abstract class AttackWeaponAction
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }
 
+        List<ThunderdomeEvent> events = new();
+
+        events.AddRange(_modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers));
+
         int damage = _damageCalculator.CalculateDamage(context, active, other);
         other.Health.CurrentHealth -= damage;
+
+        events.Add(context.CreateEvent(
+            active,
+            ThunderdomeEventType.AttackHit,
+            new AttackHitEvent(weapon.Type, damage)));
+
+        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers));
 
         if (weapon.Ammo != null)
         {
@@ -36,9 +51,6 @@ public abstract class AttackWeaponAction
             weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, weapon.Ammo.MagazineAmmoRemaining - ammoConsumed);
         }
 
-        return context.CreateEvent(
-            active,
-            ThunderdomeEventType.AttackHit,
-            new AttackHitEvent(weapon.Type, damage));
+        return events;
     }
 }
