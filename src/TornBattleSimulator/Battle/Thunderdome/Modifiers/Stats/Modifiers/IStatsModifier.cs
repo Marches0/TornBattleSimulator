@@ -2,6 +2,7 @@
 
 public interface IStatsModifier : IModifier
 {
+    // put these into their own thing?
     float GetStrengthModifier();
 
     float GetDefenceModifier();
