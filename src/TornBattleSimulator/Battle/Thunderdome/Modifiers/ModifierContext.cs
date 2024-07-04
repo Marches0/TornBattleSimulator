@@ -1,31 +1,37 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
+﻿using System.Collections.ObjectModel;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 public class ModifierContext
 {
-    public List<IModifier> Active { get; private set; } = new();
+    public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier> (_activeModifiers.Select(m => m.Modifier).ToList());
 
-    public void Tick(
-        float tickTime)
+    private List<ActiveModifier> _activeModifiers = new();
+
+    public void Tick(ThunderdomeContext thunderdomeContext)
     {
-        foreach (IModifier modifier in Active)
-
-        // handle other expiry types, e.g. "after next action"
+        foreach (ActiveModifier modifier in _activeModifiers)
         {
-            modifier.TimeRemainingSeconds -= tickTime;
-
-            if (modifier.TimeRemainingSeconds <= 0)
-            {
-                // track
-            }
+            modifier.CurrentLifespan.Tick(thunderdomeContext);
         }
 
-        Active = Active
-            .Where(m => m.TimeRemainingSeconds > 0)
+        _activeModifiers = _activeModifiers
+            .Where(m => !m.CurrentLifespan.Expired)
             .ToList();
     }
 
     public bool AddModifier(IModifier modifier)
     {
-        Active.Add(modifier);
+        _activeModifiers.Add(new ActiveModifier(CreateLifespan(modifier), modifier));
         return true;
+    }
+
+    private IModifierLifespan CreateLifespan(IModifier modifier)
+    {
+        return modifier.Lifespan.LifespanType switch
+        {
+            ModifierLifespanType.Temporal => new TemporalModifierLifespan(modifier.Lifespan.Duration!.Value),
+            _ => throw new NotImplementedException(modifier.Lifespan.LifespanType.ToString())
+        };
     }
 }

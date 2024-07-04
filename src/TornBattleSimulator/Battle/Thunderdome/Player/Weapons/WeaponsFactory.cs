@@ -40,7 +40,7 @@ public class WeaponsFactory
     private List<PotentialModifier> GetModifiers(Weapon weapon)
     {
         return weapon.Modifiers
-            .Select(m => _modifierFactory.GetModifier(m.Type, m.Percent))
+            .Select(m => _modifierFactory.GetPotentialModifier(m.Type, m.Percent))
             .ToList();
     }
 }

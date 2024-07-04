@@ -62,7 +62,7 @@ public class PlayerContext
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
         CurrentAction = 0;
 
-        Modifiers.Tick(context.AttackInterval);
+        Modifiers.Tick(context);
     }
 
     private Lazy<BattleStats> _currentTickStats;

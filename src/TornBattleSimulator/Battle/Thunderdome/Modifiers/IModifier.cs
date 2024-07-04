@@ -1,10 +1,11 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
 public interface IModifier
 {
-    float TimeRemainingSeconds { get; set; }
+    ModifierLifespanDescription Lifespan { get; }
 
     bool RequiresDamageToApply { get; }
 

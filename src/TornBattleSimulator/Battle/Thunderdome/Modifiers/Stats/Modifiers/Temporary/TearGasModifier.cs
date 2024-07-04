@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers.Temporary;
 
@@ -14,7 +15,7 @@ public class TearGasModifier : IStatsModifier
 
     public float GetStrengthModifier() => 1;
 
-    public float TimeRemainingSeconds { get; set; } = 120;
+    public ModifierLifespanDescription Lifespan { get; } = new ModifierLifespanDescription(ModifierLifespanType.Temporal, 120);
 
     public bool RequiresDamageToApply { get; } = false;
 

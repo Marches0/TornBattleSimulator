@@ -13,7 +13,7 @@ public class ModifierFactory
         _modifiers = modifiers;
     }
 
-    public PotentialModifier GetModifier(
+    public PotentialModifier GetPotentialModifier(
         WeaponModifierType modifierType,
         double percent)
     {
