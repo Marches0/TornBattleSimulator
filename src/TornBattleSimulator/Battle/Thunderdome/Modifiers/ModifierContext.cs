@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
+
 public class ModifierContext
 {
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier> (_activeModifiers.Select(m => m.Modifier).ToList());
@@ -31,7 +32,7 @@ public class ModifierContext
         return modifier.Lifespan.LifespanType switch
         {
             ModifierLifespanType.Temporal => new TemporalModifierLifespan(modifier.Lifespan.Duration!.Value),
-            _ => throw new NotImplementedException(modifier.Lifespan.LifespanType.ToString())
+            _ => throw new NotImplementedException($"{modifier.Lifespan.LifespanType} not supported.")
         };
     }
 }

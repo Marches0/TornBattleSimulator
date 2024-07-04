@@ -15,7 +15,7 @@ public class TearGasModifier : IStatsModifier
 
     public float GetStrengthModifier() => 1;
 
-    public ModifierLifespanDescription Lifespan { get; } = new ModifierLifespanDescription(ModifierLifespanType.Temporal, 120);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);
 
     public bool RequiresDamageToApply { get; } = false;
 

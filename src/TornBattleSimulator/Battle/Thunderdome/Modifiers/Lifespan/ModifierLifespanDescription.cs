@@ -2,10 +2,15 @@
 
 public class ModifierLifespanDescription
 {
+    public static ModifierLifespanDescription Temporal(float duration)
+    {
+        return new ModifierLifespanDescription(ModifierLifespanType.Temporal, duration);
+    }
+
     public ModifierLifespanType LifespanType { get; }
     public float? Duration { get; }
 
-    public ModifierLifespanDescription(
+    private ModifierLifespanDescription(
         ModifierLifespanType lifespanType,
         float? duration = null)
     {
