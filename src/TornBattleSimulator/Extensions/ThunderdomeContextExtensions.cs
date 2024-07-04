@@ -16,7 +16,7 @@ public static class ThunderdomeContextExtensions
             type,
             ctx.Turn,
             data,
-            ctx.Attacker.Health,
-            ctx.Defender.Health);
+            ctx.Attacker.Health.CurrentHealth,
+            ctx.Defender.Health.CurrentHealth);
     }
 }

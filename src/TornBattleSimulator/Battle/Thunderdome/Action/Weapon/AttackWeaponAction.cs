@@ -28,7 +28,7 @@ public abstract class AttackWeaponAction
         }
 
         int damage = _damageCalculator.CalculateDamage(context, active, other);
-        other.Health -= damage;
+        other.Health.CurrentHealth -= damage;
 
         if (weapon.Ammo != null)
         {

@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
@@ -21,7 +22,7 @@ public class PlayerContext
         Build = build;
         Strategy = strategy;
         Weapons = weapons;
-        Health = (int)build.Health;
+        Health = new((int)build.Health);
         PlayerType = playerType;
 
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
@@ -39,7 +40,7 @@ public class PlayerContext
     /// </summary>
     public List<IModifier> Modifiers { get; private set; } = new List<IModifier>();
 
-    public int Health { get; set; }
+    public PlayerHealth Health { get; set; }
 
     public EquippedWeapons Weapons { get; }
 

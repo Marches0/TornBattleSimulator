@@ -33,7 +33,7 @@ public class AttackActionTests : LoadableWeaponTests
         using (new AssertionScope())
         {
             attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
-            defender.Health.Should().Be(400);
+            defender.Health.CurrentHealth.Should().Be(400);
         }   
     }
 
@@ -59,7 +59,7 @@ public class AttackActionTests : LoadableWeaponTests
         using (new AssertionScope())
         {
             attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining.Should().Be(0);
-            defender.Health.Should().Be(400);
+            defender.Health.CurrentHealth.Should().Be(400);
         }
     }
 
@@ -83,7 +83,7 @@ public class AttackActionTests : LoadableWeaponTests
         // Assert
         using (new AssertionScope())
         {
-            defender.Health.Should().Be(400);
+            defender.Health.CurrentHealth.Should().Be(400);
         }
     }
 }

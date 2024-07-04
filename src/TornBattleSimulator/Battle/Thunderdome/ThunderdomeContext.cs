@@ -32,12 +32,12 @@ public class ThunderdomeContext
 
     public ThunderDomeResult? GetResult()
     {
-        if (Defender.Health <= 0)
+        if (Defender.Health.CurrentHealth <= 0)
         {
             return ThunderDomeResult.AttackerWin;
         }
 
-        if (Attacker.Health <= 0)
+        if (Attacker.Health.CurrentHealth <= 0)
         {
             return ThunderDomeResult.DefenderWin;
         }
