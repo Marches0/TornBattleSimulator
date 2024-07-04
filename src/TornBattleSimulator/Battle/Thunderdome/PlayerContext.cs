@@ -38,7 +38,7 @@ public class PlayerContext
     /// <summary>
     ///  Modifiers currently applied to the player.
     /// </summary>
-    public List<IModifier> Modifiers { get; private set; } = new List<IModifier>();
+    public ModifierContext Modifiers { get; } = new();
 
     public PlayerHealth Health { get; set; }
 
@@ -62,19 +62,7 @@ public class PlayerContext
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
         CurrentAction = 0;
 
-        foreach (IModifier modifier in Modifiers)
-        {
-            modifier.TimeRemainingSeconds -= context.AttackInterval;
-
-            if (modifier.TimeRemainingSeconds <= 0)
-            {
-                // track
-            }
-        }
-
-        Modifiers = Modifiers
-            .Where(m => m.TimeRemainingSeconds > 0)
-            .ToList();
+        Modifiers.Tick(context.AttackInterval);
     }
 
     private Lazy<BattleStats> _currentTickStats;
@@ -89,7 +77,7 @@ public class PlayerContext
             Dexterity = Build.BattleStats.Dexterity,
         };
 
-        return Modifiers
+        return Modifiers.Active
             .OfType<IStatsModifier>()
             .Aggregate(baseStats, (stats, modifier) => stats.Apply(modifier));
     }

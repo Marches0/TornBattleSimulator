@@ -47,9 +47,10 @@ public class ModifierApplier
                 ? active
                 : other;
 
-            target.Modifiers.Add(modifier.Modifier);
-
-            events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
+            if (target.Modifiers.AddModifier(modifier.Modifier))
+            {
+                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
+            };
         }
 
         return events;
