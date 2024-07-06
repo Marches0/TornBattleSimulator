@@ -16,7 +16,7 @@ public class SpeedDexterityAccuracyModifierTests
         PlayerContext defender = new PlayerContextBuilder().WithStats(new BattleStats() { Dexterity = testData.defenderDexterity }).Build();
 
         // Act
-        double mod = new SpeedDexterityAccuracyModifier().GetModifier(attacker, defender);
+        double mod = new SpeedDexterityAccuracyModifier().GetHitChance(attacker, defender);
 
         // Assert
         mod.Should().BeApproximately(testData.expected, 0.0001);
