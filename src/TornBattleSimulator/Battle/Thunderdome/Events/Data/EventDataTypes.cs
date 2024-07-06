@@ -60,9 +60,9 @@ public class ReloadEvent : IEventData
 
 public class EffectBeginEvent : IEventData
 {
-    public WeaponModifierType ModifierType { get; }
+    public ModifierType ModifierType { get; }
 
-    public EffectBeginEvent(WeaponModifierType modifierType)
+    public EffectBeginEvent(ModifierType modifierType)
     {
         ModifierType = modifierType;
     }

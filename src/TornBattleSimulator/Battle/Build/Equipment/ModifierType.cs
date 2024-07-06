@@ -1,6 +1,6 @@
 ﻿namespace TornBattleSimulator.Battle.Build.Equipment;
 
-public enum WeaponModifierType
+public enum ModifierType
 {
     Gassed = 1,
     SevereBurning

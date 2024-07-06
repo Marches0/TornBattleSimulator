@@ -62,7 +62,7 @@ public class BattleStatsTests
 
         public ModifierApplication AppliesAt => throw new NotImplementedException();
 
-        public WeaponModifierType Effect => throw new NotImplementedException();
+        public ModifierType Effect => throw new NotImplementedException();
 
         public float GetDefenceModifier() => _defenceModifier;
 

@@ -13,5 +13,5 @@ public interface IModifier
 
     ModifierApplication AppliesAt { get; }
 
-    public WeaponModifierType Effect { get; }
+    public ModifierType Effect { get; }
 }

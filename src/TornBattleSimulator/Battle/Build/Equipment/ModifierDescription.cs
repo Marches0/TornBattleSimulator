@@ -1,7 +1,7 @@
 ﻿namespace TornBattleSimulator.Battle.Build.Equipment;
 
-public class WeaponModifierDescription
+public class ModifierDescription
 {
-    public WeaponModifierType Type { get; set; }
+    public ModifierType Type { get; set; }
     public double Percent { get; set; }
 }

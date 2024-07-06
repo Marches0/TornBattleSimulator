@@ -18,5 +18,5 @@ public class TestModifier : IModifier
 
     public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
 
-    public WeaponModifierType Effect => WeaponModifierType.Gassed;
+    public ModifierType Effect => ModifierType.Gassed;
 }

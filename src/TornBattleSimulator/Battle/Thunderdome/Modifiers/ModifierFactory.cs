@@ -5,16 +5,16 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
 public class ModifierFactory
 {
-    private readonly IIndex<WeaponModifierType, IModifier> _modifiers;
+    private readonly IIndex<ModifierType, IModifier> _modifiers;
 
     public ModifierFactory(
-        IIndex<WeaponModifierType, IModifier> modifiers)
+        IIndex<ModifierType, IModifier> modifiers)
     {
         _modifiers = modifiers;
     }
 
     public PotentialModifier GetPotentialModifier(
-        WeaponModifierType modifierType,
+        ModifierType modifierType,
         double percent)
     {
         return new PotentialModifier(_modifiers[modifierType], percent);

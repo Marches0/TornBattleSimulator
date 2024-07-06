@@ -31,11 +31,11 @@ public class TemporaryWeaponFactory
         Damage = 0,
         Ammo = TemporaryAmmo,
         RateOfFire = TemporaryRateOfFire,
-        Modifiers = new List<WeaponModifierDescription>()
+        Modifiers = new List<ModifierDescription>()
         {
             new()
             {
-                Type = WeaponModifierType.Gassed,
+                Type = ModifierType.Gassed,
                 Percent = 100
             }
         }

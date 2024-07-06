@@ -35,6 +35,6 @@ public class GearModule : Module
             .As<TemporaryWeaponFactory>();
 
         builder.RegisterType<TearGasModifier>()
-            .Keyed<IModifier>(WeaponModifierType.Gassed);
+            .Keyed<IModifier>(ModifierType.Gassed);
     }
 }

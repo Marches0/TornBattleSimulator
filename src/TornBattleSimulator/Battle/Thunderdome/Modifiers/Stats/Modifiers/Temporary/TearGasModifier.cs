@@ -23,5 +23,5 @@ public class TearGasModifier : IStatsModifier
 
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
-    public WeaponModifierType Effect => WeaponModifierType.Gassed;
+    public ModifierType Effect => ModifierType.Gassed;
 }
