@@ -1,21 +1,19 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+﻿using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
-public class AttackSecondaryAction : AttackWeaponAction, IAction
+public class AttackSecondaryAction : IAction
 {
+    private readonly IWeaponUsage _weaponUsage;
+
     public AttackSecondaryAction(
-        IDamageCalculator damageCalculator,
-        ModifierApplier modifierApplier) : base(damageCalculator, modifierApplier)
-    { 
+        IWeaponUsage weaponUsage)
+    {
+        _weaponUsage = weaponUsage;
     }
 
-    public List<ThunderdomeEvent> PerformAction(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other)
+    public List<ThunderdomeEvent> PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
-        return PerformAction(context, active, other, active.Weapons.Secondary!);
+        return _weaponUsage.UseWeapon(context, active, other, active.Weapons.Secondary!);
     }
 }

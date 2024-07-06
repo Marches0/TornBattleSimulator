@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
+using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
 namespace TornBattleSimulator.Modules;
 
@@ -13,6 +14,9 @@ public class ActionModule : Module
 
         builder.RegisterType<UseTemporaryAction>()
             .Keyed<IAction>(BattleAction.UseTemporary);
+
+        builder.RegisterType<WeaponUsage>()
+            .As<IWeaponUsage>();
     }
 
     private void RegisterAttacks(ContainerBuilder builder)

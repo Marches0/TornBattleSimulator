@@ -4,14 +4,14 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
+namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
-public abstract class AttackWeaponAction 
+public class WeaponUsage : IWeaponUsage
 {
     private readonly IDamageCalculator _damageCalculator;
     private readonly ModifierApplier _modifierApplier;
 
-    protected AttackWeaponAction(
+    public WeaponUsage(
         IDamageCalculator damageCalculator,
         ModifierApplier modifierApplier)
     {
@@ -19,7 +19,7 @@ public abstract class AttackWeaponAction
         _modifierApplier = modifierApplier;
     }
 
-    protected List<ThunderdomeEvent> PerformAction(
+    public List<ThunderdomeEvent> UseWeapon(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,

@@ -1,19 +1,19 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+﻿using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
-public class AttackMeleeAction : AttackWeaponAction, IAction
+public class AttackMeleeAction : IAction
 {
-    public AttackMeleeAction(
-        IDamageCalculator damageCalculator,
-        ModifierApplier modifierApplier) : base(damageCalculator, modifierApplier)
-    {
+    private readonly IWeaponUsage _weaponUsage;
 
+    public AttackMeleeAction(
+        IWeaponUsage weaponUsage)
+    {
+        _weaponUsage = weaponUsage;
     }
 
     public List<ThunderdomeEvent> PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
-        return PerformAction(context, active, other, active.Weapons.Melee!);
+        return _weaponUsage.UseWeapon(context, active, other, active.Weapons.Melee!);
     }
 }
