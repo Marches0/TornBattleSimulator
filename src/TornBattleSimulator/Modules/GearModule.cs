@@ -22,8 +22,8 @@ public class GearModule : Module
         builder.RegisterType<ModifierApplier>()
             .As<ModifierApplier>();
 
-        builder.RegisterType<RandomModifierChanceSource>()
-            .As<IModifierChanceSource>();
+        builder.RegisterType<RandomChanceSource>()
+            .As<IChanceSource>();
 
         builder.RegisterType<RandomSource>()
             .As<IRandomSource>();

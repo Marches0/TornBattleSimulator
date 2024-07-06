@@ -2,11 +2,11 @@
 
 namespace TornBattleSimulator.Battle.Thunderdome.Chance;
 
-public class RandomModifierChanceSource : IModifierChanceSource
+public class RandomChanceSource : IChanceSource
 {
     private readonly IRandomSource _source;
 
-    public RandomModifierChanceSource(
+    public RandomChanceSource(
         IRandomSource source)
     {
         _source = source;
@@ -27,7 +27,7 @@ public class RandomModifierChanceSource : IModifierChanceSource
         {
             aggregate += option.Chance;
 
-            if (aggregate < roll)
+            if (roll <= aggregate)
             {
                 return option.Option;
             }

@@ -6,9 +6,9 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
 public class ModifierApplier
 {
-    private readonly IModifierChanceSource _modifierChanceSource;
+    private readonly IChanceSource _modifierChanceSource;
 
-    public ModifierApplier(IModifierChanceSource modifierChanceSource)
+    public ModifierApplier(IChanceSource modifierChanceSource)
     {
         _modifierChanceSource = modifierChanceSource;
     }
