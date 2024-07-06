@@ -20,11 +20,13 @@ public class DamageCalculator : IDamageCalculator
         PlayerContext other,
         WeaponContext weapon)
     {
+        DamageContext damageContext = new();
+
         var damage = _damageModifiers
             .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
                 (total, modifier) =>
                 {
-                    DamageModifierResult result = modifier.GetDamageModifier(active, other, weapon);
+                    DamageModifierResult result = modifier.GetDamageModifier(active, other, weapon, damageContext);
                     return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
                 });
 

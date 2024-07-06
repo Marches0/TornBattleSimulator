@@ -1,11 +1,5 @@
 ﻿using Autofac.Extras.FakeItEasy;
-using FakeItEasy;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
@@ -48,7 +42,7 @@ public class DamageCalculatorTests
             _multipler = multipler;
         }
 
-        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon)
+        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
         {
             return new(_multipler);
         }

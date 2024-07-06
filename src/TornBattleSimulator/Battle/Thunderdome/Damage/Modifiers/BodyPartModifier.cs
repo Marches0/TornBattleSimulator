@@ -30,13 +30,16 @@ public class BodyPartModifier : IDamageModifier
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
-        WeaponContext weapon)
+        WeaponContext weapon,
+        DamageContext damageContext)
     {
         // todo: Temps don't target body parts.
 
         BodyPartDamage option = _isCrit
             ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
             : _modifierChanceSource.ChooseWeighted(_regularOptions);
+
+        damageContext.TargetBodyPart = option.Part;
 
         return new DamageModifierResult(option.DamageMultiplier, option.Part);
     }

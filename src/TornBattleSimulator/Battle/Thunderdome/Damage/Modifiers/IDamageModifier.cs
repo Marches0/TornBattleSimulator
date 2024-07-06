@@ -7,5 +7,6 @@ public interface IDamageModifier
     DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
-        WeaponContext weapon);
+        WeaponContext weapon,
+        DamageContext damageContext);
 }

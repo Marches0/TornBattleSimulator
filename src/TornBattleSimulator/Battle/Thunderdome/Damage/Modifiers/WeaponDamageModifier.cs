@@ -7,7 +7,8 @@ public class WeaponDamageModifier : IDamageModifier
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
-        WeaponContext weapon)
+        WeaponContext weapon,
+        DamageContext damageContext)
     {
         return new DamageModifierResult(weapon.Description.Damage / 10);
     }

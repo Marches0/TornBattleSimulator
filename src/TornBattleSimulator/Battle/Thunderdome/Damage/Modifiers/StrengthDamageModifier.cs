@@ -7,7 +7,8 @@ public class StrengthDamageModifier : IDamageModifier
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
-        WeaponContext weapon)
+        WeaponContext weapon,
+        DamageContext damageContext)
     {
         //https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
         double strength = active.Stats.Strength;
