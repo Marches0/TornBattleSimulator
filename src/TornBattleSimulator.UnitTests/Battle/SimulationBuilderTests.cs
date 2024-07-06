@@ -85,6 +85,7 @@ public class SimulationBuilderTests
                 Accuracy = 10,
                 Damage = 20
             },
+            Temporary = "tearGas",
             Strategy = new List<StrategyInput>()
             {
                 new StrategyInput()
@@ -98,6 +99,74 @@ public class SimulationBuilderTests
                             Condition = "effect",
                             StatusName = "bleed",
                             Count = 1,
+                        }
+                    }
+                }
+            },
+            Armour = new ArmourSetInput()
+            {
+                Body = new ArmourInput()
+                {
+                    Name = "wow",
+                    Rating = 10,
+                    Modifiers = new List<ModifierInput>()
+                    {
+                        new ModifierInput()
+                        {
+                            Type = "Cool",
+                            Percent = 11,
+                        }
+                    }
+                },
+                Boots = new ArmourInput()
+                {
+                    Name = "wow",
+                    Rating = 10,
+                    Modifiers = new List<ModifierInput>()
+                    {
+                        new ModifierInput()
+                        {
+                            Type = "Cool",
+                            Percent = 11,
+                        }
+                    }
+                },
+                Gloves = new ArmourInput()
+                {
+                    Name = "wow",
+                    Rating = 10,
+                    Modifiers = new List<ModifierInput>()
+                    {
+                        new ModifierInput()
+                        {
+                            Type = "Cool",
+                            Percent = 11,
+                        }
+                    }
+                },
+                Helmet = new ArmourInput()
+                {
+                    Name = "wow",
+                    Rating = 10,
+                    Modifiers = new List<ModifierInput>()
+                    {
+                        new ModifierInput()
+                        {
+                            Type = "Cool",
+                            Percent = 11,
+                        }
+                    }
+                },
+                Pants = new ArmourInput()
+                {
+                    Name = "wow",
+                    Rating = 10,
+                    Modifiers = new List<ModifierInput>()
+                    {
+                        new ModifierInput()
+                        {
+                            Type = "Cool",
+                            Percent = 11,
                         }
                     }
                 }
