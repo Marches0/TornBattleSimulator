@@ -5,8 +5,8 @@ public enum BattleAction
     AttackPrimary = 1,
     AttackSecondary,
     AttackMelee,
+    UseTemporary,
     ReloadPrimary,
     ReloadSecondary,
-    ThrowTemp,
     Stunned
 }

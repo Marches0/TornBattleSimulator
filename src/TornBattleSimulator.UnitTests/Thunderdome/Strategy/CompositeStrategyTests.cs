@@ -15,7 +15,7 @@ public class CompositeStrategyTests
     public void CompositeStrategy_UsesFirstAcceptableStrategy()
     {
         // Arrange
-        BattleAction expected = BattleAction.ThrowTemp;
+        BattleAction expected = BattleAction.UseTemporary;
 
         IStrategy firstUnusable = NullStrategy(A.Fake<IStrategy>());
         IStrategy secondUnusable = NullStrategy(A.Fake<IStrategy>());

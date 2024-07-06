@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Thunderdome.Action;
+﻿using TornBattleSimulator.Battle.Thunderdome.Action;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
@@ -15,9 +10,10 @@ public class WeaponDamageModifier : IDamageModifier
     {
         double weaponDamage = attacker.CurrentAction switch
         {
-            BattleAction.AttackPrimary => attacker.Build.Primary.Damage,
-            BattleAction.AttackSecondary => attacker.Build.Secondary.Damage,
-            BattleAction.AttackMelee => attacker.Build.Melee.Damage,
+            BattleAction.AttackPrimary => attacker.Weapons.Primary!.Description.Damage,
+            BattleAction.AttackSecondary => attacker.Weapons.Secondary!.Description.Damage,
+            BattleAction.AttackMelee => attacker.Weapons.Melee!.Description.Damage,
+            BattleAction.UseTemporary => attacker.Weapons.Temporary!.Description.Damage,
             _ => throw new ArgumentOutOfRangeException($"Cannot attack in a {attacker.CurrentAction} action.")
         };
 

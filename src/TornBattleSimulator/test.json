@@ -19,13 +19,7 @@
 				"ammo": {
 					"magazines": 3,
 					"magazineSize": 10
-				},
-				"modifiers": [
-					{
-						"type": "gassed",
-						"percent": 100
-					}
-				]
+				}
 			},
 			"secondary": {
 				"damage": 23,
@@ -45,6 +39,9 @@
 			},
 			"temporary": "tearGas",
 			"strategy": [
+				{
+					"weapon": "temporary"
+				},
 				{
 					"weapon": "primary",
 					"reload": false,

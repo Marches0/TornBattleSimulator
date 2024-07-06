@@ -13,6 +13,7 @@ public class PlayerContextBuilder
     private Weapon? _primary;
     private Weapon? _secondary;
     private Weapon? _melee;
+    private Weapon? _temporary;
 
     public PlayerContextBuilder WithStats(BattleStats battleStats)
     {
@@ -38,6 +39,12 @@ public class PlayerContextBuilder
         return this;
     }
 
+    public PlayerContextBuilder WithTemporary(Weapon weapon)
+    {
+        _temporary = weapon;
+        return this;
+    }
+
     public PlayerContextBuilder WithHealth(uint health)
     {
         _health = health;
@@ -60,7 +67,7 @@ public class PlayerContextBuilder
                 _primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<PotentialModifier>()) : null,
                 _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>()) : null,
                 _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>()) : null,
-                null),
+                _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>()) : null),
             null
             );
     }

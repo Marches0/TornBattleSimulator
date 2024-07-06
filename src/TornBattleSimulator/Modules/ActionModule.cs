@@ -10,6 +10,9 @@ public class ActionModule : Module
     {
         RegisterAttacks(builder);
         RegisterReloads(builder);
+
+        builder.RegisterType<UseTemporaryAction>()
+            .Keyed<IAction>(BattleAction.UseTemporary);
     }
 
     private void RegisterAttacks(ContainerBuilder builder)

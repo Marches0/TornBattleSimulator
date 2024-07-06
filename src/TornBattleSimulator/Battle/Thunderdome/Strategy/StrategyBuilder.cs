@@ -19,6 +19,7 @@ public class StrategyBuilder
             WeaponType.Primary => new PrimaryWeaponStrategy(strategyDescription),
             WeaponType.Secondary => new SecondaryWeaponStrategy(strategyDescription),
             WeaponType.Melee => new MeleeWeaponStrategy(strategyDescription),
+            WeaponType.Temporary => new TemporaryWeaponStrategy(strategyDescription),
             _ => throw new NotImplementedException($"Strategy {strategyDescription.Weapon}")
         };
     }
