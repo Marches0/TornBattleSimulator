@@ -32,7 +32,7 @@ public class DamageCalculatorTests
         var defender = new PlayerContextBuilder().Build();
 
         // Act
-        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender);
+        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender).Damage;
 
         // Assert
         damage.Should().Be(50);
@@ -47,9 +47,9 @@ public class DamageCalculatorTests
             _multipler = multipler;
         }
 
-        public double GetDamageModifier(PlayerContext active, PlayerContext other)
+        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other)
         {
-            return _multipler;
+            return new(_multipler);
         }
     }
 }

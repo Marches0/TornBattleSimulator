@@ -10,21 +10,21 @@ public class StrengthDamageModifierTests
 {
     private readonly StrengthDamageModifier _strengthDamageModifier = new();
 
-    [TestCaseSource(nameof(StrengthDamageModifier_BasedOnStrength_ReturnsDamage_TestCases))]
-    public void StrengthDamageModifier_BasedOnStrength_ReturnsDamage((ulong strength, double damage) testData)
+    [TestCaseSource(nameof(StrengthDamageModifier_BasedOnStrength_ReturnsMultiplier_TestCases))]
+    public void StrengthDamageModifier_BasedOnStrength_ReturnsMultiplier((ulong strength, double damage) testData)
     {
         // Arrange
         PlayerContext attacker = new PlayerContextBuilder().WithStats(new BattleStats() { Strength = testData.strength }).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         // Act
-        double damage = _strengthDamageModifier.GetDamageModifier(attacker, defender);
+        double multiplier = _strengthDamageModifier.GetDamageModifier(attacker, defender).Multiplier;
 
         // Assert
-        damage.Should().BeApproximately(testData.damage, 0.0001);
+        multiplier.Should().BeApproximately(testData.damage, 0.0001);
     }
 
-    private static IEnumerable<(ulong strength, double damage)> StrengthDamageModifier_BasedOnStrength_ReturnsDamage_TestCases()
+    private static IEnumerable<(ulong strength, double damage)> StrengthDamageModifier_BasedOnStrength_ReturnsMultiplier_TestCases()
     {
         // https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
         yield return (10, GetDamage(30));

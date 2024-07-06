@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Chance.Source;
 
@@ -7,6 +8,9 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Chance;
 [TestFixture]
 public class RandomChanceSourceTests
 {
+    private const int RandomIterations = 1000000;
+    private const double RandomChanceLeeway = 0.001; // 0.01%
+
     [TestCaseSource(nameof(Succeeds_BasedOnRollVsProbability_ReturnsValue_TestData))]
     public void Succeeds_WhenRollBelowProbability_ReturnsValue((double chance, double roll, bool succeeds) testData)
     {
@@ -38,6 +42,62 @@ public class RandomChanceSourceTests
         RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
 
         chanceSource.ChooseWeighted(testData.options).Should().Be(testData.expected);
+    }
+
+    [Test]
+    public void Success_WithRealSource_SucceedsAppropriately()
+    {
+        double chance = 0.25;
+        RandomSource randomSource = new RandomSource();
+        RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
+
+        int successes = 0;
+
+        for(int i = 0; i < RandomIterations; i++)
+        {
+            if (chanceSource.Succeeds(chance))
+            {
+                ++successes;
+            }
+        }
+
+        double observedChance = (double)successes / RandomIterations;
+        observedChance.Should().BeApproximately(chance, RandomChanceLeeway);
+    }
+
+    [Test]
+    public void ChooseWeighted_WithRealSource_ChoosesAppropriately()
+    {
+        RandomSource randomSource = new RandomSource();
+        RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
+
+        List<OptionChance<int>> options = new()
+        {
+            new(0, 0.05),
+            new(1, 0.2),
+            new(2, 0.4),
+            new(3, 0.1),
+            new(4, 0.1),
+            new(5, 0.1),
+            new(6, 0.05),
+        };
+
+        List<int> results = Enumerable.Range(0, options.Count).Select(_ => 0).ToList();
+
+        for (int i = 0; i < RandomIterations; i++)
+        {
+            int choice = chanceSource.ChooseWeighted(options);
+            ++results[choice];
+        }
+
+        using (new AssertionScope())
+        {
+            foreach ((OptionChance<int> option, int index) in options.Select((o, i) => (o, i)))
+            {
+                var observedChance = (double)results[index] / RandomIterations;
+                observedChance.Should().BeApproximately(option.Chance, RandomChanceLeeway);
+            }
+        }
     }
 
     private static IEnumerable<(List<OptionChance<int>> options, double roll, int expected)> ChooseWeighted_BasedOnRoll_ChoosesAppropriateItem_TestData()
