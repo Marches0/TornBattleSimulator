@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Events.Data;
 public interface IEventData
@@ -28,7 +29,12 @@ public class AttackHitEvent : IEventData
 
     public string Format()
     {
-        return $"{Weapon} dealt {Damage} on {BodyPart} ({Flags})";
+        if (Weapon == WeaponType.Temporary)
+        {
+            return "Used Temporary";
+        }
+
+        return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} dealt by {Weapon} on {BodyPart} ({Flags})";
     }
 }
 
@@ -73,6 +79,6 @@ public class EffectBeginEvent : IEventData
 
     public string Format()
     {
-        return $"{ModifierType}";
+        return $"{ModifierType.ToString().ToColouredString("#c49bdd")}";
     }
 }

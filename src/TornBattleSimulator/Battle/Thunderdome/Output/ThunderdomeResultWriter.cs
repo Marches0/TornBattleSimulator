@@ -6,6 +6,16 @@ namespace TornBattleSimulator.Battle.Thunderdome.Output;
 
 public class ThunderdomeResultWriter
 {
+    private static Dictionary<ThunderdomeEventType, string> EventColours = new Dictionary<ThunderdomeEventType, string>()
+    {
+        {ThunderdomeEventType.AttackHit, "#77dd77" }, // green
+        {ThunderdomeEventType.AttackMiss, "#cfcfc4" }, // grey
+        {ThunderdomeEventType.Reload, "#cfcfc4" }, // grey
+        {ThunderdomeEventType.Stunned, "#ff7974" }, // red
+        {ThunderdomeEventType.EffectBegin, "#c49bdd" }, // purple
+        {ThunderdomeEventType.EffectEnd, "#cfcfc4" }, // grey
+    };
+
     public void Write(ThunderdomeContext context)
     {
         Table table = new Table()
@@ -34,7 +44,7 @@ public class ThunderdomeResultWriter
         return [
             tEvent.Turn.ToString(),
             tEvent.Source.ToString().ToColouredString(tEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
-            tEvent.Type.ToString(),
+            tEvent.Type.ToString().ToColouredString(EventColours[tEvent.Type]),
             tEvent.Data.Format(),
             tEvent.AttackerHealth.ToString("n0"),
             tEvent.DefenderHealth.ToString("n0"),
