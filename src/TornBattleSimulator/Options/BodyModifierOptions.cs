@@ -11,6 +11,6 @@ public class BodyModifierOptions
 public class BodyPartDamage
 {
     public BodyPart Part { get; set; }
-    public float Chance { get; set; }
+    public double Chance { get; set; }
     public double DamageMultiplier { get; set; }
 }
