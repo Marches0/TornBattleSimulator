@@ -2,6 +2,7 @@
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Chance.Source;
+using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Chance;
 
@@ -15,7 +16,7 @@ public class RandomChanceSourceTests
     public void Succeeds_WhenRollBelowProbability_ReturnsValue((double chance, double roll, bool succeeds) testData)
     {
         // Arrange
-        IRandomSource randomSource = new FixedSource(testData.roll);
+        IRandomSource randomSource = new FixedRandomSource(testData.roll);
 
         RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
 
@@ -37,7 +38,7 @@ public class RandomChanceSourceTests
     public void ChooseWeighted_BasedOnRoll_ChoosesAppropriateItem((List<OptionChance<int>> options, double roll, int expected) testData)
     {
         // Arrange
-        IRandomSource randomSource = new FixedSource(testData.roll);
+        IRandomSource randomSource = new FixedRandomSource(testData.roll);
 
         RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
 
@@ -190,16 +191,4 @@ public class RandomChanceSourceTests
             4
         );
     }
-}
-
-internal class FixedSource : IRandomSource
-{
-    private readonly double _roll;
-
-    public FixedSource(double roll)
-    {
-        _roll = roll;
-    }
-
-    public double Next() => _roll;
 }

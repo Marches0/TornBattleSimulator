@@ -22,5 +22,8 @@ public class DamageModule : Module
 
         builder.RegisterType<BodyPartModifier>()
             .As<IDamageModifier>();
+
+        builder.RegisterType<ArmourDamageModifier>()
+            .As<IDamageModifier>();
     }
 }

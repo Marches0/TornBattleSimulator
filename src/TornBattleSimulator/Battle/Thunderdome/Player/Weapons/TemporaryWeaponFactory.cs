@@ -16,6 +16,7 @@ public class TemporaryWeaponFactory
         Max = 1
     };
 
+    // put these in json like armour
     public Weapon GetTemporaryWeapon(TemporaryWeaponType weaponType)
     {
         return weaponType switch

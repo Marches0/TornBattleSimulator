@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
@@ -15,6 +16,7 @@ public class PlayerContextBuilder
     private Weapon? _melee;
     private Weapon? _temporary;
     private EquippedWeapons? _equippedWeapons;
+    private List<ArmourContext> _armour = new();
 
     public PlayerContextBuilder WithStats(BattleStats battleStats)
     {
@@ -58,6 +60,12 @@ public class PlayerContextBuilder
         return this;
     }
 
+    public PlayerContextBuilder WithArmour(List<ArmourContext> armour)
+    {
+        _armour = armour;
+        return this;
+    }
+
     public PlayerContext Build()
     {
         return new PlayerContext(
@@ -75,7 +83,7 @@ public class PlayerContextBuilder
                 _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>()) : null,
                 _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>()) : null,
                 _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>()) : null),
-            null,
+            new ArmourSetContext(_armour),
             null
             );
     }

@@ -35,6 +35,6 @@ public class ArmourFactory
             return null;
         }
 
-        return new ArmourContext(armour.Rating, _armourCoverage[armour.Name].Coverage, new List<PotentialModifier>());
+        return new ArmourContext(armour.Rating / 100d, _armourCoverage[armour.Name].Coverage, new List<PotentialModifier>());
     }
 }
