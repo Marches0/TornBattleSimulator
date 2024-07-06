@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage;
 
@@ -16,13 +17,14 @@ public class DamageCalculator : IDamageCalculator
     public DamageResult CalculateDamage(
         ThunderdomeContext context,
         PlayerContext active,
-        PlayerContext other)
+        PlayerContext other,
+        WeaponContext weapon)
     {
         var damage = _damageModifiers
             .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
                 (total, modifier) =>
                 {
-                    DamageModifierResult result = modifier.GetDamageModifier(active, other);
+                    DamageModifierResult result = modifier.GetDamageModifier(active, other, weapon);
                     return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
                 });
 

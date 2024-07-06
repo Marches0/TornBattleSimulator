@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Options;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
@@ -26,8 +27,13 @@ public class BodyPartModifier : IDamageModifier
         _modifierChanceSource = modifierChanceSource;
     }
 
-    public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other)
+    public DamageModifierResult GetDamageModifier(
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
     {
+        // todo: Temps don't target body parts.
+
         BodyPartDamage option = _isCrit
             ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
             : _modifierChanceSource.ChooseWeighted(_regularOptions);

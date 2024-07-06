@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
 
@@ -23,7 +24,7 @@ public class DamageCalculatorTests
         autoFake.Provide<IEnumerable<IDamageModifier>>(new List<IDamageModifier>()
         {
             new StaticDamageModifier(10),
-            new StaticDamageModifier(5),
+            new StaticDamageModifier(0.5),
         });
 
         DamageCalculator damageCalculator = autoFake.Resolve<DamageCalculator>();
@@ -32,10 +33,10 @@ public class DamageCalculatorTests
         var defender = new PlayerContextBuilder().Build();
 
         // Act
-        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender).Damage;
+        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, null).Damage;
 
         // Assert
-        damage.Should().Be(50);
+        damage.Should().Be(5);
     }
 
     private class StaticDamageModifier : IDamageModifier
@@ -47,7 +48,7 @@ public class DamageCalculatorTests
             _multipler = multipler;
         }
 
-        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other)
+        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon)
         {
             return new(_multipler);
         }

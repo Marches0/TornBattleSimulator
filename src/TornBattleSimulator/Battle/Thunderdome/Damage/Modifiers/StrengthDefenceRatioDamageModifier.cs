@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 public class StrengthDefenceRatioDamageModifier : IDamageModifier
 {
@@ -6,12 +8,13 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
     public DamageModifierResult GetDamageModifier(
-        PlayerContext attacker,
-        PlayerContext defender)
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
     {
         // https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
-        double defence = defender.Stats.Defence;
-        double strength = attacker.Stats.Strength;
+        double defence = other.Stats.Defence;
+        double strength = active.Stats.Strength;
         double ratio = defence / strength;
 
         double mitigation = ratio switch

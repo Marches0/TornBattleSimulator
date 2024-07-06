@@ -25,17 +25,14 @@ public class WeaponUsage : IWeaponUsage
         PlayerContext other,
         WeaponContext weapon)
     {
-        // Should we split into seperate actions for loaded and unloaded?
         if (weapon.Ammo != null && weapon.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }
 
-        List<ThunderdomeEvent> events = new();
+        List<ThunderdomeEvent> events = _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers);
 
-        events.AddRange(_modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers));
-
-        DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other);
+        DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other, weapon);
         other.Health.CurrentHealth -= damageResult.Damage;
 
         events.Add(context.CreateEvent(

@@ -18,7 +18,7 @@ public class StrengthDamageModifierTests
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         // Act
-        double multiplier = _strengthDamageModifier.GetDamageModifier(attacker, defender).Multiplier;
+        double multiplier = _strengthDamageModifier.GetDamageModifier(attacker, defender, null).Multiplier;
 
         // Assert
         multiplier.Should().BeApproximately(testData.damage, 0.0001);

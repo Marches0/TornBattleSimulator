@@ -1,13 +1,16 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 public class StrengthDamageModifier : IDamageModifier
 {
     public DamageModifierResult GetDamageModifier(
-        PlayerContext attacker,
-        PlayerContext defender)
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
     {
         //https://www.torn.com/forums.php#/p=threads&f=61&t=16199413&b=0&a=0
-        double strength = attacker.Stats.Strength;
+        double strength = active.Stats.Strength;
         double logStrength10 = Math.Log(strength / 10, 10);
 
         var damage  = (7d
