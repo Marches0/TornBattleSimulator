@@ -35,13 +35,13 @@ public class WeaponUsage : IWeaponUsage
 
         events.AddRange(_modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers));
 
-        int damage = _damageCalculator.CalculateDamage(context, active, other);
-        other.Health.CurrentHealth -= damage;
+        DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other);
+        other.Health.CurrentHealth -= damageResult.Damage;
 
         events.Add(context.CreateEvent(
             active,
             ThunderdomeEventType.AttackHit,
-            new AttackHitEvent(weapon.Type, damage)));
+            new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart)));
 
         events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers));
 

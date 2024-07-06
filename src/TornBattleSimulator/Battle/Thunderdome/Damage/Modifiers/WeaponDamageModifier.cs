@@ -4,7 +4,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 public class WeaponDamageModifier : IDamageModifier
 {
-    public double GetDamageModifier(
+    public DamageModifierResult GetDamageModifier(
         PlayerContext attacker,
         PlayerContext defender)
     {
@@ -17,6 +17,6 @@ public class WeaponDamageModifier : IDamageModifier
             _ => throw new ArgumentOutOfRangeException($"Cannot attack in a {attacker.CurrentAction} action.")
         };
 
-        return weaponDamage / 10;
+        return new DamageModifierResult(weaponDamage / 10);
     }
 }

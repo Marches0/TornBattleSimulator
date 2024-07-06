@@ -5,7 +5,7 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     private static readonly double LowerMitigationModifier = 50 / Math.Log(32);
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
-    public double GetDamageModifier(
+    public DamageModifierResult GetDamageModifier(
         PlayerContext attacker,
         PlayerContext defender)
     {
@@ -22,7 +22,7 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
 
         // Invert to apply to overall damage - 
         // a 10% mitigation = 90% damage 
-        return 1 - Math.Clamp(mitigation, 0, 1);
+        return new DamageModifierResult(1 - Math.Clamp(mitigation, 0, 1));
     }
 
     private double LowerMitigation(double ratio)

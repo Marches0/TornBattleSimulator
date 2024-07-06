@@ -13,12 +13,19 @@ public class DamageCalculator : IDamageCalculator
         _damageModifiers = damageModifiers.ToList();
     }
 
-    public int CalculateDamage(
+    public DamageResult CalculateDamage(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other)
     {
-        // Is currently crit damage
-        return (int)Math.Round(_damageModifiers.Aggregate(1d, (damage, modifier) => damage *= modifier.GetDamageModifier(active, other)));
+        var damage = _damageModifiers
+            .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
+                (total, modifier) =>
+                {
+                    DamageModifierResult result = modifier.GetDamageModifier(active, other);
+                    return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
+                });
+
+        return new DamageResult((int)Math.Round(damage.Damage), damage.BodyPart);
     }
 }

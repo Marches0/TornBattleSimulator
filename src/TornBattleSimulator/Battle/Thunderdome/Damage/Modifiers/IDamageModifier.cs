@@ -2,7 +2,7 @@
 
 public interface IDamageModifier
 {
-    double GetDamageModifier(
+    DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other);
 }

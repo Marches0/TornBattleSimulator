@@ -26,12 +26,12 @@ public class BodyPartModifier : IDamageModifier
         _modifierChanceSource = modifierChanceSource;
     }
 
-    public double GetDamageModifier(PlayerContext active, PlayerContext other)
+    public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other)
     {
         BodyPartDamage option = _isCrit
             ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
             : _modifierChanceSource.ChooseWeighted(_regularOptions);
 
-        return option.DamageMultiplier;
+        return new DamageModifierResult(option.DamageMultiplier, option.Part);
     }
 }

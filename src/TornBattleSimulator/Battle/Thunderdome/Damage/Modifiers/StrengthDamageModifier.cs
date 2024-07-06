@@ -2,7 +2,7 @@
 
 public class StrengthDamageModifier : IDamageModifier
 {
-    public double GetDamageModifier(
+    public DamageModifierResult GetDamageModifier(
         PlayerContext attacker,
         PlayerContext defender)
     {
@@ -10,11 +10,13 @@ public class StrengthDamageModifier : IDamageModifier
         double strength = attacker.Stats.Strength;
         double logStrength10 = Math.Log(strength / 10, 10);
 
-        return (7d
+        var damage  = (7d
             * Math.Pow(logStrength10, 2)
             + 27
             * logStrength10
             + 30)
-            / 3.5; // remove crit multiplier
+            / 3.5;
+
+        return new DamageModifierResult(damage);
     }
 }
