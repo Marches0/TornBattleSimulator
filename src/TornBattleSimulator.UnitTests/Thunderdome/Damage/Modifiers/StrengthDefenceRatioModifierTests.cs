@@ -11,7 +11,7 @@ public class StrengthDefenceRatioModifierTests
     private readonly StrengthDefenceRatioDamageModifier _strengthDefenceRatioModifier = new();
 
     [TestCaseSource(nameof(StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier_TestCases))]
-    public void StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier((ulong attackerStrength, ulong defenderDefence, double expectedRatio, string testName) testData)
+    public void StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier((ulong attackerStrength, ulong defenderDefence, double expected, string testName) testData)
     {
         // Arrange
         PlayerContext attacker = new PlayerContextBuilder().WithStats(new BattleStats() { Strength = testData.attackerStrength }).Build();
@@ -21,10 +21,10 @@ public class StrengthDefenceRatioModifierTests
         double mod = _strengthDefenceRatioModifier.GetDamageModifier(attacker, defender, null, null).Multiplier;
 
         // Assert
-        mod.Should().BeApproximately(testData.expectedRatio, 0.0001);
+        mod.Should().BeApproximately(testData.expected, 0.0001);
     }
 
-    private static IEnumerable<(ulong attackerStrength, ulong defenderDefence, double expectedRatio, string testName)> StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier_TestCases()
+    private static IEnumerable<(ulong attackerStrength, ulong defenderDefence, double expected, string testName)> StrengthDefenceRatioModifier_BasedOnRatio_ReturnsCorrectModifier_TestCases()
     {
         // Inverted, since we return "how much damage is remaining" rather than
         // "how much was mitigated"

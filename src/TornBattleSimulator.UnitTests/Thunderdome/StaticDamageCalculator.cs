@@ -15,6 +15,6 @@ public class StaticDamageCalculator : IDamageCalculator
 
     public DamageResult CalculateDamage(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon)
     {
-        return new DamageResult(_damage, 0);
+        return new DamageResult(_damage, 0, 0);
     }
 }

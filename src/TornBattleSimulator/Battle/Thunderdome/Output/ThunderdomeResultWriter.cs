@@ -45,7 +45,7 @@ public class ThunderdomeResultWriter
             tEvent.Turn.ToString(),
             tEvent.Source.ToString().ToColouredString(tEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
             tEvent.Type.ToString().ToColouredString(EventColours[tEvent.Type]),
-            tEvent.Data.Format(),
+            tEvent.Data.Format().ToColouredString(tEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
             tEvent.AttackerHealth.ToString("n0"),
             tEvent.DefenderHealth.ToString("n0"),
         ];
