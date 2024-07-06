@@ -75,6 +75,7 @@ public class PlayerContextBuilder
                 _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>()) : null,
                 _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>()) : null,
                 _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>()) : null),
+            null,
             null
             );
     }

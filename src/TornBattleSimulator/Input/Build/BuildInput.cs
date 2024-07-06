@@ -20,4 +20,6 @@ public class BuildInput
     public string? Temporary { get; set; }
 
     public List<StrategyInput>? Strategy { get; set; }
+
+    public ArmourSetInput? Armour { get; set; }
 }

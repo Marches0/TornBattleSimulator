@@ -15,8 +15,16 @@ public class ConfigModule : Module
             .As<IConfiguration>()
             .SingleInstance();
 
-        builder.Register(ctx => ctx.Resolve<IConfiguration>().GetRequiredSection("BodyModifier").Get<BodyModifierOptions>()!)
+        builder.Register(ctx => ctx.Resolve<IConfiguration>().Get<RootConfig>()!)
+            .As<RootConfig>()
+            .SingleInstance();
+
+        builder.Register(ctx => ctx.Resolve<RootConfig>().BodyModifier)
             .As<BodyModifierOptions>()
+            .SingleInstance();
+
+        builder.Register(ctx => ctx.Resolve<RootConfig>().ArmourCoverage)
+            .As<List<ArmourCoverageOption>>()
             .SingleInstance();
     }
 }

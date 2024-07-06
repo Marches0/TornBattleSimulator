@@ -22,7 +22,10 @@ public class InputProfile : Profile
         CreateMap<WeaponInput, Weapon>();
         CreateMap<AmmoInput, Ammo>();
         CreateMap<RateOfFireInput, RateOfFire>();
-        CreateMap<WeaponModifierInput, WeaponModifierDescription>();
+        CreateMap<ModifierInput, WeaponModifierDescription>();
+
+        CreateMap<ArmourSetInput, ArmourSet>();
+        CreateMap<ArmourInput, Armour>();
 
         CreateMap<StrategyInput, StrategyDescription>();
         CreateMap<StrategyUntilInput, StrategyUntil>();

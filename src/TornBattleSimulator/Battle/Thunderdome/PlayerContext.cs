@@ -3,6 +3,7 @@ using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Player;
+using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
@@ -17,11 +18,13 @@ public class PlayerContext
         BattleBuild build,
         PlayerType playerType,
         EquippedWeapons weapons,
+        ArmourSetContext armourSet,
         IStrategy strategy)
     {
         Build = build;
         Strategy = strategy;
         Weapons = weapons;
+        ArmourSet = armourSet;
         Health = new((int)build.Health);
         PlayerType = playerType;
 
@@ -43,7 +46,7 @@ public class PlayerContext
     public PlayerHealth Health { get; set; }
 
     public EquippedWeapons Weapons { get; }
-
+    public ArmourSetContext ArmourSet { get; }
     public PlayerType PlayerType { get; }
 
     /// <summary>

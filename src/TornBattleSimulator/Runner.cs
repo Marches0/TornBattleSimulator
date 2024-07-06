@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
@@ -13,17 +14,20 @@ public class Runner
     private readonly IMapper _mapper;
     private readonly Thunderdome.Create _thunderdomeFactory;
     private readonly WeaponsFactory _weaponsFactory;
+    private readonly ArmourFactory _armourFactory;
     private readonly StrategyBuilder _strategyBuilder;
 
     public Runner(
         IMapper mapper,
         Thunderdome.Create thunderdomeFactory,
         WeaponsFactory weaponsFactory,
+        ArmourFactory armourFactory,
         StrategyBuilder strategyBuilder)
     {
         _mapper = mapper;
         _thunderdomeFactory = thunderdomeFactory;
         _weaponsFactory = weaponsFactory;
+        _armourFactory = armourFactory;
         _strategyBuilder = strategyBuilder;
     }
 
@@ -56,8 +60,8 @@ public class Runner
     {
         return _thunderdomeFactory(
             new ThunderdomeContext(
-                new PlayerContext(attacker, PlayerType.Attacker, _weaponsFactory.Create(attacker), _strategyBuilder.BuildStrategy(attacker)),
-                new PlayerContext(defender, PlayerType.Defender, _weaponsFactory.Create(defender), _strategyBuilder.BuildStrategy(defender))
+                new PlayerContext(attacker, PlayerType.Attacker, _weaponsFactory.Create(attacker), _armourFactory.Create(attacker.Armour), _strategyBuilder.BuildStrategy(attacker)),
+                new PlayerContext(defender, PlayerType.Defender, _weaponsFactory.Create(defender), _armourFactory.Create(defender.Armour), _strategyBuilder.BuildStrategy(defender))
             )
         );
     }

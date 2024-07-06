@@ -38,6 +38,12 @@
 				"accuracy": 100
 			},
 			"temporary": "tearGas",
+			"armour": {
+				"helmet": {
+					"name": "motorcycleHelmet",
+					"rating": 50.2
+				}
+			},
 			"strategy": [
 				{
 					"weapon": "temporary"

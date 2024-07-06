@@ -6,7 +6,7 @@ public class WeaponInput
     public double? Accuracy { get; set; }
     public RateOfFireInput? RateOfFire { get; set; }
     public AmmoInput? Ammo { get; set; }
-    public List<WeaponModifierInput>? Modifiers { get; set; }
+    public List<ModifierInput>? Modifiers { get; set; }
 }
 
 public class RateOfFireInput
@@ -19,10 +19,4 @@ public class AmmoInput
 {
     public uint? Magazines { get; set; }
     public uint? MagazineSize { get; set; }
-}
-
-public class WeaponModifierInput
-{
-    public string? Type { get; set; }
-    public double? Percent { get; set; }
 }
