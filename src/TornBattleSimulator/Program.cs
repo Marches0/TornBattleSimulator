@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.Extensions.Configuration;
 using TornBattleSimulator;
 using TornBattleSimulator.Modules;
 

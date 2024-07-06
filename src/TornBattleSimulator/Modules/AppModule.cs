@@ -11,6 +11,7 @@ internal class AppModule : Module
             .SingleInstance();
 
         builder
+            .RegisterModule<ConfigModule>()
             .RegisterModule<MapperModule>()
             .RegisterModule<DamageModule>()
             .RegisterModule<ThunderdomeModule>()
