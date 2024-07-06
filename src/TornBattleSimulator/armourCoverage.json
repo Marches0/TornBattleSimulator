@@ -1,0 +1,1226 @@
+{
+  "ArmourCoverage": [
+    {
+      "Name": "WeldingHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "MotorcycleHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.8535
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.2319
+        }
+      ]
+    },
+    {
+      "Name": "CombatHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.6749
+        }
+      ]
+    },
+    {
+      "Name": "MedievalHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.9354
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.4224
+        }
+      ]
+    },
+    {
+      "Name": "WwiiHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.6485
+        }
+      ]
+    },
+    {
+      "Name": "ConstructionHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.3968
+        }
+      ]
+    },
+    {
+      "Name": "LeatherHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.3512
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.0884
+        }
+      ]
+    },
+    {
+      "Name": "RiotHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.9961
+        }
+      ]
+    },
+    {
+      "Name": "AssaultHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.6653
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.0399
+        }
+      ]
+    },
+    {
+      "Name": "DuneHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.6483
+        }
+      ]
+    },
+    {
+      "Name": "DeltaHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.2713
+        }
+      ]
+    },
+    {
+      "Name": "MarauderHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.6057
+        }
+      ]
+    },
+    {
+      "Name": "SentinelHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.7424
+        }
+      ]
+    },
+    {
+      "Name": "VanguardHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 0.3960
+        }
+      ]
+    },
+    {
+      "Name": "EodHelmet",
+      "Coverage": [
+        {
+          "BodyPart": "Head",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.4290
+        }
+      ]
+    },
+    {
+      "Name": "FlexibleBodyArmor",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9573
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.3616
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.2319
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.1188
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.5100
+        }
+      ]
+    },
+    {
+      "Name": "CombatVest",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.2318
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.3604
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0098
+        }
+      ]
+    },
+    {
+      "Name": "LiquidBodyArmor",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9848
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.9959
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.1985
+        }
+      ]
+    },
+    {
+      "Name": "OuterTacticalVest",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.2391
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.3595
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0093
+        }
+      ]
+    },
+    {
+      "Name": "FullBodyArmor",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.9068
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.1340
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.6048
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0028
+        }
+      ]
+    },
+    {
+      "Name": "BulletproofVest",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9545
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.3587
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.8916
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0078
+        }
+      ]
+    },
+    {
+      "Name": "PoliceVest",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9544
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.3534
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.0745
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0077
+        }
+      ]
+    },
+    {
+      "Name": "Flak Jacket",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9642
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.9999
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.3579
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.0312
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0014
+        }
+      ]
+    },
+    {
+      "Name": "ChainMail",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.999
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.4846
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0193
+        }
+      ]
+    },
+    {
+      "Name": "LeatherVest",
+      "Coverage": [
+        {
+          "BodyPart": "Heart",
+          "Coverage": 0.9727
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 0.9022
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.9509
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0650
+        }
+      ]
+    },
+    {
+      "Name": "RiotBody",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.7906
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.2160
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.999
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.00301
+        }
+      ]
+    },
+    {
+      "Name": "AssaultBody",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.8116
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.2073
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.1415
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0056
+        }
+      ]
+    },
+    {
+      "Name": "DuneVest",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.8393
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.216
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.0905
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0046
+        }
+      ]
+    },
+    {
+      "Name": "DeltaBody",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.8881
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.3070
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.1340
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0064
+        }
+      ]
+    },
+    {
+      "Name": "MarauderBody",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.8472
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.0505
+        }
+      ]
+    },
+    {
+      "Name": "SentinelApron",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.9591
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0224
+        }
+      ]
+    },
+    {
+      "Name": "VanguardBody",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 0.8353
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.013
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.3539
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0028
+        }
+      ]
+    },
+    {
+      "Name": "EodApron",
+      "Coverage": [
+        {
+          "BodyPart": "Throat",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Heart",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Chest",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Arms",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 0.1688
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.1758
+        }
+      ]
+    },
+    {
+      "Name": "CombatPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0762
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.1628
+        }
+      ]
+    },
+    {
+      "Name": "LeatherPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0750
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.1549
+        }
+      ]
+    },
+    {
+      "Name": "RiotPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0212
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.3996
+        }
+      ]
+    },
+    {
+      "Name": "AssaultPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0384
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.3325
+        }
+      ]
+    },
+    {
+      "Name": "DunePants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.1228
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.1210
+        }
+      ]
+    },
+    {
+      "Name": "DeltaPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0859
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.2906
+        }
+      ]
+    },
+    {
+      "Name": "MarauderPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0052
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.9669
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.2099
+        }
+      ]
+    },
+    {
+      "Name": "SentinelPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.0471
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.2084
+        }
+      ]
+    },
+    {
+      "Name": "VanguardPants",
+      "Coverage": [
+        {
+          "BodyPart": "Groin",
+          "Coverage": 0.9907
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.2520
+        }
+      ]
+    },
+    {
+      "Name": "EodPants",
+      "Coverage": [
+        {
+          "BodyPart": "Stomach",
+          "Coverage": 0.2394
+        },
+        {
+          "BodyPart": "Groin",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Legs",
+          "Coverage": 1
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 0.2013
+        }
+      ]
+    },
+    {
+      "Name": "CombatGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0032
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "KevlarGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0032
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "LeatherGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "RiotGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0078
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "AssaultGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.005
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "DuneGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0042
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "DeltaGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.005
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "MarauderGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.005
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "SentinelGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0055
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "VanguardGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0073
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "EodGloves",
+      "Coverage": [
+        {
+          "BodyPart": "Arms",
+          "Coverage": 0.0050
+        },
+        {
+          "BodyPart": "Hands",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "CombatBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0792
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "SafetyBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0474
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "HikingBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0522
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "LeatherBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0877
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "RiotBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.1162
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "AssaultBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0907
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "DuneBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.1047
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "DeltaBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.1025
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "MarauderBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0953
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "SentinelBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0563
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "VanguardBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0583
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    },
+    {
+      "Name": "EodBoots",
+      "Coverage": [
+        {
+          "BodyPart": "Legs",
+          "Coverage": 0.0619
+        },
+        {
+          "BodyPart": "Feet",
+          "Coverage": 1
+        }
+      ]
+    }
+  ]
+}

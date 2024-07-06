@@ -10,6 +10,7 @@ public class ConfigModule : Module
     {
         builder.Register(ctx => new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile("armourCoverage.json")
                 .Build()
             )
             .As<IConfiguration>()
