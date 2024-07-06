@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application.Chance;
+﻿namespace TornBattleSimulator.Battle.Thunderdome.Chance;
 
 public class OptionChance<T>
 {

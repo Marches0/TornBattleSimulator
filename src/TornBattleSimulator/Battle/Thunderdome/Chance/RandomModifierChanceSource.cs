@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application.Chance.Source;
+﻿using TornBattleSimulator.Battle.Thunderdome.Chance.Source;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application.Chance;
+namespace TornBattleSimulator.Battle.Thunderdome.Chance;
 
 public class RandomModifierChanceSource : IModifierChanceSource
 {
