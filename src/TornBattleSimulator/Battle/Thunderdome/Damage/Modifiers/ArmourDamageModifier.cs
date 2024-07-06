@@ -41,9 +41,16 @@ public class ArmourDamageModifier : IDamageModifier
             .OrderByDescending(x => x.Rating)
             .FirstOrDefault(x => _chanceSource.Succeeds(x.ApplicableCoverage!.Coverage));
 
-        // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses
-        return applicableArmour != null
-            ? new DamageModifierResult(1d - applicableArmour.Rating)
-            : new DamageModifierResult(1d);
+        if (applicableArmour != null)
+        {
+            // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses
+            damageContext.SetFlag(DamageFlags.HitArmour); 
+            return new DamageModifierResult(1d - applicableArmour.Rating);
+        }
+        else
+        {
+            damageContext.SetFlag(DamageFlags.MissedArmour);
+            return new DamageModifierResult(1d);
+        }
     }
 }

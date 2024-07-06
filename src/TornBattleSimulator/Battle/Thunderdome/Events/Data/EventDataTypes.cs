@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Events.Data;
@@ -9,11 +10,12 @@ public interface IEventData
 
 public class AttackHitEvent : IEventData
 {
-    public AttackHitEvent(WeaponType weapon, int damage, BodyPart bodyPart)
+    public AttackHitEvent(WeaponType weapon, int damage, BodyPart bodyPart, DamageFlags flags)
     {
         Weapon = weapon;
         Damage = damage;
         BodyPart = bodyPart;
+        Flags = flags;
     }
 
     public WeaponType Weapon { get; }
@@ -22,9 +24,11 @@ public class AttackHitEvent : IEventData
 
     public BodyPart BodyPart { get; }
 
+    public DamageFlags Flags { get; }
+
     public string Format()
     {
-        return $"{Weapon} dealt {Damage} ({BodyPart})";
+        return $"{Weapon} dealt {Damage} on {BodyPart} ({Flags})";
     }
 }
 

@@ -38,7 +38,7 @@ public class WeaponUsage : IWeaponUsage
         events.Add(context.CreateEvent(
             active,
             ThunderdomeEventType.AttackHit,
-            new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart)));
+            new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags)));
 
         events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers));
 

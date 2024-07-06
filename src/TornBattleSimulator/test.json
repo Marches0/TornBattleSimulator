@@ -42,6 +42,10 @@
 				"helmet": {
 					"name": "motorcycleHelmet",
 					"rating": 50.2
+				},
+				"body": {
+					"name": "EodApron",
+					"rating": 40
 				}
 			},
 			"strategy": [

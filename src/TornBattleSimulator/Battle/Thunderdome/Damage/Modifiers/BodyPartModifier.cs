@@ -33,7 +33,7 @@ public class BodyPartModifier : IDamageModifier
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        // todo: Temps don't target body parts.
+        // todo: Temps don't target body parts?
 
         BodyPartDamage option = _isCrit
             ? _modifierChanceSource.ChooseWeighted(_criticalOptions)

@@ -30,6 +30,6 @@ public class DamageCalculator : IDamageCalculator
                     return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
                 });
 
-        return new DamageResult((int)Math.Round(damage.Damage), damage.BodyPart);
+        return new DamageResult((int)Math.Round(damage.Damage), damage.BodyPart, damageContext.Flags);
     }
 }

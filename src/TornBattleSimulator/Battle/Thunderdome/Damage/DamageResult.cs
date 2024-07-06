@@ -6,13 +6,17 @@ public readonly struct DamageResult
 {
     public DamageResult(
         int damage,
-        BodyPart bodyPart)
+        BodyPart bodyPart,
+        DamageFlags flags)
     {
         Damage = damage;
         BodyPart = bodyPart;
+        Flags = flags;
     }
 
     public int Damage { get; }
 
     public BodyPart BodyPart { get; }
+
+    public DamageFlags Flags { get; }
 }
