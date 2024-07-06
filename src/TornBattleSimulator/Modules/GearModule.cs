@@ -3,6 +3,7 @@ using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application.Chance;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application.Chance.Source;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers.Temporary;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
@@ -23,6 +24,9 @@ public class GearModule : Module
 
         builder.RegisterType<RandomModifierChanceSource>()
             .As<IModifierChanceSource>();
+
+        builder.RegisterType<RandomSource>()
+            .As<IRandomSource>();
 
         RegisterTemporaryWeapons(builder);
     }
