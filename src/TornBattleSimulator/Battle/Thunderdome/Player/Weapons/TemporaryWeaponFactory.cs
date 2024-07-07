@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Options;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
@@ -16,29 +17,30 @@ public class TemporaryWeaponFactory
         Max = 1
     };
 
-    // put these in json like armour
-    public Weapon GetTemporaryWeapon(TemporaryWeaponType weaponType)
+    private Dictionary<TemporaryWeaponType, TemporaryWeaponOption> _temporaryWeapons;
+
+    public TemporaryWeaponFactory(List<TemporaryWeaponOption> temporaryWeapons)
     {
-        return weaponType switch
-        {
-            TemporaryWeaponType.TearGas => _tearGas.Value,
-            _ => throw new NotImplementedException(weaponType.ToString())
-        };
+        _temporaryWeapons = temporaryWeapons
+            .ToDictionary(t => t.Name);
     }
 
-    private Lazy<Weapon> _tearGas = new Lazy<Weapon>(() => new Weapon() 
+    public Weapon GetTemporaryWeapon(TemporaryWeaponType weaponType)
     {
-        Accuracy = 200,
-        Damage = 0,
-        Ammo = TemporaryAmmo,
-        RateOfFire = TemporaryRateOfFire,
-        Modifiers = new List<ModifierDescription>()
+        TemporaryWeaponOption weapon = _temporaryWeapons[weaponType];
+        return new Weapon()
         {
-            new()
-            {
-                Type = ModifierType.Gassed,
-                Percent = 100
-            }
-        }
-    });
+            Accuracy = weapon.Accuracy,
+            Damage = weapon.Damage,
+            Modifiers = weapon.Modifiers
+                .Select(m => new ModifierDescription()
+                {
+                    Percent = 100,
+                    Type = m
+                })
+                .ToList(),
+            RateOfFire = TemporaryRateOfFire,
+            Ammo = TemporaryAmmo
+        };
+    }
 }

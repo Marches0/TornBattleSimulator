@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="temporaryWeapons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="armourCoverage.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

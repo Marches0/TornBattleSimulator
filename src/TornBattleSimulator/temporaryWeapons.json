@@ -1,0 +1,129 @@
+{
+  "TemporaryWeapons": [
+    {
+      "name": "book",
+      "damage": 10,
+      "accuracy": 88
+    },
+    {
+      "name": "brick",
+      "damage": 28,
+      "accuracy": 43
+    },
+    {
+      "name": "claymoreMine",
+      "damage": 83,
+      "accuracy": 27
+    },
+    {
+      "name": "concussionGrenade",
+      "accuracy": 200,
+      "modifiers": ["concussed"]
+    },
+    {
+      "name": "epinephrine",
+      "modifiers": [ "strengthened" ]
+    },
+    {
+      "name": "fireworks",
+      "damage": 45,
+      "accuracy": 34
+    },
+    {
+      "name": "flashGrenade",
+      "accuracy": 200,
+      "modifiers": [ "blinded" ]
+    },
+    {
+      "name": "glitterBomb",
+      "accuracy": 200
+    },
+    {
+      "name": "grenade",
+      "damage": 86,
+      "accuracy": 106
+    },
+    {
+      "name": "heg",
+      "damage": 90,
+      "accuracy": 116
+    },
+    {
+      "name": "melatonin",
+      "modifiers": [ "hastened" ]
+    },
+    {
+      "name": "molotovCocktail",
+      "damage": 85,
+      "accuracy": 78,
+      "modifiers": [ "severeBurning" ]
+    },
+    {
+      "name": "nailBomb",
+      "damage": 99,
+      "accuracy": 106
+    },
+    {
+      "name": "ninjaStars",
+      "damage": 67,
+      "accuracy": 14
+    },
+    {
+      "name": "partyPopper",
+      "accuracy": 200
+    },
+    {
+      "name": "pepperSpray",
+      "accuracy": 200,
+      "modifiers": [ "maced" ]
+    },
+    {
+      "name": "sand",
+      "accuracy": 78,
+      "modifiers": [ "blinded" ]
+    },
+    {
+      "name": "serotonin",
+      "modifiers": [ "hardened" ]
+    },
+    {
+      "name": "smokeGrenade",
+      "accuracy": 200,
+      "modifiers": [ "smoked" ]
+    },
+    {
+      "name": "snowball",
+      "damage": 5,
+      "accuracy": 50
+    },
+    {
+      "name": "stickGrenade",
+      "damage": 87,
+      "accuracy": 97
+    },
+    {
+      "name": "tearGas",
+      "accuracy": 200,
+      "modifiers": [ "gassed" ]
+    },
+    {
+      "name": "throwingKnife",
+      "damage": 69,
+      "accuracy": 10
+    },
+    {
+      "name": "trout",
+      "damage": 35,
+      "accuracy": 90
+    },
+    {
+      "name": "tyrosine",
+      "modifiers": [ "sharpened" ]
+    },
+    {
+      "name": "wrench",
+      "damage": 14,
+      "accuracy": 53
+    }
+  ]
+}

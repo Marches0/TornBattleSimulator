@@ -2,16 +2,30 @@
 
 public enum TemporaryWeaponType
 {
-    ConcussionGrenade = 1,
+    Book = 1,
+    Brick,
+    ClaymoreMine,
+    ConcussionGrenade,
     Epinephrine,
+    Fireworks,
     FlashGrenade,
+    GlitterBomb,
+    Grenade,
     Heg,
     Melatonin,
     MolotovCocktail,
+    NailBomb,
+    NinjaStars,
+    PartyPopper,
     PepperSpray,
     Sand,
     Serotonin,
     SmokeGrenade,
+    Snowball,
+    StickGrenade,
     TearGas,
-    Tyrosine
+    ThrowingKnife,
+    Trout,
+    Tyrosine,
+    Wrench
 }

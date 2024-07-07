@@ -11,6 +11,7 @@ public class ConfigModule : Module
         builder.Register(ctx => new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile("armourCoverage.json")
+                .AddJsonFile("temporaryWeapons.json")
                 .Build()
             )
             .As<IConfiguration>()
@@ -26,6 +27,10 @@ public class ConfigModule : Module
 
         builder.Register(ctx => ctx.Resolve<RootConfig>().ArmourCoverage)
             .As<List<ArmourCoverageOption>>()
+            .SingleInstance();
+
+        builder.Register(ctx => ctx.Resolve<RootConfig>().TemporaryWeapons)
+            .As<List<TemporaryWeaponOption>>()
             .SingleInstance();
     }
 }
