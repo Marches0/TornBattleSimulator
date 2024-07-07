@@ -11,13 +11,14 @@ internal class AppModule : Module
             .SingleInstance();
 
         builder
-            .RegisterModule<ConfigModule>()
-            .RegisterModule<MapperModule>()
-            .RegisterModule<DamageModule>()
-            .RegisterModule<ThunderdomeModule>()
+            .RegisterModule<AccuracyModule>()
             .RegisterModule<ActionModule>()
-            .RegisterModule<StrategyModule>()
+            .RegisterModule<ChanceModule>()
+            .RegisterModule<ConfigModule>()
+            .RegisterModule<DamageModule>()
             .RegisterModule<GearModule>()
-            .RegisterModule<ChanceModule>();
+            .RegisterModule<MapperModule>()
+            .RegisterModule<ThunderdomeModule>()
+            .RegisterModule<StrategyModule>();
     }
 }

@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage;
+﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy;
+using TornBattleSimulator.Battle.Thunderdome.Chance;
+using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
@@ -9,14 +11,20 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 public class WeaponUsage : IWeaponUsage
 {
     private readonly IDamageCalculator _damageCalculator;
+    private readonly AccuracyCalculator _accuracyCalculator;
     private readonly ModifierApplier _modifierApplier;
+    private readonly IChanceSource _chanceSource;
 
     public WeaponUsage(
         IDamageCalculator damageCalculator,
-        ModifierApplier modifierApplier)
+        AccuracyCalculator accuracyCalculator,
+        ModifierApplier modifierApplier,
+        IChanceSource chanceSource)
     {
         _damageCalculator = damageCalculator;
+        _accuracyCalculator = accuracyCalculator;
         _modifierApplier = modifierApplier;
+        _chanceSource = chanceSource;
     }
 
     public List<ThunderdomeEvent> UseWeapon(
@@ -33,12 +41,26 @@ public class WeaponUsage : IWeaponUsage
         List<ThunderdomeEvent> events = _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers);
 
         DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other, weapon);
-        other.Health.CurrentHealth -= damageResult.Damage;
+        double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
 
-        events.Add(context.CreateEvent(
-            active,
-            ThunderdomeEventType.AttackHit,
-            new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags)));
+        if (_chanceSource.Succeeds(hitChance))
+        {
+            other.Health.CurrentHealth -= damageResult.Damage;
+
+            events.Add(context.CreateEvent(
+                active,
+                ThunderdomeEventType.AttackHit,
+                new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags, hitChance))
+            );
+        }
+        else
+        {
+            events.Add(context.CreateEvent(
+                active,
+                ThunderdomeEventType.AttackMiss,
+                new AttackMissedEvent(weapon.Type, hitChance))
+            );
+        }
 
         events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers));
 

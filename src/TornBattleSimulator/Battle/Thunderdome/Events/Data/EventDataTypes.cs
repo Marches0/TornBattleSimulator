@@ -11,12 +11,13 @@ public interface IEventData
 
 public class AttackHitEvent : IEventData
 {
-    public AttackHitEvent(WeaponType weapon, int damage, BodyPart bodyPart, DamageFlags flags)
+    public AttackHitEvent(WeaponType weapon, int damage, BodyPart bodyPart, DamageFlags flags, double hitChance)
     {
         Weapon = weapon;
         Damage = damage;
         BodyPart = bodyPart;
         Flags = flags;
+        HitChance = hitChance;
     }
 
     public WeaponType Weapon { get; }
@@ -27,6 +28,8 @@ public class AttackHitEvent : IEventData
 
     public DamageFlags Flags { get; }
 
+    public double HitChance { get; }
+
     public string Format()
     {
         if (Weapon == WeaponType.Temporary)
@@ -34,23 +37,26 @@ public class AttackHitEvent : IEventData
             return "Used Temporary";
         }
 
-        return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} dealt by {Weapon} on {BodyPart} ({Flags})";
+        return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} @ {HitChance:P1} dealt by {Weapon} on {BodyPart} ({Flags})";
     }
 }
 
 public class AttackMissedEvent : IEventData
 {
-    public AttackMissedEvent(WeaponType weapon)
+    public AttackMissedEvent(WeaponType weapon, double hitChance)
     {
         Weapon = weapon;
+        HitChance = hitChance;
     }
 
     public WeaponType Weapon { get; }
 
+    public double HitChance { get; }
+
     public string Format()
     {
-        return $"{Weapon}";
-    }
+        return $"{Weapon} @ {HitChance:P1} missed";
+    } 
 }
 
 public class ReloadEvent : IEventData

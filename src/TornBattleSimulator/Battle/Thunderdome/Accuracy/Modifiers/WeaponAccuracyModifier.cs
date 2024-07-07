@@ -10,15 +10,12 @@ public class WeaponAccuracyModifier
         WeaponContext weapon,
         double statAccuracy)
     {
-        double baseHitChance = statAccuracy * 100;
-        double weaponAccuracy = weapon.Description.Accuracy * 100;
+        double weaponAccuracyComponent = ((weapon.Description.Accuracy / 100) - 0.5) / 0.5;
 
-        var weaponAccComponent = (weaponAccuracy - 50d) / 50d;
+        double modifier = statAccuracy >= 0.5
+            ? statAccuracy + weaponAccuracyComponent * (1 - statAccuracy)
+            : statAccuracy + weaponAccuracyComponent * statAccuracy;
 
-        var modifier = baseHitChance >= 50
-            ? baseHitChance + weaponAccComponent * (100 - baseHitChance)
-            : baseHitChance + weaponAccComponent * baseHitChance;
-
-        return modifier / 100;
+        return modifier;
     }
 }

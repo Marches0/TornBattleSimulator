@@ -4,6 +4,7 @@ public class Weapon
 {
     public double Damage { get; set; }
 
+    // Should really make this [0, 1]
     public double Accuracy { get; set; }
 
     public RateOfFire RateOfFire { get; set; }

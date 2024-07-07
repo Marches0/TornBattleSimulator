@@ -34,19 +34,22 @@ public class BodyPartModifier : IDamageModifier
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        if (weapon.Type == WeaponType.Temporary)
-        {
-            // Thanks Staphy!
-            BodyPartDamage chest = _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
-            return new DamageModifierResult(chest.DamageMultiplier, chest.Part);
-        }
-
-        BodyPartDamage option = _isCrit
-            ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
-            : _modifierChanceSource.ChooseWeighted(_regularOptions);
-
+        BodyPartDamage option = GetTargetBodyPart(weapon);
         damageContext.TargetBodyPart = option.Part;
 
         return new DamageModifierResult(option.DamageMultiplier, option.Part);
+    }
+
+    private BodyPartDamage GetTargetBodyPart(WeaponContext weapon)
+    {
+        if (weapon.Type == WeaponType.Temporary)
+        {
+            // Temps hit chest. Thanks Staphy!
+            return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
+        }
+
+        return _isCrit
+           ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
+           : _modifierChanceSource.ChooseWeighted(_regularOptions);
     }
 }
