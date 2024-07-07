@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
+﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Options;
 
@@ -33,7 +34,12 @@ public class BodyPartModifier : IDamageModifier
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        // todo: Temps don't target body parts?
+        if (weapon.Type == WeaponType.Temporary)
+        {
+            // Thanks Staphy!
+            BodyPartDamage chest = _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
+            return new DamageModifierResult(chest.DamageMultiplier, chest.Part);
+        }
 
         BodyPartDamage option = _isCrit
             ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
