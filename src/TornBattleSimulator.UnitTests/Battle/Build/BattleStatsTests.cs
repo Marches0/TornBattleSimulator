@@ -4,7 +4,7 @@ using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.UnitTests.Battle.Build;
 

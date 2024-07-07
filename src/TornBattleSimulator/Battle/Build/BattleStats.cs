@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Modifiers;
+﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.Battle.Build;
 

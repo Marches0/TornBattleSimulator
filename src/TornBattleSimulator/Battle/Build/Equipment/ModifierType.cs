@@ -3,5 +3,13 @@
 public enum ModifierType
 {
     Gassed = 1,
-    SevereBurning
+    Concussed,
+    Strengthened,
+    Blinded,
+    Hastened,
+    SevereBurning, // TODO
+    Maced,
+    Hardened,
+    Smoked,
+    Sharpened
 }
