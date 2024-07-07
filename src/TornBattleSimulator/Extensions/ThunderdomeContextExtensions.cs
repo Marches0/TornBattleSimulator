@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 
 namespace TornBattleSimulator.Extensions;

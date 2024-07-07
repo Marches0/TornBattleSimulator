@@ -1,5 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
+using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Extensions;
 

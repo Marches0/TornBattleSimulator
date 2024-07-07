@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 

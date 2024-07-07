@@ -1,6 +1,7 @@
 ﻿using Autofac.Features.Indexed;
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Output;
+using TornBattleSimulator.Battle.Thunderdome.Events;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 

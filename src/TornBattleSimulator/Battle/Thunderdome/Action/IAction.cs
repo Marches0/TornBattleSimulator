@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Action;
+﻿using TornBattleSimulator.Battle.Thunderdome.Events;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Action;
 
 public interface IAction
 {

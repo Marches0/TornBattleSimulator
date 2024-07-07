@@ -1,4 +1,5 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
+using TornBattleSimulator.Battle.Thunderdome.Events;
 
 public class ReloadSecondaryAction : ReloadWeaponAction, IAction
 {
