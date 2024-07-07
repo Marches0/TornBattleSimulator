@@ -14,6 +14,7 @@ public class ThunderdomeResultWriter
         {ThunderdomeEventType.Stunned, "#ff7974" }, // red
         {ThunderdomeEventType.EffectBegin, "#c49bdd" }, // purple
         {ThunderdomeEventType.EffectEnd, "#cfcfc4" }, // grey
+        {ThunderdomeEventType.DamageOverTime, "#c49bdd" }, // purple
     };
 
     public void Write(ThunderdomeContext context)

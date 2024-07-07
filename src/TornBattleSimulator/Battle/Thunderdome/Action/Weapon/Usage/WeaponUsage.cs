@@ -62,7 +62,7 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers));
+        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult));
 
         if (weapon.Ammo != null)
         {

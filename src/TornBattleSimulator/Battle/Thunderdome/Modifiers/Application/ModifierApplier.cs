@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
+using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Extensions;
 
@@ -35,7 +36,8 @@ public class ModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers)
+        List<PotentialModifier> potentialModifiers,
+        DamageResult damageResult)
     {
         List<ThunderdomeEvent> events = new();
         
@@ -47,7 +49,7 @@ public class ModifierApplier
                 ? active
                 : other;
 
-            if (target.Modifiers.AddModifier(modifier.Modifier))
+            if (target.Modifiers.AddModifier(modifier.Modifier, damageResult))
             {
                 events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
             };

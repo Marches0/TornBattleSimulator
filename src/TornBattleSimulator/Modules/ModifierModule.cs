@@ -4,6 +4,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 
 namespace TornBattleSimulator.Modules;
 
@@ -33,6 +34,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<HastenedModifier>()
             .Keyed<IModifier>(ModifierType.Hastened);
+
+        builder.RegisterType<SevereBurningModifier>()
+            .Keyed<IModifier>(ModifierType.SevereBurning);
 
         builder.RegisterType<MacedModifier>()
             .Keyed<IModifier>(ModifierType.Maced);

@@ -6,6 +6,8 @@ public interface IModifierLifespan
 
     void Tick(ThunderdomeContext thunderdomeContext);
 
+    float Remaining { get; }
+
     /*bool AfterNextOpponentAction();
 
     bool AfterNextOwnAction();*/

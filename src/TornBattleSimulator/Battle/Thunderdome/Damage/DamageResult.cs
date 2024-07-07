@@ -2,7 +2,7 @@
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage;
 
-public readonly struct DamageResult
+public class DamageResult
 {
     public DamageResult(
         int damage,

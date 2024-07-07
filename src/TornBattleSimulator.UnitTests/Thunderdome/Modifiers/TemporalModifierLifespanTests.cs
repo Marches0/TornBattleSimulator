@@ -8,7 +8,7 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 public class TemporalModifierLifespanTests
 {
     [Test]
-    public void TemporaalModifierLifespan_WhenTimeRemaining_NotExpired()
+    public void TemporalModifierLifespan_WhenTimeRemaining_NotExpired()
     {
         TemporalModifierLifespan mod = new TemporalModifierLifespan(10);
 

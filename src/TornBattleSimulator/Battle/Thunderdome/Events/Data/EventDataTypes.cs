@@ -85,6 +85,39 @@ public class EffectBeginEvent : IEventData
 
     public string Format()
     {
-        return $"{ModifierType.ToString().ToColouredString("#c49bdd")}";
+        return $"{ModifierType.ToString().ToColouredString("#c49bdd")} started";
+    }
+}
+
+public class EffectEndEvent : IEventData
+{
+    public ModifierType ModifierType { get; }
+
+    public EffectEndEvent(ModifierType modifierType)
+    {
+        ModifierType = modifierType;
+    }
+
+    public string Format()
+    {
+        return $"{ModifierType.ToString().ToColouredString("#c49bdd")} ended";
+    }
+}
+
+public class DamageOverTimeEvent : IEventData
+{
+    public int Damage { get; }
+
+    public ModifierType Source { get; }
+
+    public DamageOverTimeEvent(int damage, ModifierType source)
+    {
+        Damage = damage;
+        Source = source;
+    }
+
+    public string Format()
+    {
+        return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} from {Source.ToString().ToColouredString("#c49bdd")}";
     }
 }

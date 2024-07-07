@@ -11,8 +11,10 @@ public class TemporalModifierLifespan : IModifierLifespan
 
     public bool Expired => _remainingTimeSeconds <= 0;
 
+    public float Remaining => _remainingTimeSeconds;
+
     public void Tick(ThunderdomeContext thunderdomeContext)
     {
         _remainingTimeSeconds -= thunderdomeContext.AttackInterval;
-    }
+    }   
 }

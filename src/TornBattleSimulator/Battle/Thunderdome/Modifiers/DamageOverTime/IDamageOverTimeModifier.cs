@@ -2,4 +2,5 @@
 
 public interface IDamageOverTimeModifier : IModifier
 {
+    double Decay { get; }
 }

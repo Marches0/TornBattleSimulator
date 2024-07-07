@@ -65,7 +65,7 @@ public class PlayerContext
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
         CurrentAction = 0;
 
-        Modifiers.Tick(context);
+        Modifiers.Tick(context, this);
     }
 
     private Lazy<BattleStats> _currentTickStats;
