@@ -7,7 +7,7 @@ public enum ModifierType
     Strengthened,
     Blinded,
     Hastened,
-    SevereBurning, // TODO
+    SevereBurning,
     Maced,
     Hardened,
     Smoked,

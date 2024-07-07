@@ -6,6 +6,9 @@ public class FixedChanceSource : IChanceSource
 {
     private readonly bool _succeeds;
 
+    public static readonly FixedChanceSource AlwaysSucceeds = new(true);
+    public static readonly FixedChanceSource AlwaysFails = new(false);
+
     public FixedChanceSource(bool succeeds)
     {
         _succeeds = succeeds;

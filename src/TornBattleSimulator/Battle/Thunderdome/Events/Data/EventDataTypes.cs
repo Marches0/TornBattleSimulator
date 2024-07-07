@@ -32,6 +32,7 @@ public class AttackHitEvent : IEventData
 
     public string Format()
     {
+        // todo: special event for temp event hit/miss.
         if (Weapon == WeaponType.Temporary)
         {
             return "Used Temporary";
@@ -119,5 +120,23 @@ public class DamageOverTimeEvent : IEventData
     public string Format()
     {
         return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} from {Source.ToString().ToColouredString("#c49bdd")}";
+    }
+}
+
+public class HealEvent : IEventData
+{
+    public int Heal { get; }
+
+    public ModifierType Source { get; }
+
+    public HealEvent(int heal, ModifierType source)
+    {
+        Heal = heal;
+        Source = source;
+    }
+
+    public string Format()
+    {
+        return $"{Heal.ToString("N0").ToColouredString("#c49bdd")} heal from {Source.ToString().ToColouredString("#c49bdd")}";
     }
 }

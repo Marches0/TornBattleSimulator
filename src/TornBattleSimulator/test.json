@@ -2,12 +2,12 @@
 	"builds": [
 		{
 			"name": "base",
-			"health": 2500,
+			"health": 25000,
 			"battleStats": {
-				"strength": 10000,
-				"defence": 1000,
-				"speed": 1000,
-				"dexterity": 1000
+				"strength": 100000,
+				"defence": 100,
+				"speed": 100000,
+				"dexterity": 150000
 			},
 			"primary": {
 				"damage": 50,
@@ -19,7 +19,13 @@
 				"ammo": {
 					"magazines": 3,
 					"magazineSize": 10
-				}
+				},
+				"modifiers": [
+					{
+						"type": "severeBurning",
+						"percent": 100
+					}
+				]
 			},
 			"secondary": {
 				"damage": 23,
@@ -35,17 +41,35 @@
 			},
 			"melee": {
 				"damage": 40,
-				"accuracy": 100
+				"accuracy": 60,
+				"modifiers": [
+					{
+						"type": "hastened",
+						"percent": 0
+					}
+				]
 			},
-			"temporary": "tearGas",
+			"temporary": "heg",
 			"armour": {
 				"helmet": {
-					"name": "motorcycleHelmet",
-					"rating": 50.2
+					"name": "combathelmet",
+					"rating": 39.5
 				},
 				"body": {
-					"name": "EodApron",
-					"rating": 40
+					"name": "combatvest",
+					"rating": 39.24
+				},
+				"pants": {
+					"name": "combatpants",
+					"rating": 40.06
+				},
+				"boots": {
+					"name": "combatboots",
+					"rating": 38.94
+				},
+				"gloves": {
+					"name": "combatgloves",
+					"rating": 39.4
 				}
 			},
 			"strategy": [
@@ -71,12 +95,19 @@
 		{
 			"name": "override",
 			"battleStats": {
-				"defence": 0
+				"strength": 50000,
+				"defence": 130000,
+				"speed": 50000,
+				"dexterity": 100
 			},
+			"temporary": "serotonin",
 			"strategy": [
 				{
-					"weapon": "primary",
-					"reload": true,
+					"weapon": "temporary"
+				},
+				{
+					"weapon": "melee",
+					"reload": false,
 					"until": [
 						{
 							"condition": "effect",

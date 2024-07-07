@@ -39,7 +39,9 @@ public class ModifierContext
             .ToList();
     }
 
-    public bool AddModifier(IModifier modifier, DamageResult? damageResult)
+    public bool AddModifier(
+        IModifier modifier,
+        DamageResult? damageResult)
     {
         if (modifier is IDamageOverTimeModifier dotModifier)
         {

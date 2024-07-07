@@ -12,15 +12,13 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Damage.Modifiers;
 [TestFixture]
 public class ArmourDamageModifierTests
 {
-    private readonly IChanceSource _guaranteeSuccess = new FixedChanceSource(true);
-
     [TestCaseSource(nameof(ArmourDamageModifier_BasedOnArmourAndHit_WillMitigate_TestCases))]
     public void ArmourDamageModifier_BasedOnArmourAndHit_WillMitigate((BodyPart hitLocation, List<ArmourContext> armour, double expected, string testName) testData)
     {
         PlayerContext attacker = new PlayerContextBuilder().Build();
         PlayerContext defender = new PlayerContextBuilder().WithArmour(testData.armour).Build();
 
-        ArmourDamageModifier armourDamageModifier = new ArmourDamageModifier(_guaranteeSuccess);
+        ArmourDamageModifier armourDamageModifier = new ArmourDamageModifier(FixedChanceSource.AlwaysSucceeds);
 
         double mitigation = armourDamageModifier.GetDamageModifier(attacker, defender, null, new DamageContext() { TargetBodyPart = testData.hitLocation }).Multiplier;
 
@@ -56,7 +54,7 @@ public class ArmourDamageModifierTests
         PlayerContext attacker = new PlayerContextBuilder().Build();
         PlayerContext defender = new PlayerContextBuilder().WithArmour(testData.armour).Build();
 
-        ArmourDamageModifier armourDamageModifier = new ArmourDamageModifier(_guaranteeSuccess);
+        ArmourDamageModifier armourDamageModifier = new ArmourDamageModifier(FixedChanceSource.AlwaysSucceeds);
 
         double mitigation = armourDamageModifier.GetDamageModifier(attacker, defender, null, new DamageContext() { TargetBodyPart = BodyPart.Heart }).Multiplier;
 

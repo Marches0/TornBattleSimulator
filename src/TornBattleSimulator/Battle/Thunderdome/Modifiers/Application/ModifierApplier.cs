@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
@@ -54,8 +55,29 @@ public class ModifierApplier
             {
                 events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
             };
+
+            // Should this be somewhere else?
+            // Post action health mods (Hardened) are applied immediately.
+            // So only triggering it on application seems alright.
+            if (modifier.Modifier is IHealthModifier healthModifier)
+            {
+                events.Add(Heal(context, target, damageResult, modifier.Modifier, healthModifier));
+            }
         }
 
         return events;
+    }
+
+    // move this calc into seperate module
+    private ThunderdomeEvent Heal(ThunderdomeContext context, PlayerContext target, DamageResult? damageResult, IModifier modifier, IHealthModifier healthModifier)
+    {
+        // Don't allow healing above max.
+        int heal = Math.Min(
+            healthModifier.GetHealthMod(target, damageResult),
+            target.Health.MaxHealth - target.Health.CurrentHealth
+        );
+
+        target.Health.CurrentHealth += heal;
+        return context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, modifier.Effect));
     }
 }

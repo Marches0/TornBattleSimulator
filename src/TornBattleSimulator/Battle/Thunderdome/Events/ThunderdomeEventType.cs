@@ -8,5 +8,6 @@ public enum ThunderdomeEventType
     Stunned,
     EffectBegin,
     EffectEnd,
-    DamageOverTime
+    DamageOverTime,
+    Heal
 }

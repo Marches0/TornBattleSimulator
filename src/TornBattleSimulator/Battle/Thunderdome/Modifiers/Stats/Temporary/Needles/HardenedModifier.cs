@@ -1,11 +1,11 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Damage;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
 
-// also a health mod!!
-// 25% heal TODOOO
-public class HardenedModifier : IStatsModifier
+public class HardenedModifier : IStatsModifier, IHealthModifier
 {
     public float GetDefenceModifier() => 4;
 
@@ -14,6 +14,8 @@ public class HardenedModifier : IStatsModifier
     public float GetSpeedModifier() => 1;
 
     public float GetStrengthModifier() => 1;
+
+    public int GetHealthMod(PlayerContext target, DamageResult? damage) => (int)(target.Health.MaxHealth * 0.25);
 
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);
 
