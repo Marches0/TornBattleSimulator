@@ -4,6 +4,7 @@ using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
+using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.UnitTests.Chance;
 
@@ -20,7 +21,7 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
-        autoFake.Provide(FixedChanceSource.AlwaysSucceeds);
+        autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysSucceeds);
 
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();
@@ -47,7 +48,7 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
-        autoFake.Provide(FixedChanceSource.AlwaysSucceeds);
+        autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysFails);
 
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();
@@ -74,7 +75,7 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
-        autoFake.Provide(FixedChanceSource.AlwaysSucceeds);
+        autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysSucceeds);
 
         PlayerContext attacker = new PlayerContextBuilder().WithMelee(new Weapon() { Damage = 100, Accuracy = 100}).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();
