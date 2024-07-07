@@ -11,13 +11,13 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 public class WeaponUsage : IWeaponUsage
 {
     private readonly IDamageCalculator _damageCalculator;
-    private readonly AccuracyCalculator _accuracyCalculator;
+    private readonly IAccuracyCalculator _accuracyCalculator;
     private readonly ModifierApplier _modifierApplier;
     private readonly IChanceSource _chanceSource;
 
     public WeaponUsage(
         IDamageCalculator damageCalculator,
-        AccuracyCalculator accuracyCalculator,
+        IAccuracyCalculator accuracyCalculator,
         ModifierApplier modifierApplier,
         IChanceSource chanceSource)
     {

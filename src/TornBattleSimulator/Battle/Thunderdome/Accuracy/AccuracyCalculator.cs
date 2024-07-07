@@ -3,7 +3,7 @@ using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Accuracy;
 
-public class AccuracyCalculator
+public class AccuracyCalculator : IAccuracyCalculator
 {
     private readonly SpeedDexterityAccuracyModifier _speedDexterityAccuracyModifier;
     private readonly WeaponAccuracyModifier _weaponAccuracyModifier;

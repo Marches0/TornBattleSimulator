@@ -9,7 +9,7 @@ public class AccuracyModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<AccuracyCalculator>()
-            .As<AccuracyCalculator>();
+            .As<IAccuracyCalculator>();
 
         builder.RegisterType<SpeedDexterityAccuracyModifier>()
             .As<SpeedDexterityAccuracyModifier>();

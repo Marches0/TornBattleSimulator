@@ -27,16 +27,16 @@ public class WeaponAccuracyModifierTests
 
     private static IEnumerable<(double weaponAccuracy, double statAccuracy, double expected, string testName)> TestCases()
     {
-        yield return (0.1, 0.5, 0.1, "Spd Dex Equal uses weapon accuracy");
+        yield return (10, 0.5, 0.1, "Spd Dex Equal uses weapon accuracy");
 
         // 1k spd 2k dex
-        yield return (0.1, 0.3326, 0.0665, "Speed deficit inaccurate weapon");
-        yield return (0.5, 0.3326, 0.332632446, "Speed deficit regular weapon");
-        yield return (0.8, 0.3326, 0.5322, "Speed deficit accurate weapon");
+        yield return (10, 0.3326, 0.0665, "Speed deficit inaccurate weapon");
+        yield return (50, 0.3326, 0.332632446, "Speed deficit regular weapon");
+        yield return (80, 0.3326, 0.5322, "Speed deficit accurate weapon");
 
         // 2k spd 1k dex
-        yield return (0.1, 0.6673, 0.4013, "Dex deficit inaccurate weapon");
-        yield return (0.5, 0.6673, 0.6674, "Dex deficit regular weapon");
-        yield return (0.8, 0.6673, 0.8669, "Dex deficit accurate weapon");
+        yield return (10, 0.6673, 0.4013, "Dex deficit inaccurate weapon");
+        yield return (50, 0.6673, 0.6674, "Dex deficit regular weapon");
+        yield return (80, 0.6673, 0.8669, "Dex deficit accurate weapon");
     }
 }
