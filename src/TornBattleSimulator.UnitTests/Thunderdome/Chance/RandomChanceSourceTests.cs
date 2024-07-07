@@ -9,8 +9,8 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Chance;
 [TestFixture]
 public class RandomChanceSourceTests
 {
-    private const int RandomIterations = 1000000;
-    private const double RandomChanceLeeway = 0.001; // 0.01%
+    private const int RandomIterations = 5000000;
+    private const double RandomChanceLeeway = 0.001; // 0.1%
 
     [TestCaseSource(nameof(Succeeds_BasedOnRollVsProbability_ReturnsValue_TestData))]
     public void Succeeds_WhenRollBelowProbability_ReturnsValue((double chance, double roll, bool succeeds) testData)
