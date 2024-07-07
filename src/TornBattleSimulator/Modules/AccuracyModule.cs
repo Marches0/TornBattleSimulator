@@ -12,9 +12,9 @@ public class AccuracyModule : Module
             .As<IAccuracyCalculator>();
 
         builder.RegisterType<SpeedDexterityAccuracyModifier>()
-            .As<SpeedDexterityAccuracyModifier>();
+            .As<ISpeedDexterityAccuracyModifier>();
 
         builder.RegisterType<WeaponAccuracyModifier>()
-            .As<WeaponAccuracyModifier>();
+            .As<IWeaponAccuracyModifier>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
 
-public class SpeedDexterityAccuracyModifier
+public class SpeedDexterityAccuracyModifier : ISpeedDexterityAccuracyModifier
 {
     private const double fiftyDivSeven = 50d / 7;
 
@@ -16,4 +16,9 @@ public class SpeedDexterityAccuracyModifier
 
         return Math.Clamp(mod / 100, 0, 1);
     }
+}
+
+public interface ISpeedDexterityAccuracyModifier
+{
+    double GetHitChance(PlayerContext active, PlayerContext other);
 }

@@ -5,12 +5,12 @@ namespace TornBattleSimulator.Battle.Thunderdome.Accuracy;
 
 public class AccuracyCalculator : IAccuracyCalculator
 {
-    private readonly SpeedDexterityAccuracyModifier _speedDexterityAccuracyModifier;
-    private readonly WeaponAccuracyModifier _weaponAccuracyModifier;
+    private readonly ISpeedDexterityAccuracyModifier _speedDexterityAccuracyModifier;
+    private readonly IWeaponAccuracyModifier _weaponAccuracyModifier;
 
     public AccuracyCalculator(
-        SpeedDexterityAccuracyModifier speedDexterityAccuracyModifier,
-        WeaponAccuracyModifier weaponAccuracyModifier)
+        ISpeedDexterityAccuracyModifier speedDexterityAccuracyModifier,
+        IWeaponAccuracyModifier weaponAccuracyModifier)
     {
         _speedDexterityAccuracyModifier = speedDexterityAccuracyModifier;
         _weaponAccuracyModifier = weaponAccuracyModifier;

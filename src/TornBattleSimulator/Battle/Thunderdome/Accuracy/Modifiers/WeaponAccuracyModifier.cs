@@ -2,7 +2,7 @@
 
 namespace TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
 
-public class WeaponAccuracyModifier
+public class WeaponAccuracyModifier : IWeaponAccuracyModifier
 {
     public double GetHitChance(
         PlayerContext active,
@@ -18,4 +18,9 @@ public class WeaponAccuracyModifier
 
         return modifier;
     }
+}
+
+public interface IWeaponAccuracyModifier
+{
+    double GetHitChance(PlayerContext active, PlayerContext other, WeaponContext weapon, double statAccuracy);
 }
