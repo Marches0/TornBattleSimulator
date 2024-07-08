@@ -52,7 +52,7 @@ public class PlayerContext
     /// <summary>
     ///  The build's current stats.
     /// </summary>
-    public BattleStats Stats => _currentTickStats.Value;
+    public BattleStats Stats => GetCurrentStats();//_currentTickStats.Value;
 
     /// <summary>
     ///  The action being taken by this player in the current tick.
@@ -63,9 +63,12 @@ public class PlayerContext
     {
         // Clear the stats every tick, so we can reevaluate modifiers.
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
-        CurrentAction = 0;
-
         Modifiers.Tick(context, this);
+    }
+
+    public void TurnComplete()
+    {
+        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
     private Lazy<BattleStats> _currentTickStats;
@@ -83,5 +86,5 @@ public class PlayerContext
         return Modifiers.Active
             .OfType<IStatsModifier>()
             .Aggregate(baseStats, (stats, modifier) => stats.Apply(modifier));
-    }
+    }    
 }

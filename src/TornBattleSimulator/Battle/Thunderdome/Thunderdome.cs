@@ -29,6 +29,7 @@ public class Thunderdome
         {
             _context.Tick();
             MakeMove(_context.Attacker, _context.Defender);
+            _context.TurnComplete(); // hmm
 
             if (_context.GetResult() != null)
             {
@@ -36,6 +37,7 @@ public class Thunderdome
             }
 
             MakeMove(_context.Defender, _context.Attacker);
+            _context.TurnComplete();
         }
 
         _resultWriter.Write(_context);

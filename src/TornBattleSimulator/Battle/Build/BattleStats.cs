@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Build;
 
@@ -20,5 +21,21 @@ public class BattleStats
         Dexterity = (ulong)(Dexterity * modifier.GetDexterityModifier());
 
         return this;
+    }
+
+    public BattleStats Copy()
+    {
+        return new BattleStats()
+        {
+            Strength = Strength,
+            Defence = Defence,
+            Speed = Speed,
+            Dexterity = Dexterity,
+        };
+    }
+
+    public override string ToString()
+    {
+        return $"{Strength.ToSimpleString()} / {Defence.ToSimpleString()} / {Speed.ToSimpleString()} / {Dexterity.ToSimpleString()}";
     }
 }

@@ -18,6 +18,9 @@ public static class ThunderdomeContextExtensions
             ctx.Turn,
             data,
             ctx.Attacker.Health.CurrentHealth,
-            ctx.Defender.Health.CurrentHealth);
+            ctx.Defender.Health.CurrentHealth,
+            ctx.Attacker.Stats.Copy(),
+            ctx.Defender.Stats.Copy()
+        );
     }
 }

@@ -27,7 +27,7 @@ public class ThunderdomeResultWriter
             //.Centered()
             .Title($"{context.Attacker.Build.Name.EscapeMarkup()} attacking {context.Defender.Build.Name.EscapeMarkup()} ({context.GetResult()})");
 
-        table.AddColumns("T", "Player", "Event", "Details", "ATT HP", "DEF HP");
+        table.AddColumns("T", "Player", "Event", "Details", "ATT HP", "DEF HP", "ATT Stats", "DEF Stats");
         
         foreach(var col in table.Columns)
         {
@@ -51,6 +51,8 @@ public class ThunderdomeResultWriter
             tEvent.Data.Format().ToColouredString(tEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
             tEvent.AttackerHealth.ToString("n0"),
             tEvent.DefenderHealth.ToString("n0"),
+            tEvent.AttackerStats.ToString(),
+            tEvent.DefenderStats.ToString(),
         ];
     }
 

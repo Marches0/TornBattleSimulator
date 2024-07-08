@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Events.Data;
+﻿using TornBattleSimulator.Battle.Build;
+using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Events;
@@ -11,7 +12,9 @@ public class ThunderdomeEvent
         int turn,
         IEventData data,
         int attackerHealth,
-        int defenderHealth)
+        int defenderHealth,
+        BattleStats attackerStats,
+        BattleStats defenderStats)
     {
         Source = source;
         Type = type;
@@ -19,6 +22,8 @@ public class ThunderdomeEvent
         Data = data;
         AttackerHealth = attackerHealth;
         DefenderHealth = defenderHealth;
+        AttackerStats = attackerStats;
+        DefenderStats = defenderStats;
     }
 
     public PlayerType Source { get; }
@@ -27,4 +32,6 @@ public class ThunderdomeEvent
     public IEventData Data { get; }
     public int AttackerHealth { get; }
     public int DefenderHealth { get; }
+    public BattleStats AttackerStats { get; }
+    public BattleStats DefenderStats { get; }
 }

@@ -30,6 +30,12 @@ public class ThunderdomeContext
         ++Turn;
     }
 
+    public void TurnComplete()
+    {
+        Attacker.TurnComplete();
+        Defender.TurnComplete();
+    }
+
     public ThunderDomeResult? GetResult()
     {
         if (Defender.Health.CurrentHealth <= 0)
