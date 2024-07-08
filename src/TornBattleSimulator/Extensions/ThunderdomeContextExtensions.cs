@@ -8,12 +8,12 @@ public static class ThunderdomeContextExtensions
 {
     public static ThunderdomeEvent CreateEvent(
         this ThunderdomeContext ctx,
-        PlayerContext source,
+        PlayerContext? source,
         ThunderdomeEventType type,
         IEventData data)
     {
         return new ThunderdomeEvent(
-            source.PlayerType,
+            source?.PlayerType ?? 0,
             type,
             ctx.Turn,
             data,

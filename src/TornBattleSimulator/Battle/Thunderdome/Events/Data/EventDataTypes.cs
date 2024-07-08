@@ -140,3 +140,31 @@ public class HealEvent : IEventData
         return $"{Heal.ToString("N0").ToColouredString("#c49bdd")} heal from {Source.ToString().ToColouredString("#c49bdd")}";
     }
 }
+
+public class FightBeginEvent : IEventData
+{
+    public FightBeginEvent()
+    {
+
+    }
+
+    public string Format()
+    {
+        return "Fight begin".ToColouredString("#ffffff");
+    }
+}
+
+public class FightEndEvent : IEventData
+{
+    public ThunderDomeResult Result { get; }
+
+    public FightEndEvent(ThunderDomeResult result)
+    {
+        Result = result;
+    }
+
+    public string Format()
+    {
+        return $"{Result.ToString().ToColouredString("#ffffff")}";
+    }
+}

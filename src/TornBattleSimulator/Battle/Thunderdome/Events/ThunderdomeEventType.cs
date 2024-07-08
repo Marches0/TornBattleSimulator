@@ -9,5 +9,7 @@ public enum ThunderdomeEventType
     EffectBegin,
     EffectEnd,
     DamageOverTime,
-    Heal
+    Heal,
+    FightBegin,
+    FightEnd
 }

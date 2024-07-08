@@ -2,6 +2,8 @@
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Output;
 using TornBattleSimulator.Battle.Thunderdome.Events;
+using TornBattleSimulator.Extensions;
+using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -25,12 +27,15 @@ public class Thunderdome
 
     public void Battle()
     {
+        _context.Events.Add(_context.CreateEvent(null, ThunderdomeEventType.FightBegin, new FightBeginEvent()));
+
         while (_context.GetResult() == null)
         {
             _context.Tick();
             MakeMove(_context.Attacker, _context.Defender);
             _context.TurnComplete(); // hmm
 
+            // todo: only stalemate after defender goes
             if (_context.GetResult() != null)
             {
                 break;
@@ -40,6 +45,7 @@ public class Thunderdome
             _context.TurnComplete();
         }
 
+        _context.Events.Add(_context.CreateEvent(null, ThunderdomeEventType.FightEnd, new FightEndEvent(_context.GetResult()!.Value)));
         _resultWriter.Write(_context);
     }
 
