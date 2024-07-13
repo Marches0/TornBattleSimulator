@@ -5,6 +5,7 @@ using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 namespace TornBattleSimulator.Modules;
 
@@ -18,10 +19,11 @@ public class ModifierModule : Module
         builder.RegisterType<ModifierApplier>()
             .As<ModifierApplier>();
 
-        RegisterModifiers(builder);
+        RegisterTempWeaponModifiers(builder);
+        RegisterUniqueWeaponModifiers(builder);
     }
 
-    private void RegisterModifiers(ContainerBuilder builder)
+    private void RegisterTempWeaponModifiers(ContainerBuilder builder)
     {
         builder.RegisterType<ConcussedModifier>()
             .Keyed<IModifier>(ModifierType.Concussed);
@@ -49,5 +51,11 @@ public class ModifierModule : Module
 
         builder.RegisterType<SharpenedModifier>()
             .Keyed<IModifier>(ModifierType.Sharpened);
+    }
+
+    private void RegisterUniqueWeaponModifiers(ContainerBuilder builder)
+    {
+        builder.RegisterType<BlindfireModifier>()
+            .Keyed<IModifier>(ModifierType.Blindfire);
     }
 }

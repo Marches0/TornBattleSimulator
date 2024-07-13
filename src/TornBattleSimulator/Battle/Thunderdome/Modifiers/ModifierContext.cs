@@ -70,6 +70,7 @@ public class ModifierContext
         {
             ModifierLifespanType.Temporal => new TemporalModifierLifespan(modifier.Lifespan.Duration!.Value),
             ModifierLifespanType.Turns => new TurnModifierLifespan(modifier.Lifespan.TurnCount!.Value),
+            ModifierLifespanType.AfterCurrentAction => new CurrentActionLifespan(),
             _ => throw new NotImplementedException($"{modifier.Lifespan.LifespanType} not supported.")
         };
     }

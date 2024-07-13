@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "severeBurning",
+						"type": "blindfire",
 						"percent": 100
 					}
 				]
@@ -78,7 +78,7 @@
 				},
 				{
 					"weapon": "primary",
-					"reload": false,
+					"reload": true,
 					"until": [
 						{
 							"condition": "effect",

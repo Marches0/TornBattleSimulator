@@ -12,6 +12,11 @@ public class ModifierLifespanDescription
         return new ModifierLifespanDescription(ModifierLifespanType.Turns, turnCount: turns);
     }
 
+    public static ModifierLifespanDescription Fixed(ModifierLifespanType lifespanType)
+    {
+        return new ModifierLifespanDescription(lifespanType, null, null);
+    }
+
     public ModifierLifespanType LifespanType { get; }
     public float? Duration { get; }
 

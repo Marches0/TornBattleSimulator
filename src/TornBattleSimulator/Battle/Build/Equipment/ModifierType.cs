@@ -11,5 +11,6 @@ public enum ModifierType
     Maced,
     Hardened,
     Smoked,
-    Sharpened
+    Sharpened,
+    Blindfire
 }

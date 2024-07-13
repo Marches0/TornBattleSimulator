@@ -6,6 +6,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -34,36 +35,39 @@ public class WeaponUsage : IWeaponUsage
         PlayerContext other,
         WeaponContext weapon)
     {
+        List<ThunderdomeEvent> events = UseWeapon(context, active, other, weapon, false);
+
+        Func<List<ThunderdomeEvent>> bonusAttackAction = () => UseWeapon(context, active, other, weapon, true);
+        foreach (IAttacksModifier attackModifier in active.Modifiers.Active.OfType<IAttacksModifier>())
+        {
+            events.AddRange(
+                attackModifier.MakeAttack(context, active, other, weapon, bonusAttackAction)
+            );
+        }
+
+        return events;
+    }
+
+    private List<ThunderdomeEvent> UseWeapon(
+        ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon,
+        bool bonusAction)
+    {
         if (weapon.Ammo != null && weapon.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }
 
-        List<ThunderdomeEvent> events = _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers);
+        List<ThunderdomeEvent> events = _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers, bonusAction);
 
         DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other, weapon);
         double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
 
-        if (_chanceSource.Succeeds(hitChance))
-        {
-            other.Health.CurrentHealth -= damageResult.Damage;
+        events.Add(MakeHit(context, active, other, weapon, damageResult, hitChance));
 
-            events.Add(context.CreateEvent(
-                active,
-                ThunderdomeEventType.AttackHit,
-                new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags, hitChance))
-            );
-        }
-        else
-        {
-            events.Add(context.CreateEvent(
-                active,
-                ThunderdomeEventType.AttackMiss,
-                new AttackMissedEvent(weapon.Type, hitChance))
-            );
-        }
-
-        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult));
+        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult, bonusAction));
 
         if (weapon.Ammo != null)
         {
@@ -72,5 +76,32 @@ public class WeaponUsage : IWeaponUsage
         }
 
         return events;
+    }
+
+    private ThunderdomeEvent MakeHit(ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon,
+        DamageResult damageResult,
+        double hitChance)
+    {
+        if (_chanceSource.Succeeds(hitChance))
+        {
+            other.Health.CurrentHealth -= damageResult.Damage;
+
+            return context.CreateEvent(
+                active,
+                ThunderdomeEventType.AttackHit,
+                new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags, hitChance)
+            );
+        }
+        else
+        {
+            return context.CreateEvent(
+                active,
+                ThunderdomeEventType.AttackMiss,
+                new AttackMissedEvent(weapon.Type, hitChance)
+            );
+        }
     }
 }

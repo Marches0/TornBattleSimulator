@@ -32,7 +32,8 @@ public class ModifierApplierTests
             active,
             other,
             new List<PotentialModifier>() { new PotentialModifier(healthMod, 1) },
-            new DamageResult(100, 0, 0));
+            new DamageResult(100, 0, 0),
+            false);
 
         A.CallTo(() => healthMod.GetHealthMod(A<PlayerContext>._, A<DamageResult>._))
             .MustHaveHappenedOnceExactly();

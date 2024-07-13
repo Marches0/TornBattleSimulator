@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Extensions;
 
@@ -20,15 +21,33 @@ public class ModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers)
+        List<PotentialModifier> potentialModifiers,
+        bool bonusAction)
     {
         List<ThunderdomeEvent> events = new();
 
-        foreach (PotentialModifier modifier in potentialModifiers
+        var triggeredModifiers = potentialModifiers
             .Where(m => m.Modifier.AppliesAt == ModifierApplication.BeforeAction)
-            .Where(m => _modifierChanceSource.Succeeds(m.Chance)))
-        {
+            .Where(m => _modifierChanceSource.Succeeds(m.Chance));
 
+        if (bonusAction)
+        {
+            // Attacks modifiers (ones that let you attack multiple times)
+            // cannot be triggered in bonus actions (I think).
+            triggeredModifiers = triggeredModifiers
+                .Where(m => m.Modifier is not IAttacksModifier);
+        }
+
+        foreach (PotentialModifier modifier in triggeredModifiers)
+        {
+            PlayerContext target = modifier.Modifier.Target == ModifierTarget.Self
+                ? active
+                : other;
+
+            if (target.Modifiers.AddModifier(modifier.Modifier, null))
+            {
+                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
+            };
         }
 
         return events;
@@ -39,13 +58,24 @@ public class ModifierApplier
         PlayerContext active,
         PlayerContext other,
         List<PotentialModifier> potentialModifiers,
-        DamageResult damageResult)
+        DamageResult damageResult,
+        bool bonusAction)
     {
         List<ThunderdomeEvent> events = new();
-        
-        foreach (PotentialModifier modifier in potentialModifiers
+
+        var triggeredModifiers = potentialModifiers
             .Where(m => m.Modifier.AppliesAt == ModifierApplication.AfterAction)
-            .Where(m => _modifierChanceSource.Succeeds(m.Chance)))
+            .Where(m => _modifierChanceSource.Succeeds(m.Chance));
+
+        if (bonusAction)
+        {
+            // Attacks modifiers (ones that let you attack multiple times)
+            // cannot be triggered in bonus actions (I think).
+            triggeredModifiers = triggeredModifiers
+                .Where(m => m.Modifier is not IAttacksModifier);
+        }
+
+        foreach (PotentialModifier modifier in triggeredModifiers)
         {
             PlayerContext target = modifier.Modifier.Target == ModifierTarget.Self
                 ? active
