@@ -24,33 +24,15 @@ public class ModifierApplier
         List<PotentialModifier> potentialModifiers,
         bool bonusAction)
     {
-        List<ThunderdomeEvent> events = new();
-
-        var triggeredModifiers = potentialModifiers
-            .Where(m => m.Modifier.AppliesAt == ModifierApplication.BeforeAction)
-            .Where(m => _modifierChanceSource.Succeeds(m.Chance));
-
-        if (bonusAction)
-        {
-            // Attacks modifiers (ones that let you attack multiple times)
-            // cannot be triggered in bonus actions (I think).
-            triggeredModifiers = triggeredModifiers
-                .Where(m => m.Modifier is not IAttacksModifier);
-        }
-
-        foreach (PotentialModifier modifier in triggeredModifiers)
-        {
-            PlayerContext target = modifier.Modifier.Target == ModifierTarget.Self
-                ? active
-                : other;
-
-            if (target.Modifiers.AddModifier(modifier.Modifier, null))
-            {
-                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
-            };
-        }
-
-        return events;
+        return ApplyModifiers(
+            context,
+            active,
+            other,
+            potentialModifiers,
+            bonusAction,
+            null,
+            ModifierApplication.BeforeAction
+        );
     }
 
     public List<ThunderdomeEvent> ApplyPostActionModifiers(
@@ -58,19 +40,38 @@ public class ModifierApplier
         PlayerContext active,
         PlayerContext other,
         List<PotentialModifier> potentialModifiers,
-        DamageResult damageResult,
-        bool bonusAction)
+        bool bonusAction,
+        DamageResult damageResult)
+    {
+        return ApplyModifiers(
+            context,
+            active,
+            other,
+            potentialModifiers,
+            bonusAction,
+            damageResult,
+            ModifierApplication.AfterAction
+        );
+    }
+
+    private List<ThunderdomeEvent> ApplyModifiers(ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other,
+        List<PotentialModifier> potentialModifiers,
+        bool bonusAction,
+        DamageResult? damageResult,
+        ModifierApplication modifierApplication)
     {
         List<ThunderdomeEvent> events = new();
 
         var triggeredModifiers = potentialModifiers
-            .Where(m => m.Modifier.AppliesAt == ModifierApplication.AfterAction)
+            .Where(m => m.Modifier.AppliesAt == modifierApplication)
             .Where(m => _modifierChanceSource.Succeeds(m.Chance));
 
         if (bonusAction)
         {
             // Attacks modifiers (ones that let you attack multiple times)
-            // cannot be triggered in bonus actions (I think).
+            // cannot be triggered in bonus actions (since they going on already).
             triggeredModifiers = triggeredModifiers
                 .Where(m => m.Modifier is not IAttacksModifier);
         }

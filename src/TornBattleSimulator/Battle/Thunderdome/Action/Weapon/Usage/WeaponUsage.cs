@@ -67,7 +67,7 @@ public class WeaponUsage : IWeaponUsage
 
         events.Add(MakeHit(context, active, other, weapon, damageResult, hitChance));
 
-        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult, bonusAction));
+        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, bonusAction, damageResult));
 
         if (weapon.Ammo != null)
         {
