@@ -11,6 +11,7 @@ public class ThunderdomeResultWriter
     {
         {ThunderdomeEventType.AttackHit, "#77dd77" }, // green
         {ThunderdomeEventType.AttackMiss, "#cfcfc4" }, // grey
+        {ThunderdomeEventType.UsedTemporary, "#c49bdd" }, // grey
         {ThunderdomeEventType.Reload, "#cfcfc4" }, // grey
         {ThunderdomeEventType.Stunned, "#ff7974" }, // red
         {ThunderdomeEventType.EffectBegin, "#c49bdd" }, // purple

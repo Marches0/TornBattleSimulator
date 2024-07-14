@@ -7,6 +7,7 @@ using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Battle.Build.Equipment;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -85,6 +86,17 @@ public class WeaponUsage : IWeaponUsage
         DamageResult damageResult,
         double hitChance)
     {
+        // Non-damaging temps are handled specially, since they don't
+        // actually miss and are better with a description of their type.
+        if (weapon.Type == WeaponType.Temporary && weapon.Description.Damage == 0)
+        {
+            return context.CreateEvent(
+               active,
+               ThunderdomeEventType.UsedTemporary,
+               new UsedTemporaryEvent(weapon.Description.TemporaryWeaponType!.Value)
+           );
+        }
+
         if (_chanceSource.Succeeds(hitChance))
         {
             other.Health.CurrentHealth -= damageResult.Damage;

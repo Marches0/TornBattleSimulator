@@ -19,7 +19,8 @@ public class InputProfile : Profile
 
         CreateMap<BattleStatsInput, BattleStats>();
 
-        CreateMap<WeaponInput, Weapon>();
+        CreateMap<WeaponInput, Weapon>()
+            .ForMember(w => w.TemporaryWeaponType, x => x.Ignore());
         CreateMap<AmmoInput, Ammo>();
         CreateMap<RateOfFireInput, RateOfFire>();
         CreateMap<ModifierInput, ModifierDescription>();

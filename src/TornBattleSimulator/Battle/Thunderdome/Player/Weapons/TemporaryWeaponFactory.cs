@@ -40,7 +40,8 @@ public class TemporaryWeaponFactory
                 })
                 .ToList(),
             RateOfFire = TemporaryRateOfFire,
-            Ammo = TemporaryAmmo
+            Ammo = TemporaryAmmo,
+            TemporaryWeaponType = weaponType
         };
     }
 }

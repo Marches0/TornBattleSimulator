@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+
+namespace TornBattleSimulator.Battle.Build.Equipment;
 
 public class Weapon
 {
@@ -12,6 +14,9 @@ public class Weapon
     public Ammo Ammo { get; set; }
 
     public List<ModifierDescription> Modifiers { get; set; }
+
+    // meh. just stuck it on here.
+    public TemporaryWeaponType? TemporaryWeaponType { get; set; }
 }
 
 public class RateOfFire

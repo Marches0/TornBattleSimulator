@@ -1,12 +1,25 @@
 ﻿using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Events.Data;
 public interface IEventData
 {
     string Format();
+}
+
+public class UsedTemporaryEvent : IEventData
+{
+    private readonly TemporaryWeaponType _temporary;
+
+    public UsedTemporaryEvent(TemporaryWeaponType temporary)
+    {
+        _temporary = temporary;
+    }
+
+    public string Format() => $"Used {_temporary}";
 }
 
 public class AttackHitEvent : IEventData
@@ -32,12 +45,6 @@ public class AttackHitEvent : IEventData
 
     public string Format()
     {
-        // todo: special event for temp event hit/miss.
-        if (Weapon == WeaponType.Temporary)
-        {
-            return "Used Temporary";
-        }
-
         return $"{Damage.ToString("N0").ToColouredString("#ffee8c")} @ {HitChance:P1} dealt by {Weapon} on {BodyPart} ({Flags})";
     }
 }

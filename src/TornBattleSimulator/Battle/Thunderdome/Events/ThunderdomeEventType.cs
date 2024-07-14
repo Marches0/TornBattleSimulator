@@ -4,6 +4,7 @@ public enum ThunderdomeEventType
 {
     AttackHit = 1,
     AttackMiss,
+    UsedTemporary,
     Reload,
     Stunned,
     EffectBegin,
