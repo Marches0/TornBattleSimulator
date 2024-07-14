@@ -17,6 +17,6 @@ public class ModifierFactory
         ModifierType modifierType,
         double percent)
     {
-        return new PotentialModifier(_modifiers[modifierType], percent);
+        return new PotentialModifier(_modifiers[modifierType], percent / 100);
     }
 }
