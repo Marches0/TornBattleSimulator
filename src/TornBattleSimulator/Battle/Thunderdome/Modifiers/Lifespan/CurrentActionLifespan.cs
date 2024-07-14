@@ -6,8 +6,12 @@ public class CurrentActionLifespan : IModifierLifespan
 
     public float Remaining => 1;
 
-    public void Tick(ThunderdomeContext thunderdomeContext)
+    public void OpponentActionComplete(ThunderdomeContext context) { }
+
+    public void OwnActionComplete(ThunderdomeContext context)
     {
         Expired = true;
     }
+
+    public void TurnComplete(ThunderdomeContext context) { }
 }

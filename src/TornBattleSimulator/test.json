@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "fury",
-						"percent": 100
+						"type": "severeBurning",
+						"percent": 10
 					}
 				]
 			},

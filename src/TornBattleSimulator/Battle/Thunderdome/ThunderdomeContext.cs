@@ -17,23 +17,27 @@ public class ThunderdomeContext
 
     public List<ThunderdomeEvent> Events { get; } = new List<ThunderdomeEvent>();
 
-    // We tick before anyone moves, so start at 0 and consider
-    // 1 to be the first turn
-    public int Turn { get; private set; } = 0;
+    public int Turn { get; private set; } = 1;
 
     public float AttackInterval { get; } = 1;
 
-    public void Tick()
+    public void AttackerActionComplete()
     {
-        Attacker.Tick(this);
-        Defender.Tick(this);
-        ++Turn;
+        Attacker.OwnActionComplete(this);
+        Defender.OpponentActionComplete(this);
+    }
+
+    public void DefenderActionComplete()
+    {
+        Defender.OwnActionComplete(this);
+        Attacker.OpponentActionComplete(this);
     }
 
     public void TurnComplete()
     {
-        Attacker.TurnComplete();
-        Defender.TurnComplete();
+        Attacker.TurnComplete(this);
+        Defender.TurnComplete(this);
+        ++Turn;
     }
 
     public ThunderDomeResult? GetResult()

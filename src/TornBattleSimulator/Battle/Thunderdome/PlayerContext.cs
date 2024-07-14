@@ -12,7 +12,7 @@ namespace TornBattleSimulator.Battle.Thunderdome;
 /// <summary>
 ///  A build taking part in a battle.
 /// </summary>
-public class PlayerContext
+public class PlayerContext : ITickable
 {
     public PlayerContext(
         BattleBuild build,
@@ -28,6 +28,7 @@ public class PlayerContext
         Health = new((int)build.Health);
         PlayerType = playerType;
 
+        Modifiers = new(this);
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
@@ -41,7 +42,7 @@ public class PlayerContext
     /// <summary>
     ///  Modifiers currently applied to the player.
     /// </summary>
-    public ModifierContext Modifiers { get; } = new();
+    public ModifierContext Modifiers { get; }
 
     public PlayerHealth Health { get; set; }
 
@@ -59,15 +60,19 @@ public class PlayerContext
     /// </summary>
     public BattleAction CurrentAction { get; set; }
 
-    public void Tick(ThunderdomeContext context)
+    public void OwnActionComplete(ThunderdomeContext context)
     {
-        // Clear the stats every tick, so we can reevaluate modifiers.
-        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
-        Modifiers.Tick(context, this);
+        Modifiers.OwnActionComplete(context);
     }
 
-    public void TurnComplete()
+    public void OpponentActionComplete(ThunderdomeContext context)
     {
+        Modifiers.OpponentActionComplete(context);
+    }
+
+    public void TurnComplete(ThunderdomeContext context)
+    {
+        Modifiers.TurnComplete(context);
         _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
@@ -86,5 +91,5 @@ public class PlayerContext
         return Modifiers.Active
             .OfType<IStatsModifier>()
             .Aggregate(baseStats, (stats, modifier) => stats.Apply(modifier));
-    }    
+    }
 }

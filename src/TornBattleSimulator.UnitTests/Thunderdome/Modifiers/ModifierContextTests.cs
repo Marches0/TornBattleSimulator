@@ -16,15 +16,16 @@ public class ModifierContextTests
         // Arrange
         TestModifier expiringModifier = new TestModifier(ModifierLifespanDescription.Temporal(0.5f));
         TestModifier remainingModifier = new TestModifier(ModifierLifespanDescription.Temporal(1.5f));
+        PlayerContext player = new PlayerContextBuilder().Build();
 
-        ModifierContext modifierContext = new();
+        ModifierContext modifierContext = new(player);
         modifierContext.AddModifier(expiringModifier, null);
         modifierContext.AddModifier(remainingModifier, null);
 
         ThunderdomeContext thunderdomeContext = new ThunderdomeContextBuilder().WithParticipants(new PlayerContextBuilder(), new PlayerContextBuilder()).Build();
 
         // Act
-        modifierContext.Tick(thunderdomeContext, new PlayerContextBuilder().Build());
+        modifierContext.TurnComplete(thunderdomeContext);
 
         // Assert
         using (new AssertionScope())
@@ -40,8 +41,9 @@ public class ModifierContextTests
         TestDoTModifier existingModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
         TestDoTModifier newModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
         DamageResult damage = new(100, 0, 0);
+        PlayerContext player = new PlayerContextBuilder().Build();
 
-        ModifierContext modifierContext = new();
+        ModifierContext modifierContext = new(player);
         modifierContext.AddModifier(existingModifier, damage);
 
         bool added = modifierContext.AddModifier(newModifier, damage);

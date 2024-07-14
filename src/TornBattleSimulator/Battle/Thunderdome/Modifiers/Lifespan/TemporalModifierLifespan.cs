@@ -13,8 +13,12 @@ public class TemporalModifierLifespan : IModifierLifespan
 
     public float Remaining => _remainingTimeSeconds;
 
-    public void Tick(ThunderdomeContext thunderdomeContext)
+    public void OpponentActionComplete(ThunderdomeContext context) { }
+
+    public void OwnActionComplete(ThunderdomeContext context) { }
+
+    public void TurnComplete(ThunderdomeContext context)
     {
-        _remainingTimeSeconds -= thunderdomeContext.AttackInterval;
-    }   
+        _remainingTimeSeconds -= context.AttackInterval;
+    }
 }

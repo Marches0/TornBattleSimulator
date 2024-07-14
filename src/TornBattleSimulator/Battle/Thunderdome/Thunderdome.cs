@@ -31,9 +31,8 @@ public class Thunderdome
 
         while (_context.GetResult() == null)
         {
-            _context.Tick();
             MakeMove(_context.Attacker, _context.Defender);
-            _context.TurnComplete(); // hmm
+            _context.AttackerActionComplete();
 
             // todo: only stalemate after defender goes
             if (_context.GetResult() != null)
@@ -42,6 +41,8 @@ public class Thunderdome
             }
 
             MakeMove(_context.Defender, _context.Attacker);
+
+            _context.DefenderActionComplete();
             _context.TurnComplete();
         }
 

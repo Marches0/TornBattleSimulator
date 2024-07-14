@@ -8,35 +8,16 @@ using TornBattleSimulator.Battle.Thunderdome.Events;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
-public class ModifierContext
+public class ModifierContext : ITickable
 {
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier> (_activeModifiers.Select(m => m.Modifier).ToList());
 
     private List<ActiveModifier> _activeModifiers = new();
+    private readonly PlayerContext _self;
 
-    public void Tick(
-        ThunderdomeContext context,
-        PlayerContext self)
+    public ModifierContext(PlayerContext self)
     {
-        foreach (ActiveModifier modifier in _activeModifiers)
-        {
-            modifier.CurrentLifespan.Tick(context);
-        }
-
-        foreach (ActiveDamageOverTimeModifier dotModifier in _activeModifiers.OfType<ActiveDamageOverTimeModifier>())
-        {
-            dotModifier.Tick(context, self);
-        }
-
-        var expiredEvents = _activeModifiers
-            .Where(m => m.CurrentLifespan.Expired)
-            .Select(m => context.CreateEvent(self, ThunderdomeEventType.EffectEnd, new EffectEndEvent(m.Modifier.Effect)));
-
-        context.Events.AddRange(expiredEvents);
-
-        _activeModifiers = _activeModifiers
-            .Where(m => !m.CurrentLifespan.Expired)
-            .ToList();
+        _self = self;
     }
 
     public bool AddModifier(
@@ -62,6 +43,54 @@ public class ModifierContext
 
         _activeModifiers.Add(new ActiveModifier(CreateLifespan(modifier), modifier));
         return true;
+    }
+
+    public void TurnComplete(ThunderdomeContext context)
+    {
+        foreach (ActiveModifier modifier in _activeModifiers)
+        {
+            modifier.CurrentLifespan.TurnComplete(context);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    public void OwnActionComplete(ThunderdomeContext context)
+    {
+        foreach (ActiveModifier modifier in _activeModifiers)
+        {
+            modifier.CurrentLifespan.OwnActionComplete(context);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    public void OpponentActionComplete(ThunderdomeContext context)
+    {
+        foreach (ActiveModifier modifier in _activeModifiers)
+        {
+            modifier.CurrentLifespan.OpponentActionComplete(context);
+        }
+
+        foreach (ActiveDamageOverTimeModifier dotModifier in _activeModifiers.OfType<ActiveDamageOverTimeModifier>())
+        {
+            dotModifier.Tick(context, _self);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    private void ExpireModifiers(ThunderdomeContext context)
+    {
+        var expiredEvents = _activeModifiers
+            .Where(m => m.CurrentLifespan.Expired)
+            .Select(m => context.CreateEvent(_self, ThunderdomeEventType.EffectEnd, new EffectEndEvent(m.Modifier.Effect)));
+
+        context.Events.AddRange(expiredEvents);
+
+        _activeModifiers = _activeModifiers
+            .Where(m => !m.CurrentLifespan.Expired)
+            .ToList();
     }
 
     private IModifierLifespan CreateLifespan(IModifier modifier)

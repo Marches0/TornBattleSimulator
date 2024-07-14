@@ -21,6 +21,7 @@ public class ActiveDamageOverTimeModifier : ActiveModifier
         _appliedDamage = damageContext.Damage;
     }
 
+    // implement ITickable?
     public void Tick(
         ThunderdomeContext context,
         PlayerContext target)

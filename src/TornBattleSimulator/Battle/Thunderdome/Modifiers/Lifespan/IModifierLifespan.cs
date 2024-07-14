@@ -1,14 +1,7 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
-public interface IModifierLifespan
+public interface IModifierLifespan : ITickable
 {
     bool Expired { get; }
-
-    void Tick(ThunderdomeContext thunderdomeContext);
-
     float Remaining { get; }
-
-    /*bool AfterNextOpponentAction();
-
-    bool AfterNextOwnAction();*/
 }

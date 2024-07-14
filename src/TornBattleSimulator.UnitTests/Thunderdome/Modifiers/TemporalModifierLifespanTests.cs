@@ -23,7 +23,7 @@ public class TemporalModifierLifespanTests
 
         mod.Expired.Should().BeFalse();
 
-        mod.Tick(context);
+        mod.TurnComplete(context);
 
         mod.Expired.Should().BeTrue();
     }

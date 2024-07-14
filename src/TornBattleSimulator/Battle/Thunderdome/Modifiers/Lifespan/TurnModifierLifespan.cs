@@ -13,7 +13,13 @@ public class TurnModifierLifespan : IModifierLifespan
 
     public float Remaining => _turns;
 
-    public void Tick(ThunderdomeContext thunderdomeContext)
+    public void OpponentActionComplete(ThunderdomeContext context) { }
+
+    public void OwnActionComplete(ThunderdomeContext context) { }
+
+    public void Tick(ThunderdomeContext thunderdomeContext) { }
+
+    public void TurnComplete(ThunderdomeContext context)
     {
         --_turns;
     }
