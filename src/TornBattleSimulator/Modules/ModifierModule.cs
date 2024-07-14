@@ -21,6 +21,7 @@ public class ModifierModule : Module
 
         RegisterTempWeaponModifiers(builder);
         RegisterUniqueWeaponModifiers(builder);
+        RegisterWeaponModifiers(builder);
     }
 
     private void RegisterTempWeaponModifiers(ContainerBuilder builder)
@@ -57,8 +58,14 @@ public class ModifierModule : Module
     {
         builder.RegisterType<BlindfireModifier>()
             .Keyed<IModifier>(ModifierType.Blindfire);
+    }
 
+    private void RegisterWeaponModifiers(ContainerBuilder builder)
+    {
         builder.RegisterType<FuryModifier>()
             .Keyed<IModifier>(ModifierType.Fury);
+
+        builder.RegisterType<RageModifier>()
+            .Keyed<IModifier>(ModifierType.Rage);
     }
 }

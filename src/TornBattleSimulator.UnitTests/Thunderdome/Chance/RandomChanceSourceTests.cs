@@ -16,7 +16,7 @@ public class RandomChanceSourceTests
     public void Succeeds_WhenRollBelowProbability_ReturnsValue((double chance, double roll, bool succeeds) testData)
     {
         // Arrange
-        IRandomSource randomSource = new FixedRandomSource(testData.roll);
+        IRandomSource randomSource = new FixedRandomSource(testData.roll, 1);
 
         RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
 
@@ -38,7 +38,7 @@ public class RandomChanceSourceTests
     public void ChooseWeighted_BasedOnRoll_ChoosesAppropriateItem((List<OptionChance<int>> options, double roll, int expected) testData)
     {
         // Arrange
-        IRandomSource randomSource = new FixedRandomSource(testData.roll);
+        IRandomSource randomSource = new FixedRandomSource(testData.roll, 1);
 
         RandomChanceSource chanceSource = new RandomChanceSource(randomSource);
 

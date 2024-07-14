@@ -36,4 +36,6 @@ public class RandomChanceSource : IChanceSource
         // Weird
         return options.Last().Option;
     }
+
+    public int ChooseRange(int min, int max) => _source.Next(min, max);
 }

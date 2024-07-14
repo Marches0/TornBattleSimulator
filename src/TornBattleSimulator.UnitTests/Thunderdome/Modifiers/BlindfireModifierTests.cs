@@ -18,7 +18,7 @@ public class BlindfireModifierTests
         ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
 
         // 10 attacks
-        WeaponContext weapon = new WeaponContextBuilder().Build();
+        WeaponContext weapon = new WeaponContextBuilder().WithAmmo(1, 20).Build();
 
         int expectedAttacks = 10;
         int attacksMade = 0;

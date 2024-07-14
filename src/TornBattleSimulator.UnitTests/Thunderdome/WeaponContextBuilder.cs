@@ -6,8 +6,8 @@ namespace TornBattleSimulator.UnitTests.Thunderdome;
 
 public class WeaponContextBuilder
 {
-    private Ammo _ammo = new Ammo() { Magazines = 1, MagazineSize = 10 };
-    private RateOfFire _rateOfFire = new RateOfFire() { Min = 1, Max = 1 };
+    private Ammo? _ammo = null;
+    private RateOfFire? _rateOfFire = null;
 
     public WeaponContextBuilder WithAmmo(int magazines, int magazineSize)
     {
@@ -32,7 +32,7 @@ public class WeaponContextBuilder
                 Damage = 10,
                 Modifiers = new List<ModifierDescription>()
             },
-            WeaponType.Primary,
+            WeaponType.Melee,
             new List<PotentialModifier>()
         );
     }
