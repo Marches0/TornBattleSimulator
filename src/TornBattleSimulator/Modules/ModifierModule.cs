@@ -57,5 +57,8 @@ public class ModifierModule : Module
     {
         builder.RegisterType<BlindfireModifier>()
             .Keyed<IModifier>(ModifierType.Blindfire);
+
+        builder.RegisterType<FuryModifier>()
+            .Keyed<IModifier>(ModifierType.Fury);
     }
 }

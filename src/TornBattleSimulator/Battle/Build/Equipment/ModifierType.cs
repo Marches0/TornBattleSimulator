@@ -12,5 +12,6 @@ public enum ModifierType
     Hardened,
     Smoked,
     Sharpened,
-    Blindfire
+    Blindfire,
+    Fury
 }
