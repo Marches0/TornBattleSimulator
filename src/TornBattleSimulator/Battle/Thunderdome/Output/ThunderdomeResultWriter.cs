@@ -26,16 +26,37 @@ public class ThunderdomeResultWriter
     {
         Table table = new Table()
             .NoBorder()
-            .LeftAligned()
-            //.Centered()
+            //.LeftAligned()
+            .Centered()
             .Title($"{context.Attacker.Build.Name.EscapeMarkup()} attacking {context.Defender.Build.Name.EscapeMarkup()} ({context.GetResult()})");
 
-        table.AddColumns("T", "Player", "Event", "Details", "ATT HP", "DEF HP", "ATT Str", "ATT DEF", "ATT SPD", "ATT DEX", "DEF Str", "DEF DEF", "DEF SPD", "DEF DEX");
+        var attEvtColumn = DefaultColumn("ATT Event");
+        attEvtColumn.RightAligned();
+        attEvtColumn.Padding = new Padding(0, 1, 1, 0);
 
-        foreach (var col in table.Columns)
-        {
-            col.Padding = new Padding(3, 0);
-        }
+        var defEvtColumn = DefaultColumn("DEF Event");
+        defEvtColumn.LeftAligned();
+        defEvtColumn.Padding = new Padding(0, 1, 1, 0);
+
+        table.AddColumns(
+            DefaultColumn("ATT DEX"),
+            DefaultColumn("ATT SPD"),
+            DefaultColumn("ATT DEF"),
+            DefaultColumn("ATT Str"),
+            DefaultColumn("ATT HP"),
+            DefaultColumn("T"),
+            attEvtColumn,
+            DefaultColumn("Details"),
+            defEvtColumn,
+            DefaultColumn("DEF HP"),
+            DefaultColumn("DEF Str"),
+            DefaultColumn("DEF DEF"),
+            DefaultColumn("DEF SPD"),
+            DefaultColumn("DEF DEX"),
+            DefaultColumn("T")
+        );
+
+        //table.AddColumns("T", "Player", "Event", "Details", "ATT HP", "DEF HP", "ATT Str", "ATT DEF", "ATT SPD", "ATT DEX", "DEF Str", "DEF DEF", "DEF SPD", "DEF DEX");
         
         // todo: make sure we capture last event
         table.AddRow(ToRow(context.Events[0], null));
@@ -56,7 +77,31 @@ public class ThunderdomeResultWriter
         ThunderdomeEvent? previousEvent
         )
     {
+        string currentEventType = currentEvent.Type.ToString().ToColouredString(EventColours[currentEvent.Type]);
+        string arrowedEvent = currentEvent.Source == PlayerType.Attacker
+            ? currentEventType + " -->"
+            : "<-- " + currentEventType;
+
         return [
+            currentEvent.Turn.ToString(),
+            GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Dexterity, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Speed, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Defence, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Strength, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => (ulong)e.AttackerHealth, x => x.ToString("n0")),
+            
+            currentEvent.Source == PlayerType.Attacker ? arrowedEvent : " ",
+            currentEvent.Data.Format().ToColouredString(currentEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
+            currentEvent.Source == PlayerType.Defender ? arrowedEvent : " ",
+            GetDiffSelector(currentEvent, previousEvent, e => (ulong)e.DefenderHealth, x => x.ToString("n0")),
+            GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Strength, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Defence, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Speed, NumberExtensions.ToSimpleString),
+            GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Dexterity, NumberExtensions.ToSimpleString),
+            currentEvent.Turn.ToString(),
+        ];
+
+        /*return [
             currentEvent.Turn.ToString(),
             GetSource(currentEvent),
             currentEvent.Type.ToString().ToColouredString(EventColours[currentEvent.Type]),
@@ -71,7 +116,7 @@ public class ThunderdomeResultWriter
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Defence, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Speed, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Dexterity, NumberExtensions.ToSimpleString),
-        ];
+        ];*/
     }
 
     private string GetEventDetails(ThunderdomeEvent tEvent)
@@ -113,5 +158,14 @@ public class ThunderdomeResultWriter
             : "#ff7974";
 
         return formatter(currentValue).ToColouredString(colour);
+    }
+
+    private TableColumn DefaultColumn(string header)
+    {
+        return new TableColumn(header)
+        {
+            Padding = new Padding(3, 0),
+            Alignment = Justify.Center
+        };
     }
 }
