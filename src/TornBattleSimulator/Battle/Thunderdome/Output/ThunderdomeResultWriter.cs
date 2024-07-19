@@ -30,21 +30,21 @@ public class ThunderdomeResultWriter
             .Centered()
             .Title($"{context.Attacker.Build.Name.EscapeMarkup()} attacking {context.Defender.Build.Name.EscapeMarkup()} ({context.GetResult()})");
 
-        var attEvtColumn = DefaultColumn("ATT Event");
+        TableColumn attEvtColumn = DefaultColumn("ATT Event".ToColouredString("#C1E1C1"));
         attEvtColumn.RightAligned();
-        attEvtColumn.Padding = new Padding(0, 1, 1, 0);
+        attEvtColumn.Padding = new Padding(0, 1, 3, 0);
 
-        var defEvtColumn = DefaultColumn("DEF Event");
+        TableColumn defEvtColumn = DefaultColumn("DEF Event".ToColouredString("#FAA0A0"));
         defEvtColumn.LeftAligned();
         defEvtColumn.Padding = new Padding(0, 1, 1, 0);
 
         table.AddColumns(
+            DefaultColumn("T"),
             DefaultColumn("ATT DEX"),
             DefaultColumn("ATT SPD"),
             DefaultColumn("ATT DEF"),
             DefaultColumn("ATT Str"),
             DefaultColumn("ATT HP"),
-            DefaultColumn("T"),
             attEvtColumn,
             DefaultColumn("Details"),
             defEvtColumn,
