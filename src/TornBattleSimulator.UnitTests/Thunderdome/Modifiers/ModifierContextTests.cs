@@ -4,6 +4,7 @@ using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 
@@ -36,7 +37,7 @@ public class ModifierContextTests
     }
 
     [Test]
-    public void ModifierContext_WhenAddingSecondDoTModifier_DoesNotAdd()
+    public void AddModifier_WhenAddingSecondDoTModifier_DoesNotAdd()
     {
         TestDoTModifier existingModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
         TestDoTModifier newModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
@@ -53,5 +54,35 @@ public class ModifierContextTests
             added.Should().BeFalse();
             modifierContext.Active.Should().OnlyContain(m => m == existingModifier);
         }
+    }
+
+    [Test]
+    public void AddModifier_ForSecondStackOfStackingModifier_AddsStackToContainer()
+    {
+        // Arrange
+        PlayerContext player = new PlayerContextBuilder().Build();
+        TestStackableStatModifier modifier = new TestStackableStatModifier(1, 1, 1, 1, 5);
+        ModifierContext modifierContext = new(player);
+
+        // Stack 1
+        modifierContext.AddModifier(modifier, null);
+
+        // Act
+        modifierContext.AddModifier(modifier, null);
+
+        // Assert
+        using(new AssertionScope())
+        {
+            modifierContext.Active.Should().OnlyContain(m => CorrectContainer(m, modifier));
+
+            StackableStatModifierContainer container = (StackableStatModifierContainer)modifierContext.Active.Single();
+            container.Stacks.Should().Be(2);
+        }
+    }
+    private bool CorrectContainer(
+        IModifier modifier,
+        IModifier innerModifier)
+    {
+        return modifier is StackableStatModifierContainer c && c.Modifier == innerModifier;
     }
 }

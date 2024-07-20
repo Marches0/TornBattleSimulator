@@ -6,5 +6,6 @@ public enum ModifierLifespanType
     Turns,
     AfterCurrentAction,
     AfterNextEnemyAction,
-    AfterNextOwnAction
+    AfterNextOwnAction,
+    Indefinite
 }

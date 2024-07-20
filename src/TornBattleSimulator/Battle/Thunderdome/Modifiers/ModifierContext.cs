@@ -2,9 +2,9 @@
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
@@ -24,24 +24,58 @@ public class ModifierContext : ITickable
         IModifier modifier,
         DamageResult? damageResult)
     {
-        if (modifier is IDamageOverTimeModifier dotModifier)
+        return modifier switch
         {
-            // Can only have one DoT at a time
-            if (_activeModifiers.OfType<ActiveDamageOverTimeModifier>().Any())
-            {
-                return false;
-            }
+            IDamageOverTimeModifier dotModifier => AddDamageOverTime(dotModifier, damageResult!),
+            IStackableStatModifier stackableStatModifier => AddStackingStatModifier(stackableStatModifier),
+            _ => AddRegularModifier(modifier)
+        };
+    }
 
-            _activeModifiers.Add(new ActiveDamageOverTimeModifier(
-                CreateLifespan(dotModifier),
-                dotModifier,
-                damageResult!)
-            );
-
-            return true;
+    private bool AddDamageOverTime(
+        IDamageOverTimeModifier dotModifier,
+        DamageResult damageResult)
+    {
+        // Can only have one DoT at a time
+        if (_activeModifiers.OfType<ActiveDamageOverTimeModifier>().Any())
+        {
+            return false;
         }
 
-        _activeModifiers.Add(new ActiveModifier(CreateLifespan(modifier), modifier));
+        _activeModifiers.Add(new ActiveDamageOverTimeModifier(
+            dotModifier.CreateLifespan(),
+            dotModifier,
+            damageResult)
+        );
+
+        return true;
+    }
+
+    private bool AddStackingStatModifier(IStackableStatModifier stackableStatModifier)
+    {
+        ActiveModifier? existingModifier = _activeModifiers
+            .Where(m => m.Modifier is StackableStatModifierContainer c && c.Modifier == stackableStatModifier)
+            .FirstOrDefault();
+
+        StackableStatModifierContainer container;
+
+        if (existingModifier == null)
+        {
+            container = new(stackableStatModifier, _self);
+            _activeModifiers.Add(new ActiveModifier(container, container));
+        }
+        else
+        {
+            container = (StackableStatModifierContainer)existingModifier.Modifier;
+        }
+
+        return container.AddStack();
+    }
+
+    private bool AddRegularModifier(
+        IModifier modifier)
+    {
+        _activeModifiers.Add(new ActiveModifier(modifier.CreateLifespan(), modifier));
         return true;
     }
 
@@ -91,16 +125,5 @@ public class ModifierContext : ITickable
         _activeModifiers = _activeModifiers
             .Where(m => !m.CurrentLifespan.Expired)
             .ToList();
-    }
-
-    private IModifierLifespan CreateLifespan(IModifier modifier)
-    {
-        return modifier.Lifespan.LifespanType switch
-        {
-            ModifierLifespanType.Temporal => new TemporalModifierLifespan(modifier.Lifespan.Duration!.Value),
-            ModifierLifespanType.Turns => new TurnModifierLifespan(modifier.Lifespan.TurnCount!.Value),
-            ModifierLifespanType.AfterCurrentAction => new CurrentActionLifespan(),
-            _ => throw new NotImplementedException($"{modifier.Lifespan.LifespanType} not supported.")
-        };
     }
 }

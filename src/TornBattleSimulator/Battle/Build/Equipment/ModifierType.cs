@@ -15,5 +15,6 @@ public enum ModifierType
     Blindfire,
     Fury,
     Rage,
-    Burning
+    Burning,
+    Demoralized
 }

@@ -6,7 +6,10 @@ public class TurnModifierLifespan : IModifierLifespan
 
     public TurnModifierLifespan(int turns)
     {
-        _turns = turns;
+        // Start at one above, because it'll be decremented at the
+        // end of the turn where it was applied and that
+        // shouldn't count against it.
+        _turns = turns + 1;
     }
 
     public bool Expired => _turns <= 0;
@@ -16,8 +19,6 @@ public class TurnModifierLifespan : IModifierLifespan
     public void OpponentActionComplete(ThunderdomeContext context) { }
 
     public void OwnActionComplete(ThunderdomeContext context) { }
-
-    public void Tick(ThunderdomeContext thunderdomeContext) { }
 
     public void TurnComplete(ThunderdomeContext context)
     {

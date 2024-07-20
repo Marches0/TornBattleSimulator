@@ -6,6 +6,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Weapon;
 
 namespace TornBattleSimulator.Modules;
 
@@ -61,6 +62,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<BurningModifier>()
             .Keyed<IModifier>(ModifierType.Burning);
+
+        builder.RegisterType<DemoralizedModifier>()
+            .Keyed<IModifier>(ModifierType.Demoralized);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)
