@@ -11,23 +11,23 @@ public static class NumberExtensions
 
         if (value < 1_000_000)
         {
-            ulong thousands = value / 1000;
-            return $"{thousands}k";
+            double thousands = value / 1000d;
+            return $"{thousands:F0}k";
         }
 
         if (value < 1_000_000_000)
         {
             double millions = (double)value / 1_000_000;
-            return $"{millions:F2}m";
+            return $"{millions:F1}m";
         }
 
         if (value < 1_000_000_000_000)
         {
             double billions = (double)value / 1_000_000_000;
-            return $"{billions:F2}b";
+            return $"{billions:F1}b";
         }
 
         double trillions = (double)value / 1_000_000_000_000;
-        return $"{trillions:F2}t";
+        return $"{trillions:F1}t";
     }
 }
