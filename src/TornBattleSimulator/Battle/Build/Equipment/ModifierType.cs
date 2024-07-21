@@ -16,5 +16,8 @@ public enum ModifierType
     Fury,
     Rage,
     Burning,
-    Demoralized
+    Demoralized,
+    Freeze,
+    Hazardous, // todo
+
 }

@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "demoralized",
+						"type": "freeze",
 						"percent": 100
 					}
 				]

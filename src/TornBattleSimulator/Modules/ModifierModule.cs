@@ -65,6 +65,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<DemoralizedModifier>()
             .Keyed<IModifier>(ModifierType.Demoralized);
+
+        builder.RegisterType<FreezeModifier>()
+            .Keyed<IModifier>(ModifierType.Freeze);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)
