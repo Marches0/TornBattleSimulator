@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "freeze",
+						"type": "laceration",
 						"percent": 100
 					}
 				]

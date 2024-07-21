@@ -19,5 +19,5 @@ public enum ModifierType
     Demoralized,
     Freeze,
     Hazardous, // todo
-
+    Laceration
 }

@@ -68,6 +68,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<FreezeModifier>()
             .Keyed<IModifier>(ModifierType.Freeze);
+
+        builder.RegisterType<LacerationModifier>()
+            .Keyed<IModifier>(ModifierType.Laceration);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)
