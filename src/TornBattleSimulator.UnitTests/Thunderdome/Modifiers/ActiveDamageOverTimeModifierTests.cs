@@ -11,7 +11,7 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 public class ActiveDamageOverTimeModifierTests
 {
     [Test]
-    public void ActiveDamageOverTimeModifier_Tick_AppliesDecayingDamage()
+    public void Tick_AppliesDecayingDamage_TurnAfterApplication()
     {
         uint startHealth = 10_000;
         int appliedDamage = 2000;
@@ -23,14 +23,20 @@ public class ActiveDamageOverTimeModifierTests
         ActiveDamageOverTimeModifier activeDotMod = new ActiveDamageOverTimeModifier(
             new TurnModifierLifespan(100),
             new SevereBurningModifier(),
+            target,
             new DamageResult(appliedDamage, 0, 0)
         );
 
         // Act
-        activeDotMod.Tick(thunderdomeContext, target);
+        activeDotMod.OpponentActionComplete(thunderdomeContext);
+        int sameTickHealth = target.Health.CurrentHealth;
+
+        activeDotMod.TurnComplete(thunderdomeContext);
+
+        activeDotMod.OpponentActionComplete(thunderdomeContext);
         int tickOneHealth = target.Health.CurrentHealth;
 
-        activeDotMod.Tick(thunderdomeContext, target);
+        activeDotMod.OpponentActionComplete(thunderdomeContext);
         int tickTwoHealth = target.Health.CurrentHealth;
 
         // Assert
@@ -39,6 +45,7 @@ public class ActiveDamageOverTimeModifierTests
 
         using (new AssertionScope())
         {
+            sameTickHealth.Should().Be((int)startHealth);
             tickOneDamage.Should().BeLessThan(appliedDamage);
             tickTwoDamage.Should().BeLessThan(tickOneDamage);
         }

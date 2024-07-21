@@ -5,7 +5,6 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
@@ -14,6 +13,11 @@ public class ModifierContext : ITickable
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier> (_activeModifiers.Select(m => m.Modifier).ToList());
 
     private List<ActiveModifier> _activeModifiers = new();
+
+    private IEnumerable<ITickable> _tickables => 
+        _activeModifiers.Select(m => m.CurrentLifespan)
+        .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>());
+
     private readonly PlayerContext _self;
 
     public ModifierContext(PlayerContext self)
@@ -46,6 +50,7 @@ public class ModifierContext : ITickable
         _activeModifiers.Add(new ActiveDamageOverTimeModifier(
             dotModifier.CreateLifespan(),
             dotModifier,
+            _self,
             damageResult)
         );
 
@@ -82,9 +87,9 @@ public class ModifierContext : ITickable
 
     public void TurnComplete(ThunderdomeContext context)
     {
-        foreach (ActiveModifier modifier in _activeModifiers)
+        foreach (ITickable tickable in _tickables)
         {
-            modifier.CurrentLifespan.TurnComplete(context);
+            tickable.TurnComplete(context);
         }
 
         ExpireModifiers(context);
@@ -92,9 +97,9 @@ public class ModifierContext : ITickable
 
     public void OwnActionComplete(ThunderdomeContext context)
     {
-        foreach (ActiveModifier modifier in _activeModifiers)
+        foreach (ITickable tickable in _tickables)
         {
-            modifier.CurrentLifespan.OwnActionComplete(context);
+            tickable.OwnActionComplete(context);
         }
 
         ExpireModifiers(context);
@@ -102,14 +107,9 @@ public class ModifierContext : ITickable
 
     public void OpponentActionComplete(ThunderdomeContext context)
     {
-        foreach (ActiveModifier modifier in _activeModifiers)
+        foreach (ITickable tickable in _tickables)
         {
-            modifier.CurrentLifespan.OpponentActionComplete(context);
-        }
-
-        foreach (ActiveDamageOverTimeModifier dotModifier in _activeModifiers.OfType<ActiveDamageOverTimeModifier>())
-        {
-            dotModifier.Tick(context, _self);
+            tickable.OpponentActionComplete(context);
         }
 
         ExpireModifiers(context);
