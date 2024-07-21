@@ -55,7 +55,7 @@ public class ModifierApplierTests
         A.CallTo(() => attackModifier.AppliesAt)
             .Returns(ModifierApplication.AfterAction);
         A.CallTo(() => attackModifier.Lifespan)
-            .Returns(ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterCurrentAction));
+            .Returns(ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction));
         A.CallTo(() => attackModifier.Target)
             .Returns(ModifierTarget.Self);
 

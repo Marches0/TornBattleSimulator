@@ -175,3 +175,11 @@ public class FightEndEvent : IEventData
         return $"{Result.ToString().ToColouredString("#ffffff")}";
     }
 }
+
+public class StunnedData : IEventData
+{
+    public string Format()
+    {
+        return "Stunned".ToColouredString("#c49bdd");
+    }
+}

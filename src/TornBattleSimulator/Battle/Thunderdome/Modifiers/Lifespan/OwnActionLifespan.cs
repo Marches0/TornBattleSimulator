@@ -1,6 +1,6 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 
-public class CurrentActionLifespan : IModifierLifespan
+public class OwnActionLifespan : IModifierLifespan
 {
     public bool Expired { get; private set; } = false;
 

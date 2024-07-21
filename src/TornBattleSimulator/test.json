@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "poisoned",
+						"type": "shock",
 						"percent": 100
 					}
 				]

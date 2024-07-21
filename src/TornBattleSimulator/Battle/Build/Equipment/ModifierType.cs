@@ -20,5 +20,6 @@ public enum ModifierType
     Freeze,
     Hazardous, // todo
     Laceration,
-    Poisoned
+    Poisoned,
+    Shock
 }

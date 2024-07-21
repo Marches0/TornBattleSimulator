@@ -11,7 +11,7 @@ public static class ModifierExtensions
         {
             ModifierLifespanType.Temporal => new TemporalModifierLifespan(modifier.Lifespan.Duration!.Value),
             ModifierLifespanType.Turns => new TurnModifierLifespan(modifier.Lifespan.TurnCount!.Value),
-            ModifierLifespanType.AfterCurrentAction => new CurrentActionLifespan(),
+            ModifierLifespanType.AfterOwnAction => new OwnActionLifespan(),
             ModifierLifespanType.Indefinite => new IndefiniteLifespan(),
             _ => throw new NotImplementedException($"{modifier.Lifespan.LifespanType} not supported.")
         };

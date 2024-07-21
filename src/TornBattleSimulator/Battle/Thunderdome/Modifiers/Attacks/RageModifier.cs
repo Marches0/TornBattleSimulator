@@ -15,7 +15,7 @@ public class RageModifier : IAttacksModifier
         _chanceSource = chanceSource;
     }
 
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterCurrentAction);
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     public bool RequiresDamageToApply => false;
 

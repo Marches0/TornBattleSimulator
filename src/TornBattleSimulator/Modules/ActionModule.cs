@@ -15,6 +15,9 @@ public class ActionModule : Module
         builder.RegisterType<UseTemporaryAction>()
             .Keyed<IAction>(BattleAction.UseTemporary);
 
+        builder.RegisterType<StunnedAction>()
+            .Keyed<IAction>(BattleAction.Stunned);
+
         builder.RegisterType<WeaponUsage>()
             .As<IWeaponUsage>();
     }

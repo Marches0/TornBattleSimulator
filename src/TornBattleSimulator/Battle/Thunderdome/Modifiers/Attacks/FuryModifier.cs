@@ -7,7 +7,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 public class FuryModifier : IAttacksModifier
 {
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterCurrentAction);
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     public bool RequiresDamageToApply => false;
 

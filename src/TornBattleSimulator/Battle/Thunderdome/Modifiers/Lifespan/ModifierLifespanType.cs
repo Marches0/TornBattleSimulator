@@ -4,7 +4,7 @@ public enum ModifierLifespanType
 {
     Temporal = 1,
     Turns,
-    AfterCurrentAction,
+    AfterOwnAction,
     AfterNextEnemyAction,
     AfterNextOwnAction,
     Indefinite

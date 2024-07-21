@@ -9,7 +9,10 @@ public class StrategyBuilder
 {
     public IStrategy BuildStrategy(BattleBuild build)
     {
-        return new CompositeStrategy(build.Strategy.Select(BuildStrategy).ToList());
+        // Stun is automatically the highest priority strategy, so
+        // we don't act when it's applied.
+        List<IStrategy> strategies = [new StunStrategy(), .. build.Strategy.Select(BuildStrategy)];
+        return new CompositeStrategy(strategies);
     }
 
     private IStrategy BuildStrategy(StrategyDescription strategyDescription)

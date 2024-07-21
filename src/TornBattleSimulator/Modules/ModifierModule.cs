@@ -7,6 +7,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Weapon;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Actions;
 
 namespace TornBattleSimulator.Modules;
 
@@ -74,6 +75,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<PoisonedModifier>()
             .Keyed<IModifier>(ModifierType.Poisoned);
+
+        builder.RegisterType<ShockModifier>()
+            .Keyed<IModifier>(ModifierType.Shock);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)

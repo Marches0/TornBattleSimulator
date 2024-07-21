@@ -53,11 +53,12 @@ public class StrategyBuilderTests
         // Assert
         using (new AssertionScope())
         {
-            strategy.Inner[0].Should().BeOfType<PrimaryWeaponStrategy>();
-            strategy.Inner[1].Should().BeOfType<SecondaryWeaponStrategy>();
-            strategy.Inner[2].Should().BeOfType<PrimaryWeaponStrategy>();
-            strategy.Inner[3].Should().BeOfType<MeleeWeaponStrategy>();
-            strategy.Inner[4].Should().BeOfType<SecondaryWeaponStrategy>();
+            strategy.Inner[0].Should().BeOfType<StunStrategy>();
+            strategy.Inner[1].Should().BeOfType<PrimaryWeaponStrategy>();
+            strategy.Inner[2].Should().BeOfType<SecondaryWeaponStrategy>();
+            strategy.Inner[3].Should().BeOfType<PrimaryWeaponStrategy>();
+            strategy.Inner[4].Should().BeOfType<MeleeWeaponStrategy>();
+            strategy.Inner[5].Should().BeOfType<SecondaryWeaponStrategy>();
         }
     }
 }
