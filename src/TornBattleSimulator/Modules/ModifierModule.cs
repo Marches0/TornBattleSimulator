@@ -71,6 +71,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<LacerationModifier>()
             .Keyed<IModifier>(ModifierType.Laceration);
+
+        builder.RegisterType<PoisonedModifier>()
+            .Keyed<IModifier>(ModifierType.Poisoned);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)

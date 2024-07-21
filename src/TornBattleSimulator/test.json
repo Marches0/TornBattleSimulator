@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "laceration",
+						"type": "poisoned",
 						"percent": 100
 					}
 				]
