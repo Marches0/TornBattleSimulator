@@ -25,4 +25,6 @@ public class FreezeModifier : IStackableStatModifier
     public float GetSpeedModifier() => 0.5f;
 
     public float GetStrengthModifier() => 1;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

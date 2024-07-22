@@ -22,4 +22,6 @@ public class SharpenedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Sharpened;
+
+    public StatModificationType Type => StatModificationType.Additive;
 }

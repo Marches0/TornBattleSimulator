@@ -22,4 +22,6 @@ public class SmokedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Smoked;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

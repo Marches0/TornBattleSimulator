@@ -26,4 +26,6 @@ public class HardenedModifier : IStatsModifier, IHealthModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Hardened;
+
+    public StatModificationType Type => StatModificationType.Additive;
 }

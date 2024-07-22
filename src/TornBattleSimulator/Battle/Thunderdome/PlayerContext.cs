@@ -6,6 +6,7 @@ using TornBattleSimulator.Battle.Thunderdome.Player;
 using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
+using TornBattleSimulator.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -29,7 +30,6 @@ public class PlayerContext : ITickable
         PlayerType = playerType;
 
         Modifiers = new(this);
-        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
     }
 
     /// <summary>
@@ -53,7 +53,13 @@ public class PlayerContext : ITickable
     /// <summary>
     ///  The build's current stats.
     /// </summary>
-    public BattleStats Stats => GetCurrentStats();//_currentTickStats.Value;
+    public BattleStats Stats => new BattleStats()
+    {
+        Strength = Build.BattleStats.Strength,
+        Defence = Build.BattleStats.Defence,
+        Speed = Build.BattleStats.Speed,
+        Dexterity = Build.BattleStats.Dexterity,
+    }.WithModifiers(Modifiers.Active.OfType<IStatsModifier>().ToList());
 
     /// <summary>
     ///  The action being taken by this player in the current tick.
@@ -73,23 +79,5 @@ public class PlayerContext : ITickable
     public void TurnComplete(ThunderdomeContext context)
     {
         Modifiers.TurnComplete(context);
-        _currentTickStats = new Lazy<BattleStats>(GetCurrentStats);
-    }
-
-    private Lazy<BattleStats> _currentTickStats;
-
-    private BattleStats GetCurrentStats()
-    {
-        BattleStats baseStats = new()
-        {
-            Strength = Build.BattleStats.Strength,
-            Defence = Build.BattleStats.Defence,
-            Speed = Build.BattleStats.Speed,
-            Dexterity = Build.BattleStats.Dexterity,
-        };
-
-        return Modifiers.Active
-            .OfType<IStatsModifier>()
-            .Aggregate(baseStats, (stats, modifier) => stats.Apply(modifier));
     }
 }

@@ -22,4 +22,6 @@ public class MacedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Maced;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

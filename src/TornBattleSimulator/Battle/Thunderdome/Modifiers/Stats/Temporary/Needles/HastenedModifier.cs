@@ -22,4 +22,6 @@ public class HastenedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Hastened;
+
+    public StatModificationType Type => StatModificationType.Additive;
 }

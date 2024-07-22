@@ -22,4 +22,6 @@ public class GassedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Gassed;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

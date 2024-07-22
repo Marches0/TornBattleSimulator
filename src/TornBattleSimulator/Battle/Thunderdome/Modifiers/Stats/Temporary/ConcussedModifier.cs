@@ -22,4 +22,6 @@ public class ConcussedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Concussed;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

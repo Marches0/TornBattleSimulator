@@ -10,4 +10,6 @@ public interface IStatsModifier : IModifier
     float GetSpeedModifier();
 
     float GetDexterityModifier();
+
+    StatModificationType Type { get; }
 }

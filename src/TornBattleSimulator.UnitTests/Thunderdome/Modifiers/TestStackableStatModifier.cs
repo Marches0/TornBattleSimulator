@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 
@@ -46,4 +47,6 @@ internal class TestStackableStatModifier : IStackableStatModifier
     public float GetSpeedModifier() => _spdMod;
 
     public float GetStrengthModifier() => _strMod;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

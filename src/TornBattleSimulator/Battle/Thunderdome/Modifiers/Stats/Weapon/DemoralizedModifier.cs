@@ -25,4 +25,6 @@ public class DemoralizedModifier : IStackableStatModifier
     public float GetSpeedModifier() => 0.9f;
 
     public float GetStrengthModifier() => 0.9f;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

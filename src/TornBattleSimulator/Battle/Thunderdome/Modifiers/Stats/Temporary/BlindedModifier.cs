@@ -22,4 +22,6 @@ public class BlindedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Blinded;
+
+    public StatModificationType Type => StatModificationType.Multiplicative;
 }

@@ -56,6 +56,8 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public float GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
 
+    public StatModificationType Type => Modifier.Type;
+
     private float GetStackedModifier(float value)
     {
         // Stacked modifiers interact additively; two 10% modifiers add to make 20%, rather than multiply to make 21%.

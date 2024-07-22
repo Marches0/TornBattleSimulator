@@ -23,4 +23,6 @@ public class StrengthenedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Strengthened;
+
+    public StatModificationType Type => StatModificationType.Additive;
 }
