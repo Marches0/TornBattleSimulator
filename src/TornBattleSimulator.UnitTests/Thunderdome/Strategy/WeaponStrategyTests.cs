@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action;
+using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
@@ -11,10 +12,15 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 public class WeaponStrategyTests : LoadableWeaponTests
 {
     [TestCaseSource(nameof(PrimaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData))]
-    public void PrimaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName) testData)
+    public void PrimaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, int magazinesRemaining, bool canReload, bool charged, BattleAction? expected, string testName) testData)
     {
         // Arrange
-        PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
+        WeaponContext weapon = new WeaponContextBuilder()
+            .WithAmmo(10, 10)
+            .WithModifier(new TestChargeableModifier(testData.charged))
+            .Build();
+
+        PlayerContext attacker = new PlayerContextBuilder().WithPrimaryContext(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
@@ -28,10 +34,15 @@ public class WeaponStrategyTests : LoadableWeaponTests
     }
 
     [TestCaseSource(nameof(SecondaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData))]
-    public void SecondaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName) testData)
+    public void SecondaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, int magazinesRemaining, bool canReload, bool charged, BattleAction? expected, string testName) testData)
     {
         // Arrange
-        PlayerContext attacker = new PlayerContextBuilder().WithSecondary(GetLoadableWeapon()).Build();
+        WeaponContext weapon = new WeaponContextBuilder()
+            .WithAmmo(10, 10)
+            .WithModifier(new TestChargeableModifier(testData.charged))
+            .Build();
+
+        PlayerContext attacker = new PlayerContextBuilder().WithSecondaryContext(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
@@ -47,7 +58,7 @@ public class WeaponStrategyTests : LoadableWeaponTests
     [Test]
     public void MeleeWeaponStrategy_ReturnsAttack()
     {
-        PlayerContext attacker = new PlayerContextBuilder().Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithMelee(new Weapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
         
         BattleAction? action = new MeleeWeaponStrategy(new StrategyDescription()).GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
@@ -71,28 +82,34 @@ public class WeaponStrategyTests : LoadableWeaponTests
         action.Should().Be(testData.expected);
     }
 
-    private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName)> PrimaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
+    private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, bool charged, BattleAction? expected, string testName)> PrimaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
     {
-        yield return (10, 1, false, BattleAction.AttackPrimary, "Attacks when ammo remaining 1");
-        yield return (10, 1, true, BattleAction.AttackPrimary, "Attacks when ammo remaining 2");
+        yield return (10, 1, false, true, BattleAction.AttackPrimary, "Attacks when ammo remaining 1");
+        yield return (10, 1, true, true, BattleAction.AttackPrimary, "Attacks when ammo remaining 2");
 
-        yield return (0, 1, true, BattleAction.ReloadPrimary, "Reloads when empty magazine and can reload");
-        yield return (0, 1, false, null, "Skips when empty magazine and can't reload");
+        yield return (0, 1, true, true, BattleAction.ReloadPrimary, "Reloads when empty magazine and can reload");
+        yield return (0, 1, false, true, null, "Skips when empty magazine and can't reload");
 
-        yield return (0, 0, false, null, "Skips when empty magazine and no magazines remaining 1");
-        yield return (0, 0, true, null, "Skips when empty magazine and no magazines remaining 2");
+        yield return (0, 0, false, true, null, "Skips when empty magazine and no magazines remaining 1");
+        yield return (0, 0, true, true, null, "Skips when empty magazine and no magazines remaining 2");
+
+        yield return (10, 1, false, false, BattleAction.ChargePrimary, "Charges when ammo remaining and needs charge");
+        yield return (0, 1, true, false, BattleAction.ChargePrimary, "Charges when needs reload and needs charge");
     }
 
-    private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, BattleAction? expected, string testName)> SecondaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
+    private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, bool charged, BattleAction? expected, string testName)> SecondaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
     {
-        yield return (10, 1, false, BattleAction.AttackSecondary, "Attacks when ammo remaining 1");
-        yield return (10, 1, true, BattleAction.AttackSecondary, "Attacks when ammo remaining 2");
+        yield return (10, 1, false, true, BattleAction.AttackSecondary, "Attacks when ammo remaining 1");
+        yield return (10, 1, true, true, BattleAction.AttackSecondary, "Attacks when ammo remaining 2");
 
-        yield return (0, 1, true, BattleAction.ReloadSecondary, "Reloads when empty magazine and can reload");
-        yield return (0, 1, false, null, "Skips when empty magazine and can't reload");
+        yield return (0, 1, true, true, BattleAction.ReloadSecondary, "Reloads when empty magazine and can reload");
+        yield return (0, 1, false, true, null, "Skips when empty magazine and can't reload");
 
-        yield return (0, 0, false, null, "Skips when empty magazine and no magazines remaining 1");
-        yield return (0, 0, true, null, "Skips when empty magazine and no magazines remaining 2");
+        yield return (0, 0, false, true, null, "Skips when empty magazine and no magazines remaining 1");
+        yield return (0, 0, true, true, null, "Skips when empty magazine and no magazines remaining 2");
+
+        yield return (10, 1, false, false, BattleAction.ChargeSecondary, "Charges when ammo remaining and needs charge");
+        yield return (0, 1, true, false, BattleAction.ChargeSecondary, "Charges when needs reload and needs charge");
     }
 
     private static IEnumerable<(int currentMagazineAmmo, BattleAction? expected, string testName)> TemporaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()

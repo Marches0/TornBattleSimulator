@@ -12,7 +12,9 @@ public class PlayerContextBuilder
     private BattleStats _battleStats = new BattleStats() {};
     private uint _health;
     private Weapon? _primary;
+    private WeaponContext? _primaryContext;
     private Weapon? _secondary;
+    private WeaponContext? _secondaryContext;
     private Weapon? _melee;
     private Weapon? _temporary;
     private EquippedWeapons? _equippedWeapons;
@@ -30,9 +32,21 @@ public class PlayerContextBuilder
         return this;
     }
 
+    public PlayerContextBuilder WithPrimaryContext(WeaponContext weaponContext)
+    {
+        _primaryContext = weaponContext;
+        return this;
+    }
+
     public PlayerContextBuilder WithSecondary(Weapon weapon)
     {
         _secondary = weapon;
+        return this;
+    }
+
+    public PlayerContextBuilder WithSecondaryContext(WeaponContext weaponContext)
+    {
+        _secondaryContext = weaponContext;
         return this;
     }
 
@@ -79,10 +93,10 @@ public class PlayerContextBuilder
             },
             0,
             _equippedWeapons ?? new EquippedWeapons(
-                _primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<PotentialModifier>()) : null,
-                _secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>()) : null,
-                _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>()) : null,
-                _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>()) : null),
+                _primaryContext ?? (_primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<PotentialModifier>(), new List<IModifier>()) : null),
+                _secondaryContext ?? (_secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>(), new List<IModifier>()) : null),
+                _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>(), new List<IModifier>()) : null,
+                _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>(), new List<IModifier>()) : null),
             new ArmourSetContext(_armour),
             null
             );

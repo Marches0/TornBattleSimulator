@@ -23,6 +23,7 @@ public class DamageCalculator : IDamageCalculator
         DamageContext damageContext = new();
 
         var damage = _damageModifiers
+            .Concat(weapon.AlwaysActiveModifiers.OfType<IDamageModifier>())
             .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
                 (total, modifier) =>
                 {

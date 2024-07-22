@@ -21,5 +21,6 @@ public enum ModifierType
     Hazardous, // todo
     Laceration,
     Poisoned,
-    Shock
+    Shock,
+    Smash
 }

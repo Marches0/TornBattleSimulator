@@ -24,7 +24,7 @@ public class AccuracyCalculatorTests
 
         var calc = new AccuracyCalculator(statModifier, accuracyModifier);
 
-        var mod = calc.GetAccuracy(new PlayerContextBuilder().Build(), new PlayerContextBuilder().Build(), new WeaponContext(new Weapon(), WeaponType.Primary, new List<PotentialModifier>()));
+        var mod = calc.GetAccuracy(new PlayerContextBuilder().Build(), new PlayerContextBuilder().Build(), new WeaponContextBuilder().Build());
 
         // Assert
         A.CallTo(() => accuracyModifier.GetHitChance(A<PlayerContext>._, A<PlayerContext>._, A<WeaponContext>._, statAccuracy))

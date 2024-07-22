@@ -8,5 +8,8 @@ public enum BattleAction
     UseTemporary,
     ReloadPrimary,
     ReloadSecondary,
+    ChargePrimary,
+    ChargeSecondary,
+    ChargeMelee,
     Stunned
 }

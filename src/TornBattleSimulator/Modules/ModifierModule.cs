@@ -8,6 +8,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Actions;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Damage;
 
 namespace TornBattleSimulator.Modules;
 
@@ -78,6 +79,9 @@ public class ModifierModule : Module
 
         builder.RegisterType<ShockModifier>()
             .Keyed<IModifier>(ModifierType.Shock);
+
+        builder.RegisterType<SmashModifier>()
+            .Keyed<IModifier>(ModifierType.Smash);
     }
 
     private void RegisterWeaponModifiers(ContainerBuilder builder)

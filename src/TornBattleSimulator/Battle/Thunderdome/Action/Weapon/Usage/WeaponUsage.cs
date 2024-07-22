@@ -8,6 +8,7 @@ using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Charge;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -44,6 +45,11 @@ public class WeaponUsage : IWeaponUsage
             events.AddRange(
                 attackModifier.MakeAttack(context, active, other, weapon, bonusAttackAction)
             );
+        }
+
+        foreach (ChargedModifierContainer charge in weapon.ChargedModifiers)
+        {
+            charge.Charged = false;
         }
 
         return events;

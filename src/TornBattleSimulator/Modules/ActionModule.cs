@@ -11,6 +11,7 @@ public class ActionModule : Module
     {
         RegisterAttacks(builder);
         RegisterReloads(builder);
+        RegisterCharges(builder);
 
         builder.RegisterType<UseTemporaryAction>()
             .Keyed<IAction>(BattleAction.UseTemporary);
@@ -41,5 +42,17 @@ public class ActionModule : Module
 
         builder.RegisterType<ReloadSecondaryAction>()
             .Keyed<IAction>(BattleAction.ReloadSecondary);
+    }
+
+    private void RegisterCharges(ContainerBuilder builder)
+    {
+        builder.RegisterType<ChargePrimaryAction>()
+            .Keyed<IAction>(BattleAction.ChargePrimary);
+
+        builder.RegisterType<ChargeSecondaryAction>()
+            .Keyed<IAction>(BattleAction.ChargeSecondary);
+
+        builder.RegisterType<ChargeMeleeAction>()
+            .Keyed<IAction>(BattleAction.ChargeMelee);
     }
 }

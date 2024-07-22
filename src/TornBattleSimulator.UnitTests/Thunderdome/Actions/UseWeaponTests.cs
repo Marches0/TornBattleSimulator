@@ -29,10 +29,10 @@ public class UseWeaponTests
     {
         using AutoFake autoFake = new();
         EquippedWeapons weapons = new EquippedWeapons(
-            new WeaponContext(new Weapon(), WeaponType.Primary, new List<PotentialModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Secondary, new List<PotentialModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Melee, new List<PotentialModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Temporary, new List<PotentialModifier>())
+            new WeaponContext(new Weapon(), WeaponType.Primary, new List<PotentialModifier>(), new List<IModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Secondary, new List<PotentialModifier>(), new List<IModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Melee, new List<PotentialModifier>(), new List<IModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Temporary, new List<PotentialModifier>(), new List<IModifier>())
         );
 
         IWeaponUsage usage = autoFake.Resolve<IWeaponUsage>();

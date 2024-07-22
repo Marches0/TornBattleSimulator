@@ -17,6 +17,19 @@ public class ModifierFactory
         ModifierType modifierType,
         double percent)
     {
-        return new PotentialModifier(_modifiers[modifierType], percent / 100);
+        return new PotentialModifier(
+            GetModifier(modifierType),
+            percent / 100
+        );
+    }
+
+    public bool IsPotentialModifier(ModifierType modifierType)
+    {
+        return GetModifier(modifierType) is not IAutoActivateModifier;
+    }
+
+    public IModifier GetModifier(ModifierType modifierType)
+    {
+        return _modifiers[modifierType];
     }
 }

@@ -183,3 +183,19 @@ public class StunnedData : IEventData
         return "Stunned".ToColouredString("#c49bdd");
     }
 }
+
+public class WeaponChargeData : IEventData
+{
+    public WeaponType WeaponType { get; }
+
+    public WeaponChargeData(
+        WeaponType weaponType)
+    {
+        WeaponType = weaponType;
+    }
+
+    public string Format()
+    {
+        return $"Charged {WeaponType}".ToColouredString("#c49bdd");
+    }
+}

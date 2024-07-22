@@ -3,7 +3,7 @@ using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
-public abstract class LoadableWeaponStrategy
+public abstract class LoadableWeaponStrategy : ChargeableWeaponStrategy
 {
     private readonly StrategyDescription _strategyDescription;
 

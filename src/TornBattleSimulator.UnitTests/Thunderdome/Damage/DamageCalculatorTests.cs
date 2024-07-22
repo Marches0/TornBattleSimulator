@@ -1,8 +1,11 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
+using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
@@ -11,7 +14,7 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
 public class DamageCalculatorTests
 {
     [Test]
-    public void DamageCalculator_CompoundsDamageMultipliers()
+    public void CalculateDamage_CompoundsDamageMultipliers()
     {
         // Arrange
         using AutoFake autoFake = new();
@@ -25,15 +28,16 @@ public class DamageCalculatorTests
 
         var attacker = new PlayerContextBuilder().Build();
         var defender = new PlayerContextBuilder().Build();
+        var weapon = new WeaponContextBuilder().WithModifier(new StaticDamageModifier(0.5)).Build();
 
         // Act
-        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, null).Damage;
+        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).Damage;
 
         // Assert
-        damage.Should().Be(5);
+        damage.Should().Be(2);
     }
 
-    private class StaticDamageModifier : IDamageModifier
+    private class StaticDamageModifier : IDamageModifier, IAutoActivateModifier, IModifier
     {
         private readonly double _multipler;
 
@@ -41,6 +45,16 @@ public class DamageCalculatorTests
         {
             _multipler = multipler;
         }
+
+        public ModifierLifespanDescription Lifespan => throw new NotImplementedException();
+
+        public bool RequiresDamageToApply => throw new NotImplementedException();
+
+        public ModifierTarget Target => throw new NotImplementedException();
+
+        public ModifierApplication AppliesAt => throw new NotImplementedException();
+
+        public ModifierType Effect => throw new NotImplementedException();
 
         public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
         {

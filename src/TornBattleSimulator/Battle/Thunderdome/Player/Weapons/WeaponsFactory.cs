@@ -34,13 +34,29 @@ public class WeaponsFactory
     {
         return weapon is null
             ? null
-            : new WeaponContext(weapon, weaponType, GetModifiers(weapon));
+            : new WeaponContext(
+                weapon,
+                weaponType,
+                GetPotentialModifiers(weapon),
+                GetOtherModifiers(weapon)
+            );
     }
 
-    private List<PotentialModifier> GetModifiers(Weapon weapon)
+    // meh
+    private List<PotentialModifier> GetPotentialModifiers(Weapon weapon)
     {
         return weapon.Modifiers
+            .Where(m => _modifierFactory.IsPotentialModifier(m.Type))
             .Select(m => _modifierFactory.GetPotentialModifier(m.Type, m.Percent))
+            .ToList();
+    }
+
+    // meh
+    private List<IModifier> GetOtherModifiers(Weapon weapon)
+    {
+        return weapon.Modifiers
+            .Where(m => !_modifierFactory.IsPotentialModifier(m.Type))
+            .Select(m => _modifierFactory.GetModifier(m.Type))
             .ToList();
     }
 }

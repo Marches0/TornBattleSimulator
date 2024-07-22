@@ -17,7 +17,7 @@ public class WeaponAccuracyModifierTests
         PlayerContext attacker = new PlayerContextBuilder().Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
-        var weapon = new WeaponContext(new Weapon() { Accuracy = testData.weaponAccuracy }, WeaponType.Primary, new List<PotentialModifier>());
+        var weapon = new WeaponContextBuilder().WithAccuracy(testData.weaponAccuracy).Build();
 
         // Act
         double mod = new WeaponAccuracyModifier().GetHitChance(attacker, defender, weapon, testData.statAccuracy);

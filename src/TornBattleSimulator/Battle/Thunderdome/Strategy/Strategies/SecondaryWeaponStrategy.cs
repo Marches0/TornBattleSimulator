@@ -15,6 +15,11 @@ public class SecondaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
         PlayerContext self,
         PlayerContext other)
     {
+        if (NeedsCharge(self.Weapons.Secondary!))
+        {
+            return BattleAction.ChargeSecondary;
+        }
+
         return GetMove(context, self, other, self.Weapons.Secondary!) switch
         {
             LoadableWeaponAction.Attack => BattleAction.AttackSecondary,
