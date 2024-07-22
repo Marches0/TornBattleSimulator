@@ -20,7 +20,7 @@ public class WeaponStrategyTests : LoadableWeaponTests
             .WithModifier(new TestChargeableModifier(testData.charged))
             .Build();
 
-        PlayerContext attacker = new PlayerContextBuilder().WithPrimaryContext(weapon).Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithPrimary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
@@ -42,7 +42,7 @@ public class WeaponStrategyTests : LoadableWeaponTests
             .WithModifier(new TestChargeableModifier(testData.charged))
             .Build();
 
-        PlayerContext attacker = new PlayerContextBuilder().WithSecondaryContext(weapon).Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithSecondary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
@@ -58,7 +58,7 @@ public class WeaponStrategyTests : LoadableWeaponTests
     [Test]
     public void MeleeWeaponStrategy_ReturnsAttack()
     {
-        PlayerContext attacker = new PlayerContextBuilder().WithMelee(new Weapon()).Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithMelee(new WeaponContextBuilder().Build()).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
         
         BattleAction? action = new MeleeWeaponStrategy(new StrategyDescription()).GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
@@ -69,7 +69,7 @@ public class WeaponStrategyTests : LoadableWeaponTests
     [TestCaseSource(nameof(TemporaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData))]
     public void TemporaryWeaponStrategy_BasedOnStatus_PerformsAction((int currentMagazineAmmo, BattleAction? expected, string testName) testData)
     {
-        PlayerContext attacker = new PlayerContextBuilder().WithTemporary(new Weapon() { Ammo = new Ammo() { Magazines = 0, MagazineSize = 1 }, Damage = 200, Accuracy = 200 }).Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithTemporary(new WeaponContextBuilder().WithAmmo(0, 1).Build()).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
         attacker.Weapons.Temporary.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;

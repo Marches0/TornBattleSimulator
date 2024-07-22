@@ -77,7 +77,7 @@ public class WeaponUsageTests : LoadableWeaponTests
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
         autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysSucceeds);
 
-        PlayerContext attacker = new PlayerContextBuilder().WithMelee(new Weapon() { Damage = 100, Accuracy = 100}).Build();
+        PlayerContext attacker = new PlayerContextBuilder().WithMelee(new WeaponContextBuilder().WithDamage(100).Build()).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();
 
         WeaponUsage weaponUsage = autoFake.Resolve<WeaponUsage>();

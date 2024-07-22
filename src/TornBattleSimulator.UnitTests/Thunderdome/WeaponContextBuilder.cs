@@ -11,6 +11,7 @@ public class WeaponContextBuilder
     private List<IModifier> _modifiers = new List<IModifier>();
     private List<IModifier> _autoModifiers = new List<IModifier>();
     private double _accuracy = 10;
+    private double _damage = 10;
 
     public WeaponContextBuilder WithAmmo(int magazines, int magazineSize)
     {
@@ -27,6 +28,12 @@ public class WeaponContextBuilder
     public WeaponContextBuilder WithAccuracy(double accuracy)
     {
         _accuracy = accuracy;
+        return this;
+    }
+
+    public WeaponContextBuilder WithDamage(double damage)
+    {
+        _damage = damage;
         return this;
     }
 

@@ -11,12 +11,10 @@ public class PlayerContextBuilder
 {
     private BattleStats _battleStats = new BattleStats() {};
     private uint _health;
-    private Weapon? _primary;
-    private WeaponContext? _primaryContext;
-    private Weapon? _secondary;
-    private WeaponContext? _secondaryContext;
-    private Weapon? _melee;
-    private Weapon? _temporary;
+    private WeaponContext? _primary;
+    private WeaponContext? _secondary;
+    private WeaponContext? _melee;
+    private WeaponContext? _temporary;
     private EquippedWeapons? _equippedWeapons;
     private List<ArmourContext> _armour = new();
 
@@ -26,37 +24,25 @@ public class PlayerContextBuilder
         return this;
     }
 
-    public PlayerContextBuilder WithPrimary(Weapon weapon)
+    public PlayerContextBuilder WithPrimary(WeaponContext weapon)
     {
         _primary = weapon;
         return this;
     }
 
-    public PlayerContextBuilder WithPrimaryContext(WeaponContext weaponContext)
-    {
-        _primaryContext = weaponContext;
-        return this;
-    }
-
-    public PlayerContextBuilder WithSecondary(Weapon weapon)
+    public PlayerContextBuilder WithSecondary(WeaponContext weapon)
     {
         _secondary = weapon;
         return this;
     }
 
-    public PlayerContextBuilder WithSecondaryContext(WeaponContext weaponContext)
-    {
-        _secondaryContext = weaponContext;
-        return this;
-    }
-
-    public PlayerContextBuilder WithMelee(Weapon weapon)
+    public PlayerContextBuilder WithMelee(WeaponContext weapon)
     {
         _melee = weapon;
         return this;
     }
 
-    public PlayerContextBuilder WithTemporary(Weapon weapon)
+    public PlayerContextBuilder WithTemporary(WeaponContext weapon)
     {
         _temporary = weapon;
         return this;
@@ -87,16 +73,16 @@ public class PlayerContextBuilder
             {
                 BattleStats = _battleStats,
                 Health = _health,
-                Primary = _primary,
+                /*Primary = _primary,
                 Secondary = _secondary,
-                Melee = _melee
+                Melee = _melee*/
             },
             0,
             _equippedWeapons ?? new EquippedWeapons(
-                _primaryContext ?? (_primary != null ? new WeaponContext(_primary, WeaponType.Primary, new List<PotentialModifier>(), new List<IModifier>()) : null),
-                _secondaryContext ?? (_secondary != null ? new WeaponContext(_secondary, WeaponType.Secondary, new List<PotentialModifier>(), new List<IModifier>()) : null),
-                _melee != null ? new WeaponContext(_melee, WeaponType.Melee, new List<PotentialModifier>(), new List<IModifier>()) : null,
-                _temporary != null ? new WeaponContext(_temporary, WeaponType.Temporary, new List<PotentialModifier>(), new List<IModifier>()) : null),
+                _primary,
+                _secondary,
+                _melee,
+                _temporary),
             new ArmourSetContext(_armour),
             null
             );
