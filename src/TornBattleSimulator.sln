@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TornBattleSimulator", "Torn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TornBattleSimulator.UnitTests", "TornBattleSimulator.UnitTests\TornBattleSimulator.UnitTests.csproj", "{3573DFA2-0007-4B8B-86AA-C13AC42255BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.Core", "TornBattleSimulator.Shared\TornBattleSimulator.Core.csproj", "{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.Core", "TornBattleSimulator.Core\TornBattleSimulator.Core.csproj", "{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.BonusModifiers", "TornBattleSimulator.BonusModifiers\TornBattleSimulator.BonusModifiers.csproj", "{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}"
 EndProject

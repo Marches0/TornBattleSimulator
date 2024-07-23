@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TornBattleSimulator.BonusModifiers\TornBattleSimulator.BonusModifiers.csproj" />
-    <ProjectReference Include="..\TornBattleSimulator.Shared\TornBattleSimulator.Core.csproj" />
+    <ProjectReference Include="..\TornBattleSimulator.Core\TornBattleSimulator.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
