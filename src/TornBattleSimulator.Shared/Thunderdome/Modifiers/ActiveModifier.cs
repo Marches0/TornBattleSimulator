@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 public class ActiveModifier
 {

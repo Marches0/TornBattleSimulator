@@ -1,8 +1,8 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Charge;
+﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+namespace TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 public class WeaponContext
 {
     public WeaponContext(

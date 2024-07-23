@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TornBattleSimulator.Shared\TornBattleSimulator.Shared.csproj" />
+    <ProjectReference Include="..\TornBattleSimulator.Shared\TornBattleSimulator.Core.csproj" />
   </ItemGroup>
 
 </Project>

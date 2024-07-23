@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 
 namespace TornBattleSimulator.Options;
 

@@ -1,9 +1,9 @@
-﻿using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Actions;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action;
 

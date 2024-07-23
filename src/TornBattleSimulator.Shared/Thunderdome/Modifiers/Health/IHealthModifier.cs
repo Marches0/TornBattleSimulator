@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Health;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 
 public interface IHealthModifier : IModifier
 {

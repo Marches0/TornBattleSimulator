@@ -1,13 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 public class ModifierContext : ITickable
 {

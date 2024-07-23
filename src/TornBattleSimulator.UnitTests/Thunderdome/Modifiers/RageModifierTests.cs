@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.BonusModifiers.Attacks;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;

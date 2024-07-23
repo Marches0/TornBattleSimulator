@@ -1,13 +1,13 @@
-﻿using TornBattleSimulator.Shared.Build;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Actions;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Shared.Thunderdome.Player.Armours;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Shared.Thunderdome.Strategy;
+﻿using TornBattleSimulator.Core.Build;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Core.Thunderdome.Player.Armours;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome.Strategy;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Player;
+namespace TornBattleSimulator.Core.Thunderdome.Player;
 
 /// <summary>
 ///  A build taking part in a battle.

@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
+﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 

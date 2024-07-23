@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Actions;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Actions;
 
 public enum BattleAction
 {

@@ -1,8 +1,8 @@
 ﻿using FakeItEasy;
 using TornBattleSimulator.Battle.Thunderdome.Accuracy;
 using TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Accuracy;
 

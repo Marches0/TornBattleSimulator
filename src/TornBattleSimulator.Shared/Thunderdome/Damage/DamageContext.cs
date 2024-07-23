@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Damage;
+namespace TornBattleSimulator.Core.Thunderdome.Damage;
 public class DamageContext
 {
     public BodyPart? TargetBodyPart { get; set; }

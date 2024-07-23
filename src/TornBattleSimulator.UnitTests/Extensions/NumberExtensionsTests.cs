@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Core.Extensions;
 
 namespace TornBattleSimulator.UnitTests.Extensions;
 

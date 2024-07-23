@@ -1,13 +1,13 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Attacks;
 

@@ -1,10 +1,10 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Health;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 

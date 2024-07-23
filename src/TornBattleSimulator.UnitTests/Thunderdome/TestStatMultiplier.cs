@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
 

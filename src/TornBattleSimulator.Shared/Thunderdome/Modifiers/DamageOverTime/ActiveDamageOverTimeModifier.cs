@@ -1,11 +1,11 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+﻿using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 
 public class ActiveDamageOverTimeModifier : ActiveModifier, ITickable
 {

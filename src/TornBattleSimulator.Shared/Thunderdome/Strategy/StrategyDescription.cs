@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
+﻿using TornBattleSimulator.Core.Build.Equipment;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Strategy;
+namespace TornBattleSimulator.Core.Thunderdome.Strategy;
 
 public class StrategyDescription
 {

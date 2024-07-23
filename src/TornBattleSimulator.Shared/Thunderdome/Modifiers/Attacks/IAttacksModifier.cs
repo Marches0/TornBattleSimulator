@@ -1,8 +1,8 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Attacks;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 
 public interface IAttacksModifier : IModifier
 {

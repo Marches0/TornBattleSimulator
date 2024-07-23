@@ -2,12 +2,12 @@
 using FakeItEasy;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Actions;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
 

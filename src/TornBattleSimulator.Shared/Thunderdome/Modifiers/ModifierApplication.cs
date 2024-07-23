@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 public enum ModifierApplication
 {

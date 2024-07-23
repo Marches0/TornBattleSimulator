@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Actions;
+namespace TornBattleSimulator.Core.Thunderdome.Actions;
 
 public interface IAction
 {

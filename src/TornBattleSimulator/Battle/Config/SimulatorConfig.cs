@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Shared.Build;
+﻿using TornBattleSimulator.Core.Build;
 
 namespace TornBattleSimulator.Battle.Config;
 

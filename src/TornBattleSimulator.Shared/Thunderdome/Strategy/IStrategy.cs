@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Actions;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Strategy;
+namespace TornBattleSimulator.Core.Thunderdome.Strategy;
 
 public interface IStrategy
 {

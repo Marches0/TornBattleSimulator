@@ -1,9 +1,9 @@
-﻿using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
-namespace TornBattleSimulator.Shared.Extensions;
+namespace TornBattleSimulator.Core.Extensions;
 
 public static class ThunderdomeContextExtensions
 {

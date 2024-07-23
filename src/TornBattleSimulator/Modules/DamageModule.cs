@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 
 namespace TornBattleSimulator.Modules;
 public class DamageModule : Module

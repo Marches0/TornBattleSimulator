@@ -1,5 +1,5 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Chance;
-using TornBattleSimulator.Shared.Thunderdome.Chance.Source;
+﻿using TornBattleSimulator.Core.Thunderdome.Chance;
+using TornBattleSimulator.Core.Thunderdome.Chance.Source;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Chance;
 

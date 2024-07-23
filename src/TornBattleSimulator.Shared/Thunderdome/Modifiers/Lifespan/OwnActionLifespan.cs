@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 public class OwnActionLifespan : IModifierLifespan
 {

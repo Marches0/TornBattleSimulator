@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 

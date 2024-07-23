@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 

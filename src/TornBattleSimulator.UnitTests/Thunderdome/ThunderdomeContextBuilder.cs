@@ -1,5 +1,5 @@
-﻿using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
 

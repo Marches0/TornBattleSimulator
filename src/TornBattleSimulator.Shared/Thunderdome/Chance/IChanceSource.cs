@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Chance;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Chance;
 
 public interface IChanceSource
 {

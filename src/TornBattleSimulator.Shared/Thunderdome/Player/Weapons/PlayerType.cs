@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 public enum PlayerType
 {

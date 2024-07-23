@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Player.Armours;
+namespace TornBattleSimulator.Core.Thunderdome.Player.Armours;
 
 public class ArmourContext
 {

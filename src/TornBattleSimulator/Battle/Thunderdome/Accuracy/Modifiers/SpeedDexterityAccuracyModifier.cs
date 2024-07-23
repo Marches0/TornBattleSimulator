@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
 

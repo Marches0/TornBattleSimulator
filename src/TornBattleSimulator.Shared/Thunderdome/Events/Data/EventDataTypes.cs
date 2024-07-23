@@ -1,10 +1,10 @@
-﻿using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Events.Data;
+namespace TornBattleSimulator.Core.Thunderdome.Events.Data;
 public interface IEventData
 {
     string Format();

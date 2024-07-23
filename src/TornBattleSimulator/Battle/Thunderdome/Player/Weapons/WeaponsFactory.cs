@@ -1,8 +1,8 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Build;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Build;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 public class WeaponsFactory

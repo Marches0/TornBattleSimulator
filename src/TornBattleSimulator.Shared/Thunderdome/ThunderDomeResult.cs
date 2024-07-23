@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome;
+﻿namespace TornBattleSimulator.Core.Thunderdome;
 
 public enum ThunderDomeResult
 {

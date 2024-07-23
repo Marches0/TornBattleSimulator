@@ -1,6 +1,6 @@
 ﻿using Autofac.Features.Indexed;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 

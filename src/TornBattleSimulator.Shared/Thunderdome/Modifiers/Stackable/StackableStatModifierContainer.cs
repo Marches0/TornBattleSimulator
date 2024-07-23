@@ -1,12 +1,12 @@
-﻿using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+﻿using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
-namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 
 public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 {

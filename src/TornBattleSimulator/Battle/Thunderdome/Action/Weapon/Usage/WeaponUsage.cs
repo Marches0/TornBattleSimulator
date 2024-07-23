@@ -1,16 +1,16 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
-using TornBattleSimulator.Shared.Thunderdome.Player;
-using TornBattleSimulator.Shared.Build.Equipment;
-using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Shared.Thunderdome;
-using TornBattleSimulator.Shared.Thunderdome.Events;
-using TornBattleSimulator.Shared.Thunderdome.Damage;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Charge;
-using TornBattleSimulator.Shared.Extensions;
-using TornBattleSimulator.Shared.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Shared.Thunderdome.Chance;
-using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Core.Thunderdome.Chance;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 

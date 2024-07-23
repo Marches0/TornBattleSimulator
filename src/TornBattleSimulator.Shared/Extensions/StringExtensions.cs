@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Extensions;
+﻿namespace TornBattleSimulator.Core.Extensions;
 
 public static class StringExtensions
 {

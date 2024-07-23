@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Build.Equipment;
+﻿namespace TornBattleSimulator.Core.Build.Equipment;
 
 public enum ModifierType
 {

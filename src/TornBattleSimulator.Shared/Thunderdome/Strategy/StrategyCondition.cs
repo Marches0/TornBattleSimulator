@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Strategy;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Strategy;
 
 public enum StrategyCondition
 {

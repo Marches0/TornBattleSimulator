@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 
 public interface IStatsModifier : IModifier
 {
