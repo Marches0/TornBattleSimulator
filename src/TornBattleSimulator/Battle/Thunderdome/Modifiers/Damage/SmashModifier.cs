@@ -4,6 +4,7 @@ using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Charge;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Damage;
 

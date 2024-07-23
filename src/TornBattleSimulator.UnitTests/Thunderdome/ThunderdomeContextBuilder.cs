@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
 

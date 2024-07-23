@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Accuracy;
 

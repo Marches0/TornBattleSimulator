@@ -7,6 +7,7 @@ using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
 

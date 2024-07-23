@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Build;
+using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
@@ -8,7 +9,7 @@ using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 using TornBattleSimulator.Extensions;
 
-namespace TornBattleSimulator.Battle.Thunderdome;
+namespace TornBattleSimulator.Shared.Thunderdome.Player;
 
 /// <summary>
 ///  A build taking part in a battle.

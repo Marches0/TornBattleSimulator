@@ -6,6 +6,7 @@ using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator;
 

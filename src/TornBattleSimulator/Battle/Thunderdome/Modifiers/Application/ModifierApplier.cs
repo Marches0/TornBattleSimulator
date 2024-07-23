@@ -5,6 +5,7 @@ using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 

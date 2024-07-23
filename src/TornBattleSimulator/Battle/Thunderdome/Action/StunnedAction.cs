@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Events.Data;
 using TornBattleSimulator.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action;
 

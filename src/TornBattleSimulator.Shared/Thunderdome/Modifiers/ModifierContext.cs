@@ -5,6 +5,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Extensions;
 using TornBattleSimulator.Battle.Thunderdome.Events;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 

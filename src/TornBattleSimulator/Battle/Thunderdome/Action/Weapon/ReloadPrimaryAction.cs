@@ -1,5 +1,6 @@
 ﻿namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Events;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 public class ReloadPrimaryAction : ReloadWeaponAction, IAction
 {

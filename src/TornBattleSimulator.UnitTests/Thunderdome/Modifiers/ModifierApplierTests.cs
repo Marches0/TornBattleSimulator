@@ -7,6 +7,7 @@ using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;

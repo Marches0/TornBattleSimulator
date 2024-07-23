@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
 

@@ -5,7 +5,11 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TornBattleSimulator", "TornBattleSimulator\TornBattleSimulator.csproj", "{47DCBFA0-4038-4D03-96CA-844D20EA8D86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.UnitTests", "TornBattleSimulator.UnitTests\TornBattleSimulator.UnitTests.csproj", "{3573DFA2-0007-4B8B-86AA-C13AC42255BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TornBattleSimulator.UnitTests", "TornBattleSimulator.UnitTests\TornBattleSimulator.UnitTests.csproj", "{3573DFA2-0007-4B8B-86AA-C13AC42255BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.Shared", "TornBattleSimulator.Shared\TornBattleSimulator.Shared.csproj", "{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TornBattleSimulator.BonusModifiers", "TornBattleSimulator.BonusModifiers\TornBattleSimulator.BonusModifiers.csproj", "{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3573DFA2-0007-4B8B-86AA-C13AC42255BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62ED5FF-6CE5-4AE7-A51D-5C853252F0E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD6EBC5-5660-4F04-8A4E-D5ACEA0E747A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

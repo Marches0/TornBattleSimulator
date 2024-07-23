@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Battle\Thunderdome\Modifiers\Accuracy\**" />
+    <Compile Remove="Battle\Thunderdome\Modifiers\Armour\**" />
+    <EmbeddedResource Remove="Battle\Thunderdome\Modifiers\Accuracy\**" />
+    <EmbeddedResource Remove="Battle\Thunderdome\Modifiers\Armour\**" />
+    <None Remove="Battle\Thunderdome\Modifiers\Accuracy\**" />
+    <None Remove="Battle\Thunderdome\Modifiers\Armour\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
@@ -17,9 +26,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Battle\Thunderdome\Modifiers\Accuracy\" />
-    <Folder Include="Battle\Thunderdome\Modifiers\Armour\" />
+    <Folder Include="Battle\Thunderdome\Modifiers\Charge\" />
+    <Folder Include="Battle\Thunderdome\Modifiers\Lifespan\" />
+    <Folder Include="Battle\Thunderdome\Modifiers\Stacking\" />
     <Folder Include="Battle\Thunderdome\Output\" />
+    <Folder Include="Battle\Thunderdome\Strategy\Description\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TornBattleSimulator.BonusModifiers\TornBattleSimulator.BonusModifiers.csproj" />
+    <ProjectReference Include="..\TornBattleSimulator.Shared\TornBattleSimulator.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
