@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Battle\Thunderdome\Modifiers\Charge\" />
+    <Folder Include="Battle\Thunderdome\Modifiers\Damage\" />
     <Folder Include="Battle\Thunderdome\Modifiers\Lifespan\" />
     <Folder Include="Battle\Thunderdome\Modifiers\Stacking\" />
     <Folder Include="Battle\Thunderdome\Output\" />
