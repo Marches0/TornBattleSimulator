@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Action;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
+using TornBattleSimulator.Shared.Thunderdome.Actions;
 
 namespace TornBattleSimulator.Modules;
 

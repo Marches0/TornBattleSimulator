@@ -1,9 +1,10 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Thunderdome;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.BonusModifiers.DamageOverTime;
+using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;

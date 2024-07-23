@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Battle.Build.Equipment;
+namespace TornBattleSimulator.Shared.Build.Equipment;
 
 public class Weapon
 {

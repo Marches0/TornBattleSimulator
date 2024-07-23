@@ -1,10 +1,12 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Health;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
+namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 
 public class HardenedModifier : IStatsModifier, IHealthModifier
 {

@@ -1,10 +1,10 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Extensions;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Events.Data;
+namespace TornBattleSimulator.Shared.Thunderdome.Events.Data;
 public interface IEventData
 {
     string Format();
@@ -64,7 +64,7 @@ public class AttackMissedEvent : IEventData
     public string Format()
     {
         return $"{Weapon} @ {HitChance:P1} missed";
-    } 
+    }
 }
 
 public class ReloadEvent : IEventData

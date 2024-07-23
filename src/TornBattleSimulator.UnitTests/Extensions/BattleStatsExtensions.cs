@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Extensions;
+using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.UnitTests.Thunderdome;
 
 namespace TornBattleSimulator.UnitTests.Extensions;

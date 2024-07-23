@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
+﻿using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
 
-namespace TornBattleSimulator.Extensions;
+namespace TornBattleSimulator.Shared.Extensions;
 
 public static class BattleStatsExtensions
 {

@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Damage;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Damage;
 
 [Flags]
 public enum DamageFlags

@@ -1,13 +1,14 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
-using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
 

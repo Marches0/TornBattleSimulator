@@ -1,13 +1,11 @@
-﻿using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Thunderdome;
-using TornBattleSimulator.Battle.Thunderdome.Action;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Battle.Thunderdome.Player;
-using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
-using TornBattleSimulator.Extensions;
+﻿using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Actions;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
+using TornBattleSimulator.Shared.Thunderdome.Player.Armours;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Shared.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Shared.Thunderdome.Player;
 

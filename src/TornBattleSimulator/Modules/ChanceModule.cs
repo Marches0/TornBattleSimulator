@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Chance.Source;
 using TornBattleSimulator.Battle.Thunderdome.Chance;
+using TornBattleSimulator.Shared.Thunderdome.Chance.Source;
+using TornBattleSimulator.Shared.Thunderdome.Chance;
 
 namespace TornBattleSimulator.Modules;
 

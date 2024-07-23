@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
-using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
+﻿using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
+using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
 

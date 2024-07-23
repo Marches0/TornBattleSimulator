@@ -1,6 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Accuracy;
 

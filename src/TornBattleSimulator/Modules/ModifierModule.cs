@@ -1,14 +1,15 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Temporary.Needles;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Weapon;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Actions;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.BonusModifiers.Actions;
+using TornBattleSimulator.BonusModifiers.Attacks;
+using TornBattleSimulator.BonusModifiers.Damage;
+using TornBattleSimulator.BonusModifiers.DamageOverTime;
+using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
+using TornBattleSimulator.BonusModifiers.Stats.Temporary;
+using TornBattleSimulator.BonusModifiers.Stats.Weapon;
 
 namespace TornBattleSimulator.Modules;
 

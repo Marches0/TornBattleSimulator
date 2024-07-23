@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Strategy;
 
 public class StrategyUntil
 {

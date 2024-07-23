@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats;
+﻿using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
+namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
 
 public interface IStackableModifier
 {

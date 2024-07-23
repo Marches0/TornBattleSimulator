@@ -1,21 +1,21 @@
 ﻿using System.Collections.ObjectModel;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Events.Data;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
-using TornBattleSimulator.Extensions;
-using TornBattleSimulator.Battle.Thunderdome.Events;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Events;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
+using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
+using TornBattleSimulator.Shared.Thunderdome.Events.Data;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
+namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
 
 public class ModifierContext : ITickable
 {
-    public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier> (_activeModifiers.Select(m => m.Modifier).ToList());
+    public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(_activeModifiers.Select(m => m.Modifier).ToList());
 
     private List<ActiveModifier> _activeModifiers = new();
 
-    private IEnumerable<ITickable> _tickables => 
+    private IEnumerable<ITickable> _tickables =>
         _activeModifiers.Select(m => m.CurrentLifespan)
         .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>());
 

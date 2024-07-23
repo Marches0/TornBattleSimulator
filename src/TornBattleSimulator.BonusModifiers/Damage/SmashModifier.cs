@@ -1,12 +1,13 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Charge;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Charge;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Damage;
+namespace TornBattleSimulator.BonusModifiers.Damage;
 
 public class SmashModifier : IChargeableModifier, IDamageModifier, IAutoActivateModifier
 {

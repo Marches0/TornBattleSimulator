@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Build.Equipment;
+﻿namespace TornBattleSimulator.Shared.Build.Equipment;
 
 public class ModifierDescription
 {

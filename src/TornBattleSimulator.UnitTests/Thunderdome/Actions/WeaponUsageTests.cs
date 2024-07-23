@@ -1,11 +1,10 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
-using TornBattleSimulator.Battle.Thunderdome.Chance;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Chance;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 using TornBattleSimulator.UnitTests.Chance;
 

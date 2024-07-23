@@ -1,7 +1,4 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using FluentAssertions;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 

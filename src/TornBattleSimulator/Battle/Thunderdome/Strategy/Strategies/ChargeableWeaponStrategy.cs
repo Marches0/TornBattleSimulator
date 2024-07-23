@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 

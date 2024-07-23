@@ -1,6 +1,9 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage;
 

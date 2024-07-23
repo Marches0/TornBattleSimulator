@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
+using TornBattleSimulator.Shared.Thunderdome;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;

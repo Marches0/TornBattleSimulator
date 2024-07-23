@@ -2,6 +2,8 @@
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Chance;
 using TornBattleSimulator.Battle.Thunderdome.Chance.Source;
+using TornBattleSimulator.Shared.Thunderdome.Chance;
+using TornBattleSimulator.Shared.Thunderdome.Chance.Source;
 using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Chance;

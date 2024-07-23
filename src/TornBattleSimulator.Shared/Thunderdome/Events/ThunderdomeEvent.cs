@@ -1,8 +1,8 @@
-﻿using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Thunderdome.Events.Data;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Events;
+namespace TornBattleSimulator.Shared.Thunderdome.Events;
 
 public class ThunderdomeEvent
 {

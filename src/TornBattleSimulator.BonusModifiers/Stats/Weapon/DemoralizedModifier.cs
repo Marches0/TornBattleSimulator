@@ -1,8 +1,10 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Stacking;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stackable;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Stats;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Stats.Weapon;
+namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 
 public class DemoralizedModifier : IStackableStatModifier
 {

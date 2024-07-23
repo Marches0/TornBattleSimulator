@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
 
 public interface IDamageOverTimeModifier : IModifier
 {

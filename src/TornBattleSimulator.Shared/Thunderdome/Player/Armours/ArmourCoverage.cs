@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Player.Armours;
+namespace TornBattleSimulator.Shared.Thunderdome.Player.Armours;
 
 public class ArmourCoverage
 {

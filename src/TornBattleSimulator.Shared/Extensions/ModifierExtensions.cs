@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+﻿using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.Extensions;
+namespace TornBattleSimulator.Shared.Extensions;
 
 public static class ModifierExtensions
 {

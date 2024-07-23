@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
+﻿using TornBattleSimulator.Shared.Thunderdome.Chance;
 
 namespace TornBattleSimulator.UnitTests.Chance;
 

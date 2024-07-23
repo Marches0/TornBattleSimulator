@@ -1,10 +1,12 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Chance;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
-using TornBattleSimulator.Battle.Thunderdome.Events;
-using TornBattleSimulator.Battle.Thunderdome.Events.Data;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Health;
-using TornBattleSimulator.Extensions;
+﻿using TornBattleSimulator.Shared.Extensions;
+using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Chance;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Events;
+using TornBattleSimulator.Shared.Thunderdome.Events.Data;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;

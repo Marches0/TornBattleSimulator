@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
-using TornBattleSimulator.Battle.Build;
 using TornBattleSimulator.Battle.Config;
 using TornBattleSimulator.Battle.Thunderdome;
 using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Input;
+using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Thunderdome;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator;
 

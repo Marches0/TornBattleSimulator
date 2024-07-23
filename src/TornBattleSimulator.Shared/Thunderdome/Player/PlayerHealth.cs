@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Player;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Player;
 
 public class PlayerHealth
 {

@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
 
 public class PotentialModifier
 {

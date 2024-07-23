@@ -1,5 +1,7 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
-using TornBattleSimulator.Battle.Thunderdome.Events;
+using TornBattleSimulator.Shared.Thunderdome;
+using TornBattleSimulator.Shared.Thunderdome.Actions;
+using TornBattleSimulator.Shared.Thunderdome.Events;
 using TornBattleSimulator.Shared.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;

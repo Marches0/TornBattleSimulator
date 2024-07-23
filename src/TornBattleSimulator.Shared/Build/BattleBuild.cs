@@ -1,8 +1,8 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Shared.Thunderdome.Strategy;
 
-namespace TornBattleSimulator.Battle.Build;
+namespace TornBattleSimulator.Shared.Build;
 
 // Supported by validator + model builder
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.

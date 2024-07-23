@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Charge;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Modifiers.Charge;
 
 public class ChargedModifierContainer
 {

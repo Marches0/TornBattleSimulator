@@ -1,7 +1,9 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.DamageOverTime;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.DamageOverTime;
+namespace TornBattleSimulator.BonusModifiers.DamageOverTime;
 
 public class SevereBurningModifier : IDamageOverTimeModifier
 {

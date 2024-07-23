@@ -1,4 +1,4 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
+﻿using TornBattleSimulator.Shared.Thunderdome.Player.Armours;
 
 namespace TornBattleSimulator.Options;
 

@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Player.Armours;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Player.Armours;
 
 public class ArmourSetContext
 {

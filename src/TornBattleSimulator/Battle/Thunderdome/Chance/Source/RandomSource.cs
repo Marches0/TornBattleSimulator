@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Chance.Source;
+﻿using TornBattleSimulator.Shared.Thunderdome.Chance.Source;
+
+namespace TornBattleSimulator.Battle.Thunderdome.Chance.Source;
 
 public class RandomSource : IRandomSource
 {

@@ -1,7 +1,7 @@
-﻿using TornBattleSimulator.Battle.Build.Equipment;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
+namespace TornBattleSimulator.Shared.Thunderdome.Modifiers;
 
 public interface IModifier
 {

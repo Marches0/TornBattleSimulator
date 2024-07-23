@@ -1,15 +1,10 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TornBattleSimulator.Battle.Build;
-using TornBattleSimulator.Battle.Build.Equipment;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
-using TornBattleSimulator.Battle.Thunderdome.Strategy.Description;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
+using TornBattleSimulator.Shared.Build;
+using TornBattleSimulator.Shared.Build.Equipment;
+using TornBattleSimulator.Shared.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 

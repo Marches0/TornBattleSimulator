@@ -1,6 +1,6 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+﻿using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
 
-namespace TornBattleSimulator.Battle.Thunderdome.Damage;
+namespace TornBattleSimulator.Shared.Thunderdome.Damage;
 
 public class DamageResult
 {

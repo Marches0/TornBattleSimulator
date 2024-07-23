@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Events;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Events;
 
 public enum ThunderdomeEventType
 {

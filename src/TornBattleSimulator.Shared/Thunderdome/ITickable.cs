@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome;
+﻿namespace TornBattleSimulator.Shared.Thunderdome;
 
 public interface ITickable
 {

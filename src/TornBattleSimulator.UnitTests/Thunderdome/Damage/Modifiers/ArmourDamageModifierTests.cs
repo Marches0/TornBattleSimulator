@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
-using TornBattleSimulator.Battle.Thunderdome.Chance;
-using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
+using TornBattleSimulator.Shared.Thunderdome.Damage;
+using TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Shared.Thunderdome.Modifiers;
 using TornBattleSimulator.Shared.Thunderdome.Player;
+using TornBattleSimulator.Shared.Thunderdome.Player.Armours;
 using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage.Modifiers;

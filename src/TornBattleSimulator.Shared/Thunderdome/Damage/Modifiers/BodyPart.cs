@@ -1,4 +1,4 @@
-﻿namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+﻿namespace TornBattleSimulator.Shared.Thunderdome.Damage.Modifiers;
 public enum BodyPart
 {
     Head = 1,
