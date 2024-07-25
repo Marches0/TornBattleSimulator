@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
@@ -17,7 +18,8 @@ public class RageModifierTests
         // Arrange
         int attackCount = 5;
         FixedChanceSource chanceSource = new FixedChanceSource(true, attackCount);
-        RageModifier rageModifier = new(chanceSource);
+        RageModifier rageModifier = new();
+        AttackModifierApplier attackModifierApplier = new(chanceSource);
 
         ThunderdomeContext context = new ThunderdomeContextBuilder().Build();
         PlayerContext active = new PlayerContextBuilder().Build();
@@ -32,14 +34,13 @@ public class RageModifierTests
         };
 
         // Act
-        rageModifier.MakeAttack(
+        attackModifierApplier.MakeBonusAttacks(rageModifier,
             context,
             active,
             other,
             weapon,
-            attackAction
-        );
-
+            attackAction);
+        
         // Assert
         attacksMade.Should().Be(attackCount);
     }

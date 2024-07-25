@@ -11,6 +11,7 @@ using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -20,17 +21,20 @@ public class WeaponUsage : IWeaponUsage
     private readonly IAccuracyCalculator _accuracyCalculator;
     private readonly ModifierApplier _modifierApplier;
     private readonly IChanceSource _chanceSource;
+    private readonly AttackModifierApplier _attackModifierApplier;
 
     public WeaponUsage(
         IDamageCalculator damageCalculator,
         IAccuracyCalculator accuracyCalculator,
         ModifierApplier modifierApplier,
-        IChanceSource chanceSource)
+        IChanceSource chanceSource,
+        AttackModifierApplier attackModifierApplier)
     {
         _damageCalculator = damageCalculator;
         _accuracyCalculator = accuracyCalculator;
         _modifierApplier = modifierApplier;
         _chanceSource = chanceSource;
+        _attackModifierApplier = attackModifierApplier;
     }
 
     public List<ThunderdomeEvent> UseWeapon(
@@ -45,7 +49,7 @@ public class WeaponUsage : IWeaponUsage
         foreach (IAttacksModifier attackModifier in active.Modifiers.Active.OfType<IAttacksModifier>())
         {
             events.AddRange(
-                attackModifier.MakeAttack(context, active, other, weapon, bonusAttackAction)
+                _attackModifierApplier.MakeBonusAttacks(attackModifier, context, active, other, weapon, bonusAttackAction)
             );
         }
 

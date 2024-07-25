@@ -40,7 +40,7 @@ public class ModifierFactory
             ModifierType.Smash => new SmashModifier(),
 
             ModifierType.Fury => new FuryModifier(),
-            ModifierType.Rage => new RageModifier(null), // hmm
+            ModifierType.Rage => new RageModifier(),
             ModifierType.Achilles => new AchillesModifier(percent / 100),
 
             0 => throw new ArgumentOutOfRangeException()

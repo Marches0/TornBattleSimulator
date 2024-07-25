@@ -1,9 +1,11 @@
 ﻿using FluentAssertions;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 
@@ -17,6 +19,8 @@ public class BlindfireModifierTests
         PlayerContext active = new PlayerContextBuilder().Build();
         PlayerContext other = new PlayerContextBuilder().Build();
         ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
+
+        AttackModifierApplier attackModifierApplier = new(FixedChanceSource.AlwaysFails);
 
         // 10 attacks
         WeaponContext weapon = new WeaponContextBuilder().WithAmmo(1, 20).Build();
@@ -36,7 +40,7 @@ public class BlindfireModifierTests
         BlindfireModifier blindfire = new BlindfireModifier();
 
         // Act
-        blindfire.MakeAttack(context, active, other, weapon, attackAction);
+        attackModifierApplier.MakeBonusAttacks(blindfire, context, active, other, weapon, attackAction);
 
         // Assert
         attacksMade.Should().Be(expectedAttacks);

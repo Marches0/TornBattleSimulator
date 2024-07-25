@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "achilles",
-						"percent": 50
+						"type": "rage",
+						"percent": 100
 					}
 				]
 			},

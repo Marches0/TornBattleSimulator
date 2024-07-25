@@ -1,15 +1,7 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
-using TornBattleSimulator.BonusModifiers.Actions;
-using TornBattleSimulator.BonusModifiers.Attacks;
-using TornBattleSimulator.BonusModifiers.Damage;
-using TornBattleSimulator.BonusModifiers.DamageOverTime;
-using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
-using TornBattleSimulator.BonusModifiers.Stats.Temporary;
-using TornBattleSimulator.BonusModifiers.Stats.Weapon;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 namespace TornBattleSimulator.Modules;
 
@@ -21,6 +13,9 @@ public class ModifierModule : Module
             .As<ModifierFactory>();
 
         builder.RegisterType<ModifierApplier>()
-            .As<ModifierApplier>();   
+            .As<ModifierApplier>();
+
+        builder.RegisterType<AttackModifierApplier>()
+            .As<AttackModifierApplier>();
     }
 }

@@ -25,15 +25,6 @@
     <PackageReference Include="Spectre.Console" Version="0.49.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Battle\Thunderdome\Modifiers\Charge\" />
-    <Folder Include="Battle\Thunderdome\Modifiers\Damage\" />
-    <Folder Include="Battle\Thunderdome\Modifiers\Lifespan\" />
-    <Folder Include="Battle\Thunderdome\Modifiers\Stacking\" />
-    <Folder Include="Battle\Thunderdome\Output\" />
-    <Folder Include="Battle\Thunderdome\Strategy\Description\" />
-    <Folder Include="Extensions\" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TornBattleSimulator.BonusModifiers\TornBattleSimulator.BonusModifiers.csproj" />

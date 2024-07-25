@@ -6,10 +6,5 @@ namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 
 public interface IAttacksModifier : IModifier
 {
-    List<ThunderdomeEvent> MakeAttack(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        Func<List<ThunderdomeEvent>> attackAction);
+    
 }
