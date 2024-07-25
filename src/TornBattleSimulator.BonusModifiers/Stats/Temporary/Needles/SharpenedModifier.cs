@@ -26,4 +26,6 @@ public class SharpenedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Sharpened;
 
     public StatModificationType Type => StatModificationType.Additive;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

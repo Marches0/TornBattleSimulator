@@ -39,7 +39,7 @@ public class DamageCalculatorTests
         damage.Should().Be(2);
     }
 
-    private class StaticDamageModifier : IDamageModifier, IAutoActivateModifier, IModifier
+    private class StaticDamageModifier : IDamageModifier, IModifier
     {
         private readonly double _multipler;
 
@@ -57,6 +57,8 @@ public class DamageCalculatorTests
         public ModifierApplication AppliesAt => throw new NotImplementedException();
 
         public ModifierType Effect => throw new NotImplementedException();
+
+        public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 
         public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
         {

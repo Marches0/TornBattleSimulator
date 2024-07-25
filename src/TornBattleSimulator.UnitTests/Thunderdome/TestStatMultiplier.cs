@@ -45,4 +45,6 @@ internal class TestStatMultiplier : IStatsModifier
     public float GetStrengthModifier() => _strengthModifier;
 
     public StatModificationType Type { get; }
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

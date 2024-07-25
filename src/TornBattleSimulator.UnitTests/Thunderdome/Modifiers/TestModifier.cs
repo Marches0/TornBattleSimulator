@@ -4,6 +4,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+
 public class TestModifier : IModifier
 {
     public TestModifier(ModifierLifespanDescription lifespan)
@@ -20,6 +21,8 @@ public class TestModifier : IModifier
     public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
 
     public ModifierType Effect => ModifierType.Gassed;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }
 
 public class TestDoTModifier : IDamageOverTimeModifier
@@ -40,4 +43,6 @@ public class TestDoTModifier : IDamageOverTimeModifier
     public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.SevereBurning;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

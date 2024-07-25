@@ -26,4 +26,6 @@ public class SmokedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Smoked;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

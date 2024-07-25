@@ -26,4 +26,6 @@ public class MacedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Maced;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

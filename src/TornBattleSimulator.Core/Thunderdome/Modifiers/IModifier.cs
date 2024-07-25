@@ -14,4 +14,6 @@ public interface IModifier
     ModifierApplication AppliesAt { get; }
 
     public ModifierType Effect { get; }
+
+    public ModifierValueBehaviour ValueBehaviour { get; }
 }

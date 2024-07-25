@@ -31,4 +31,6 @@ public class HardenedModifier : IStatsModifier, IHealthModifier
     public ModifierType Effect => ModifierType.Hardened;
 
     public StatModificationType Type => StatModificationType.Additive;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

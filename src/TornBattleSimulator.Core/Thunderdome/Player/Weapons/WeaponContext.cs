@@ -23,9 +23,7 @@ public class WeaponContext
         } : null;
 
         Modifiers = chanceModifiers;
-
         AlwaysActiveModifiers = otherModifiers
-            .OfType<IAutoActivateModifier>()
             .Cast<IModifier>()
             .ToList();
 

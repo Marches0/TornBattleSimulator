@@ -26,4 +26,6 @@ public class GassedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Gassed;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

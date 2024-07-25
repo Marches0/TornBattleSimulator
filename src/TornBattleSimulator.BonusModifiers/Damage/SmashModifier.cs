@@ -9,7 +9,7 @@ using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;
 
-public class SmashModifier : IChargeableModifier, IDamageModifier, IAutoActivateModifier
+public class SmashModifier : IChargeableModifier, IDamageModifier
 {
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
@@ -28,4 +28,6 @@ public class SmashModifier : IChargeableModifier, IDamageModifier, IAutoActivate
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext) => new DamageModifierResult(2);
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

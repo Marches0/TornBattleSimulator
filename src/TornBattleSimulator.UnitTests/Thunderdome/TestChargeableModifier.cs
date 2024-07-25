@@ -5,7 +5,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome;
 
-internal class TestChargeableModifier : IChargeableModifier, IAutoActivateModifier
+internal class TestChargeableModifier : IChargeableModifier
 {
     public TestChargeableModifier(bool startsCharged)
     {
@@ -23,4 +23,6 @@ internal class TestChargeableModifier : IChargeableModifier, IAutoActivateModifi
     public ModifierApplication AppliesAt => throw new NotImplementedException();
 
     public ModifierType Effect => throw new NotImplementedException();
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

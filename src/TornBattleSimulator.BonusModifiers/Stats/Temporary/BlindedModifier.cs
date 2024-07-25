@@ -26,4 +26,6 @@ public class BlindedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Blinded;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

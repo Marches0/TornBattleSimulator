@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "smash",
-						"percent": 100
+						"type": "achilles",
+						"percent": 50
 					}
 				]
 			},

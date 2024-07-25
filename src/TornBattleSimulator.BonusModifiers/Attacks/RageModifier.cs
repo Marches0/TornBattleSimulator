@@ -29,6 +29,8 @@ public class RageModifier : IAttacksModifier
 
     public ModifierType Effect => ModifierType.Rage;
 
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+
     public List<ThunderdomeEvent> MakeAttack(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon, Func<List<ThunderdomeEvent>> attackAction)
     {
         List<ThunderdomeEvent> events = new();

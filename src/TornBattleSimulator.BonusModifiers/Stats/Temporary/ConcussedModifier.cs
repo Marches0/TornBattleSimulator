@@ -26,4 +26,6 @@ public class ConcussedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Concussed;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

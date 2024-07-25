@@ -26,4 +26,6 @@ public class HastenedModifier : IStatsModifier
     public ModifierType Effect => ModifierType.Hastened;
 
     public StatModificationType Type => StatModificationType.Additive;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

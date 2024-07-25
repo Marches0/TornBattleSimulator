@@ -49,4 +49,6 @@ internal class TestStackableStatModifier : IStackableStatModifier
     public float GetStrengthModifier() => _strMod;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

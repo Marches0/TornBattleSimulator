@@ -29,4 +29,6 @@ public class DemoralizedModifier : IStackableStatModifier
     public float GetStrengthModifier() => 0.9f;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

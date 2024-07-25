@@ -18,4 +18,6 @@ public class LacerationModifier : IDamageOverTimeModifier
     public ModifierType Effect => ModifierType.Laceration;
 
     public double Decay => 0.9d;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

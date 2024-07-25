@@ -18,9 +18,13 @@ public enum ModifierType
     Burning,
     Demoralized,
     Freeze,
-    Hazardous, // todo
+    //Hazardous, // todo
     Laceration,
     Poisoned,
     Shock,
-    Smash
+    Smash,
+    //Spray, // todo
+    //Storage, // todo
+    //Toxin, // todo
+    Achilles
 }

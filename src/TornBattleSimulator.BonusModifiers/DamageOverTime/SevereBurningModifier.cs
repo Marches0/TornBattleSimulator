@@ -18,4 +18,6 @@ public class SevereBurningModifier : IDamageOverTimeModifier
     public ModifierType Effect => ModifierType.SevereBurning;
 
     public double Decay => 0.45d;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }

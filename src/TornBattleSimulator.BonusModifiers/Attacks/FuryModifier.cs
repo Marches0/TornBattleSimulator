@@ -21,6 +21,8 @@ public class FuryModifier : IAttacksModifier
 
     public ModifierType Effect => ModifierType.Fury;
 
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+
     public List<ThunderdomeEvent> MakeAttack(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon, Func<List<ThunderdomeEvent>> attackAction)
     {
         // Just a single attack.

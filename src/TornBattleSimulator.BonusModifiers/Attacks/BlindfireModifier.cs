@@ -25,6 +25,8 @@ public class BlindfireModifier : IAttacksModifier
 
     public bool Stackable => true;
 
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+
     public List<ThunderdomeEvent> MakeAttack(
         ThunderdomeContext context,
         PlayerContext active,

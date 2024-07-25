@@ -15,4 +15,6 @@ public class ShockModifier : IModifier
     public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
     public ModifierType Effect => ModifierType.Shock;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

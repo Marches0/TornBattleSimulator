@@ -39,13 +39,13 @@ public class WeaponContextBuilder
 
     public WeaponContextBuilder WithModifier(IModifier modifier)
     {
-        if (modifier is IAutoActivateModifier)
+        if (modifier.ValueBehaviour == ModifierValueBehaviour.Chance)
         {
-            _autoModifiers.Add(modifier);
+            _modifiers.Add(modifier);
         }
         else
         {
-            _modifiers.Add(modifier);
+            _autoModifiers.Add(modifier);
         }
         
         return this;

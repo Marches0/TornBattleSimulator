@@ -18,4 +18,6 @@ public class PoisonedModifier : IDamageOverTimeModifier
     public ModifierType Effect => ModifierType.Poisoned;
 
     public double Decay => 0.95d;
+
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }
