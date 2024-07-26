@@ -28,5 +28,5 @@ public class StrengthenedModifier : IStatsModifier
 
     public StatModificationType Type => StatModificationType.Additive;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

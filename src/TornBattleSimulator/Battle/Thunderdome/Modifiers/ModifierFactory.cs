@@ -43,7 +43,7 @@ public class ModifierFactory
             ModifierType.Rage => new RageModifier(),
             ModifierType.Achilles => new AchillesModifier(percent / 100),
 
-            0 => throw new ArgumentOutOfRangeException()
+            0 => throw new ArgumentOutOfRangeException(nameof(modifierType))
         };
     }
 }

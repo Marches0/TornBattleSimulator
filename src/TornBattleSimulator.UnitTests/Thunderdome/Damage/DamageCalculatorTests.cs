@@ -58,7 +58,7 @@ public class DamageCalculatorTests
 
         public ModifierType Effect => throw new NotImplementedException();
 
-        public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+        public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
 
         public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
         {

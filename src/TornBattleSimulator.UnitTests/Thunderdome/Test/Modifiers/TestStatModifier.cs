@@ -46,5 +46,5 @@ internal class TestStatModifier : IStatsModifier
 
     public StatModificationType Type { get; }
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

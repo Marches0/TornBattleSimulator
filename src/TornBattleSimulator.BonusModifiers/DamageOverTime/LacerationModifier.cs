@@ -19,5 +19,5 @@ public class LacerationModifier : IDamageOverTimeModifier
 
     public double Decay => 0.9d;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
@@ -32,8 +33,14 @@ public class WeaponsFactory
         );
     }
 
-    private WeaponContext? GetContext(Weapon? weapon, WeaponType weaponType)
+    [return: NotNullIfNotNull(nameof(weapon))]
+    public WeaponContext? GetContext(Weapon? weapon, WeaponType weaponType)
     {
+        if (weapon == null)
+        {
+            return null;
+        }
+
         var modifiers = weapon.Modifiers
             .Select(m => new
             {
@@ -52,13 +59,11 @@ public class WeaponsFactory
             .Select(m => m.Modifier)
             .ToList();
 
-        return weapon is null
-            ? null
-            : new WeaponContext(
-                weapon,
-                weaponType,
-                chanceModifiers,
-                otherModifiers
-            );
+        return new WeaponContext(
+            weapon,
+            weaponType,
+            chanceModifiers,
+            otherModifiers
+        );
     }
 }

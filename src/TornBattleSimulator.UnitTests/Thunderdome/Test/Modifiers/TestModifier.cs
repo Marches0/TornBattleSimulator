@@ -22,7 +22,7 @@ public class TestModifier : IModifier
 
     public ModifierType Effect => ModifierType.Gassed;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }
 
 public class TestDoTModifier : IDamageOverTimeModifier
@@ -44,5 +44,5 @@ public class TestDoTModifier : IDamageOverTimeModifier
 
     public ModifierType Effect => ModifierType.SevereBurning;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

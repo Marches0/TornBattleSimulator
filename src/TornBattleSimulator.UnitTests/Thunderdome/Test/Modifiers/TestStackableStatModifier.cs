@@ -50,5 +50,5 @@ internal class TestStackableStatModifier : IStackableStatModifier
 
     public StatModificationType Type => StatModificationType.Multiplicative;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }
