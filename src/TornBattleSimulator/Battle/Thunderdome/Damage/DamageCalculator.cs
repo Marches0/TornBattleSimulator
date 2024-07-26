@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -27,7 +28,7 @@ public class DamageCalculator : IDamageCalculator
         DamageContext damageContext = new();
 
         var damage = _damageModifiers
-            .Concat(weapon.AlwaysActiveModifiers.OfType<IDamageModifier>())
+            .Concat(weapon.ActiveModifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
             .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
                 (total, modifier) =>
                 {

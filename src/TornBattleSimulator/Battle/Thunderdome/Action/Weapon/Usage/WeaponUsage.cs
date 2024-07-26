@@ -53,7 +53,7 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        foreach (ChargedModifierContainer charge in weapon.ChargedModifiers)
+        foreach (ChargedModifierContainer charge in weapon.ActiveModifiers.ChargeModifiers)
         {
             charge.Charged = false;
         }

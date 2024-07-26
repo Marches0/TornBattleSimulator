@@ -40,30 +40,12 @@ public class WeaponsFactory
         {
             return null;
         }
-
-        var modifiers = weapon.Modifiers
-            .Select(m => new
-            {
-                Percent = m.Percent,
-                Modifier = _modifierFactory.GetModifier(m.Type, m.Percent)
-            })
-            .ToList();
-
-        List<PotentialModifier> chanceModifiers = modifiers
-                .Where(m => m.Modifier.ValueBehaviour == ModifierValueBehaviour.Chance)
-                .Select(m => new PotentialModifier(m.Modifier, m.Percent / 100))
-                .ToList();
-
-        List<IModifier> otherModifiers = modifiers
-            .Where(m => m.Modifier.ValueBehaviour != ModifierValueBehaviour.Chance)
-            .Select(m => m.Modifier)
-            .ToList();
-
         return new WeaponContext(
             weapon,
             weaponType,
-            chanceModifiers,
-            otherModifiers
+            weapon.Modifiers
+                .Select(m => _modifierFactory.GetModifier(m.Type, m.Percent))
+                .ToList()
         );
     }
 }

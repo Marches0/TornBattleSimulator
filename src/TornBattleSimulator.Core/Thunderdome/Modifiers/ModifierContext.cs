@@ -6,15 +6,23 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 public class ModifierContext : ITickable
 {
-    public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(_activeModifiers.Select(m => m.Modifier).ToList());
+    public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(
+        _activeModifiers.Select(m => m.Modifier)
+        .Concat(ChargeModifiers.Select(c => c.Modifier))
+        .ToList()
+    );
+
+    public List<ChargedModifierContainer> ChargeModifiers { get; } = new();
 
     private List<ActiveModifier> _activeModifiers = new();
 
+    // add charge?
     private IEnumerable<ITickable> _tickables =>
         _activeModifiers.Select(m => m.CurrentLifespan)
         .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>());
@@ -34,6 +42,7 @@ public class ModifierContext : ITickable
         {
             IDamageOverTimeModifier dotModifier => AddDamageOverTime(dotModifier, damageResult!),
             IStackableStatModifier stackableStatModifier => AddStackingStatModifier(stackableStatModifier),
+            IChargeableModifier chargeableModifier => AddChargeable(chargeableModifier),
             _ => AddRegularModifier(modifier)
         };
     }
@@ -77,6 +86,12 @@ public class ModifierContext : ITickable
         }
 
         return container.AddStack();
+    }
+
+    private bool AddChargeable(IChargeableModifier chargeableModifier)
+    {
+        ChargeModifiers.Add(new ChargedModifierContainer(chargeableModifier));
+        return true;
     }
 
     private bool AddRegularModifier(

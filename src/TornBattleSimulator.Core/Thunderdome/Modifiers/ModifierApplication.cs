@@ -3,5 +3,6 @@
 public enum ModifierApplication
 {
     BeforeAction = 1,
-    AfterAction = 2
+    AfterAction = 2,
+    FightStart
 }

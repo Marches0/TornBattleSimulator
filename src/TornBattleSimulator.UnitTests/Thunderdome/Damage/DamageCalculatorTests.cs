@@ -48,11 +48,11 @@ public class DamageCalculatorTests
             _multipler = multipler;
         }
 
-        public ModifierLifespanDescription Lifespan => throw new NotImplementedException();
+        public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
         public bool RequiresDamageToApply => throw new NotImplementedException();
 
-        public ModifierTarget Target => throw new NotImplementedException();
+        public ModifierTarget Target => ModifierTarget.Self;
 
         public ModifierApplication AppliesAt => throw new NotImplementedException();
 

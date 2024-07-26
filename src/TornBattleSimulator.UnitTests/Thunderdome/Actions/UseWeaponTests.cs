@@ -15,37 +15,41 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
 public class UseWeaponTests
 {
     [TestCaseSource(nameof(UseWeaponAction_UsesCorrectWeapon_TestCases))]
-    public void UseWeaponAction_UsesCorrectWeapon((IAction action, EquippedWeapons weapons, WeaponContext expected, IWeaponUsage weaponUsage) testData)
+    public void UseWeaponAction_UsesCorrectWeapon((IAction action, PlayerContext attacker, WeaponContext expected, IWeaponUsage weaponUsage) testData)
     {
-        var attacker = new PlayerContextBuilder().WithWeapons(testData.weapons).Build();
         var defender = new PlayerContextBuilder().Build();
 
-        testData.action.PerformAction(new ThunderdomeContextBuilder().WithParticipants(attacker, defender).Build(), attacker, defender);
+        testData.action.PerformAction(new ThunderdomeContextBuilder().WithParticipants(testData.attacker, defender).Build(), testData.attacker, defender);
 
         A.CallTo(() => testData.weaponUsage.UseWeapon(A<ThunderdomeContext>._, A<PlayerContext>._, A<PlayerContext>._, testData.expected))
             .MustHaveHappenedOnceExactly();
     }
 
-    private static IEnumerable<(IAction action, EquippedWeapons weapons, WeaponContext expected, IWeaponUsage weaponUsage)> UseWeaponAction_UsesCorrectWeapon_TestCases()
+    private static IEnumerable<(
+        IAction action,
+        PlayerContext attacker,
+        WeaponContext expected,
+        IWeaponUsage weaponUsage
+    )> UseWeaponAction_UsesCorrectWeapon_TestCases()
     {
         using AutoFake autoFake = new();
         EquippedWeapons weapons = new EquippedWeapons(
-            new WeaponContext(new Weapon(), WeaponType.Primary, new List<PotentialModifier>(), new List<IModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Secondary, new List<PotentialModifier>(), new List<IModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Melee, new List<PotentialModifier>(), new List<IModifier>()),
-            new WeaponContext(new Weapon(), WeaponType.Temporary, new List<PotentialModifier>(), new List<IModifier>())
+            new WeaponContext(new Weapon(), WeaponType.Primary, new List<PotentialModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Secondary, new List<PotentialModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Melee, new List<PotentialModifier>()),
+            new WeaponContext(new Weapon(), WeaponType.Temporary, new List<PotentialModifier>())
         );
 
         IWeaponUsage usage = autoFake.Resolve<IWeaponUsage>();
-        yield return (new AttackPrimaryAction(usage), weapons, weapons.Primary!, usage);
+        yield return (new AttackPrimaryAction(usage), new PlayerContextBuilder().WithWeapons(weapons).Build(), weapons.Primary!, usage);
 
         usage = autoFake.Resolve<IWeaponUsage>();
-        yield return (new AttackSecondaryAction(usage), weapons, weapons.Secondary!, usage);
+        yield return (new AttackSecondaryAction(usage), new PlayerContextBuilder().WithWeapons(weapons).Build(), weapons.Secondary!, usage);
 
         usage = autoFake.Resolve<IWeaponUsage>();
-        yield return (new AttackMeleeAction(usage), weapons, weapons.Melee!, usage);
+        yield return (new AttackMeleeAction(usage), new PlayerContextBuilder().WithWeapons(weapons).Build(), weapons.Melee!, usage);
 
         usage = autoFake.Resolve<IWeaponUsage>();
-        yield return (new UseTemporaryAction(usage), weapons, weapons.Temporary!, usage);
+        yield return (new UseTemporaryAction(usage), new PlayerContextBuilder().WithWeapons(weapons).Build(), weapons.Temporary!, usage);
     }
 }

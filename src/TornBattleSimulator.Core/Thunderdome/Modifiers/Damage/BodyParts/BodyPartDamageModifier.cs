@@ -25,7 +25,7 @@ public abstract class BodyPartDamageModifier : IDamageModifier
 
     public ModifierTarget Target => ModifierTarget.Self;
 
-    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
+    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
 
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
 

@@ -17,7 +17,7 @@ public class SmashModifier : IChargeableModifier, IDamageModifier
 
     public ModifierTarget Target => ModifierTarget.Self;
 
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
 
     public ModifierType Effect => ModifierType.Smash;
 

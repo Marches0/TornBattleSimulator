@@ -60,7 +60,7 @@ public class WeaponContextBuilder
 
     public WeaponContext Build()
     {
-        return new WeaponContext(
+        var context = new WeaponContext(
             new Weapon()
             {
                 Ammo = _ammo,
@@ -70,8 +70,16 @@ public class WeaponContextBuilder
                 Modifiers = new List<ModifierDescription>()
             },
             _weaponType,
-            _modifiers.Select(m => new PotentialModifier(m, 1)).ToList(),
-            _autoModifiers
+            _modifiers.Select(m => new PotentialModifier(m, 1)).ToList()
         );
+
+        context.ActiveModifiers = new(null);
+        
+        foreach (var auto in _autoModifiers)
+        {
+            context.ActiveModifiers.AddModifier(auto, null);
+        }
+
+        return context;
     }
 }

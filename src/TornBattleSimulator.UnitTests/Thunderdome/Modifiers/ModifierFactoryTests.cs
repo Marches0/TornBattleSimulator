@@ -10,6 +10,6 @@ public class ModifierFactoryTests
     [Test]
     public void GetModifier_ReturnsCorrectModifier([Values] ModifierType modifierType)
     {
-        new ModifierFactory().GetModifier(modifierType, 50).Effect.Should().Be(modifierType);
+        new ModifierFactory().GetModifier(modifierType, 50).Modifier.Effect.Should().Be(modifierType);
     }
 }

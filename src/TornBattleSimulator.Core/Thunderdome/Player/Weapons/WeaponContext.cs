@@ -1,6 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 
 namespace TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 public class WeaponContext
@@ -8,8 +7,7 @@ public class WeaponContext
     public WeaponContext(
         Weapon weapon,
         WeaponType weaponType,
-        List<PotentialModifier> chanceModifiers,
-        List<IModifier> otherModifiers)
+        List<PotentialModifier> modifiers)
     {
         Description = weapon;
         Type = weaponType;
@@ -22,15 +20,7 @@ public class WeaponContext
             MagazineAmmoRemaining = weapon.Ammo.MagazineSize
         } : null;
 
-        Modifiers = chanceModifiers;
-        AlwaysActiveModifiers = otherModifiers
-            .Cast<IModifier>()
-            .ToList();
-
-        ChargedModifiers = otherModifiers
-            .OfType<IChargeableModifier>()
-            .Select(m => new ChargedModifierContainer(m))
-            .ToList();
+        Modifiers = modifiers;
     }
 
     public Weapon Description { get; }
@@ -39,9 +29,7 @@ public class WeaponContext
     public bool CanReload => Ammo?.MagazinesRemaining > 0;
     public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;
 
+    public ModifierContext ActiveModifiers { get; set; }
+
     public List<PotentialModifier> Modifiers { get; }
-
-    public List<IModifier> AlwaysActiveModifiers { get; } = new();
-
-    public List<ChargedModifierContainer> ChargedModifiers { get; } = new();
 }

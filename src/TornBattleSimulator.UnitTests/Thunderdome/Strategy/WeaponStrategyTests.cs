@@ -3,6 +3,7 @@ using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
@@ -22,8 +23,12 @@ public class WeaponStrategyTests : LoadableWeaponTests
             .WithModifier(new TestChargeableModifier(testData.charged))
             .Build();
 
+        ThunderdomeContext thunderdome = new ThunderdomeContextBuilder().Build();
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
+
+        weapon.ActiveModifiers = new ModifierContext(attacker);
+        weapon.ActiveModifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
 
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
         attacker.Weapons.Primary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
@@ -44,8 +49,12 @@ public class WeaponStrategyTests : LoadableWeaponTests
             .WithModifier(new TestChargeableModifier(testData.charged))
             .Build();
 
+        ThunderdomeContext thunderdome = new ThunderdomeContextBuilder().Build();
         PlayerContext attacker = new PlayerContextBuilder().WithSecondary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
+
+        weapon.ActiveModifiers = new ModifierContext(attacker);
+        weapon.ActiveModifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
 
         attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
         attacker.Weapons.Secondary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;

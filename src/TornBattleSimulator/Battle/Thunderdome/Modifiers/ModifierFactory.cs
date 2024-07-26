@@ -13,11 +13,11 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
 public class ModifierFactory
 {
-    public IModifier GetModifier(ModifierType modifierType, double percent)
+    public PotentialModifier GetModifier(ModifierType modifierType, double percent)
     {
         // Was nice when it was using keyed DI registrations, but some modifiers
         // needing to accept the % as part of their data means we need this instead.
-        return modifierType switch
+        IModifier modifier = modifierType switch
         {
             ModifierType.Concussed => new ConcussedModifier(),
             ModifierType.Strengthened => new StrengthenedModifier(),
@@ -45,5 +45,14 @@ public class ModifierFactory
 
             0 => throw new ArgumentOutOfRangeException(nameof(modifierType))
         };
+
+        return ChanceWrapper(modifier, percent);
+    }
+
+    private PotentialModifier ChanceWrapper(IModifier modifier, double percent)
+    {
+        return new PotentialModifier(
+            modifier,
+            modifier.ValueBehaviour == ModifierValueBehaviour.Chance ? percent / 100 : 1);
     }
 }
