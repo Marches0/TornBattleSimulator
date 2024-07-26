@@ -3,7 +3,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 public class TestModifier : IModifier
 {

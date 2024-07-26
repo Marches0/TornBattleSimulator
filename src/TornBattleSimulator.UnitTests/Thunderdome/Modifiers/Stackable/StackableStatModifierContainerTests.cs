@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Stackable;
 
 [TestFixture]
 public class StackableStatModifierContainerTests

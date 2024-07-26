@@ -6,6 +6,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
 

@@ -2,7 +2,7 @@
 using FluentAssertions.Execution;
 using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.UnitTests.Thunderdome;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Battle.Build;
 
@@ -20,7 +20,7 @@ public class BattleStatsTests
             Dexterity = 10
         };
 
-        TestStatMultiplier mul = new TestStatMultiplier(0.5f, 3, 4, 5, StatModificationType.Multiplicative);
+        TestStatModifier mul = new TestStatModifier(0.5f, 3, 4, 5, StatModificationType.Multiplicative);
 
         stats.Apply(mul);
 

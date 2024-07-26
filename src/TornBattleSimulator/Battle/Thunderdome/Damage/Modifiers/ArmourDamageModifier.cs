@@ -34,6 +34,9 @@ public class ArmourDamageModifier : IDamageModifier
         // Not sure how it works. For now, roll against them all
         // from "strongest armour" to weakest, and use the first
         // one which procs as the hit armour value.
+
+        // only the strongest armour can mitigate
+        // https://www.torn.com/forums.php#/p=threads&f=3&t=16231895&b=0&a=0&to=21594158
         var applicableArmour = other.ArmourSet.Armour
             .Select(a => new
             {

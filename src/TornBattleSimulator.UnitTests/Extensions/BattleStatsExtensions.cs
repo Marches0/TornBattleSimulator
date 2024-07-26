@@ -3,7 +3,7 @@ using FluentAssertions.Execution;
 using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.UnitTests.Thunderdome;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Extensions;
 
@@ -40,8 +40,8 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [ 
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive)
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive)
             ],
             new BattleStats()
             {
@@ -56,8 +56,8 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative),
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative),
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
             ],
             new BattleStats()
             {
@@ -72,9 +72,9 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatMultiplier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
+                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
             ],
             new BattleStats()
             {

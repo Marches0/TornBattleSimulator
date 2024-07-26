@@ -28,3 +28,6 @@ public enum ModifierType
     //Toxin, // todo
     Achilles
 }
+
+// Double edge = 25%, Frenzy = multiplicative
+// https://www.torn.com/forums.php#/p=threads&f=61&t=16256302&b=0&a=0&start=0&to=22367852

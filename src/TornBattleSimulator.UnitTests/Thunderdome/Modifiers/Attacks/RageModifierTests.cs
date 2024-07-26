@@ -7,7 +7,7 @@ using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Attacks;
 
 [TestFixture]
 public class RageModifierTests
@@ -27,7 +27,7 @@ public class RageModifierTests
         WeaponContext weapon = new WeaponContextBuilder().Build();
 
         int attacksMade = 0;
-        Func<List<ThunderdomeEvent>> attackAction = () => 
+        Func<List<ThunderdomeEvent>> attackAction = () =>
         {
             ++attacksMade;
             return [];
@@ -40,7 +40,7 @@ public class RageModifierTests
             other,
             weapon,
             attackAction);
-        
+
         // Assert
         attacksMade.Should().Be(attackCount);
     }

@@ -3,16 +3,16 @@ using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
-internal class TestStatMultiplier : IStatsModifier
+internal class TestStatModifier : IStatsModifier
 {
     private readonly float _strengthModifier;
     private readonly float _defenceModifier;
     private readonly float _speedModifier;
     private readonly float _dexterityModifier;
 
-    public TestStatMultiplier(
+    public TestStatModifier(
         float strengthModifier,
         float defenceModifier,
         float speedModifier,

@@ -7,7 +7,7 @@ using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Attacks;
 
 [TestFixture]
 public class BlindfireModifierTests

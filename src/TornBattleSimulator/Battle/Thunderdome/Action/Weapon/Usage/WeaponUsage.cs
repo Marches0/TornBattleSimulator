@@ -68,6 +68,9 @@ public class WeaponUsage : IWeaponUsage
         WeaponContext weapon,
         bool bonusAction)
     {
+        // todo no modifiers on bonus action
+        //https://www.torn.com/forums.php#/p=threads&f=3&t=16335602&b=0&a=0&to=23550747
+
         if (weapon.Ammo != null && weapon.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");

@@ -4,7 +4,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 internal class TestStackableStatModifier : IStackableStatModifier
 {

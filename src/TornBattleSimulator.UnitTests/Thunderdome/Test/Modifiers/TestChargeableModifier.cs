@@ -3,7 +3,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 internal class TestChargeableModifier : IChargeableModifier
 {
