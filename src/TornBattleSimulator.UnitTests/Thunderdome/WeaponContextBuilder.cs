@@ -12,6 +12,13 @@ public class WeaponContextBuilder
     private List<IModifier> _autoModifiers = new List<IModifier>();
     private double _accuracy = 10;
     private double _damage = 10;
+    private WeaponType _weaponType = WeaponType.Primary;
+
+    public WeaponContextBuilder OfType(WeaponType weaponType)
+    {
+        _weaponType = weaponType;
+        return this;
+    }
 
     public WeaponContextBuilder WithAmmo(int magazines, int magazineSize)
     {
@@ -62,7 +69,7 @@ public class WeaponContextBuilder
                 Damage = 10,
                 Modifiers = new List<ModifierDescription>()
             },
-            WeaponType.Melee,
+            _weaponType,
             _modifiers.Select(m => new PotentialModifier(m, 1)).ToList(),
             _autoModifiers
         );

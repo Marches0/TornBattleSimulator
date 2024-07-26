@@ -19,7 +19,7 @@ public class FixedChanceSource : IChanceSource
 
     public T ChooseWeighted<T>(IList<OptionChance<T>> options)
     {
-        throw new NotImplementedException();
+        return options.First().Option;
     }
 
     public bool Succeeds(double probability) => _succeeds;

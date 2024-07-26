@@ -12,7 +12,6 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 public class BodyPartModifier : IDamageModifier
 {
     private readonly IChanceSource _modifierChanceSource;
-    private bool _isCrit = false; // todo: implement
 
     private readonly List<OptionChance<BodyPartDamage>> _criticalOptions;
     private readonly List<OptionChance<BodyPartDamage>> _regularOptions;
@@ -52,7 +51,10 @@ public class BodyPartModifier : IDamageModifier
             return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
         }
 
-        return _isCrit
+        // temp.
+        bool isCrit = _modifierChanceSource.Succeeds(0.2d);
+
+        return isCrit
            ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
            : _modifierChanceSource.ChooseWeighted(_regularOptions);
     }
