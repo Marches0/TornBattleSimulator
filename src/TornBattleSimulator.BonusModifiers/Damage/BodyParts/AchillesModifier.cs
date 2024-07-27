@@ -11,5 +11,6 @@ public class AchillesModifier : BodyPartDamageModifier, IModifier
     {
     }
 
+    /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Achilles;
 }

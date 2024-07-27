@@ -1,5 +1,8 @@
 ﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
+/// <summary>
+///  A <see cref="ModifierLifespanType.Temporal"/> <see cref="IModifierLifespan"/>.
+/// </summary>
 public class TemporalModifierLifespan : IModifierLifespan
 {
     private float _remainingTimeSeconds;

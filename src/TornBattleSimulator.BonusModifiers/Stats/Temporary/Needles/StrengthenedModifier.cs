@@ -7,26 +7,37 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 
 public class StrengthenedModifier : IStatsModifier
 {
+    /// <inheritdoc/>
     public float GetDefenceModifier() => 1;
 
+    /// <inheritdoc/>
     public float GetDexterityModifier() => 1;
 
+    /// <inheritdoc/>
     public float GetSpeedModifier() => 1;
 
-    // "increasing Strength by 500%"
+    // "increasing Strength by 500%" verify
+    /// <inheritdoc/>
     public float GetStrengthModifier() => 6;
 
+    /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);
 
+    /// <inheritdoc/>
     public bool RequiresDamageToApply { get; } = false;
 
+    /// <inheritdoc/>
     public ModifierTarget Target { get; } = ModifierTarget.Self;
 
+    /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
+    /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Strengthened;
 
+    /// <inheritdoc/>
     public StatModificationType Type => StatModificationType.Additive;
 
+    /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

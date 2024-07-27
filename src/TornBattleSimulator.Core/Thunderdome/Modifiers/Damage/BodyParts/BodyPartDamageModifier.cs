@@ -6,6 +6,10 @@ using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Damage.BodyParts;
 
+/// <summary>
+///  A damage modifier which applies a bonus if a particular
+///  body part is struck.
+/// </summary>
 public abstract class BodyPartDamageModifier : IDamageModifier
 {
     private readonly BodyPart _bodyPart;
@@ -19,16 +23,22 @@ public abstract class BodyPartDamageModifier : IDamageModifier
         _damage = 1 + damage;
     }
 
+    /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
+    /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
 
+    /// <inheritdoc/>
     public ModifierTarget Target => ModifierTarget.Self;
 
+    /// <inheritdoc/>
     public ModifierApplication AppliesAt => ModifierApplication.FightStart;
 
+    /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
 
+    /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,

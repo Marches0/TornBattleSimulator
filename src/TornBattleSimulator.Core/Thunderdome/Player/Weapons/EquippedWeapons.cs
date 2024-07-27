@@ -20,6 +20,7 @@ public class EquippedWeapons : ITickable
     public WeaponContext? Melee { get; }
     public WeaponContext? Temporary { get; }
 
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         Primary?.OpponentActionComplete(context);
@@ -28,6 +29,7 @@ public class EquippedWeapons : ITickable
         Temporary?.OpponentActionComplete(context);
     }
 
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context)
     {
         Primary?.OwnActionComplete(context);
@@ -36,6 +38,7 @@ public class EquippedWeapons : ITickable
         Temporary?.OwnActionComplete(context);
     }
 
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         Primary?.TurnComplete(context);

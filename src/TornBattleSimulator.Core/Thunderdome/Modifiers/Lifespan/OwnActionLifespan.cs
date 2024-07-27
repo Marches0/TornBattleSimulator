@@ -1,5 +1,8 @@
 ﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
+/// <summary>
+///  A <see cref="ModifierLifespanType.AfterOwnAction"/> <see cref="IModifierLifespan"/>.
+/// </summary>
 public class OwnActionLifespan : IModifierLifespan
 {
     public bool Expired { get; private set; } = false;

@@ -1,5 +1,8 @@
 ﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
+/// <summary>
+///  A <see cref="ModifierLifespanType.Turns"/> <see cref="IModifierLifespan"/>.
+/// </summary>
 public class TurnModifierLifespan : IModifierLifespan
 {
     private int _turns;

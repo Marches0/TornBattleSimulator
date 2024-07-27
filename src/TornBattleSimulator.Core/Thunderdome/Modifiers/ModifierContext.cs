@@ -10,14 +10,23 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
+/// <summary>
+///  A set of tracked modifiers.
+/// </summary>
 public class ModifierContext : ITickable
 {
+    /// <summary>
+    ///  The modifiers which are currently active.
+    /// </summary>
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(
         _activeModifiers.Select(m => m.Modifier)
         .Concat(ChargeModifiers.Select(c => c.Modifier))
         .ToList()
     );
 
+    /// <summary>
+    ///  The modifiers that require charging.
+    /// </summary>
     public List<ChargedModifierContainer> ChargeModifiers { get; } = new();
 
     private List<ActiveModifier> _activeModifiers = new();
@@ -34,6 +43,12 @@ public class ModifierContext : ITickable
         _self = self;
     }
 
+    /// <summary>
+    ///  Adds a new modifier.
+    /// </summary>
+    /// <param name="modifier">The modifier to add.</param>
+    /// <param name="damageResult">The damage caused by the active player, if applicable.</param>
+    /// <returns><see langword="true"/> if the modifier was added, otherwise <see langword="false"/>.</returns>
     public bool AddModifier(
         IModifier modifier,
         DamageResult? damageResult)
@@ -45,6 +60,39 @@ public class ModifierContext : ITickable
             IChargeableModifier chargeableModifier => AddChargeable(chargeableModifier),
             _ => AddRegularModifier(modifier)
         };
+    }
+
+    /// <inheritdoc/>
+    public void TurnComplete(ThunderdomeContext context)
+    {
+        foreach (ITickable tickable in _tickables)
+        {
+            tickable.TurnComplete(context);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    /// <inheritdoc/>
+    public void OwnActionComplete(ThunderdomeContext context)
+    {
+        foreach (ITickable tickable in _tickables)
+        {
+            tickable.OwnActionComplete(context);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    /// <inheritdoc/>
+    public void OpponentActionComplete(ThunderdomeContext context)
+    {
+        foreach (ITickable tickable in _tickables)
+        {
+            tickable.OpponentActionComplete(context);
+        }
+
+        ExpireModifiers(context);
     }
 
     private bool AddDamageOverTime(
@@ -99,36 +147,6 @@ public class ModifierContext : ITickable
     {
         _activeModifiers.Add(new ActiveModifier(modifier.CreateLifespan(), modifier));
         return true;
-    }
-
-    public void TurnComplete(ThunderdomeContext context)
-    {
-        foreach (ITickable tickable in _tickables)
-        {
-            tickable.TurnComplete(context);
-        }
-
-        ExpireModifiers(context);
-    }
-
-    public void OwnActionComplete(ThunderdomeContext context)
-    {
-        foreach (ITickable tickable in _tickables)
-        {
-            tickable.OwnActionComplete(context);
-        }
-
-        ExpireModifiers(context);
-    }
-
-    public void OpponentActionComplete(ThunderdomeContext context)
-    {
-        foreach (ITickable tickable in _tickables)
-        {
-            tickable.OpponentActionComplete(context);
-        }
-
-        ExpireModifiers(context);
     }
 
     private void ExpireModifiers(ThunderdomeContext context)
