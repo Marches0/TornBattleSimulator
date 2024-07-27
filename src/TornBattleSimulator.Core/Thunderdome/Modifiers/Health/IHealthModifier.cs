@@ -13,5 +13,6 @@ public interface IHealthModifier : IModifier
     /// </summary>
     /// <param name="target">The target of the modifier.</param>
     /// <param name="damage">The damage done by the applying attack, if applicable.</param>
-    int GetHealthMod(PlayerContext target, DamageResult? damage);
+    /// <returns>The amount <paramref name="target"/>'s health will change by.</returns>
+    int GetHealthModifier(PlayerContext target, DamageResult? damage);
 }

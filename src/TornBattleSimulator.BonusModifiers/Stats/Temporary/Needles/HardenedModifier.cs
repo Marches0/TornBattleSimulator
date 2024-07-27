@@ -23,7 +23,7 @@ public class HardenedModifier : IStatsModifier, IHealthModifier
     public float GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
-    public int GetHealthMod(PlayerContext target, DamageResult? damage) => (int)(target.Health.MaxHealth * 0.25);
+    public int GetHealthModifier(PlayerContext target, DamageResult? damage) => (int)(target.Health.MaxHealth * 0.25);
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);

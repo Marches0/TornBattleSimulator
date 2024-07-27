@@ -107,7 +107,7 @@ public class ModifierApplier
     {
         // Don't allow healing above max.
         int heal = Math.Min(
-            healthModifier.GetHealthMod(target, damageResult),
+            healthModifier.GetHealthModifier(target, damageResult),
             target.Health.MaxHealth - target.Health.CurrentHealth
         );
 

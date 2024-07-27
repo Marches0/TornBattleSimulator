@@ -39,7 +39,7 @@ public class ModifierApplierTests
             new DamageResult(100, 0, 0)
         );
 
-        A.CallTo(() => healthMod.GetHealthMod(A<PlayerContext>._, A<DamageResult>._))
+        A.CallTo(() => healthMod.GetHealthModifier(A<PlayerContext>._, A<DamageResult>._))
             .MustHaveHappenedOnceExactly();
     }
 
