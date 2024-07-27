@@ -11,13 +11,13 @@ public class SharpenedModifier : IStatsModifier
     public float GetDefenceModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 1;
+    public float GetDexterityModifier() => 5;
 
     /// <inheritdoc/>
     public float GetSpeedModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 6;
+    public float GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);

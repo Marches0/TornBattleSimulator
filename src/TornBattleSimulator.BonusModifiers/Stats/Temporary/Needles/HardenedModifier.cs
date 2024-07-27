@@ -11,7 +11,7 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 public class HardenedModifier : IStatsModifier, IHealthModifier
 {
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 4;
+    public float GetDefenceModifier() => 3;
 
     /// <inheritdoc/>
     public float GetDexterityModifier() => 1;

@@ -14,7 +14,7 @@ public class HastenedModifier : IStatsModifier
     public float GetDexterityModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 6;
+    public float GetSpeedModifier() => 5;
 
     /// <inheritdoc/>
     public float GetStrengthModifier() => 1;

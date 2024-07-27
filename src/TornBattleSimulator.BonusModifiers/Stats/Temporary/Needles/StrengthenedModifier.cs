@@ -16,9 +16,8 @@ public class StrengthenedModifier : IStatsModifier
     /// <inheritdoc/>
     public float GetSpeedModifier() => 1;
 
-    // "increasing Strength by 500%" verify
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 6;
+    public float GetStrengthModifier() => 5;
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);
