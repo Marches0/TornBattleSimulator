@@ -2,7 +2,8 @@
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.Core.Thunderdome.Player.Weapons;
-public class WeaponContext
+
+public class WeaponContext : ITickable
 {
     public WeaponContext(
         Weapon weapon,
@@ -32,4 +33,19 @@ public class WeaponContext
     public ModifierContext ActiveModifiers { get; set; }
 
     public List<PotentialModifier> Modifiers { get; }
+
+    public void OpponentActionComplete(ThunderdomeContext context)
+    {
+        ActiveModifiers.OpponentActionComplete(context);
+    }
+
+    public void OwnActionComplete(ThunderdomeContext context)
+    {
+        ActiveModifiers.OwnActionComplete(context);
+    }
+
+    public void TurnComplete(ThunderdomeContext context)
+    {
+        ActiveModifiers.TurnComplete(context);
+    }
 }

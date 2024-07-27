@@ -68,15 +68,18 @@ public class PlayerContext : ITickable
     public void OwnActionComplete(ThunderdomeContext context)
     {
         Modifiers.OwnActionComplete(context);
+        Weapons.OwnActionComplete(context);
     }
 
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         Modifiers.OpponentActionComplete(context);
+        Weapons.OpponentActionComplete(context);
     }
 
     public void TurnComplete(ThunderdomeContext context)
     {
         Modifiers.TurnComplete(context);
+        Weapons.TurnComplete(context);
     }
 }

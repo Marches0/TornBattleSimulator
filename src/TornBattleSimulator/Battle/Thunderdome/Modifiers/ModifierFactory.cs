@@ -15,6 +15,8 @@ public class ModifierFactory
 {
     public PotentialModifier GetModifier(ModifierType modifierType, double percent)
     {
+        double value = percent / 100;
+
         // Was nice when it was using keyed DI registrations, but some modifiers
         // needing to accept the % as part of their data means we need this instead.
         IModifier modifier = modifierType switch
@@ -41,18 +43,21 @@ public class ModifierFactory
 
             ModifierType.Fury => new FuryModifier(),
             ModifierType.Rage => new RageModifier(),
-            ModifierType.Achilles => new AchillesModifier(percent / 100),
+
+            ModifierType.Achilles => new AchillesModifier(value),
+
+            ModifierType.Assassinate => new AssassinateModifier(value),            
 
             0 => throw new ArgumentOutOfRangeException(nameof(modifierType))
         };
 
-        return ChanceWrapper(modifier, percent);
+        return ChanceWrapper(modifier, value);
     }
 
-    private PotentialModifier ChanceWrapper(IModifier modifier, double percent)
+    private PotentialModifier ChanceWrapper(IModifier modifier, double value)
     {
         return new PotentialModifier(
             modifier,
-            modifier.ValueBehaviour == ModifierValueBehaviour.Chance ? percent / 100 : 1);
+            modifier.ValueBehaviour == ModifierValueBehaviour.Chance ? value : 1);
     }
 }

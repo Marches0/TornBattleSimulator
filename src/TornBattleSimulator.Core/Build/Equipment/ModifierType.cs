@@ -26,7 +26,8 @@ public enum ModifierType
     //Spray, // todo
     //Storage, // todo
     //Toxin, // todo
-    Achilles
+    Achilles,
+    Assassinate
 }
 
 // Double edge = 25%, Frenzy = multiplicative
