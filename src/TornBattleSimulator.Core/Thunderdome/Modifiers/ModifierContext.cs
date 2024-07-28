@@ -60,10 +60,11 @@ public class ModifierContext : ITickable
     {
         return modifier switch
         {
-            IDamageOverTimeModifier dotModifier => AddDamageOverTime(dotModifier, damageResult!),
-            IStackableStatModifier stackableStatModifier => AddStackingStatModifier(stackableStatModifier),
-            IChargeableModifier chargeableModifier => AddChargeable(chargeableModifier),
-            IConditionalModifier conditionalModifier => AddConditional(conditionalModifier),
+            IDamageOverTimeModifier dot => AddDamageOverTime(dot, damageResult!),
+            IStackableStatModifier stackableStat => AddStackingStatModifier(stackableStat),
+            IChargeableModifier chargeable => AddChargeable(chargeable),
+            IConditionalModifier conditional => AddConditional(conditional),
+            IExclusiveModifier exclusive => AddExclusive(exclusive),
             _ => AddRegularModifier(modifier)
         };
     }
@@ -112,6 +113,13 @@ public class ModifierContext : ITickable
         ExpireModifiers(context);
     }
 
+    private bool AddExclusive(IExclusiveModifier exclusive)
+    {
+        return _activeModifiers.All(m => m.Modifier.Effect != exclusive.Effect)
+            ? AddRegularModifier(exclusive)
+            : false;
+    }
+
     private bool AddConditional(IConditionalModifier conditionalModifier)
     {
         _conditionalModifiers.Add(new ConditionalModifierContainer(conditionalModifier, _self));
@@ -119,7 +127,7 @@ public class ModifierContext : ITickable
     }
 
     private bool AddDamageOverTime(
-        IDamageOverTimeModifier dotModifier,
+        IDamageOverTimeModifier dot,
         DamageResult damageResult)
     {
         // Can only have one DoT at a time
@@ -129,8 +137,8 @@ public class ModifierContext : ITickable
         }
 
         _activeModifiers.Add(new ActiveDamageOverTimeModifier(
-            dotModifier.CreateLifespan(),
-            dotModifier,
+            dot.CreateLifespan(),
+            dot,
             _self,
             damageResult)
         );
@@ -138,17 +146,17 @@ public class ModifierContext : ITickable
         return true;
     }
 
-    private bool AddStackingStatModifier(IStackableStatModifier stackableStatModifier)
+    private bool AddStackingStatModifier(IStackableStatModifier stackableStat)
     {
         ActiveModifier? existingModifier = _activeModifiers
-            .Where(m => m.Modifier is StackableStatModifierContainer c && c.Modifier == stackableStatModifier)
+            .Where(m => m.Modifier is StackableStatModifierContainer c && c.Modifier == stackableStat)
             .FirstOrDefault();
 
         StackableStatModifierContainer container;
 
         if (existingModifier == null)
         {
-            container = new(stackableStatModifier, _self);
+            container = new(stackableStat, _self);
             _activeModifiers.Add(new ActiveModifier(container, container));
         }
         else
@@ -159,9 +167,9 @@ public class ModifierContext : ITickable
         return container.AddStack();
     }
 
-    private bool AddChargeable(IChargeableModifier chargeableModifier)
+    private bool AddChargeable(IChargeableModifier chargeable)
     {
-        ChargeModifiers.Add(new ChargedModifierContainer(chargeableModifier));
+        ChargeModifiers.Add(new ChargedModifierContainer(chargeable));
         return true;
     }
 

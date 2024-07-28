@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "deadly",
+						"type": "eviscerate",
 						"percent": 100
 					}
 				]

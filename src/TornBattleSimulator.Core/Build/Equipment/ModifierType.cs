@@ -39,7 +39,12 @@ public enum ModifierType
     Crusher,
     Cupid,
     Deadeye,
-    Deadly
+    Deadly,
+    // Disarm // todo
+    //DoubleEdged,
+    //DoubleTap,
+    //Empower,
+    Eviscerate
 }
 
 // Double edge = 25%, Frenzy = multiplicative
