@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "assassinate",
-						"percent": 100
+						"type": "beserk",
+						"percent": 50
 					}
 				]
 			},

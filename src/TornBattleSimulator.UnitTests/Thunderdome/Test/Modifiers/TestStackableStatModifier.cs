@@ -36,7 +36,7 @@ internal class TestStackableStatModifier : IStackableStatModifier
 
     public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
-    public ModifierType Effect => ModifierType.Demoralized;
+    public ModifierType Effect => 0;
 
     public int MaxStacks => _maxStacks;
 

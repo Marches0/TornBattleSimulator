@@ -28,7 +28,8 @@ public enum ModifierType
     //Toxin, // todo
     Achilles,
     Assassinate,
-    Backstab
+    Backstab,
+    Beserk
 }
 
 // Double edge = 25%, Frenzy = multiplicative
