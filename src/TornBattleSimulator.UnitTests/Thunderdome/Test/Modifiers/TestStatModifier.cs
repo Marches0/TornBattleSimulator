@@ -5,7 +5,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
-internal class TestStatModifier : IStatsModifier
+internal class TestStatModifier : BaseTestModifier, IStatsModifier
 {
     private readonly float _strengthModifier;
     private readonly float _defenceModifier;
@@ -26,16 +26,6 @@ internal class TestStatModifier : IStatsModifier
         Type = type;
     }
 
-    public ModifierLifespanDescription Lifespan => throw new NotImplementedException();
-
-    public bool RequiresDamageToApply => throw new NotImplementedException();
-
-    public ModifierTarget Target => throw new NotImplementedException();
-
-    public ModifierApplication AppliesAt => throw new NotImplementedException();
-
-    public ModifierType Effect => throw new NotImplementedException();
-
     public float GetDefenceModifier() => _defenceModifier;
 
     public float GetDexterityModifier() => _dexterityModifier;
@@ -45,6 +35,4 @@ internal class TestStatModifier : IStatsModifier
     public float GetStrengthModifier() => _strengthModifier;
 
     public StatModificationType Type { get; }
-
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

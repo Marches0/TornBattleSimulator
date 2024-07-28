@@ -1,11 +1,8 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
-internal class TestChargeableModifier : IChargeableModifier
+internal class TestChargeableModifier : BaseTestModifier, IChargeableModifier
 {
     public TestChargeableModifier(bool startsCharged)
     {
@@ -13,16 +10,4 @@ internal class TestChargeableModifier : IChargeableModifier
     }
 
     public bool StartsCharged { get; }
-
-    public ModifierLifespanDescription Lifespan => throw new NotImplementedException();
-
-    public bool RequiresDamageToApply => throw new NotImplementedException();
-
-    public ModifierTarget Target => throw new NotImplementedException();
-
-    public ModifierApplication AppliesAt => throw new NotImplementedException();
-
-    public ModifierType Effect => throw new NotImplementedException();
-
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
 }
