@@ -31,7 +31,8 @@ public enum ModifierType
     Backstab,
     Beserk,
     Bleed,
-    Blindside
+    Blindside,
+    Bloodlust
 }
 
 // Double edge = 25%, Frenzy = multiplicative

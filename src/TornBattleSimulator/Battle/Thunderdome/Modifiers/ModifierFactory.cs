@@ -3,6 +3,7 @@ using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
 using TornBattleSimulator.BonusModifiers.DamageOverTime;
+using TornBattleSimulator.BonusModifiers.Health;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.BonusModifiers.Stats.Weapon;
@@ -58,6 +59,9 @@ public class ModifierFactory
             ModifierType.Laceration => new LacerationModifier(),
             ModifierType.Poisoned => new PoisonedModifier(),
 
+            // Heals
+            ModifierType.Bloodlust => new BloodlustModifier(value),
+
             // Action buffs
             ModifierType.Blindfire => new BlindfireModifier(),
             ModifierType.Fury => new FuryModifier(),
@@ -67,7 +71,7 @@ public class ModifierFactory
             ///  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
 
-            _ => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}")
+            0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),
         };
 
         return ChanceWrapper(modifier, value);

@@ -46,7 +46,7 @@ public class ModifierApplier
         bool bonusAction,
         DamageResult damageResult)
     {
-        return ApplyModifiers(
+        List<ThunderdomeEvent> events = ApplyModifiers(
             context,
             active,
             other,
@@ -55,6 +55,24 @@ public class ModifierApplier
             damageResult,
             ModifierApplication.AfterAction
         );
+
+        // Static heals (e.g. Bloodlust) are also performed here.
+        // Currently coupled to AppliesAt awkwardly, in that the effect
+        // lasts for the entire fight, but also only triggers specifically
+        // after a relevant attacking action.
+        foreach (IHealthModifier staticHeal in potentialModifiers
+            .Select(m => m.Modifier)
+            .Where(m => m.AppliesAt == ModifierApplication.FightStart)
+            .OfType<IHealthModifier>())
+        {
+            PlayerContext target = staticHeal.Target == ModifierTarget.Self
+                ? active
+                : other;
+
+            events.Add(Heal(context, target, damageResult, staticHeal));
+        }
+
+        return events;
     }
 
     private List<ThunderdomeEvent> ApplyModifiers(ThunderdomeContext context,
@@ -95,7 +113,7 @@ public class ModifierApplier
             // So only triggering it on application seems alright.
             if (modifier.Modifier is IHealthModifier healthModifier)
             {
-                events.Add(Heal(context, target, damageResult, modifier.Modifier, healthModifier));
+                events.Add(Heal(context, target, damageResult,  healthModifier));
             }
         }
 
@@ -103,7 +121,7 @@ public class ModifierApplier
     }
 
     // move this calc into seperate module
-    private ThunderdomeEvent Heal(ThunderdomeContext context, PlayerContext target, DamageResult? damageResult, IModifier modifier, IHealthModifier healthModifier)
+    private ThunderdomeEvent Heal(ThunderdomeContext context, PlayerContext target, DamageResult? damageResult, IHealthModifier healthModifier)
     {
         // Don't allow healing above max.
         int heal = Math.Min(
@@ -112,6 +130,6 @@ public class ModifierApplier
         );
 
         target.Health.CurrentHealth += heal;
-        return context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, modifier.Effect));
+        return context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, healthModifier.Effect));
     }
 }
