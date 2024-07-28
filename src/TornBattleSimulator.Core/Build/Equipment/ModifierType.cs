@@ -36,7 +36,8 @@ public enum ModifierType
     Comeback,
     Conserve,
     Cripple,
-    Crusher
+    Crusher,
+    Cupid
 }
 
 // Double edge = 25%, Frenzy = multiplicative
