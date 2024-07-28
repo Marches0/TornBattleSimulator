@@ -10,6 +10,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
 
@@ -23,55 +24,22 @@ public class DamageCalculatorTests
         using AutoFake autoFake = new();
         autoFake.Provide<IEnumerable<IDamageModifier>>(new List<IDamageModifier>()
         {
-            new StaticDamageModifier(20, StatModificationType.Additive),
-            new StaticDamageModifier(10, StatModificationType.Additive),
-            new StaticDamageModifier(10, StatModificationType.Multiplicative),
-            new StaticDamageModifier(0.5, StatModificationType.Multiplicative),
+            new TestDamageModifier(20, StatModificationType.Additive),
+            new TestDamageModifier(10, StatModificationType.Additive),
+            new TestDamageModifier(10, StatModificationType.Multiplicative),
+            new TestDamageModifier(0.5, StatModificationType.Multiplicative),
         });
 
         DamageCalculator damageCalculator = autoFake.Resolve<DamageCalculator>();
 
         var attacker = new PlayerContextBuilder().Build();
         var defender = new PlayerContextBuilder().Build();
-        var weapon = new WeaponContextBuilder().WithModifier(new StaticDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
+        var weapon = new WeaponContextBuilder().WithModifier(new TestDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
 
         // Act
         var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).Damage;
 
         // Assert
         damage.Should().Be(75);
-    }
-
-    private class StaticDamageModifier : IDamageModifier, IModifier
-    {
-        private readonly double _multipler;
-
-        public StaticDamageModifier(
-            double multipler,
-            StatModificationType type)
-        {
-            _multipler = multipler;
-            Type = type;
-        }
-
-        /// <inheritdoc/>
-        public StatModificationType Type { get; }
-
-        public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
-
-        public bool RequiresDamageToApply => throw new NotImplementedException();
-
-        public ModifierTarget Target => ModifierTarget.Self;
-
-        public ModifierApplication AppliesAt => throw new NotImplementedException();
-
-        public ModifierType Effect => throw new NotImplementedException();
-
-        public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
-
-        public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
-        {
-            return new(_multipler);
-        }
     }
 }
