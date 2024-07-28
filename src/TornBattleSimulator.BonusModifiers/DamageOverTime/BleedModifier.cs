@@ -26,5 +26,5 @@ public class BleedModifier : IDamageOverTimeModifier
     public ModifierType Effect => ModifierType.Bleed;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }
