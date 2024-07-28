@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "cupid",
+						"type": "deadeye",
 						"percent": 100
 					}
 				]
@@ -103,9 +103,6 @@
 			"temporary": "serotonin",
 			"strategy": [
 				{
-					"weapon": "temporary"
-				},
-				{
 					"weapon": "melee",
 					"reload": false,
 					"until": [
@@ -115,6 +112,9 @@
 							"count": 2
 						}
 					]
+				},
+				{
+					"weapon": "temporary"
 				},
 				{
 					"weapon": "melee"

@@ -51,6 +51,7 @@ public class ModifierFactory
             ModifierType.Beserk => new BeserkModifier(value),
             ModifierType.Blindside => new BlindsideModifier(value),
             ModifierType.Comeback => new ComebackModifier(value),
+            ModifierType.Deadeye => new DeadeyeModifier(value),
             ModifierType.Smash => new SmashModifier(),
 
             // Body part modifiers
