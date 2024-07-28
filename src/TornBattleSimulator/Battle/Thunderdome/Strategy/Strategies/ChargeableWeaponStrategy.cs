@@ -4,5 +4,5 @@ namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
 public abstract class ChargeableWeaponStrategy
 {
-    public bool NeedsCharge(WeaponContext weapon) => weapon.ActiveModifiers.ChargeModifiers.Any(m => !m.Charged);
+    public bool NeedsCharge(WeaponContext weapon) => weapon.Modifiers.ChargeModifiers.Any(m => !m.Charged);
 }

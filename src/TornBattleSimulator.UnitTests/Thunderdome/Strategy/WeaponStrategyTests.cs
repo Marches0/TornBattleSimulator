@@ -27,8 +27,8 @@ public class WeaponStrategyTests : LoadableWeaponTests
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
-        weapon.ActiveModifiers = new ModifierContext(attacker);
-        weapon.ActiveModifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
+        weapon.Modifiers = new ModifierContext(attacker);
+        weapon.Modifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
 
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
         attacker.Weapons.Primary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;
@@ -53,8 +53,8 @@ public class WeaponStrategyTests : LoadableWeaponTests
         PlayerContext attacker = new PlayerContextBuilder().WithSecondary(weapon).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
-        weapon.ActiveModifiers = new ModifierContext(attacker);
-        weapon.ActiveModifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
+        weapon.Modifiers = new ModifierContext(attacker);
+        weapon.Modifiers.AddModifier(new TestChargeableModifier(testData.charged), null);
 
         attacker.Weapons.Secondary!.Ammo.MagazineAmmoRemaining = testData.currentMagazineAmmo;
         attacker.Weapons.Secondary!.Ammo.MagazinesRemaining = testData.magazinesRemaining;

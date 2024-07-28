@@ -29,7 +29,7 @@ public class DamageCalculator : IDamageCalculator
 
         var damage = _damageModifiers
             // Weapon's active modifiers (e.g. Cupid) are active.
-            .Concat(weapon.ActiveModifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
+            .Concat(weapon.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
 
             // Player damage buffs are active.
             .Concat(active.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())

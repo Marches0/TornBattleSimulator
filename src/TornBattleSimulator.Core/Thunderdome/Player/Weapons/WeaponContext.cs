@@ -24,7 +24,7 @@ public class WeaponContext : ITickable
             MagazineAmmoRemaining = weapon.Ammo.MagazineSize
         } : null;
 
-        Modifiers = modifiers;
+        PotentialModifiers = modifiers;
     }
 
     public Weapon Description { get; }
@@ -33,31 +33,37 @@ public class WeaponContext : ITickable
     public bool CanReload => Ammo?.MagazinesRemaining > 0;
     public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;
 
-    public ModifierContext ActiveModifiers { get; set; }
+    /// <summary>
+    ///  The state of this weapon's modifiers.
+    /// </summary>
+    public ModifierContext Modifiers { get; set; }
 
-    public List<PotentialModifier> Modifiers { get; }
+    /// <summary>
+    ///  Modifiers that may be granted via usage of this weapon.
+    /// </summary>
+    public List<PotentialModifier> PotentialModifiers { get; }
 
     /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context)
     {
-        ActiveModifiers.FightBegin(context);
+        Modifiers.FightBegin(context);
     }
 
     /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
-        ActiveModifiers.OpponentActionComplete(context);
+        Modifiers.OpponentActionComplete(context);
     }
 
     /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context)
     {
-        ActiveModifiers.OwnActionComplete(context);
+        Modifiers.OwnActionComplete(context);
     }
 
     /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
-        ActiveModifiers.TurnComplete(context);
+        Modifiers.TurnComplete(context);
     }
 }

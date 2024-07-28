@@ -15,7 +15,7 @@ public abstract class ChargeWeaponAction
         PlayerContext other,
         WeaponContext weapon)
     {
-        foreach (ChargedModifierContainer charge in weapon.ActiveModifiers.ChargeModifiers)
+        foreach (ChargedModifierContainer charge in weapon.Modifiers.ChargeModifiers)
         {
             charge.Charged = true;
         }

@@ -56,7 +56,7 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        foreach (ChargedModifierContainer charge in weapon.ActiveModifiers.ChargeModifiers)
+        foreach (ChargedModifierContainer charge in weapon.Modifiers.ChargeModifiers)
         {
             charge.Charged = false;
         }
@@ -82,7 +82,7 @@ public class WeaponUsage : IWeaponUsage
         if (!bonusAction)
         {
             events.AddRange(
-                _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers)
+                _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.PotentialModifiers)
             );
         }
 
@@ -93,7 +93,7 @@ public class WeaponUsage : IWeaponUsage
 
         if (!bonusAction)
         {
-            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult));
+            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.PotentialModifiers, damageResult));
         }
 
         if (weapon.Ammo != null)

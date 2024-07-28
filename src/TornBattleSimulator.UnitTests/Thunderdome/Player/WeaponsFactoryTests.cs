@@ -45,12 +45,12 @@ public class WeaponsFactoryTests
         // Assert
         using (new AssertionScope())
         {
-            weaponContext.Modifiers.Count.Should().Be(modifiers.Count);
+            weaponContext.PotentialModifiers.Count.Should().Be(modifiers.Count);
 
-            weaponContext.Modifiers.Where(m => m.Modifier.ValueBehaviour == ModifierValueBehaviour.Chance)
+            weaponContext.PotentialModifiers.Where(m => m.Modifier.ValueBehaviour == ModifierValueBehaviour.Chance)
                 .Should().AllSatisfy(m => m.Chance.Should().Be(0.5));
 
-            weaponContext.Modifiers.Where(m => m.Modifier.ValueBehaviour != ModifierValueBehaviour.Chance)
+            weaponContext.PotentialModifiers.Where(m => m.Modifier.ValueBehaviour != ModifierValueBehaviour.Chance)
                 .Should().AllSatisfy(m => m.Chance.Should().Be(1));
         }
     }

@@ -46,7 +46,7 @@ public class AccuracyCalculator : IAccuracyCalculator
         double baseAccuracy)
     {
         var modifiers = active.Modifiers.Active.OfType<IAccuracyModifier>()
-            .Concat(weapon.ActiveModifiers.Active.OfType<IAccuracyModifier>());
+            .Concat(weapon.Modifiers.Active.OfType<IAccuracyModifier>());
 
         return modifiers.Aggregate(baseAccuracy, (total, modifier) => total * modifier.GetAccuracyModifier(active, other, weapon));
     }

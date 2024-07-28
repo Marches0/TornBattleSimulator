@@ -73,11 +73,11 @@ public class WeaponContextBuilder
             _modifiers.Select(m => new PotentialModifier(m, 1)).ToList()
         );
 
-        context.ActiveModifiers = new(null);
+        context.Modifiers = new(null);
         
         foreach (var auto in _autoModifiers)
         {
-            context.ActiveModifiers.AddModifier(auto, null);
+            context.Modifiers.AddModifier(auto, null);
         }
 
         return context;

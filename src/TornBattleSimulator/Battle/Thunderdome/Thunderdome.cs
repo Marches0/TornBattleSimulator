@@ -94,14 +94,14 @@ public class Thunderdome
     private void ActivateModifers(ThunderdomeContext context, PlayerContext player, WeaponContext weapon)
     {
         // Not good. but here we are.
-        weapon.ActiveModifiers = new ModifierContext(player);
+        weapon.Modifiers = new ModifierContext(player);
 
-        foreach (var modifier in weapon.Modifiers
+        foreach (var modifier in weapon.PotentialModifiers
             .Select(m => m.Modifier)
             .Where(m => m.AppliesAt == ModifierApplication.FightStart)
             .Where(m => m.Target == ModifierTarget.Self))
         {
-            if (weapon.ActiveModifiers.AddModifier(modifier, null))
+            if (weapon.Modifiers.AddModifier(modifier, null))
             {
                 context.Events.Add(
                     context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect))
