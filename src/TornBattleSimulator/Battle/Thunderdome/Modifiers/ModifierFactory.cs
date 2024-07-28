@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.BonusModifiers.Actions;
+using TornBattleSimulator.BonusModifiers.Ammo;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
@@ -67,6 +68,9 @@ public class ModifierFactory
             ModifierType.Blindfire => new BlindfireModifier(),
             ModifierType.Fury => new FuryModifier(),
             ModifierType.Rage => new RageModifier(),
+
+            // Ammo
+            ModifierType.Conserve => new ConserveModifier(value),
 
             ///  All modifiers in Torn can be created, but those that have no use
             ///  (e.g. Pluder) are no-ops so we can support them being added without throwing.

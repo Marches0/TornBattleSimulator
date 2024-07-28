@@ -1,4 +1,5 @@
 ﻿using Autofac.Extras.FakeItEasy;
+using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
@@ -6,6 +7,7 @@ using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Actions;
@@ -22,6 +24,12 @@ public class WeaponUsageTests : LoadableWeaponTests
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
         autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysSucceeds);
+
+        var ammoCalculator = A.Fake<IAmmoCalculator>();
+        A.CallTo(() => ammoCalculator.GetAmmoRemaining(A<PlayerContext>._, A<WeaponContext>._))
+            .Returns(0);
+
+        autoFake.Provide(ammoCalculator);
 
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();
@@ -49,6 +57,12 @@ public class WeaponUsageTests : LoadableWeaponTests
         using AutoFake autoFake = new AutoFake();
         autoFake.Provide<IDamageCalculator>(new StaticDamageCalculator(expectedDamage));
         autoFake.Provide<IChanceSource>(FixedChanceSource.AlwaysFails);
+
+        var ammoCalculator = A.Fake<IAmmoCalculator>();
+        A.CallTo(() => ammoCalculator.GetAmmoRemaining(A<PlayerContext>._, A<WeaponContext>._))
+            .Returns(0);
+
+        autoFake.Provide(ammoCalculator);
 
         PlayerContext attacker = new PlayerContextBuilder().WithPrimary(GetLoadableWeapon()).Build();
         PlayerContext defender = new PlayerContextBuilder().WithHealth(500).Build();

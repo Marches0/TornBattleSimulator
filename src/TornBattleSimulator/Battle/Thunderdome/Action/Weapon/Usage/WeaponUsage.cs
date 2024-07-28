@@ -22,19 +22,22 @@ public class WeaponUsage : IWeaponUsage
     private readonly ModifierApplier _modifierApplier;
     private readonly IChanceSource _chanceSource;
     private readonly AttackModifierApplier _attackModifierApplier;
+    private readonly IAmmoCalculator _ammoCalculator;
 
     public WeaponUsage(
         IDamageCalculator damageCalculator,
         IAccuracyCalculator accuracyCalculator,
         ModifierApplier modifierApplier,
         IChanceSource chanceSource,
-        AttackModifierApplier attackModifierApplier)
+        AttackModifierApplier attackModifierApplier,
+        IAmmoCalculator ammoCalculator)
     {
         _damageCalculator = damageCalculator;
         _accuracyCalculator = accuracyCalculator;
         _modifierApplier = modifierApplier;
         _chanceSource = chanceSource;
         _attackModifierApplier = attackModifierApplier;
+        _ammoCalculator = ammoCalculator;
     }
 
     public List<ThunderdomeEvent> UseWeapon(
@@ -96,8 +99,7 @@ public class WeaponUsage : IWeaponUsage
 
         if (weapon.Ammo != null)
         {
-            int ammoConsumed = Random.Shared.Next(weapon.Description.RateOfFire.Min, weapon.Description.RateOfFire.Max + 1);
-            weapon.Ammo!.MagazineAmmoRemaining = Math.Max(0, weapon.Ammo.MagazineAmmoRemaining - ammoConsumed);
+            weapon.Ammo!.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(active, weapon);
         }
 
         return events;

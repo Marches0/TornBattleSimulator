@@ -22,6 +22,9 @@ public class ActionModule : Module
 
         builder.RegisterType<WeaponUsage>()
             .As<IWeaponUsage>();
+
+        builder.RegisterType<AmmoCalculator>()
+            .As<IAmmoCalculator>();
     }
 
     private void RegisterAttacks(ContainerBuilder builder)

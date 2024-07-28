@@ -13,8 +13,8 @@
 				"damage": 50,
 				"accuracy": 100,
 				"rateOfFire": {
-					"min": 1,
-					"max": 5
+					"min": 10,
+					"max": 10
 				},
 				"ammo": {
 					"magazines": 3,
@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "comeback",
-						"percent": 100
+						"type": "conserve",
+						"percent": 50
 					}
 				]
 			},
