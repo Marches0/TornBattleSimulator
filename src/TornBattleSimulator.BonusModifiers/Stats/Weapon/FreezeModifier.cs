@@ -39,7 +39,7 @@ public class FreezeModifier : IStackableStatModifier
     public float GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;

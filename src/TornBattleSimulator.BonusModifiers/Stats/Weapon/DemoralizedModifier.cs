@@ -39,7 +39,7 @@ public class DemoralizedModifier : IStackableStatModifier
     public float GetStrengthModifier() => 0.9f;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;

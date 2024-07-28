@@ -9,7 +9,7 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 public class CrippleModifier : IStackableStatModifier
 {
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(180);
