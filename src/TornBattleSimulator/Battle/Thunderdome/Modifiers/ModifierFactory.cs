@@ -52,6 +52,7 @@ public class ModifierFactory
             ModifierType.Blindside => new BlindsideModifier(value),
             ModifierType.Comeback => new ComebackModifier(value),
             ModifierType.Deadeye => new DeadeyeModifier(value),
+            ModifierType.Deadly => new DeadlyModifier(),
             ModifierType.Smash => new SmashModifier(),
 
             // Body part modifiers

@@ -38,7 +38,8 @@ public enum ModifierType
     Cripple,
     Crusher,
     Cupid,
-    Deadeye
+    Deadeye,
+    Deadly
 }
 
 // Double edge = 25%, Frenzy = multiplicative
