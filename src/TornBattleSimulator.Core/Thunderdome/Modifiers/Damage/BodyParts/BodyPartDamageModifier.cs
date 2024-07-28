@@ -17,10 +17,10 @@ public abstract class BodyPartDamageModifier : IDamageModifier
 
     protected BodyPartDamageModifier(
         BodyPart bodyPart,
-        double damage)
+        double value)
     {
         _bodyPart = bodyPart;
-        _damage = 1 + damage;
+        _damage = 1 + value;
     }
 
     /// <inheritdoc/>

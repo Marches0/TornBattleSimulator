@@ -5,12 +5,12 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage.BodyParts;
 
 namespace TornBattleSimulator.BonusModifiers.Damage.BodyParts;
 
-public class AchillesModifier : BodyPartDamageModifier, IModifier
+public class CrusherModifier : BodyPartDamageModifier, IModifier
 {
-    public AchillesModifier(double value) : base(BodyPart.Feet, value)
+    public CrusherModifier(double value) : base(BodyPart.Head, value)
     {
     }
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Achilles;
+    public ModifierType Effect => ModifierType.Crusher;
 }

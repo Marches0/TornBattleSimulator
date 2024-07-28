@@ -55,6 +55,7 @@ public class ModifierFactory
 
             // Body part modifiers
             ModifierType.Achilles => new AchillesModifier(value),
+            ModifierType.Crusher => new CrusherModifier(value),
 
             // DoTs
             ModifierType.Bleed => new BleedModifier(),

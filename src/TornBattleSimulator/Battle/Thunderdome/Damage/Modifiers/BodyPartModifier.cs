@@ -45,6 +45,9 @@ public class BodyPartModifier : IDamageModifier
 
     private BodyPartDamage GetTargetBodyPart(WeaponContext weapon)
     {
+        //return _criticalOptions.First(r => r.Option.Part == BodyPart.Head).Option;
+        //return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
+
         if (weapon.Type == WeaponType.Temporary)
         {
             // Temps hit chest. Thanks Staphy!
