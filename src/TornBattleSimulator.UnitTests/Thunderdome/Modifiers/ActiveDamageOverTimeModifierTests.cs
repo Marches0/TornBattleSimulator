@@ -15,7 +15,7 @@ public class ActiveDamageOverTimeModifierTests
     [Test]
     public void Tick_AppliesDecayingDamage_TurnAfterApplication()
     {
-        uint startHealth = 10_000;
+        int startHealth = 10_000;
         int appliedDamage = 2000;
 
         PlayerContext target = new PlayerContextBuilder().WithHealth(startHealth).Build();

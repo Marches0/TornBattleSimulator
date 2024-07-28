@@ -10,7 +10,7 @@ public class BattleBuild
 {
     public string Name { get; set; }
 
-    public uint Health { get; set; }
+    public int Health { get; set; }
 
     public BattleStats BattleStats { get; set; }
 

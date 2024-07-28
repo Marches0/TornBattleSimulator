@@ -25,7 +25,7 @@ public class PlayerContext : ITickable
         Strategy = strategy;
         Weapons = weapons;
         ArmourSet = armourSet;
-        Health = new((int)build.Health);
+        Health = new(build.Health);
         PlayerType = playerType;
 
         Modifiers = new(this);

@@ -7,7 +7,7 @@ public class BuildInput
 {
     public string? Name { get; set; }
 
-    public uint? Health { get; set; }
+    public int? Health { get; set; }
 
     public BattleStatsInput? BattleStats { get; set; }
 

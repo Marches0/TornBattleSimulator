@@ -22,11 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "bloodlust",
-						"percent": 30
-					},
-					{
-						"type": "fury",
+						"type": "comeback",
 						"percent": 100
 					}
 				]

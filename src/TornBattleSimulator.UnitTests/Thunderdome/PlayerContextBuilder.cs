@@ -8,7 +8,7 @@ namespace TornBattleSimulator.UnitTests.Thunderdome;
 public class PlayerContextBuilder
 {
     private BattleStats _battleStats = new BattleStats() {};
-    private uint _health;
+    private int _health;
     private WeaponContext? _primary;
     private WeaponContext? _secondary;
     private WeaponContext? _melee;
@@ -46,7 +46,7 @@ public class PlayerContextBuilder
         return this;
     }
 
-    public PlayerContextBuilder WithHealth(uint health)
+    public PlayerContextBuilder WithHealth(int health)
     {
         _health = health;
         return this;

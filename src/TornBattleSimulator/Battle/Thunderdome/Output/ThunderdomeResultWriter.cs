@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using System.Numerics;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
@@ -90,12 +91,12 @@ public class ThunderdomeResultWriter
             GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Speed, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Defence, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.AttackerStats.Strength, NumberExtensions.ToSimpleString),
-            GetDiffSelector(currentEvent, previousEvent, e => (ulong)e.AttackerHealth, x => x.ToString("n0")),
+            GetDiffSelector(currentEvent, previousEvent, e => e.AttackerHealth, x => x.ToString("n0")),
             
             currentEvent.Source == PlayerType.Attacker ? arrowedEvent : " ",
             currentEvent.Data.Format().ToColouredString(currentEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0"),
             currentEvent.Source == PlayerType.Defender ? arrowedEvent : " ",
-            GetDiffSelector(currentEvent, previousEvent, e => (ulong)e.DefenderHealth, x => x.ToString("n0")),
+            GetDiffSelector(currentEvent, previousEvent, e => e.DefenderHealth, x => x.ToString("n0")),
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Strength, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Defence, NumberExtensions.ToSimpleString),
             GetDiffSelector(currentEvent, previousEvent, e => e.DefenderStats.Speed, NumberExtensions.ToSimpleString),
@@ -136,19 +137,19 @@ public class ThunderdomeResultWriter
         return tEvent.Source.ToString().ToColouredString(tEvent.Source == PlayerType.Attacker ? "#C1E1C1" : "#FAA0A0");
     }
 
-    private string GetDiffSelector(
+    private string GetDiffSelector<T>(
         ThunderdomeEvent currentEvent,
         ThunderdomeEvent? previousEvent,
-        Func<ThunderdomeEvent, ulong> selector,
-        Func<ulong, string> formatter)
+        Func<ThunderdomeEvent, T> selector,
+        Func<T, string> formatter) where T : INumber<T>, IParsable<T>, IComparable<T>
     {
         if (previousEvent == null || currentEvent.Type == ThunderdomeEventType.FightEnd)
         {
             return formatter(selector.Invoke(currentEvent)!);
         }
 
-        ulong currentValue = selector.Invoke(currentEvent)!;
-        ulong previousValue = selector.Invoke(previousEvent)!;
+        T currentValue = selector.Invoke(currentEvent)!;
+        T previousValue = selector.Invoke(previousEvent)!;
 
         if (currentValue == previousValue)
         {
