@@ -19,41 +19,55 @@ public class ModifierFactory
 
         // Was nice when it was using keyed DI registrations, but some modifiers
         // needing to accept the % as part of their data means we need this instead.
+
         IModifier modifier = modifierType switch
         {
-            ModifierType.Concussed => new ConcussedModifier(),
-            ModifierType.Strengthened => new StrengthenedModifier(),
+            // Temps
             ModifierType.Blinded => new BlindedModifier(),
-            ModifierType.Hastened => new HastenedModifier(),
-            ModifierType.SevereBurning => new SevereBurningModifier(),
-            ModifierType.Maced => new MacedModifier(),
-            ModifierType.Hardened => new HardenedModifier(),
+            ModifierType.Concussed => new ConcussedModifier(),
             ModifierType.Gassed => new GassedModifier(),
+            ModifierType.Maced => new MacedModifier(),
+            ModifierType.SevereBurning => new SevereBurningModifier(),
             ModifierType.Smoked => new SmokedModifier(),
+
+            // Needles
+            ModifierType.Hardened => new HardenedModifier(),
+            ModifierType.Strengthened => new StrengthenedModifier(),
+            ModifierType.Hastened => new HastenedModifier(),
             ModifierType.Sharpened => new SharpenedModifier(),
 
-            ModifierType.Blindfire => new BlindfireModifier(),
-            ModifierType.Burning => new BurningModifier(),
+            // Stat Debuffs
             ModifierType.Demoralized => new DemoralizedModifier(),
             ModifierType.Freeze => new FreezeModifier(),
-            ModifierType.Laceration => new LacerationModifier(),
-            ModifierType.Poisoned => new PoisonedModifier(),
+
+            // Stuns
             ModifierType.Shock => new ShockModifier(),
-            ModifierType.Smash => new SmashModifier(),
 
-            ModifierType.Fury => new FuryModifier(),
-            ModifierType.Rage => new RageModifier(),
-
-            ModifierType.Achilles => new AchillesModifier(value),
-
+            // Damage
             ModifierType.Assassinate => new AssassinateModifier(value),
             ModifierType.Beserk => new BeserkModifier(value),
+            ModifierType.Blindside => new BlindsideModifier(value),
+            ModifierType.Smash => new SmashModifier(),
+
+            // Body part modifiers
+            ModifierType.Achilles => new AchillesModifier(value),
+
+            // DoTs
+            ModifierType.Bleed => new BleedModifier(),
+            ModifierType.Burning => new BurningModifier(),
+            ModifierType.Laceration => new LacerationModifier(),
+            ModifierType.Poisoned => new PoisonedModifier(),
+
+            // Action buffs
+            ModifierType.Blindfire => new BlindfireModifier(),
+            ModifierType.Fury => new FuryModifier(),
+            ModifierType.Rage => new RageModifier(),
 
             ///  All modifiers in Torn can be created, but those that have no use
             ///  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
 
-            0 => throw new ArgumentOutOfRangeException(nameof(modifierType))
+            _ => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}")
         };
 
         return ChanceWrapper(modifier, value);

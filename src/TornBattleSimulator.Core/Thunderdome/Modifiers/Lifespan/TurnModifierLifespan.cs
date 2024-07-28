@@ -19,10 +19,16 @@ public class TurnModifierLifespan : IModifierLifespan
 
     public float Remaining => _turns;
 
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context) { }
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context) { }
 
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context) { }
 
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         --_turns;

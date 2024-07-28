@@ -21,6 +21,15 @@ public class EquippedWeapons : ITickable
     public WeaponContext? Temporary { get; }
 
     /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context)
+    {
+        Primary?.FightBegin(context);
+        Secondary?.FightBegin(context);
+        Melee?.FightBegin(context);
+        Temporary?.FightBegin(context);
+    }
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         Primary?.OpponentActionComplete(context);

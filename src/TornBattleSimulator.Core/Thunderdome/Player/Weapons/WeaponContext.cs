@@ -38,6 +38,12 @@ public class WeaponContext : ITickable
     public List<PotentialModifier> Modifiers { get; }
 
     /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context)
+    {
+        ActiveModifiers.FightBegin(context);
+    }
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         ActiveModifiers.OpponentActionComplete(context);

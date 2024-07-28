@@ -29,7 +29,9 @@ public enum ModifierType
     Achilles,
     Assassinate,
     Backstab,
-    Beserk
+    Beserk,
+    Bleed,
+    Blindside
 }
 
 // Double edge = 25%, Frenzy = multiplicative

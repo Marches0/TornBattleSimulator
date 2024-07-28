@@ -16,10 +16,16 @@ public class TemporalModifierLifespan : IModifierLifespan
 
     public float Remaining => _remainingTimeSeconds;
 
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context) { }
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context) { }
 
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context) { }
 
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         _remainingTimeSeconds -= context.AttackInterval;

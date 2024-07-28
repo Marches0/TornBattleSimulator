@@ -12,6 +12,9 @@ public class IndefiniteLifespan : IModifierLifespan
     public float Remaining => 1;
 
     /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context) { }
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context) { }
 
     /// <inheritdoc/>

@@ -7,6 +7,9 @@ using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 
+/// <summary>
+///  A tracked Damage over Time modifier.
+/// </summary>
 public class ActiveDamageOverTimeModifier : ActiveModifier, ITickable
 {
     private readonly int _appliedDamage;
@@ -26,13 +29,16 @@ public class ActiveDamageOverTimeModifier : ActiveModifier, ITickable
         _appliedDamage = damageContext.Damage;
     }
 
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         _primed = true;
     }
 
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context) { }
 
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         // After the person who applied the DoT (the opponent) takes action, it ticks.
@@ -49,4 +55,7 @@ public class ActiveDamageOverTimeModifier : ActiveModifier, ITickable
             context.Events.Add(dotEvent);
         }
     }
+
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context){ }
 }

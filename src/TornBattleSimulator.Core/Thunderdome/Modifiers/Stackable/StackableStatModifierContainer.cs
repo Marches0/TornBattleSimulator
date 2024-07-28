@@ -72,6 +72,18 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
         return 1 + _activeStacks.Count * rawDifference;
     }
 
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context)
+    {
+        foreach (ActiveModifier stack in _activeStacks)
+        {
+            stack.CurrentLifespan.FightBegin(context);
+        }
+
+        ExpireModifiers(context);
+    }
+
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         foreach (ActiveModifier stack in _activeStacks)
@@ -82,6 +94,7 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
         ExpireModifiers(context);
     }
 
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context)
     {
         foreach (ActiveModifier stack in _activeStacks)
@@ -92,6 +105,8 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
         ExpireModifiers(context);
     }
 
+
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         foreach (ActiveModifier stack in _activeStacks)

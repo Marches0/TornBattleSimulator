@@ -7,6 +7,7 @@ using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
@@ -21,6 +22,7 @@ public class ModifierContext : ITickable
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(
         _activeModifiers.Select(m => m.Modifier)
         .Concat(ChargeModifiers.Select(c => c.Modifier))
+        .Concat(_conditionalModifiers.Where(m => m.IsActive).Select(m => m.Modifier))
         .ToList()
     );
 
@@ -31,10 +33,13 @@ public class ModifierContext : ITickable
 
     private List<ActiveModifier> _activeModifiers = new();
 
+    private List<ConditionalModifierContainer> _conditionalModifiers = new();
+
     // add charge?
     private IEnumerable<ITickable> _tickables =>
         _activeModifiers.Select(m => m.CurrentLifespan)
-        .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>());
+        .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>())
+        .Concat(_conditionalModifiers);
 
     private readonly PlayerContext _self;
 
@@ -58,8 +63,20 @@ public class ModifierContext : ITickable
             IDamageOverTimeModifier dotModifier => AddDamageOverTime(dotModifier, damageResult!),
             IStackableStatModifier stackableStatModifier => AddStackingStatModifier(stackableStatModifier),
             IChargeableModifier chargeableModifier => AddChargeable(chargeableModifier),
+            IConditionalModifier conditionalModifier => AddConditional(conditionalModifier),
             _ => AddRegularModifier(modifier)
         };
+    }
+
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context)
+    {
+        foreach (ITickable tickable in _tickables)
+        {
+            tickable.FightBegin(context);
+        }
+
+        ExpireModifiers(context);
     }
 
     /// <inheritdoc/>
@@ -93,6 +110,12 @@ public class ModifierContext : ITickable
         }
 
         ExpireModifiers(context);
+    }
+
+    private bool AddConditional(IConditionalModifier conditionalModifier)
+    {
+        _conditionalModifiers.Add(new ConditionalModifierContainer(conditionalModifier, _self));
+        return false; // Tracked by the container
     }
 
     private bool AddDamageOverTime(

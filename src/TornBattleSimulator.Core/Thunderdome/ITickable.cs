@@ -6,6 +6,11 @@
 public interface ITickable
 {
     /// <summary>
+    ///  Process the start of the fight.
+    /// </summary>
+    void FightBegin(ThunderdomeContext context);
+
+    /// <summary>
     ///  Process the end of the turn.
     /// </summary>
     void TurnComplete(ThunderdomeContext context);

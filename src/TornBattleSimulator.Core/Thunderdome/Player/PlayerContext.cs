@@ -65,18 +65,28 @@ public class PlayerContext : ITickable
     /// </summary>
     public BattleAction CurrentAction { get; set; }
 
+    /// <inheritdoc/>
+    public void FightBegin(ThunderdomeContext context) 
+    {
+        Modifiers.FightBegin(context);
+        Weapons.FightBegin(context);
+    }
+
+    /// <inheritdoc/>
     public void OwnActionComplete(ThunderdomeContext context)
     {
         Modifiers.OwnActionComplete(context);
         Weapons.OwnActionComplete(context);
     }
 
+    /// <inheritdoc/>
     public void OpponentActionComplete(ThunderdomeContext context)
     {
         Modifiers.OpponentActionComplete(context);
         Weapons.OpponentActionComplete(context);
     }
 
+    /// <inheritdoc/>
     public void TurnComplete(ThunderdomeContext context)
     {
         Modifiers.TurnComplete(context);

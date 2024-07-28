@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "beserk",
-						"percent": 50
+						"type": "blindside",
+						"percent": 1000
 					}
 				]
 			},
