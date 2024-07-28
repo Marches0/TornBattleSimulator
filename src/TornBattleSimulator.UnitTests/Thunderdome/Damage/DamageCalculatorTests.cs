@@ -17,40 +17,45 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Damage;
 public class DamageCalculatorTests
 {
     [Test]
-    public void CalculateDamage_CompoundsDamageMultipliers()
+    public void CalculateDamage_CompoundsAndAddsDamageMultipliers()
     {
         // Arrange
         using AutoFake autoFake = new();
         autoFake.Provide<IEnumerable<IDamageModifier>>(new List<IDamageModifier>()
         {
-            new StaticDamageModifier(10),
-            new StaticDamageModifier(0.5),
+            new StaticDamageModifier(20, StatModificationType.Additive),
+            new StaticDamageModifier(10, StatModificationType.Additive),
+            new StaticDamageModifier(10, StatModificationType.Multiplicative),
+            new StaticDamageModifier(0.5, StatModificationType.Multiplicative),
         });
 
         DamageCalculator damageCalculator = autoFake.Resolve<DamageCalculator>();
 
         var attacker = new PlayerContextBuilder().Build();
         var defender = new PlayerContextBuilder().Build();
-        var weapon = new WeaponContextBuilder().WithModifier(new StaticDamageModifier(0.5)).Build();
+        var weapon = new WeaponContextBuilder().WithModifier(new StaticDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
 
         // Act
         var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).Damage;
 
         // Assert
-        damage.Should().Be(2);
+        damage.Should().Be(75);
     }
 
     private class StaticDamageModifier : IDamageModifier, IModifier
     {
         private readonly double _multipler;
 
-        public StaticDamageModifier(double multipler)
+        public StaticDamageModifier(
+            double multipler,
+            StatModificationType type)
         {
             _multipler = multipler;
+            Type = type;
         }
 
         /// <inheritdoc/>
-        public StatModificationType Type => StatModificationType.Multiplicative;
+        public StatModificationType Type { get; }
 
         public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
