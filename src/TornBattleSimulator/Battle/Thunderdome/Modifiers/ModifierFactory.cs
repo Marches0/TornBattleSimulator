@@ -39,6 +39,7 @@ public class ModifierFactory
             ModifierType.Sharpened => new SharpenedModifier(),
 
             // Stat Debuffs
+            ModifierType.Cripple => new CrippleModifier(),
             ModifierType.Demoralized => new DemoralizedModifier(),
             ModifierType.Freeze => new FreezeModifier(),
 

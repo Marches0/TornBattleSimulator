@@ -34,7 +34,8 @@ public enum ModifierType
     Blindside,
     Bloodlust,
     Comeback,
-    Conserve
+    Conserve,
+    Cripple
 }
 
 // Double edge = 25%, Frenzy = multiplicative

@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "conserve",
-						"percent": 50
+						"type": "cripple",
+						"percent": 100
 					}
 				]
 			},
@@ -49,7 +49,7 @@
 					}
 				]
 			},
-			"temporary": "tearGas",
+			"temporary": null,
 			"armour": {
 				"helmet": {
 					"name": "combathelmet",
