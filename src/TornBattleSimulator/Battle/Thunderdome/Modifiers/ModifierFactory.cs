@@ -46,7 +46,11 @@ public class ModifierFactory
 
             ModifierType.Achilles => new AchillesModifier(value),
 
-            ModifierType.Assassinate => new AssassinateModifier(value),            
+            ModifierType.Assassinate => new AssassinateModifier(value),
+
+            ///  All modifiers in Torn can be created, but those that have no use
+            ///  (e.g. Pluder) are no-ops so we can support them being added without throwing.
+            ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
 
             0 => throw new ArgumentOutOfRangeException(nameof(modifierType))
         };

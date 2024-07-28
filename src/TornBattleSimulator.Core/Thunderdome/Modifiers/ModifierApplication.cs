@@ -21,5 +21,13 @@ public enum ModifierApplication
     /// <summary>
     ///  The modifier is applied when the fight begins.
     /// </summary>
-    FightStart
+    FightStart,
+
+    /// <summary>
+    ///  The modifier is never applied.
+    /// </summary>
+    /// <remarks>
+    ///  Used for unimplemented modifiers, such as Plunder.
+    /// </remarks>
+    Never
 }
