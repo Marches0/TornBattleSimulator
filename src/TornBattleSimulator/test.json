@@ -24,6 +24,10 @@
 					{
 						"type": "bloodlust",
 						"percent": 30
+					},
+					{
+						"type": "fury",
+						"percent": 100
 					}
 				]
 			},

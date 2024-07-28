@@ -5,7 +5,6 @@ using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
@@ -24,15 +23,13 @@ public class ModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers,
-        bool bonusAction)
+        List<PotentialModifier> potentialModifiers)
     {
         return ApplyModifiers(
             context,
             active,
             other,
             potentialModifiers,
-            bonusAction,
             null,
             ModifierApplication.BeforeAction
         );
@@ -43,18 +40,9 @@ public class ModifierApplier
         PlayerContext active,
         PlayerContext other,
         List<PotentialModifier> potentialModifiers,
-        bool bonusAction,
         DamageResult damageResult)
     {
-        List<ThunderdomeEvent> events = ApplyModifiers(
-            context,
-            active,
-            other,
-            potentialModifiers,
-            bonusAction,
-            damageResult,
-            ModifierApplication.AfterAction
-        );
+        List<ThunderdomeEvent> events = new();
 
         // Static heals (e.g. Bloodlust) are also performed here.
         // Currently coupled to AppliesAt awkwardly, in that the effect
@@ -72,6 +60,15 @@ public class ModifierApplier
             events.Add(Heal(context, target, damageResult, staticHeal));
         }
 
+        events.AddRange(ApplyModifiers(
+            context,
+            active,
+            other,
+            potentialModifiers,
+            damageResult,
+            ModifierApplication.AfterAction
+        ));
+
         return events;
     }
 
@@ -79,7 +76,6 @@ public class ModifierApplier
         PlayerContext active,
         PlayerContext other,
         List<PotentialModifier> potentialModifiers,
-        bool bonusAction,
         DamageResult? damageResult,
         ModifierApplication modifierApplication)
     {
@@ -88,14 +84,6 @@ public class ModifierApplier
         var triggeredModifiers = potentialModifiers
             .Where(m => m.Modifier.AppliesAt == modifierApplication)
             .Where(m => _modifierChanceSource.Succeeds(m.Chance));
-
-        if (bonusAction)
-        {
-            // Attacks modifiers (ones that let you attack multiple times)
-            // cannot be triggered in bonus actions (since they going on already).
-            triggeredModifiers = triggeredModifiers
-                .Where(m => m.Modifier is not IAttacksModifier);
-        }
 
         foreach (PotentialModifier modifier in triggeredModifiers)
         {

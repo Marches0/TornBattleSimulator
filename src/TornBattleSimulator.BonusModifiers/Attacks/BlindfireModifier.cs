@@ -7,17 +7,24 @@ namespace TornBattleSimulator.BonusModifiers.Attacks;
 
 public class BlindfireModifier : IAttacksModifier
 {
+    /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
+    /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
 
+    /// <inheritdoc/>
     public ModifierTarget Target => ModifierTarget.Self;
 
+    /// <inheritdoc/>
     public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
+    /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Blindfire;
 
+    /// <inheritdoc/>
     public bool Stackable => true;
 
+    /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
 }

@@ -1,34 +1,27 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Attacks;
 
 public class FuryModifier : IAttacksModifier
 {
+    /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
+    /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
 
+    /// <inheritdoc/>
     public ModifierTarget Target => ModifierTarget.Self;
 
+    /// <inheritdoc/>
     public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
+    /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Fury;
 
+    /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
-
-    public List<ThunderdomeEvent> MakeAttack(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon, Func<List<ThunderdomeEvent>> attackAction)
-    {
-        // Just a single attack.
-        // Not supposed to be on loaded weapons,
-        return weapon.RequiresReload
-            ? new List<ThunderdomeEvent>(0)
-            : attackAction();
-    }
 }

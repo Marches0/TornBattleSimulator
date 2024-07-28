@@ -76,14 +76,23 @@ public class WeaponUsage : IWeaponUsage
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }
 
-        List<ThunderdomeEvent> events = _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers, bonusAction);
+        List<ThunderdomeEvent> events = new();
+
+        // Modifiers can't trigger on bonus actions
+        if (!bonusAction)
+        {
+            _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.Modifiers);
+        }
 
         DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other, weapon);
         double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
 
         events.Add(MakeHit(context, active, other, weapon, damageResult, hitChance));
 
-        events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, bonusAction, damageResult));
+        if (!bonusAction)
+        {
+            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.Modifiers, damageResult));
+        }
 
         if (weapon.Ammo != null)
         {
