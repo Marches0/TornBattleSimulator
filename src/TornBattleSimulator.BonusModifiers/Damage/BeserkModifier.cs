@@ -4,6 +4,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -43,6 +44,9 @@ public class BeserkModifier : IModifier, IDamageModifier, IAccuracyModifier
     {
         return _accuracyModifier;
     }
+
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)

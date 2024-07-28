@@ -4,6 +4,7 @@ using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -41,6 +42,9 @@ public class DeadeyeModifier : IModifier, IDamageModifier
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

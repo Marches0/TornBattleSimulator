@@ -1,5 +1,6 @@
 ﻿using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -10,6 +11,10 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     private static readonly double LowerMitigationModifier = 50 / Math.Log(32);
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
+
+    /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,

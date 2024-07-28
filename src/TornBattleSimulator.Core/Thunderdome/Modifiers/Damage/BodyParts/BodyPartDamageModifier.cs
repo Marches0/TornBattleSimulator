@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -37,6 +38,9 @@ public abstract class BodyPartDamageModifier : IDamageModifier
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

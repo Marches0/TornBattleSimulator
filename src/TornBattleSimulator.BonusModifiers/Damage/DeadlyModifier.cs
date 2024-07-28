@@ -3,6 +3,7 @@ using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -27,6 +28,9 @@ public class DeadlyModifier : IDamageModifier, IModifier
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

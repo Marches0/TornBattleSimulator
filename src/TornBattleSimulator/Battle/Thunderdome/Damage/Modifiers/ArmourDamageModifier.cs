@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -16,6 +17,10 @@ public class ArmourDamageModifier : IDamageModifier
         _chanceSource = chanceSource;
     }
 
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
+
+    /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,

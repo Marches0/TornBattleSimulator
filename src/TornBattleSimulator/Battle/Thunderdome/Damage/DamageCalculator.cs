@@ -3,6 +3,7 @@ using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -27,7 +28,7 @@ public class DamageCalculator : IDamageCalculator
     {
         DamageContext damageContext = new();
 
-        var damage = _damageModifiers
+        Dictionary<StatModificationType, List<IDamageModifier>> modifiers = _damageModifiers
             // Weapon's active modifiers (e.g. Cupid) are active.
             .Concat(weapon.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
 
@@ -36,8 +37,16 @@ public class DamageCalculator : IDamageCalculator
 
             // Enemy damage debuffs are active.
             .Concat(other.Modifiers.Active.Where(m => m.Target == ModifierTarget.Other).OfType<IDamageModifier>())
+            .GroupBy(m => m.Type)
+            .ToDictionary(m => m.Key, m => m.ToList());
 
-            .Aggregate(new { Damage = 1d, BodyPart = (BodyPart)0 },
+        double baseDamageBonus = modifiers.ContainsKey(StatModificationType.Additive)
+            ? modifiers[StatModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(active, other, weapon, damageContext).Multiplier)
+            : 1d;
+
+        // We always have multiplicate modifiers, since those are the always-applicable ones (e.g. Strength ratio)
+        var damage = modifiers[StatModificationType.Multiplicative]
+            .Aggregate(new { Damage = baseDamageBonus, BodyPart = (BodyPart)0 },
                 (total, modifier) =>
                 {
                     DamageModifierResult result = modifier.GetDamageModifier(active, other, weapon, damageContext);

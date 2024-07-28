@@ -4,6 +4,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -18,23 +19,34 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
         _value = 1 + value;
     }
 
+    /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Conditional);
 
+    /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
 
+    /// <inheritdoc/>
     public ModifierTarget Target => ModifierTarget.Self;
 
+    /// <inheritdoc/>
     public ModifierApplication AppliesAt => ModifierApplication.FightStart;
 
+    /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Comeback;
 
+    /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
 
+    /// <inheritdoc/>
+    public StatModificationType Type => StatModificationType.Multiplicative;
+
+    /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext) => new(_value);
 
+    /// <inheritdoc/>
     public bool IsActive(PlayerContext owner, PlayerContext other) => owner.Health.CurrentHealth * 4 < owner.Health.MaxHealth;
 }
