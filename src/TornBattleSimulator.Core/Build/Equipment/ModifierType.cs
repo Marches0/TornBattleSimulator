@@ -41,7 +41,7 @@ public enum ModifierType
     Deadeye,
     Deadly,
     // Disarm // todo
-    //DoubleEdged,
+    DoubleEdged,
     //DoubleTap,
     //Empower,
     Eviscerate

@@ -7,6 +7,7 @@ using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
@@ -23,13 +24,13 @@ public class ModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers)
+        WeaponContext weapon)
     {
         return ApplyModifiers(
             context,
             active,
             other,
-            potentialModifiers,
+            weapon.PotentialModifiers,
             null,
             ModifierApplication.BeforeAction
         );
@@ -39,35 +40,32 @@ public class ModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers,
+        WeaponContext weapon,
         DamageResult damageResult)
     {
         List<ThunderdomeEvent> events = new();
-
-        // Static heals (e.g. Bloodlust) are also performed here.
-        // Currently coupled to AppliesAt awkwardly, in that the effect
-        // lasts for the entire fight, but also only triggers specifically
-        // after a relevant attacking action.
-        foreach (IHealthModifier staticHeal in potentialModifiers
-            .Select(m => m.Modifier)
-            .Where(m => m.AppliesAt == ModifierApplication.FightStart)
-            .OfType<IHealthModifier>())
-        {
-            PlayerContext target = staticHeal.Target == ModifierTarget.Self
-                ? active
-                : other;
-
-            events.Add(Heal(context, target, damageResult, staticHeal));
-        }
 
         events.AddRange(ApplyModifiers(
             context,
             active,
             other,
-            potentialModifiers,
+            weapon.PotentialModifiers,
             damageResult,
             ModifierApplication.AfterAction
         ));
+
+        // All heals are actioned in the PostAction phase, since some require
+        // damage data to be run.
+        foreach (IHealthModifier heal in active.Modifiers.Active.Concat(weapon.Modifiers.Active)
+            .OfType<IHealthModifier>()
+            .Where(m => !m.AppliesOnActivation))
+        {
+            PlayerContext target = heal.Target == ModifierTarget.Self
+                ? active
+                : other;
+
+            events.Add(Heal(context, target, damageResult, heal));
+        }
 
         return events;
     }
@@ -96,12 +94,9 @@ public class ModifierApplier
                 events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Modifier.Effect)));
             };
 
-            // Should this be somewhere else?
-            // Post action health mods (Hardened) are applied immediately.
-            // So only triggering it on application seems alright.
-            if (modifier.Modifier is IHealthModifier healthModifier)
+            if (modifier.Modifier is IHealthModifier { AppliesOnActivation: true } healthModifier)
             {
-                events.Add(Heal(context, target, damageResult,  healthModifier));
+                events.Add(Heal(context, target, damageResult, healthModifier));
             }
         }
 

@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "eviscerate",
+						"type": "doubleEdged",
 						"percent": 100
 					}
 				]

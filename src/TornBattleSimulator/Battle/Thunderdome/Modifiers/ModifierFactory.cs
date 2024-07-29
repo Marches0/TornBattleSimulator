@@ -53,6 +53,7 @@ public class ModifierFactory
             ModifierType.Comeback => new ComebackModifier(value),
             ModifierType.Deadeye => new DeadeyeModifier(value),
             ModifierType.Deadly => new DeadlyModifier(),
+            ModifierType.DoubleEdged => new DoubleEdgedModifier(),
             ModifierType.Eviscerate => new EviscerateModifier(value),
             ModifierType.Smash => new SmashModifier(),
 

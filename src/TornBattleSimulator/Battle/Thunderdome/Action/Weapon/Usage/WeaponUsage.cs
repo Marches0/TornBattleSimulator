@@ -82,7 +82,7 @@ public class WeaponUsage : IWeaponUsage
         if (!bonusAction)
         {
             events.AddRange(
-                _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon.PotentialModifiers)
+                _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon)
             );
         }
 
@@ -93,7 +93,7 @@ public class WeaponUsage : IWeaponUsage
 
         if (!bonusAction)
         {
-            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon.PotentialModifiers, damageResult));
+            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon, damageResult));
         }
 
         if (weapon.Ammo != null)

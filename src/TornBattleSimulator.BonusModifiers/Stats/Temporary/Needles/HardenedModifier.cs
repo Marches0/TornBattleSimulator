@@ -45,4 +45,7 @@ public class HardenedModifier : IStatsModifier, IHealthModifier
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+
+    /// <inheritdoc/>
+    public bool AppliesOnActivation => true;
 }

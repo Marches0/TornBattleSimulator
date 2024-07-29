@@ -34,7 +34,7 @@ public class ModifierApplierTests
             context,
             active,
             other,
-            new List<PotentialModifier>() { new PotentialModifier(healthMod, 1) },
+            new WeaponContextBuilder().WithModifier(healthMod).Build(),
             new DamageResult(100, 0, 0)
         );
 
