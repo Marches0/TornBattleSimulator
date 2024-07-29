@@ -42,7 +42,7 @@ public enum ModifierType
     Deadly,
     // Disarm // todo
     DoubleEdged,
-    //DoubleTap,
+    DoubleTap,
     //Empower,
     Eviscerate
 }

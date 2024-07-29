@@ -73,6 +73,7 @@ public class ModifierFactory
 
             // Action buffs
             ModifierType.Blindfire => new BlindfireModifier(),
+            ModifierType.DoubleTap => new DoubleTapModifier(),
             ModifierType.Fury => new FuryModifier(),
             ModifierType.Rage => new RageModifier(),
 

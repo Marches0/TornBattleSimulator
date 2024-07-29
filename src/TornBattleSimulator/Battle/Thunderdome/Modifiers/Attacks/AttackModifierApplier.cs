@@ -31,13 +31,14 @@ public class AttackModifierApplier
         // it'll do and I'm so lasy.
         return modifier switch
         {
-            FuryModifier => Fury(context, active, other, weapon, attackAction),
             BlindfireModifier b => Blindfire(b, context, active, other, weapon, attackAction),
+            DoubleTapModifier => SingleAttack(context, active, other, weapon, attackAction),
+            FuryModifier => SingleAttack(context, active, other, weapon, attackAction),
             RageModifier => Rage(context, active, other, weapon, attackAction),
         };
     }
 
-    private List<ThunderdomeEvent> Fury(ThunderdomeContext context,
+    private List<ThunderdomeEvent> SingleAttack(ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
