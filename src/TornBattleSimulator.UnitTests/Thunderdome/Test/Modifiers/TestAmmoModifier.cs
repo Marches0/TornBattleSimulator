@@ -1,7 +1,4 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Ammo;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers.Ammo;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 

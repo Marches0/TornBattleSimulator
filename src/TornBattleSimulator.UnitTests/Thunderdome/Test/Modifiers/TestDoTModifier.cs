@@ -1,7 +1,5 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
+﻿using TornBattleSimulator.Core.Thunderdome.Modifiers.DamageOverTime;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
