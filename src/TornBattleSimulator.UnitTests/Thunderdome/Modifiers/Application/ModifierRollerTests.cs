@@ -10,38 +10,11 @@ using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
 
-namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers;
+namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Application;
 
 [TestFixture]
 public class ModifierRollerTests
 {
-    /*[Test]
-    public void ModifierApplier_ForHealingPostActionModifier_ImmediatelyHealsCorrectAmount()
-    {
-        PlayerContext active = new PlayerContextBuilder().Build();
-        PlayerContext other = new PlayerContextBuilder().Build();
-        ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
-
-        IHealthModifier healthMod = A.Fake<IHealthModifier>();
-        A.CallTo(() => healthMod.AppliesAt)
-            .Returns(ModifierApplication.AfterAction);
-        A.CallTo(() => healthMod.Lifespan)
-            .Returns(ModifierLifespanDescription.Turns(1));
-
-        ModifierApplier modifierApplier = new(FixedChanceSource.AlwaysSucceeds);
-
-        modifierApplier.ApplyPostActionModifiers(
-            context,
-            active,
-            other,
-            new WeaponContextBuilder().WithModifier(healthMod).Build(),
-            new DamageResult(100, 0, 0)
-        );
-
-        A.CallTo(() => healthMod.GetHealthModifier(A<PlayerContext>._, A<DamageResult>._))
-            .MustHaveHappenedOnceExactly();
-    }*/
-
     [TestCase(ModifierApplication.BeforeAction)]
     [TestCase(ModifierApplication.AfterAction)]
     public void ApplyModifiers_ForGivenPhase_AppliesCorrectModifiers(ModifierApplication phase)

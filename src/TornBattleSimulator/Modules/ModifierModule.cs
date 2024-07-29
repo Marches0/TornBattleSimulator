@@ -18,6 +18,9 @@ public class ModifierModule : Module
         builder.RegisterType<ModifierRoller>()
             .As<ModifierRoller>();
 
+        builder.RegisterType<HealthModifierApplier>()
+            .As<IHealthModifierApplier>();
+
         builder.RegisterType<AttackModifierApplier>()
             .As<AttackModifierApplier>();
     }

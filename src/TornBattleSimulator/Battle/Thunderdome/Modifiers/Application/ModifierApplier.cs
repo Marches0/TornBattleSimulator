@@ -12,6 +12,13 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
 public class ModifierApplier : IModifierApplier
 {
+    private readonly IHealthModifierApplier _healthModifierApplier;
+
+    public ModifierApplier(IHealthModifierApplier healthModifierApplier)
+    {
+        _healthModifierApplier = healthModifierApplier;
+    }
+
     public List<ThunderdomeEvent> ApplyModifier(
         IModifier modifier,
         ThunderdomeContext context,
@@ -32,7 +39,7 @@ public class ModifierApplier : IModifierApplier
 
         if (modifier is IHealthModifier { AppliesOnActivation: true } healthModifier)
         {
-            events.Add(Heal(context, target, damageResult, healthModifier));
+            events.Add(_healthModifierApplier.ModifyHealth(context, target, healthModifier, damageResult));
         }
 
         return events;
@@ -55,25 +62,9 @@ public class ModifierApplier : IModifierApplier
                 ? active
                 : other;
 
-            events.Add(Heal(context, target, damageResult, heal));
+            events.Add(_healthModifierApplier.ModifyHealth(context, target, heal, damageResult));
         }
 
         return events;
-    }
-
-    // move this calc into seperate module
-    private ThunderdomeEvent Heal(ThunderdomeContext context, PlayerContext target, DamageResult? damageResult, IHealthModifier healthModifier)
-    {
-        // Don't allow healing above max.
-        int heal = Math.Min(
-            healthModifier.GetHealthModifier(target, damageResult),
-            target.Health.MaxHealth - target.Health.CurrentHealth
-        );
-
-        target.Health.CurrentHealth += heal;
-
-        return heal >= 0
-            ? context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, healthModifier.Effect))
-            : context.CreateEvent(target, ThunderdomeEventType.ExtraDamage, new ExtraDamageEvent(-heal, healthModifier.Effect));
     }
 }
