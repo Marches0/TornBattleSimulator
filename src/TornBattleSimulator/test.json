@@ -24,6 +24,10 @@
 					{
 						"type": "doubleTap",
 						"percent": 100
+					},
+					{
+						"type": "doubleEdged",
+						"percent": 100
 					}
 				]
 			},
@@ -96,6 +100,7 @@
 			"name": "override",
 			"battleStats": {
 				"strength": 50000,
+				"defence2": 999999999999,
 				"defence": 130000,
 				"speed": 50000,
 				"dexterity": 100

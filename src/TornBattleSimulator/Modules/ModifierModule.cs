@@ -13,7 +13,10 @@ public class ModifierModule : Module
             .As<ModifierFactory>();
 
         builder.RegisterType<ModifierApplier>()
-            .As<ModifierApplier>();
+            .As<IModifierApplier>();
+
+        builder.RegisterType<ModifierRoller>()
+            .As<ModifierRoller>();
 
         builder.RegisterType<AttackModifierApplier>()
             .As<AttackModifierApplier>();

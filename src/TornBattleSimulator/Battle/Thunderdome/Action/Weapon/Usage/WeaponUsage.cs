@@ -19,7 +19,7 @@ public class WeaponUsage : IWeaponUsage
 {
     private readonly IDamageCalculator _damageCalculator;
     private readonly IAccuracyCalculator _accuracyCalculator;
-    private readonly ModifierApplier _modifierApplier;
+    private readonly ModifierRoller _modifierRoller;
     private readonly IChanceSource _chanceSource;
     private readonly AttackModifierApplier _attackModifierApplier;
     private readonly IAmmoCalculator _ammoCalculator;
@@ -27,14 +27,15 @@ public class WeaponUsage : IWeaponUsage
     public WeaponUsage(
         IDamageCalculator damageCalculator,
         IAccuracyCalculator accuracyCalculator,
-        ModifierApplier modifierApplier,
+        ModifierRoller modifierRoller,
         IChanceSource chanceSource,
         AttackModifierApplier attackModifierApplier,
         IAmmoCalculator ammoCalculator)
     {
         _damageCalculator = damageCalculator;
         _accuracyCalculator = accuracyCalculator;
-        _modifierApplier = modifierApplier;
+        _modifierRoller = modifierRoller;
+
         _chanceSource = chanceSource;
         _attackModifierApplier = attackModifierApplier;
         _ammoCalculator = ammoCalculator;
@@ -82,7 +83,7 @@ public class WeaponUsage : IWeaponUsage
         if (!bonusAction)
         {
             events.AddRange(
-                _modifierApplier.ApplyPreActionModifiers(context, active, other, weapon)
+                _modifierRoller.ApplyPreActionModifiers(context, active, other, weapon)
             );
         }
 
@@ -93,7 +94,7 @@ public class WeaponUsage : IWeaponUsage
 
         if (!bonusAction)
         {
-            events.AddRange(_modifierApplier.ApplyPostActionModifiers(context, active, other, weapon, damageResult));
+            events.AddRange(_modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, damageResult));
         }
 
         if (weapon.Ammo != null)
