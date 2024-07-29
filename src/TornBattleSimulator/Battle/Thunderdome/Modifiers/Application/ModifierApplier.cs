@@ -83,6 +83,12 @@ public class ModifierApplier
             .Where(m => m.Modifier.AppliesAt == modifierApplication)
             .Where(m => _modifierChanceSource.Succeeds(m.Chance));
 
+        if (damageResult != null && damageResult.Damage <= 0)
+        {
+            triggeredModifiers = triggeredModifiers
+                .Where(m => !m.Modifier.RequiresDamageToApply);
+        }
+
         foreach (PotentialModifier modifier in triggeredModifiers)
         {
             PlayerContext target = modifier.Modifier.Target == ModifierTarget.Self
