@@ -83,6 +83,6 @@ public class PlayerContextBuilder
                 _temporary),
             new ArmourSetContext(_armour),
             null
-            );
+        );
     }
 }

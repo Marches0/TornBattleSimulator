@@ -28,7 +28,7 @@ public class PlayerContext : ITickable
         Health = new(build.Health);
         PlayerType = playerType;
 
-        Modifiers = new(this);
+        Modifiers = new ModifierContext(this);
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public class PlayerContext : ITickable
     /// <summary>
     ///  Modifiers currently applied to the player.
     /// </summary>
-    public ModifierContext Modifiers { get; }
+    public IModifierContext Modifiers { get; }
 
     public PlayerHealth Health { get; set; }
 

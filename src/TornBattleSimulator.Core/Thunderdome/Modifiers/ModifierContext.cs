@@ -11,14 +11,10 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
-/// <summary>
-///  A set of tracked modifiers.
-/// </summary>
-public class ModifierContext : ITickable
+/// <inheritdoc/>
+public class ModifierContext : IModifierContext
 {
-    /// <summary>
-    ///  The modifiers which are currently active.
-    /// </summary>
+    /// <inheritdoc/>
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(
         _activeModifiers.Select(m => m.Modifier)
         .Concat(ChargeModifiers.Select(c => c.Modifier))
@@ -26,9 +22,7 @@ public class ModifierContext : ITickable
         .ToList()
     );
 
-    /// <summary>
-    ///  The modifiers that require charging.
-    /// </summary>
+    /// <inheritdoc/>
     public List<ChargedModifierContainer> ChargeModifiers { get; } = new();
 
     private List<ActiveModifier> _activeModifiers = new();
@@ -48,12 +42,7 @@ public class ModifierContext : ITickable
         _self = self;
     }
 
-    /// <summary>
-    ///  Adds a new modifier.
-    /// </summary>
-    /// <param name="modifier">The modifier to add.</param>
-    /// <param name="damageResult">The damage caused by the active player, if applicable.</param>
-    /// <returns><see langword="true"/> if the modifier was added, otherwise <see langword="false"/>.</returns>
+    /// <inheritdoc/>
     public bool AddModifier(
         IModifier modifier,
         DamageResult? damageResult)

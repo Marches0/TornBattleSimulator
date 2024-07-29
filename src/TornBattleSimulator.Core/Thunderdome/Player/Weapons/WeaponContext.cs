@@ -36,7 +36,7 @@ public class WeaponContext : ITickable
     /// <summary>
     ///  The state of this weapon's modifiers.
     /// </summary>
-    public ModifierContext Modifiers { get; set; }
+    public IModifierContext Modifiers { get; set; }
 
     /// <summary>
     ///  Modifiers that may be granted via usage of this weapon.
