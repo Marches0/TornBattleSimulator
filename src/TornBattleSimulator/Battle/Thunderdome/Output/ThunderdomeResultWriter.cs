@@ -20,6 +20,7 @@ public class ThunderdomeResultWriter
         {ThunderdomeEventType.EffectEnd, "#cfcfc4" }, // grey
         {ThunderdomeEventType.DamageOverTime, "#c49bdd" }, // purple
         {ThunderdomeEventType.Heal, "#c49bdd" }, // purple
+        {ThunderdomeEventType.ExtraDamage, "#c49bdd" }, // purple
         {ThunderdomeEventType.FightBegin, "#ffffff" }, // white
         {ThunderdomeEventType.FightEnd, "#ffffff" }, // white
         {ThunderdomeEventType.ChargeWeapon, "#c49bdd" }, // purple

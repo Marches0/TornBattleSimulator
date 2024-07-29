@@ -78,7 +78,7 @@ public class ReloadEvent : IEventData
 
     public string Format()
     {
-        return $"{Weapon}";
+        return $"Reload {Weapon}";
     }
 }
 
@@ -147,6 +147,25 @@ public class HealEvent : IEventData
         return $"{Heal.ToString("N0").ToColouredString("#c49bdd")} heal from {Source.ToString().ToColouredString("#c49bdd")}";
     }
 }
+
+public class ExtraDamageEvent : IEventData
+{
+    public int Damage { get; }
+
+    public ModifierType Source { get; }
+
+    public ExtraDamageEvent(int damage, ModifierType source)
+    {
+        Damage = damage;
+        Source = source;
+    }
+
+    public string Format()
+    {
+        return $"{Damage.ToString("N0").ToColouredString("#c49bdd")} damage from {Source.ToString().ToColouredString("#c49bdd")}";
+    }
+}
+
 
 public class FightBeginEvent : IEventData
 {

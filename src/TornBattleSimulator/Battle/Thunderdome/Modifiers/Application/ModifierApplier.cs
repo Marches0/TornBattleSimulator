@@ -113,6 +113,9 @@ public class ModifierApplier
         );
 
         target.Health.CurrentHealth += heal;
-        return context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, healthModifier.Effect));
+
+        return heal >= 0
+            ? context.CreateEvent(target, ThunderdomeEventType.Heal, new HealEvent(heal, healthModifier.Effect))
+            : context.CreateEvent(target, ThunderdomeEventType.ExtraDamage, new ExtraDamageEvent(-heal, healthModifier.Effect));
     }
 }
