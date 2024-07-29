@@ -14,10 +14,10 @@ public static class BattleStatsExtensions
 
     private static BattleStats ApplyAdditive(BattleStats stats, List<IStatsModifier> modifiers)
     {
-        float additiveStrength = 1;
-        float additiveDefence = 1;
-        float additiveSpeed = 1;
-        float additiveDexterity = 1;
+        double additiveStrength = 1;
+        double additiveDefence = 1;
+        double additiveSpeed = 1;
+        double additiveDexterity = 1;
 
         foreach (IStatsModifier additive in modifiers.Where(m => m.Type == StatModificationType.Additive))
         {

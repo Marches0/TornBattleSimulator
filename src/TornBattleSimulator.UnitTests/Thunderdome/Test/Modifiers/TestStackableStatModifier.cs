@@ -8,17 +8,17 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 internal class TestStackableStatModifier : IStackableStatModifier
 {
-    private readonly float _strMod;
-    private readonly float _defMod;
-    private readonly float _spdMod;
-    private readonly float _dexMod;
+    private readonly double _strMod;
+    private readonly double _defMod;
+    private readonly double _spdMod;
+    private readonly double _dexMod;
     private readonly int _maxStacks;
 
     public TestStackableStatModifier(
-        float strMod,
-        float defMod,
-        float spdMod,
-        float dexMod,
+        double strMod,
+        double defMod,
+        double spdMod,
+        double dexMod,
         int maxStacks)
     {
         _strMod = strMod;
@@ -40,13 +40,13 @@ internal class TestStackableStatModifier : IStackableStatModifier
 
     public int MaxStacks => _maxStacks;
 
-    public float GetDefenceModifier() => _defMod;
+    public double GetDefenceModifier() => _defMod;
 
-    public float GetDexterityModifier() => _dexMod;
+    public double GetDexterityModifier() => _dexMod;
 
-    public float GetSpeedModifier() => _spdMod;
+    public double GetSpeedModifier() => _spdMod;
 
-    public float GetStrengthModifier() => _strMod;
+    public double GetStrengthModifier() => _strMod;
 
     public StatModificationType Type => StatModificationType.Multiplicative;
 

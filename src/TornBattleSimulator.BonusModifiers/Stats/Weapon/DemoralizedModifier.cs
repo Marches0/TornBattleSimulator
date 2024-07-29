@@ -12,7 +12,7 @@ public class DemoralizedModifier : IStackableStatModifier
     public int MaxStacks => 5;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(180); // I think
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(300);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply => true;
@@ -27,16 +27,16 @@ public class DemoralizedModifier : IStackableStatModifier
     public ModifierType Effect => ModifierType.Demoralized;
 
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 0.9f;
+    public double GetDefenceModifier() => 0.9;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 0.9f;
+    public double GetDexterityModifier() => 0.9;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 0.9f;
+    public double GetSpeedModifier() => 0.9;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 0.9f;
+    public double GetStrengthModifier() => 0.9;
 
     /// <inheritdoc/>
     public StatModificationType Type => StatModificationType.Additive;

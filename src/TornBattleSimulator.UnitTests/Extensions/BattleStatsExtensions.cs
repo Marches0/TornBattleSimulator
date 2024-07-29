@@ -40,13 +40,13 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [ 
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive)
             ],
             new BattleStats()
             {
-                Strength = 180,
-                Defence = 127,
+                Strength = 179,
+                Defence = 128,
                 Speed = 84,
                 Dexterity = 48
             },
@@ -56,8 +56,8 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative),
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative)
             ],
             new BattleStats()
             {
@@ -72,14 +72,14 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Additive),
-                new TestStatModifier(1.4f, 1.3f, 1.2f, 1.1f, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative)
             ],
             new BattleStats()
             {
-                Strength = 252,
-                Defence = 165,
+                Strength = 250,
+                Defence = 166,
                 Speed = 100,
                 Dexterity = 52
             },

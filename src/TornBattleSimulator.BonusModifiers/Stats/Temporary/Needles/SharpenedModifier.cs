@@ -8,16 +8,16 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 public class SharpenedModifier : IStatsModifier
 {
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 1;
+    public double GetDefenceModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 5;
+    public double GetDexterityModifier() => 5;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 1;
+    public double GetSpeedModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 1;
+    public double GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(120);

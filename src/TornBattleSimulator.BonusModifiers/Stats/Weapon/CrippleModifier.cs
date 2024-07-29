@@ -12,7 +12,7 @@ public class CrippleModifier : IStackableStatModifier
     public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(180);
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(300);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply => true;
@@ -33,14 +33,14 @@ public class CrippleModifier : IStackableStatModifier
     public int MaxStacks => 3;
 
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 1;
+    public double GetDefenceModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 0.75f;
+    public double GetDexterityModifier() => 0.75;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 1;
+    public double GetSpeedModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 1;
+    public double GetStrengthModifier() => 1;
 }

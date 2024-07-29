@@ -11,16 +11,16 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 public class HardenedModifier : IStatsModifier, IHealthModifier
 {
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 3;
+    public double GetDefenceModifier() => 3;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 1;
+    public double GetDexterityModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 1;
+    public double GetSpeedModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 1;
+    public double GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
     public int GetHealthModifier(PlayerContext target, DamageResult? damage) => (int)(target.Health.MaxHealth * 0.25);

@@ -8,16 +8,16 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Temporary;
 public class MacedModifier : IStatsModifier
 {
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 1;
+    public double GetDefenceModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 1 / 5f;
+    public double GetDexterityModifier() => 1 / 5d;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 1;
+    public double GetSpeedModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 1;
+    public double GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(15);

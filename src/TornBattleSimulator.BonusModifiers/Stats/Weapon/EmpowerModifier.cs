@@ -36,14 +36,14 @@ public class EmpowerModifier : IStatsModifier, IModifier
     public StatModificationType Type => StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 1f;
+    public double GetDefenceModifier() => 1f;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 1f;
+    public double GetDexterityModifier() => 1f;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 1f;
+    public double GetSpeedModifier() => 1f;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => (float)_value;
+    public double GetStrengthModifier() => _value;
 }

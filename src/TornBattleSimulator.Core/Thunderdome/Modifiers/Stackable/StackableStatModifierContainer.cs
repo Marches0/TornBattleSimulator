@@ -49,26 +49,26 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public ModifierType Effect => Modifier.Effect;
 
-    public float GetDefenceModifier() => GetStackedModifier(Modifier.GetDefenceModifier());
+    public double GetDefenceModifier() => GetStackedModifier(Modifier.GetDefenceModifier());
 
-    public float GetDexterityModifier() => GetStackedModifier(Modifier.GetDexterityModifier());
+    public double GetDexterityModifier() => GetStackedModifier(Modifier.GetDexterityModifier());
 
-    public float GetSpeedModifier() => GetStackedModifier(Modifier.GetSpeedModifier());
+    public double GetSpeedModifier() => GetStackedModifier(Modifier.GetSpeedModifier());
 
-    public float GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
+    public double GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
 
     public StatModificationType Type => Modifier.Type;
 
     public ModifierValueBehaviour ValueBehaviour => Modifier.ValueBehaviour;
 
-    private float GetStackedModifier(float value)
+    private double GetStackedModifier(double value)
     {
         // Stacked modifiers interact additively; two 10% modifiers add to make 20%, rather than multiply to make 21%.
         // Take their differences from 0 and sum them to get their total additive contribution.
         // e.g. Two stacks of 0.9 -> -0.1 + -0.1 -> -0.2
         // Then add the 1 back.
         // -0.2 -> 0.8.
-        float rawDifference = value - 1;
+        double rawDifference = value - 1;
         return 1 + _activeStacks.Count * rawDifference;
     }
 

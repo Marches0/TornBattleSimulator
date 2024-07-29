@@ -7,16 +7,16 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 internal class TestStatModifier : BaseTestModifier, IStatsModifier
 {
-    private readonly float _strengthModifier;
-    private readonly float _defenceModifier;
-    private readonly float _speedModifier;
-    private readonly float _dexterityModifier;
+    private readonly double _strengthModifier;
+    private readonly double _defenceModifier;
+    private readonly double _speedModifier;
+    private readonly double _dexterityModifier;
 
     public TestStatModifier(
-        float strengthModifier,
-        float defenceModifier,
-        float speedModifier,
-        float dexterityModifier,
+        double strengthModifier,
+        double defenceModifier,
+        double speedModifier,
+        double dexterityModifier,
         StatModificationType type)
     {
         _strengthModifier = strengthModifier;
@@ -26,13 +26,13 @@ internal class TestStatModifier : BaseTestModifier, IStatsModifier
         Type = type;
     }
 
-    public float GetDefenceModifier() => _defenceModifier;
+    public double GetDefenceModifier() => _defenceModifier;
 
-    public float GetDexterityModifier() => _dexterityModifier;
+    public double GetDexterityModifier() => _dexterityModifier;
 
-    public float GetSpeedModifier() => _speedModifier;
+    public double GetSpeedModifier() => _speedModifier;
 
-    public float GetStrengthModifier() => _strengthModifier;
+    public double GetStrengthModifier() => _strengthModifier;
 
     public StatModificationType Type { get; }
 }

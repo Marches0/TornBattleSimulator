@@ -27,16 +27,16 @@ public class FreezeModifier : IStackableStatModifier
     public int MaxStacks => 1;
 
     /// <inheritdoc/>
-    public float GetDefenceModifier() => 1;
+    public double GetDefenceModifier() => 1;
 
     /// <inheritdoc/>
-    public float GetDexterityModifier() => 0.5f;
+    public double GetDexterityModifier() => 0.5;
 
     /// <inheritdoc/>
-    public float GetSpeedModifier() => 0.5f;
+    public double GetSpeedModifier() => 0.5;
 
     /// <inheritdoc/>
-    public float GetStrengthModifier() => 1;
+    public double GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
     public StatModificationType Type => StatModificationType.Additive;

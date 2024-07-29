@@ -10,22 +10,22 @@ public interface IStatsModifier : IModifier
     /// <summary>
     ///  The Strength modifier.
     /// </summary>
-    float GetStrengthModifier();
+    double GetStrengthModifier();
 
     /// <summary>
     ///  The Defence modifier.
     /// </summary>
-    float GetDefenceModifier();
+    double GetDefenceModifier();
 
     /// <summary>
     ///  The Speed modifier.
     /// </summary>
-    float GetSpeedModifier();
+    double GetSpeedModifier();
 
     /// <summary>
     ///  The Dexterity modifier.
     /// </summary>
-    float GetDexterityModifier();
+    double GetDexterityModifier();
 
     /// <summary>
     /// How this modifier is applied to the target's stats.
