@@ -43,6 +43,9 @@ public class ModifierFactory
             ModifierType.Demoralized => new DemoralizedModifier(),
             ModifierType.Freeze => new FreezeModifier(),
 
+            // Stat Buffs
+            ModifierType.Empower => new EmpowerModifier(value),
+
             // Stuns
             ModifierType.Shock => new ShockModifier(),
 

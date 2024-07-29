@@ -49,6 +49,8 @@ public class PlayerContext : ITickable
     public ArmourSetContext ArmourSet { get; }
     public PlayerType PlayerType { get; }
 
+    public WeaponContext? ActiveWeapon { get; set; }
+
     /// <summary>
     ///  The build's current stats.
     /// </summary>
@@ -58,7 +60,7 @@ public class PlayerContext : ITickable
         Defence = Build.BattleStats.Defence,
         Speed = Build.BattleStats.Speed,
         Dexterity = Build.BattleStats.Dexterity,
-    }.WithModifiers(Modifiers.Active.OfType<IStatsModifier>().ToList());
+    }.WithModifiers(Modifiers.Active.Concat(ActiveWeapon?.Modifiers?.Active ?? Enumerable.Empty<IModifier>()).OfType<IStatsModifier>().ToList());
 
     /// <summary>
     ///  The action being taken by this player in the current tick.

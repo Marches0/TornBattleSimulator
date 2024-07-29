@@ -13,8 +13,8 @@
 				"damage": 50,
 				"accuracy": 100,
 				"rateOfFire": {
-					"min": 1,
-					"max": 1
+					"min": 10,
+					"max": 10
 				},
 				"ammo": {
 					"magazines": 3,
@@ -22,11 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "doubleTap",
-						"percent": 100
-					},
-					{
-						"type": "doubleEdged",
+						"type": "empower",
 						"percent": 100
 					}
 				]
@@ -82,7 +78,7 @@
 				},
 				{
 					"weapon": "primary",
-					"reload": true,
+					"reload": false,
 					"until": [
 						{
 							"condition": "effect",

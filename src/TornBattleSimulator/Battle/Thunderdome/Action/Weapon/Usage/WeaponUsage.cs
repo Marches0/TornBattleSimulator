@@ -47,6 +47,8 @@ public class WeaponUsage : IWeaponUsage
         PlayerContext other,
         WeaponContext weapon)
     {
+        active.ActiveWeapon = weapon;
+
         List<ThunderdomeEvent> events = UseWeapon(context, active, other, weapon, false);
 
         Func<List<ThunderdomeEvent>> bonusAttackAction = () => UseWeapon(context, active, other, weapon, true);

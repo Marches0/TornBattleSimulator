@@ -43,7 +43,7 @@ public enum ModifierType
     // Disarm // todo
     DoubleEdged,
     DoubleTap,
-    //Empower,
+    Empower,
     Eviscerate
 }
 
