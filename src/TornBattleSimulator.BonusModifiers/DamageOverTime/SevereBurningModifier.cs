@@ -9,15 +9,15 @@ public class SevereBurningModifier : IDamageOverTimeModifier
 {
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Turns(3);
 
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
-    public ModifierType Effect => ModifierType.SevereBurning;
+    public ModifierType Effect { get; } = ModifierType.SevereBurning;
 
-    public double Decay => 0.45d;
+    public double Decay { get; } =0.45d;
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

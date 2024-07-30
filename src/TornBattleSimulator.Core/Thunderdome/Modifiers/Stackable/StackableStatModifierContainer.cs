@@ -16,8 +16,8 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
     public IStackableStatModifier Modifier { get; }
     public int Stacks => _activeStacks.Count;
 
-    public bool Expired => false;
-    public float Remaining => 1;
+    public bool Expired { get; } = false;
+    public float Remaining { get; } = 1;
 
     public StackableStatModifierContainer(
         IStackableStatModifier modifier,
@@ -39,15 +39,15 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
     }
 
     // The container lasts forever, the inner stacks have their own lifespan.
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
-    public ModifierTarget Target => Modifier.Target;
+    public ModifierTarget Target { get; } = Modifier.Target;
 
-    public ModifierApplication AppliesAt => Modifier.AppliesAt;
+    public ModifierApplication AppliesAt { get; } = Modifier.AppliesAt;
 
-    public ModifierType Effect => Modifier.Effect;
+    public ModifierType Effect { get; } = Modifier.Effect;
 
     public double GetDefenceModifier() => GetStackedModifier(Modifier.GetDefenceModifier());
 
@@ -57,9 +57,9 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public double GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
 
-    public StatModificationType Type => Modifier.Type;
+    public StatModificationType Type { get; } = Modifier.Type;
 
-    public ModifierValueBehaviour ValueBehaviour => Modifier.ValueBehaviour;
+    public ModifierValueBehaviour ValueBehaviour { get; } = Modifier.ValueBehaviour;
 
     private double GetStackedModifier(double value)
     {

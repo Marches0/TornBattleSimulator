@@ -32,11 +32,11 @@ public class SmokedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Smoked;
+    public ModifierType Effect { get; } = ModifierType.Smoked;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

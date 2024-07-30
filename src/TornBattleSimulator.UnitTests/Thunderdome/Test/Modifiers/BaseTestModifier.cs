@@ -6,15 +6,15 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 public abstract class BaseTestModifier : IModifier
 {
-    public virtual ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
+    public virtual ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
-    public virtual bool RequiresDamageToApply => false;
+    public virtual bool RequiresDamageToApply { get; } = false;
 
-    public virtual ModifierTarget Target => ModifierTarget.Self;
+    public virtual ModifierTarget Target { get; } = ModifierTarget.Self;
 
-    public virtual ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public virtual ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
-    public virtual ModifierType Effect => 0;
+    public virtual ModifierType Effect { get; } = 0;
 
-    public virtual ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public virtual ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 }

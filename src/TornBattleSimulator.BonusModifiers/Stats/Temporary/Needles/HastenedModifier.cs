@@ -32,11 +32,11 @@ public class HastenedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Hastened;
+    public ModifierType Effect { get; } = ModifierType.Hastened;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

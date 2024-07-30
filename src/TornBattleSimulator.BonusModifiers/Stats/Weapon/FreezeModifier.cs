@@ -9,22 +9,22 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 public class FreezeModifier : IStackableStatModifier
 {
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Freeze;
+    public ModifierType Effect { get; } = ModifierType.Freeze;
 
     /// <inheritdoc/>
-    public int MaxStacks => 1;
+    public int MaxStacks { get; } = 1;
 
     /// <inheritdoc/>
     public double GetDefenceModifier() => 1;
@@ -39,8 +39,8 @@ public class FreezeModifier : IStackableStatModifier
     public double GetStrengthModifier() => 1;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

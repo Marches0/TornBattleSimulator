@@ -18,25 +18,25 @@ public class ExecuteModifier : IHealthModifier, IConditionalModifier
     }
 
     /// <inheritdoc/>
-    public bool AppliesOnActivation => true;
+    public bool AppliesOnActivation { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Execute;
+    public ModifierType Effect { get; } = ModifierType.Execute;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
     public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -target.Health.CurrentHealth;

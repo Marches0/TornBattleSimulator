@@ -13,28 +13,28 @@ namespace TornBattleSimulator.BonusModifiers.Damage;
 public class DoubleEdgedModifier : IModifier, IDamageModifier, IHealthModifier
 {
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.BeforeAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.DoubleEdged;
+    public ModifierType Effect { get; } = ModifierType.DoubleEdged;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public bool AppliesOnActivation => false;
+    public bool AppliesOnActivation { get; } = false;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

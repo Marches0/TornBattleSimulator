@@ -11,5 +11,5 @@ public class TestBodyPartDamageModifier : BodyPartDamageModifier, IModifier
     {
     }
 
-    public ModifierType Effect => 0;
+    public ModifierType Effect { get; } = 0;
 }

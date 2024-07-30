@@ -7,7 +7,7 @@ public class OwnActionLifespan : IModifierLifespan
 {
     public bool Expired { get; private set; } = false;
 
-    public float Remaining => 1;
+    public float Remaining { get; } = 1;
 
     /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context) { }

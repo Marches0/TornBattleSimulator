@@ -8,20 +8,20 @@ namespace TornBattleSimulator.BonusModifiers.Attacks;
 public class FuryModifier : IAttacksModifier
 {
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Fury;
+    public ModifierType Effect { get; } = ModifierType.Fury;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

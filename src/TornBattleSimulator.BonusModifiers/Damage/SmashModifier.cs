@@ -13,25 +13,25 @@ namespace TornBattleSimulator.BonusModifiers.Damage;
 public class SmashModifier : IChargeableModifier, IDamageModifier
 {
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Smash;
+    public ModifierType Effect { get; } = ModifierType.Smash;
 
     /// <inheritdoc/>
-    public bool StartsCharged => true;
+    public bool StartsCharged { get; } = true;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(
@@ -41,5 +41,5 @@ public class SmashModifier : IChargeableModifier, IDamageModifier
         DamageContext damageContext) => new DamageModifierResult(2);
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.None;
 }

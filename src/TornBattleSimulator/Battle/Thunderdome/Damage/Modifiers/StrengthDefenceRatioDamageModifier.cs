@@ -12,7 +12,7 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     private static readonly double UpperMitigationModifier = 50 / Math.Log(14);
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

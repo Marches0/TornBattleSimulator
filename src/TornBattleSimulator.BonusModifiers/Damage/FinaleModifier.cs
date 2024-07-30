@@ -20,25 +20,25 @@ public class FinaleModifier : IDamageModifier, IModifier
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.BeforeAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Finale;
+    public ModifierType Effect { get; } = ModifierType.Finale;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

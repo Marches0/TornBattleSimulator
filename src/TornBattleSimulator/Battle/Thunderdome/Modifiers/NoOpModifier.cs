@@ -14,15 +14,15 @@ public class NoOpModifier : IModifier
         Effect = effect;
     }
 
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Turns(0);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Turns(0);
 
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
-    public ModifierApplication AppliesAt => ModifierApplication.Never;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.Never;
 
     public ModifierType Effect { get; }
 
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.None;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.None;
 }

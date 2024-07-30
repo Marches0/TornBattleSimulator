@@ -6,10 +6,10 @@
 public class IndefiniteLifespan : IModifierLifespan
 {
     /// <inheritdoc/>
-    public bool Expired => false;
+    public bool Expired { get; } = false;
 
     /// <inheritdoc/>
-    public float Remaining => 1;
+    public float Remaining { get; } = 1;
 
     /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context) { }

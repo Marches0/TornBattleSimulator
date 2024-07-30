@@ -12,5 +12,5 @@ public class CrusherModifier : BodyPartDamageModifier, IModifier
     }
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Crusher;
+    public ModifierType Effect { get; } = ModifierType.Crusher;
 }

@@ -9,7 +9,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 public class WeaponDamageModifier : IDamageModifier
 {
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(

@@ -32,11 +32,11 @@ public class SharpenedModifier : IStatsModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Sharpened;
+    public ModifierType Effect { get; } = ModifierType.Sharpened;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

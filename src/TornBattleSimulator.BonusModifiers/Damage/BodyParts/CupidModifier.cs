@@ -12,5 +12,5 @@ public class CupidModifier : BodyPartDamageModifier, IModifier
     }
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Cupid;
+    public ModifierType Effect { get; } = ModifierType.Cupid;
 }

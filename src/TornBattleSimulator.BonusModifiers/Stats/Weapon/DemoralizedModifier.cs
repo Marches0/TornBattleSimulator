@@ -9,22 +9,22 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 public class DemoralizedModifier : IStackableStatModifier
 {
     /// <inheritdoc/>
-    public int MaxStacks => 5;
+    public int MaxStacks { get; } = 5;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(300);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(300);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Demoralized;
+    public ModifierType Effect { get; } = ModifierType.Demoralized;
 
     /// <inheritdoc/>
     public double GetDefenceModifier() => 0.9;
@@ -39,8 +39,8 @@ public class DemoralizedModifier : IStackableStatModifier
     public double GetStrengthModifier() => 0.9;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

@@ -13,7 +13,7 @@ public class TestConditionalModifier : BaseTestModifier, IConditionalModifier
         _willActivate = willActivate;
     }
 
-    public override ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public override ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     public bool CanActivate(PlayerContext active, PlayerContext other) => _willActivate;
 }

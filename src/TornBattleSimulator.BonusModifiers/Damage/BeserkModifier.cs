@@ -22,22 +22,22 @@ public class BeserkModifier : IModifier, IDamageModifier, IAccuracyModifier
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Indefinite);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Beserk;
+    public ModifierType Effect { get; } = ModifierType.Beserk;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
     public double GetAccuracyModifier(PlayerContext active, PlayerContext other, WeaponContext weapon)
@@ -46,7 +46,7 @@ public class BeserkModifier : IModifier, IDamageModifier, IAccuracyModifier
     }
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)

@@ -8,23 +8,23 @@ namespace TornBattleSimulator.BonusModifiers.DamageOverTime;
 public class BleedModifier : IDamageOverTimeModifier
 {
     /// <inheritdoc/>
-    public double Decay => 0.45;
+    public double Decay { get; } =0.45;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Turns(9);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Turns(9);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Bleed;
+    public ModifierType Effect { get; } = ModifierType.Bleed;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

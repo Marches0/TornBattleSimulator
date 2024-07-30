@@ -9,28 +9,28 @@ namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 public class CrippleModifier : IStackableStatModifier
 {
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Additive;
+    public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Temporal(300);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(300);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => true;
+    public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Other;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Cripple;
+    public ModifierType Effect { get; } = ModifierType.Cripple;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Chance;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     /// <inheritdoc/>
-    public int MaxStacks => 3;
+    public int MaxStacks { get; } = 3;
 
     /// <inheritdoc/>
     public double GetDefenceModifier() => 1;

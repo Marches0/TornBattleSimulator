@@ -20,25 +20,25 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
+    public ModifierLifespanDescription Lifespan { get; } =   ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply => false;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target => ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.BeforeAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect => ModifierType.Blindside;
+    public ModifierType Effect { get; } = ModifierType.Blindside;
 
     /// <inheritdoc/>
-    public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
+    public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)

@@ -10,7 +10,7 @@ public class TestDoTModifier : BaseTestModifier, IDamageOverTimeModifier
         Lifespan = lifespan;
     }
 
-    public double Decay => 0.5;
+    public double Decay { get; } =0.5;
 
     public override ModifierLifespanDescription Lifespan { get; }
 }
