@@ -43,11 +43,11 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public bool RequiresDamageToApply { get; } = false;
 
-    public ModifierTarget Target { get; } = Modifier.Target;
+    public ModifierTarget Target => Modifier.Target;
 
-    public ModifierApplication AppliesAt { get; } = Modifier.AppliesAt;
+    public ModifierApplication AppliesAt => Modifier.AppliesAt;
 
-    public ModifierType Effect { get; } = Modifier.Effect;
+    public ModifierType Effect => Modifier.Effect;
 
     public double GetDefenceModifier() => GetStackedModifier(Modifier.GetDefenceModifier());
 
@@ -57,9 +57,9 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public double GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
 
-    public StatModificationType Type { get; } = Modifier.Type;
+    public StatModificationType Type => Modifier.Type;
 
-    public ModifierValueBehaviour ValueBehaviour { get; } = Modifier.ValueBehaviour;
+    public ModifierValueBehaviour ValueBehaviour => Modifier.ValueBehaviour;
 
     private double GetStackedModifier(double value)
     {
