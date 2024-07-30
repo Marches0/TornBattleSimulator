@@ -24,8 +24,4 @@
     <ProjectReference Include="..\TornBattleSimulator\TornBattleSimulator.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Thunderdome\Modifiers\Test\" />
-  </ItemGroup>
-
 </Project>

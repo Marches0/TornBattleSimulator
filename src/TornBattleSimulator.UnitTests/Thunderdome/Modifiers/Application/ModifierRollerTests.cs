@@ -5,10 +5,12 @@ using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Chance;
+using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Application;
 
@@ -112,6 +114,45 @@ public class ModifierRollerTests
             {
                 GetModifierCall(modifierApplier, needsDamageModifier).MustNotHaveHappened();
             }
+        }
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public void ApplyModifiers_BasedOnConditionFulfillment_MayApplyModifier(bool willActivate)
+    {
+        // Arrange
+        IModifierApplier modifierApplier = A.Fake<IModifierApplier>();
+
+        IConditionalModifier conditionalModifier = new TestConditionalModifier(willActivate);
+        WeaponContext weapon = new WeaponContextBuilder()
+            .WithModifier(conditionalModifier)
+            .Build();
+
+        ModifierRoller roller = new ModifierRoller(FixedChanceSource.AlwaysSucceeds, modifierApplier);
+        PlayerContext active = new PlayerContextBuilder().WithPrimary(weapon).Build();
+        PlayerContext other = new PlayerContextBuilder().Build();
+        ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
+        DamageResult damage = new DamageResult(123, BodyPart.Heart, DamageFlags.HitArmour);
+
+        // Act
+        roller.ApplyPostActionModifiers(
+            context,
+            active,
+            other,
+            weapon,
+            damage);
+
+        // Assert
+        var call = GetModifierCall(modifierApplier, conditionalModifier);
+
+        if (willActivate)
+        {
+            call.MustHaveHappenedOnceExactly();
+        }
+        else
+        {
+            call.MustNotHaveHappened();
         }
     }
 

@@ -12,7 +12,7 @@ public abstract class BaseTestModifier : IModifier
 
     public virtual ModifierTarget Target => ModifierTarget.Self;
 
-    public virtual ModifierApplication AppliesAt => ModifierApplication.FightStart;
+    public virtual ModifierApplication AppliesAt => ModifierApplication.AfterAction;
 
     public virtual ModifierType Effect => 0;
 
