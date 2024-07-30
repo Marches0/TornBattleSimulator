@@ -31,11 +31,6 @@ public enum ModifierLifespanType
     AfterNextOwnAction,
 
     /// <summary>
-    ///  Ends after an external condition has been satisfied.
-    /// </summary>
-    Conditional,
-
-    /// <summary>
     ///  Does not end.
     /// </summary>
     Indefinite

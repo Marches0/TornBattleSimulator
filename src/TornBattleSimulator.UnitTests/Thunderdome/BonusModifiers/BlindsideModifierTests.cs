@@ -17,7 +17,7 @@ public class BlindsideModifierTests
 
         other.Health.CurrentHealth = currentHealth;
 
-        new BlindsideModifier(1).IsActive(new PlayerContextBuilder().Build(), other)
+        new BlindsideModifier(1).CanActivate(new PlayerContextBuilder().Build(), other)
             .Should().Be(expected);
     }
 }

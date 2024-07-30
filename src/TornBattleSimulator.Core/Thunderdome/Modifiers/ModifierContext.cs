@@ -7,7 +7,6 @@ using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
@@ -18,7 +17,6 @@ public class ModifierContext : IModifierContext
     public ReadOnlyCollection<IModifier> Active => new ReadOnlyCollection<IModifier>(
         _activeModifiers.Select(m => m.Modifier)
         .Concat(ChargeModifiers.Select(c => c.Modifier))
-        .Concat(_conditionalModifiers.Where(m => m.IsActive).Select(m => m.Modifier))
         .ToList()
     );
 
@@ -27,13 +25,10 @@ public class ModifierContext : IModifierContext
 
     private List<ActiveModifier> _activeModifiers = new();
 
-    private List<ConditionalModifierContainer> _conditionalModifiers = new();
-
     // add charge?
     private IEnumerable<ITickable> _tickables =>
         _activeModifiers.Select(m => m.CurrentLifespan)
-        .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>())
-        .Concat(_conditionalModifiers);
+        .Concat<ITickable>(_activeModifiers.OfType<ActiveDamageOverTimeModifier>());
 
     private readonly PlayerContext _self;
 
@@ -52,7 +47,6 @@ public class ModifierContext : IModifierContext
             IDamageOverTimeModifier dot => AddDamageOverTime(dot, damageResult!),
             IStackableStatModifier stackableStat => AddStackingStatModifier(stackableStat),
             IChargeableModifier chargeable => AddChargeable(chargeable),
-            IConditionalModifier conditional => AddConditional(conditional),
             IExclusiveModifier exclusive => AddExclusive(exclusive),
             _ => AddRegularModifier(modifier)
         };
@@ -107,12 +101,6 @@ public class ModifierContext : IModifierContext
         return _activeModifiers.All(m => m.Modifier.Effect != exclusive.Effect)
             ? AddRegularModifier(exclusive)
             : false;
-    }
-
-    private bool AddConditional(IConditionalModifier conditionalModifier)
-    {
-        _conditionalModifiers.Add(new ConditionalModifierContainer(conditionalModifier, _self));
-        return false; // Tracked by the container
     }
 
     private bool AddDamageOverTime(

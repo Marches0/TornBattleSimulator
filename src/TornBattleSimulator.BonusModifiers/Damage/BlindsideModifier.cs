@@ -20,7 +20,7 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Conditional);
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
@@ -29,7 +29,7 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     public ModifierTarget Target => ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
+    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
 
     /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Blindside;
@@ -47,5 +47,5 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     }
 
     /// <inheritdoc/>
-    public bool IsActive(PlayerContext owner, PlayerContext other) => other.Health.CurrentHealth == other.Health.MaxHealth;
+    public bool CanActivate(PlayerContext active, PlayerContext other) => other.Health.CurrentHealth == other.Health.MaxHealth;
 }

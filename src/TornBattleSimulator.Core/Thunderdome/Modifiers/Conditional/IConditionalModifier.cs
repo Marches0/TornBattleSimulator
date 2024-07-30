@@ -8,9 +8,9 @@ namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 public interface IConditionalModifier : IModifier
 {
     /// <summary>
-    ///  Tests whether or not the modifier is currently active.
+    ///  Tests whether or not the modifier can activate.
     /// </summary>
-    /// <param name="owner">The player the modifier applies to.</param>
+    /// <param name="active">The player applying this modifier.</param>
     /// <param name="other">The other player.</param>
-    bool IsActive(PlayerContext owner, PlayerContext other);
+    bool CanActivate(PlayerContext active, PlayerContext other);
 }

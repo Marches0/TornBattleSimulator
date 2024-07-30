@@ -71,8 +71,9 @@ public class ModifierFactory
             ModifierType.Laceration => new LacerationModifier(),
             ModifierType.Poisoned => new PoisonedModifier(),
 
-            // Heals
+            // Health
             ModifierType.Bloodlust => new BloodlustModifier(value),
+            ModifierType.Execute => new ExecuteModifier(value),
 
             // Action buffs
             ModifierType.Blindfire => new BlindfireModifier(),

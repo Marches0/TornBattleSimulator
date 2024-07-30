@@ -19,7 +19,7 @@ public class ComebackModifierTests
 
         owner.Health.CurrentHealth = currentHealth;
 
-        new ComebackModifier(1).IsActive(owner, new PlayerContextBuilder().Build())
+        new ComebackModifier(1).CanActivate(owner, new PlayerContextBuilder().Build())
             .Should().Be(expected);
     }
 }

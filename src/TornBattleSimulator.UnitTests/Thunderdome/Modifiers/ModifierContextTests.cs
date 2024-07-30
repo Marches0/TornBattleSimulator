@@ -81,6 +81,7 @@ public class ModifierContextTests
             container.Stacks.Should().Be(2);
         }
     }
+
     private bool CorrectContainer(
         IModifier modifier,
         IModifier innerModifier)

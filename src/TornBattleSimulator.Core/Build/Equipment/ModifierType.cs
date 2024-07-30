@@ -44,7 +44,8 @@ public enum ModifierType
     DoubleEdged,
     DoubleTap,
     Empower,
-    Eviscerate
+    Eviscerate,
+    Execute
 }
 
 // Double edge = 25%, Frenzy = multiplicative

@@ -20,7 +20,7 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.Conditional);
+    public ModifierLifespanDescription Lifespan => ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply => false;
@@ -29,7 +29,7 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
     public ModifierTarget Target => ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt => ModifierApplication.FightStart;
+    public ModifierApplication AppliesAt => ModifierApplication.BeforeAction;
 
     /// <inheritdoc/>
     public ModifierType Effect => ModifierType.Comeback;
@@ -48,5 +48,5 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
         DamageContext damageContext) => new(_value);
 
     /// <inheritdoc/>
-    public bool IsActive(PlayerContext owner, PlayerContext other) => owner.Health.CurrentHealth * 4 < owner.Health.MaxHealth;
+    public bool CanActivate(PlayerContext active, PlayerContext other) => active.Health.CurrentHealth * 4 < active.Health.MaxHealth;
 }
