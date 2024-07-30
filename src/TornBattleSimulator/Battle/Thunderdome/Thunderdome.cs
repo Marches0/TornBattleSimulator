@@ -60,11 +60,11 @@ public class Thunderdome
     private void MakeMove(PlayerContext active, PlayerContext other)
     {
         BattleAction move = active.Strategy.GetMove(_context, active, other)!.Value;
-        active.CurrentAction = move;
 
         IAction action = _actions[active.Strategy.GetMove(_context, active, other)!.Value];
         List<ThunderdomeEvent> result = action.PerformAction(_context, active, other);
 
+        active.Actions.Add(move);
         _context.Events.AddRange(result);
     }
 

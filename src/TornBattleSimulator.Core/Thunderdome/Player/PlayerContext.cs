@@ -52,6 +52,12 @@ public class PlayerContext : ITickable
     public WeaponContext? ActiveWeapon { get; set; }
 
     /// <summary>
+    ///  The actions taken by this player over the course
+    ///  of the fight.
+    /// </summary>
+    public List<BattleAction> Actions { get; } = new();
+
+    /// <summary>
     ///  The build's current stats.
     /// </summary>
     public BattleStats Stats => new BattleStats()
@@ -61,11 +67,6 @@ public class PlayerContext : ITickable
         Speed = Build.BattleStats.Speed,
         Dexterity = Build.BattleStats.Dexterity,
     }.WithModifiers(Modifiers.Active.Concat(ActiveWeapon?.Modifiers?.Active ?? Enumerable.Empty<IModifier>()).OfType<IStatsModifier>().ToList());
-
-    /// <summary>
-    ///  The action being taken by this player in the current tick.
-    /// </summary>
-    public BattleAction CurrentAction { get; set; }
 
     /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context) 
