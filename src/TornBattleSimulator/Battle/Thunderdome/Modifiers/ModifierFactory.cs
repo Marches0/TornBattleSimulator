@@ -63,6 +63,7 @@ public class ModifierFactory
             ModifierType.DoubleEdged => new DoubleEdgedModifier(),
             ModifierType.Eviscerate => new EviscerateModifier(value),
             ModifierType.Finale => new FinaleModifier(value),
+            ModifierType.Frenzy => new FrenzyModifier(value),
             ModifierType.Smash => new SmashModifier(),
 
             // Body part modifiers

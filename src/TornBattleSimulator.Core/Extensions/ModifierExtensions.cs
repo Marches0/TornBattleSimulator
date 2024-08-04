@@ -14,6 +14,7 @@ public static class ModifierExtensions
             ModifierLifespanType.AfterOwnAction => new OwnActionLifespan(),
             ModifierLifespanType.AfterNextEnemyAction => new NextEnemyActionLifespan(),
             ModifierLifespanType.Indefinite => new IndefiniteLifespan(),
+            ModifierLifespanType.Custom => new CustomLifespan(),
             _ => throw new NotImplementedException($"{modifier.Lifespan.LifespanType} not supported.")
         };
     }

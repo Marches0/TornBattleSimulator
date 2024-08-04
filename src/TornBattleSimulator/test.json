@@ -41,7 +41,7 @@
 				"accuracy": 60,
 				"modifiers": [
 					{
-						"type": "focus",
+						"type": "frenzy",
 						"percent": 100
 					}
 				]

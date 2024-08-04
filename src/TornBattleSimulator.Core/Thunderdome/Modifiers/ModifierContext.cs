@@ -7,6 +7,7 @@ using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stackable;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
@@ -53,9 +54,22 @@ public class ModifierContext : IModifierContext
     }
 
     /// <inheritdoc/>
-    public int RemoveModifier(IModifier modifier)
+    public void AttackComplete(AttackContext attack)
     {
-        return _activeModifiers.RemoveAll(am => am.Modifier == modifier);
+        // Should this be in ITickable? Would require
+        // rearranging bits to include Attack in some events
+        var customExpired = _activeModifiers
+            .Where(am => am.Modifier.Lifespan.LifespanType == ModifierLifespanType.Custom)
+            .Select(am => new
+            {
+                Lifespan = (CustomLifespan)am.CurrentLifespan,
+                Modifier = (IOwnedLifespan)am.Modifier
+            });
+            
+        foreach (var custom in customExpired)
+        {
+            custom.Lifespan.SetExpiry(attack, custom.Modifier);
+        }
     }
 
     /// <inheritdoc/>

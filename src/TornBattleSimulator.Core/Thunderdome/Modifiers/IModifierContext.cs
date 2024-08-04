@@ -28,8 +28,7 @@ public interface IModifierContext : ITickable
     bool AddModifier(IModifier modifier, AttackResult? attackResult);
 
     /// <summary>
-    ///  Removes a modifier.
+    ///  Processes post-attack events.
     /// </summary>
-    /// <returns>The number of removed modifiers.</returns>
-    int RemoveModifier(IModifier modifier);
+    void AttackComplete(AttackContext attack);
 }

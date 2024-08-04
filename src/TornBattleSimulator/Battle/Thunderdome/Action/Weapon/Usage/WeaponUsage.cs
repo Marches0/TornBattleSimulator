@@ -104,10 +104,8 @@ public class WeaponUsage : IWeaponUsage
             weapon.Ammo.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(active, weapon);
         }
 
-        foreach (var postAttackAction in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IPostAttackBehaviour>())
-        {
-            events.AddRange(postAttackAction.PerformAction(attack));
-        }
+        active.Modifiers.AttackComplete(attack);
+        weapon.Modifiers.AttackComplete(attack);
 
         return events;
     }

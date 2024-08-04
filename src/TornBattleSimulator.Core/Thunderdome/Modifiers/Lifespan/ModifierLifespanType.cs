@@ -33,5 +33,10 @@ public enum ModifierLifespanType
     /// <summary>
     ///  Does not end.
     /// </summary>
-    Indefinite
+    Indefinite,
+
+    /// <summary>
+    ///  Ends after a modifier-defined criteria.
+    /// </summary>
+    Custom
 }

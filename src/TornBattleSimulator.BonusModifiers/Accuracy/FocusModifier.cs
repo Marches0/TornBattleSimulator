@@ -1,9 +1,6 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
@@ -13,7 +10,7 @@ using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Accuracy;
 
-public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier, IPostAttackBehaviour
+public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier, IOwnedLifespan
 {
     private readonly double _value;
 
@@ -50,26 +47,11 @@ public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier,
     }
 
     /// <inheritdoc/>
+    public bool Expired(AttackContext attack) => attack!.AttackResult.Hit;
+
+    /// <inheritdoc/>
     public double GetAccuracyModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon) => _value;
-
-    public List<ThunderdomeEvent> PerformAction(AttackContext attack)
-    {
-        // Only clears Focus if you miss with the weapon that has it
-        // Using a different weapon means it doesn't change
-        // Shoving the tester here is a bit weird. If there are more modifiers
-        // that act like this, change it.
-        if (attack.AttackResult!.Hit)
-        {
-            int removedCount = attack.Weapon.Modifiers.RemoveModifier(this);
-            return Enumerable.Repeat(
-                attack.Context.CreateEvent(attack.Active, ThunderdomeEventType.EffectEnd, new EffectEndEvent(ModifierType.Focus)),
-                removedCount
-                ).ToList();
-        }
-
-        return [];
-    }
 }

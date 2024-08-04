@@ -48,7 +48,8 @@ public enum ModifierType
     Execute,
     // Expose, // todo
     Finale,
-    Focus
+    Focus,
+    Frenzy
 }
 
 // Double edge = 25%, Frenzy = multiplicative
