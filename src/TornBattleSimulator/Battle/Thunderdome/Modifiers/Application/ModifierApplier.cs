@@ -98,7 +98,7 @@ public class ModifierApplier : IModifierApplier
         foreach (var modifier in weapon.PotentialModifiers
             .Select(m => m.Modifier)
             .Where(m => m.AppliesAt == ModifierApplication.FightStart)
-            .Where(m => m.Target == ModifierTarget.Self))
+            .Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon)) // todo: self weapon only.
         {
             if (weapon.Modifiers.AddModifier(modifier, null))
             {

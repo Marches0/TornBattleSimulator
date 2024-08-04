@@ -24,7 +24,11 @@ public class AccuracyCalculator : IAccuracyCalculator
         WeaponContext weapon)
     {
         double baseAccuracy = GetBaseAccuracy(active, other, weapon);
-        return GetModifiedAccuracy(active, other, weapon, baseAccuracy);
+        return Math.Clamp(
+            GetModifiedAccuracy(active, other, weapon, baseAccuracy),
+            0,
+            1
+        );
     }
 
     private double GetBaseAccuracy(PlayerContext active,

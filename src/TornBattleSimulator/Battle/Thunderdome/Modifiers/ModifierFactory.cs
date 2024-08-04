@@ -52,6 +52,7 @@ public class ModifierFactory
 
             // Accuracy
             ModifierType.Focus => new FocusModifier(value),
+            ModifierType.Grace => new GraceModifier(value),
 
             // Damage
             ModifierType.Assassinate => new AssassinateModifier(value),

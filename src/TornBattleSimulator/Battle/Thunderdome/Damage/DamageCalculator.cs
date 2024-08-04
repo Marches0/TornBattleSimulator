@@ -30,10 +30,10 @@ public class DamageCalculator : IDamageCalculator
 
         Dictionary<StatModificationType, List<IDamageModifier>> modifiers = _damageModifiers
             // Weapon's active modifiers (e.g. Cupid) are active.
-            .Concat(weapon.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
+            .Concat(weapon.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon).OfType<IDamageModifier>())
 
             // Player damage buffs are active.
-            .Concat(active.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self).OfType<IDamageModifier>())
+            .Concat(active.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon).OfType<IDamageModifier>())
 
             // Enemy damage debuffs are active.
             .Concat(other.Modifiers.Active.Where(m => m.Target == ModifierTarget.Other).OfType<IDamageModifier>())
@@ -53,6 +53,8 @@ public class DamageCalculator : IDamageCalculator
                     return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
                 });
 
-        return new DamageResult((int)Math.Round(damage.Damage), damage.BodyPart, damageContext.Flags);
+        var actualDamage = Math.Clamp((int)Math.Round(damage.Damage), 0, other.Health.CurrentHealth);
+
+        return new DamageResult(actualDamage, damage.BodyPart, damageContext.Flags);
     }
 }

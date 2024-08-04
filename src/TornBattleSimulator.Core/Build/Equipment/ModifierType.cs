@@ -13,7 +13,6 @@ public enum ModifierType
     Smoked,
     Sharpened,
     Blindfire,
-    Fury,
     Rage,
     Burning,
     Demoralized,
@@ -49,7 +48,9 @@ public enum ModifierType
     // Expose, // todo
     Finale,
     Focus,
-    Frenzy
+    Frenzy,
+    Fury,
+    Grace
 }
 
 // Double edge = 25%, Frenzy = multiplicative

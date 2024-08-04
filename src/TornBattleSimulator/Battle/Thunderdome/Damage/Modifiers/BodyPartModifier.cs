@@ -12,6 +12,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 public class BodyPartModifier : IDamageModifier
 {
+    private readonly RootConfig _rootConfig;
     private readonly IChanceSource _modifierChanceSource;
 
     private readonly List<OptionChance<BodyPartDamage>> _criticalOptions;
@@ -19,6 +20,7 @@ public class BodyPartModifier : IDamageModifier
 
     public BodyPartModifier(
         BodyModifierOptions bodyModifierOptions,
+        RootConfig rootConfig,
         IChanceSource modifierChanceSource)
     {
         _criticalOptions = bodyModifierOptions.CriticalHits
@@ -29,6 +31,7 @@ public class BodyPartModifier : IDamageModifier
             .Select(h => new OptionChance<BodyPartDamage>(h, h.Chance))
             .ToList();
 
+        _rootConfig = rootConfig;
         _modifierChanceSource = modifierChanceSource;
     }
 
@@ -57,6 +60,14 @@ public class BodyPartModifier : IDamageModifier
         {
             // Temps hit chest. Thanks Staphy!
             return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
+        }
+
+        // todo: remove this, or make a diff class rather than getting up in this modifier
+        if (_rootConfig.BodyPartHitOverride.HasValue)
+        {
+            return _regularOptions.Concat(_criticalOptions)
+                .First(o => o.Option.Part == _rootConfig.BodyPartHitOverride.Value)
+                .Option;
         }
 
         // temp.

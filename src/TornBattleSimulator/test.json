@@ -21,7 +21,10 @@
 					"magazineSize": 10
 				},
 				"modifiers": [
-					
+					{
+						"type": "grace",
+						"percent": 1100
+					}
 				]
 			},
 			"secondary": {
@@ -40,10 +43,7 @@
 				"damage": 40,
 				"accuracy": 60,
 				"modifiers": [
-					{
-						"type": "cupid",
-						"percent": 100
-					}
+					
 				]
 			},
 			"temporary": null,
