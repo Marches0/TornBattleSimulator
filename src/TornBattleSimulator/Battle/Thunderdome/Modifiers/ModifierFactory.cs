@@ -9,6 +9,7 @@ using TornBattleSimulator.BonusModifiers.Health;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.BonusModifiers.Stats.Weapon;
+using TornBattleSimulator.BonusModifiers.Target;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
@@ -91,8 +92,11 @@ public class ModifierFactory
             // Ammo
             ModifierType.Conserve => new ConserveModifier(value),
 
-            ///  All modifiers in Torn can be created, but those that have no use
-            ///  (e.g. Pluder) are no-ops so we can support them being added without throwing.
+            // Target
+            ModifierType.HomeRun => new HomeRunModifier(),
+
+            //  All modifiers in Torn can be created, but those that have no use
+            //  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
 
             0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),

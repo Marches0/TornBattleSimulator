@@ -29,7 +29,7 @@ public class BodyPartModifierTests
             RegularHits = new() { new BodyPartDamage() { DamageMultiplier = 1, Part = BodyPart.Stomach }, new BodyPartDamage() { DamageMultiplier = 1, Part = BodyPart.Chest } }
         };
 
-        BodyPartModifier modifier = new(options, chanceSource);
+        BodyPartModifier modifier = new(options, new(), chanceSource);
 
         WeaponContext weapon = new WeaponContextBuilder()
             .OfType(testData.weapon)

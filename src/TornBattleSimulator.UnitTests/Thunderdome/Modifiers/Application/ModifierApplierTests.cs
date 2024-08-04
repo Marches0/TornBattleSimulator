@@ -3,6 +3,9 @@ using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+using TornBattleSimulator.BonusModifiers.Stats.Temporary;
+using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
+using TornBattleSimulator.BonusModifiers.Target;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
@@ -160,6 +163,86 @@ public class ModifierApplierTests
             temporary.Modifiers.Active.Should()
                 .HaveCount(2)
                 .And.OnlyContain(m => m.AppliesAt == ModifierApplication.FightStart);
+        }
+    }
+
+    [TestCaseSource(nameof(ApplyModifier_AgainstHomeRun_MayDeflect_TestCases))]
+    public void ApplyModifier_AgainstHomeRun_MayDeflect((
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon,
+        IModifier weaponModifier)
+        testData)
+    {
+        // Arrange
+        ThunderdomeContext context = new ThunderdomeContextBuilder()
+            .WithParticipants(testData.active, testData.other)
+            .Build();
+
+        AttackContext attack = new AttackContext(
+            context,
+            testData.active,
+            testData.other,
+            testData.weapon,
+            new AttackResult(true, 0.5, new DamageResult(1, 0, 0))
+        );
+
+        using AutoFake autoFake = new();
+        var applier = autoFake.Resolve<ModifierApplier>();
+
+        // Act
+        var evts = applier.ApplyModifier(testData.weaponModifier, attack);
+
+        // Assert
+        using (new AssertionScope())
+        {
+            // Hits other when:
+            //  - Can't be deflected
+
+            // Hits self when:
+            //  - Can be deflected
+            //  - Is self buff
+            if (testData.weaponModifier.Target == ModifierTarget.Self 
+                || (testData.weaponModifier.Target == ModifierTarget.Other && testData.weapon.Type == WeaponType.Temporary))
+            {
+                testData.active.Modifiers.Active.Should().Contain(testData.weaponModifier);
+            }
+            else
+            {
+                testData.other.Modifiers.Active.Should().Contain(testData.weaponModifier);
+            }
+        }
+    }
+
+    private static IEnumerable<(PlayerContext active, PlayerContext other, WeaponContext weapon, IModifier weaponModifier)> ApplyModifier_AgainstHomeRun_MayDeflect_TestCases()
+    {
+        IModifier homeRunVulnerable = new GassedModifier();
+        List<IModifier> candidateModifiers = [homeRunVulnerable, new HardenedModifier() ];
+        foreach (WeaponType weaponType in Enum.GetValues<WeaponType>())
+        {
+            foreach (IModifier modifier in candidateModifiers)
+            {
+                WeaponContext weapon = new WeaponContextBuilder()
+                    .OfType(weaponType)
+                    .WithModifier(modifier)
+                    .Build();
+
+                PlayerContext active = new PlayerContextBuilder()
+                    .WithWeapon(weapon)
+                    .Build();
+
+                PlayerContext other = new PlayerContextBuilder()
+                    .Build();
+
+                other.Modifiers.AddModifier(new HomeRunModifier(), null);
+
+                yield return (
+                    active,
+                    other,
+                    weapon,
+                    modifier
+                );
+            }
         }
     }
 }

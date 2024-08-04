@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Extensions;
+﻿using TornBattleSimulator.BonusModifiers.Target;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
@@ -117,10 +119,26 @@ public class ModifierApplier : IModifierApplier
                 ? attack.Active
                 : attack.Other;
 
+        if (IsDeflected(modifier, attack, target))
+        {
+            target = attack.Active;
+        }
+
         IModifierContext contextTarget = modifier.Target == ModifierTarget.SelfWeapon
             ? attack.Weapon.Modifiers
             : target.Modifiers;
 
         return (target, contextTarget);
+    }
+
+    private bool IsDeflected(
+        IModifier modifier,
+        AttackContext attack,
+        PlayerContext target)
+    {
+        // Temp weapons are deflected if the target has HomeRun
+        return attack.Weapon.Type == WeaponType.Temporary
+            && modifier.Target == ModifierTarget.Other // Only ones that effect the other player - can't deflect needles
+            && target.Modifiers.Active.OfType<HomeRunModifier>().Any();
     }
 }

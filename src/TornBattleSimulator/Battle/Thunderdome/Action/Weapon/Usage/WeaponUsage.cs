@@ -12,7 +12,6 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -149,6 +148,7 @@ public class WeaponUsage : IWeaponUsage
         PlayerContext other,
         WeaponContext weapon)
     {
+        // todo: support home run on damaging temps.
         double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
         return _chanceSource.Succeeds(hitChance)
             ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(context, active, other, weapon))

@@ -50,7 +50,8 @@ public enum ModifierType
     Focus,
     Frenzy,
     Fury,
-    Grace
+    Grace,
+    HomeRun
 }
 
 // Double edge = 25%, Frenzy = multiplicative

@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -55,6 +56,30 @@ public class PlayerContextBuilder
     public PlayerContextBuilder WithWeapons(EquippedWeapons weapons)
     {
         _equippedWeapons = weapons;
+        return this;
+    }
+
+    public PlayerContextBuilder WithWeapon(WeaponContext weapon)
+    {
+        switch (weapon.Type)
+        {
+            case WeaponType.Primary:
+                WithPrimary(weapon);
+                break;
+
+            case WeaponType.Secondary:
+                WithSecondary(weapon);
+                break;
+
+            case WeaponType.Melee:
+                WithMelee(weapon);
+                break;
+
+            case WeaponType.Temporary:
+                WithTemporary(weapon);
+                break;
+        }
+
         return this;
     }
 

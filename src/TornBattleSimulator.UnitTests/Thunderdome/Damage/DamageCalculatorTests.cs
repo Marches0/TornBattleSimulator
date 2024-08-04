@@ -27,7 +27,7 @@ public class DamageCalculatorTests
         DamageCalculator damageCalculator = autoFake.Resolve<DamageCalculator>();
 
         var attacker = new PlayerContextBuilder().Build();
-        var defender = new PlayerContextBuilder().Build();
+        var defender = new PlayerContextBuilder().WithHealth(10000).Build();
         var weapon = new WeaponContextBuilder().WithModifier(new TestDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
 
         // Act

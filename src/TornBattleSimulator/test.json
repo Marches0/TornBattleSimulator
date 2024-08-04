@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "bloodlust",
+						"type": "homeRun",
 						"percent": 100
 					}
 				]
@@ -71,9 +71,6 @@
 			},
 			"strategy": [
 				{
-					"weapon": "temporary"
-				},
-				{
 					"weapon": "primary",
 					"reload": false,
 					"until": [
@@ -98,8 +95,11 @@
 				"speed": 50000,
 				"dexterity": 1000000
 			},
-			"temporary": "serotonin",
+			"temporary": "pepperSpray",
 			"strategy": [
+				{
+					"weapon": "temporary"
+				},
 				{
 					"weapon": "melee",
 					"reload": false,
