@@ -82,6 +82,28 @@ public class ModifierContextTests
         }
     }
 
+    [Test]
+    public void AddModifier_ForSecondExclusiveModifier_DoesNotAdd()
+    {
+        // Arrange
+        TestExclusiveModifier modifier = new TestExclusiveModifier();
+        PlayerContext player = new PlayerContextBuilder().Build();
+        ModifierContext modifierContext = new ModifierContext(player);
+
+        // Act
+        bool addedFirst = modifierContext.AddModifier(modifier, null);
+        bool addedSecond = modifierContext.AddModifier(modifier, null);
+
+        using (new AssertionScope())
+        {
+            addedFirst.Should().BeTrue();
+            addedSecond.Should().BeFalse();
+            modifierContext.Active.Should()
+                .OnlyContain(m => m == modifier)
+                .And.HaveCount(1);
+        }
+    }
+
     private bool CorrectContainer(
         IModifier modifier,
         IModifier innerModifier)
