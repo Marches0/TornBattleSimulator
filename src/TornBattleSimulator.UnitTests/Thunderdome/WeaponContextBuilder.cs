@@ -58,6 +58,16 @@ public class WeaponContextBuilder
         return this;
     }
 
+    public WeaponContextBuilder WithModifiers(IEnumerable<IModifier> modifiers)
+    {
+        foreach (var modifier in modifiers)
+        {
+            WithModifier(modifier);
+        }
+
+        return this;
+    }
+
     public WeaponContext Build()
     {
         var context = new WeaponContext(
@@ -75,6 +85,7 @@ public class WeaponContextBuilder
 
         context.Modifiers = new ModifierContext(null);
         
+        // just for testing I guess. use a special class for auto ones?
         foreach (var auto in _autoModifiers)
         {
             context.Modifiers.AddModifier(auto, null);

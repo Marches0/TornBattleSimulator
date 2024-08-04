@@ -1,11 +1,17 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FakeItEasy;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Events;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.UnitTests.Thunderdome.Test.Modifiers;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Modifiers.Application;
@@ -82,6 +88,78 @@ public class ModifierApplierTests
         else
         {
             call.MustHaveHappenedOnceExactly();
+        }
+    }
+
+    [Test]
+    public void ApplyFightStartModifiers_AppliesCorrectModifiers()
+    {
+        // Arrange
+        // Add two of each type of modifier, to verify only the correct
+        // type is added, and that it gets all of them.
+        var modifiers = Enum.GetValues<ModifierApplication>().ToList()
+            .SelectMany<ModifierApplication, TestModifierApplicationModifier>(a => [new TestModifierApplicationModifier(a), new TestModifierApplicationModifier(a)])
+            .ToList();
+
+        WeaponContext primary = new WeaponContextBuilder()
+            .OfType(WeaponType.Primary)
+            .WithModifiers(modifiers)
+            .Build();
+
+        WeaponContext secondary = new WeaponContextBuilder()
+            .OfType(WeaponType.Secondary)
+            .WithModifiers(modifiers)
+            .Build();
+
+        WeaponContext melee = new WeaponContextBuilder()
+            .OfType(WeaponType.Melee)
+            .WithModifiers(modifiers)
+            .Build();
+
+        WeaponContext temporary = new WeaponContextBuilder()
+            .OfType(WeaponType.Temporary)
+            .WithModifiers(modifiers)
+            .Build();
+
+        PlayerContext player = new PlayerContextBuilder()
+            .WithPrimary(primary)
+            .WithSecondary(secondary)
+            .WithMelee(melee)
+            .WithTemporary(temporary)
+            .Build();
+
+        ThunderdomeContext context = new ThunderdomeContextBuilder()
+            .WithParticipants(player, new PlayerContextBuilder().Build())
+            .Build();
+
+        using AutoFake autoFake = new();
+        ModifierApplier applier = autoFake.Resolve<ModifierApplier>();
+
+        // Act
+        var evts = applier.ApplyFightStartModifiers(context);
+
+        // Assert
+        using (new AssertionScope())
+        {
+            evts.Should()
+                .HaveCount(8)
+                .And.OnlyContain(e => e.Type == ThunderdomeEventType.EffectBegin);
+
+            primary.Modifiers.Active.Should()
+                .HaveCount(2)
+                .And.OnlyContain(m => m.AppliesAt == ModifierApplication.FightStart);
+
+            secondary.Modifiers.Active.Should()
+                .HaveCount(2)
+                .And.OnlyContain(m => m.AppliesAt == ModifierApplication.FightStart);
+
+            melee.Modifiers.Active.Should()
+                .HaveCount(2)
+                .And.OnlyContain(m => m.AppliesAt == ModifierApplication.FightStart);
+
+            temporary.Modifiers.Active.Should()
+                .HaveCount(2)
+                .And.OnlyContain(m => m.AppliesAt == ModifierApplication.FightStart);
         }
     }
 }

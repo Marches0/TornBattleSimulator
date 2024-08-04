@@ -41,7 +41,7 @@
 				"accuracy": 60,
 				"modifiers": [
 					{
-						"type": "frenzy",
+						"type": "cupid",
 						"percent": 100
 					}
 				]

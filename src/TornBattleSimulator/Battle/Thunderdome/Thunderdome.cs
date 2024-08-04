@@ -8,6 +8,7 @@ using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -16,26 +17,30 @@ public class Thunderdome
     private readonly ThunderdomeContext _context;
     private readonly ThunderdomeResultWriter _resultWriter;
     private readonly IIndex<BattleAction, IAction> _actions;
+    private readonly IModifierApplier _modifierApplier;
 
     public delegate Thunderdome Create(ThunderdomeContext context);
     
     public Thunderdome(
         ThunderdomeContext context,
         ThunderdomeResultWriter resultWriter,
-        IIndex<BattleAction, IAction> actions)
+        IIndex<BattleAction, IAction> actions,
+        IModifierApplier modifierApplier)
     {
         _context = context;
         _resultWriter = resultWriter;
         _actions = actions;
+        _modifierApplier = modifierApplier;
     }
 
     public void Battle()
     {
         _context.Events.Add(_context.CreateEvent(null, ThunderdomeEventType.FightBegin, new FightBeginEvent()));
 
-        ActivateModifers(_context, _context.Attacker);
-        ActivateModifers(_context, _context.Defender);
-
+        _context.Events.AddRange(
+            _modifierApplier.ApplyFightStartModifiers(_context)
+        );
+        
         while (_context.GetResult() == null)
         {
             MakeMove(_context.Attacker, _context.Defender);
@@ -66,47 +71,5 @@ public class Thunderdome
 
         active.Actions.Add(move);
         _context.Events.AddRange(result);
-    }
-
-    private void ActivateModifers(ThunderdomeContext context, PlayerContext player)
-    {
-        if (player.Weapons.Primary != null)
-        {
-            ActivateModifers(context, player, player.Weapons.Primary);
-        }
-
-        if (player.Weapons.Secondary != null)
-        {
-            ActivateModifers(context, player, player.Weapons.Secondary);
-        }
-
-        if (player.Weapons.Melee != null)
-        {
-            ActivateModifers(context, player, player.Weapons.Melee);
-        }
-
-        if (player.Weapons.Temporary != null)
-        {
-            ActivateModifers(context, player, player.Weapons.Temporary);
-        }
-    }
-
-    private void ActivateModifers(ThunderdomeContext context, PlayerContext player, WeaponContext weapon)
-    {
-        // Not good. but here we are.
-        weapon.Modifiers = new ModifierContext(player);
-
-        foreach (var modifier in weapon.PotentialModifiers
-            .Select(m => m.Modifier)
-            .Where(m => m.AppliesAt == ModifierApplication.FightStart)
-            .Where(m => m.Target == ModifierTarget.Self))
-        {
-            if (weapon.Modifiers.AddModifier(modifier, null))
-            {
-                context.Events.Add(
-                    context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect))
-                );
-            }
-        }
     }
 }
