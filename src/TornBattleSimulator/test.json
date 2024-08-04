@@ -95,7 +95,7 @@
 				"speed": 50000,
 				"dexterity": 1000000
 			},
-			"temporary": "pepperSpray",
+			"temporary": "serotonin",
 			"strategy": [
 				{
 					"weapon": "temporary"

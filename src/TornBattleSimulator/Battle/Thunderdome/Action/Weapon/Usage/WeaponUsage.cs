@@ -1,44 +1,31 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy;
-using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
-using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
-using TornBattleSimulator.Core.Thunderdome.Chance;
-using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
 public class WeaponUsage : IWeaponUsage
 {
-    private readonly IDamageCalculator _damageCalculator;
-    private readonly IAccuracyCalculator _accuracyCalculator;
     private readonly ModifierRoller _modifierRoller;
-    private readonly IChanceSource _chanceSource;
     private readonly AttackModifierApplier _attackModifierApplier;
     private readonly IAmmoCalculator _ammoCalculator;
+    private readonly DamageProcessor _damageProcessor;
 
     public WeaponUsage(
-        IDamageCalculator damageCalculator,
-        IAccuracyCalculator accuracyCalculator,
         ModifierRoller modifierRoller,
-        IChanceSource chanceSource,
         AttackModifierApplier attackModifierApplier,
-        IAmmoCalculator ammoCalculator)
+        IAmmoCalculator ammoCalculator,
+        DamageProcessor damageProcessor)
     {
-        _damageCalculator = damageCalculator;
-        _accuracyCalculator = accuracyCalculator;
         _modifierRoller = modifierRoller;
-
-        _chanceSource = chanceSource;
         _attackModifierApplier = attackModifierApplier;
         _ammoCalculator = ammoCalculator;
+        _damageProcessor = damageProcessor;
     }
 
     public List<ThunderdomeEvent> UseWeapon(
@@ -90,8 +77,7 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        attack.AttackResult = CalculateAttack(context, active, other, weapon);
-        events.Add(MakeHit(attack));
+        _damageProcessor.PerformAttack(attack);
 
         if (!bonusAction)
         {
@@ -107,51 +93,5 @@ public class WeaponUsage : IWeaponUsage
         weapon.Modifiers.AttackComplete(attack);
 
         return events;
-    }
-
-    private ThunderdomeEvent MakeHit(AttackContext attack)
-    {
-        // Non-damaging temps are handled specially, since they don't
-        // actually miss and are better with a description of their type.
-        if (attack.Weapon.Type == WeaponType.Temporary && attack.Weapon.Description.Damage == 0)
-        {
-            return attack.Context.CreateEvent(
-               attack.Active,
-               ThunderdomeEventType.UsedTemporary,
-               new UsedTemporaryEvent(attack.Weapon.Description.TemporaryWeaponType!.Value)
-           );
-        }
-
-        if (attack.AttackResult!.Hit)
-        {
-            attack.Other.Health.CurrentHealth -= attack.AttackResult.Damage.DamageDealt;
-
-            return attack.Context.CreateEvent(
-                attack.Active,
-                ThunderdomeEventType.AttackHit,
-                new AttackHitEvent(attack.Weapon.Type, attack.AttackResult)
-            );
-        }
-        else
-        {
-            return attack.Context.CreateEvent(
-                attack.Active,
-                ThunderdomeEventType.AttackMiss,
-                new AttackMissedEvent(attack.Weapon.Type, attack.AttackResult.HitChance)
-            );
-        }
-    }
-
-    private AttackResult CalculateAttack(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
-    {
-        // todo: support home run on damaging temps.
-        double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
-        return _chanceSource.Succeeds(hitChance)
-            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(context, active, other, weapon))
-            : new AttackResult(false, hitChance, null);
     }
 }

@@ -1,5 +1,4 @@
-﻿using TornBattleSimulator.BonusModifiers.Target;
-using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Target;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
@@ -14,10 +13,14 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 public class ModifierApplier : IModifierApplier
 {
     private readonly IHealthModifierApplier _healthModifierApplier;
+    private readonly TargetSelector _targetSelector;
 
-    public ModifierApplier(IHealthModifierApplier healthModifierApplier)
+    public ModifierApplier(
+        IHealthModifierApplier healthModifierApplier,
+        TargetSelector targetSelector)
     {
         _healthModifierApplier = healthModifierApplier;
+        _targetSelector = targetSelector;
     }
 
     public List<ThunderdomeEvent> ApplyModifier(
@@ -25,7 +28,7 @@ public class ModifierApplier : IModifierApplier
         AttackContext attack)
     {
         List<ThunderdomeEvent> events = new();
-        (PlayerContext target, IModifierContext modifierTarget) = GetTarget(modifier, attack);
+        (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
 
         if (modifierTarget.AddModifier(modifier, attack.AttackResult))
         {
@@ -48,7 +51,7 @@ public class ModifierApplier : IModifierApplier
             .OfType<IHealthModifier>()
             .Where(m => !m.AppliesOnActivation))
         {
-            (PlayerContext target, IModifierContext _) = GetTarget(heal, attack);
+            (PlayerContext target, IModifierContext _) = _targetSelector.GetModifierTarget(heal, attack);
 
             events.Add(_healthModifierApplier.ModifyHealth(attack.Context, target, heal, attack.AttackResult));
         }
@@ -109,36 +112,5 @@ public class ModifierApplier : IModifierApplier
         }
 
         return events;
-    }
-
-    private (PlayerContext target, IModifierContext modifierTarget) GetTarget(
-        IModifier modifier,
-        AttackContext attack)
-    {
-        PlayerContext target = modifier.Target == ModifierTarget.Self || modifier.Target == ModifierTarget.SelfWeapon
-                ? attack.Active
-                : attack.Other;
-
-        if (IsDeflected(modifier, attack, target))
-        {
-            target = attack.Active;
-        }
-
-        IModifierContext contextTarget = modifier.Target == ModifierTarget.SelfWeapon
-            ? attack.Weapon.Modifiers
-            : target.Modifiers;
-
-        return (target, contextTarget);
-    }
-
-    private bool IsDeflected(
-        IModifier modifier,
-        AttackContext attack,
-        PlayerContext target)
-    {
-        // Temp weapons are deflected if the target has HomeRun
-        return attack.Weapon.Type == WeaponType.Temporary
-            && modifier.Target == ModifierTarget.Other // Only ones that effect the other player - can't deflect needles
-            && target.Modifiers.Active.OfType<HomeRunModifier>().Any();
     }
 }
