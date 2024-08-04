@@ -104,6 +104,34 @@ public class ModifierContextTests
         }
     }
 
+    [Test]
+    public void AttackComplete_MarksCustomModifiersWithExpiry()
+    {
+        // Arrange
+        TestOwnedLifespanModifier expired = new(true);
+        TestOwnedLifespanModifier active = new(false);
+
+        PlayerContext player = new PlayerContextBuilder()
+            .Build();
+
+        ThunderdomeContext context = new ThunderdomeContextBuilder()
+            .WithParticipants(player, new PlayerContextBuilder().Build())
+            .Build();
+
+        ModifierContext modifierContext = new(player);
+        modifierContext.AddModifier(expired, null);
+        modifierContext.AddModifier(active, null);
+
+        modifierContext.Active.Should().HaveCount(2);
+
+        // Act
+        modifierContext.AttackComplete(null);
+        modifierContext.TurnComplete(context);
+
+        // Assert
+        modifierContext.Active.Should().OnlyContain(m => m == active);
+    }
+
     private bool CorrectContainer(
         IModifier modifier,
         IModifier innerModifier)
