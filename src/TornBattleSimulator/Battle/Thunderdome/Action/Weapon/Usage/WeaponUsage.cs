@@ -53,7 +53,7 @@ public class WeaponUsage : IWeaponUsage
         List<ThunderdomeEvent> events = UseWeapon(context, active, other, weapon, false);
 
         Func<List<ThunderdomeEvent>> bonusAttackAction = () => UseWeapon(context, active, other, weapon, true);
-        foreach (IAttacksModifier attackModifier in active.Modifiers.Active.OfType<IAttacksModifier>())
+        foreach (IAttacksModifier attackModifier in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IAttacksModifier>())
         {
             events.AddRange(
                 _attackModifierApplier.MakeBonusAttacks(attackModifier, context, active, other, weapon, bonusAttackAction)

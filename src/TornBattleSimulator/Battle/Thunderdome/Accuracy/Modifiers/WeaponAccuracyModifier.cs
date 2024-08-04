@@ -13,7 +13,7 @@ public class WeaponAccuracyModifier : IWeaponAccuracyModifier
         double statAccuracy)
     {
         double weaponAccuracy = (weapon.Description.Accuracy / 100);
-        weaponAccuracy -= (active.Modifiers.Active.OfType<BlindfireModifier>().Count() * 0.05);
+        weaponAccuracy -= (weapon.Modifiers.Active.OfType<BlindfireModifier>().Count() * 0.05);
 
         double weaponAccuracyComponent = (weaponAccuracy - 0.5) / 0.5;
 

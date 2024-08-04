@@ -14,7 +14,7 @@ public class BlindfireModifier : IAttacksModifier
     public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;

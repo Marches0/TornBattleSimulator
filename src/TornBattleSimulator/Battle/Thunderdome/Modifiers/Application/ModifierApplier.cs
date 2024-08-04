@@ -113,7 +113,7 @@ public class ModifierApplier : IModifierApplier
         IModifier modifier,
         AttackContext attack)
     {
-        PlayerContext target = modifier.Target == ModifierTarget.Self
+        PlayerContext target = modifier.Target == ModifierTarget.Self || modifier.Target == ModifierTarget.SelfWeapon
                 ? attack.Active
                 : attack.Other;
 

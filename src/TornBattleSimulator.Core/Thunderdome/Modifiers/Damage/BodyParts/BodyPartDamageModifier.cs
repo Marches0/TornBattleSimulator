@@ -31,7 +31,7 @@ public abstract class BodyPartDamageModifier : IDamageModifier
     public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;

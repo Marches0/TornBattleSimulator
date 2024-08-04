@@ -16,7 +16,6 @@ public class HealthModifierApplier : IHealthModifierApplier
         IHealthModifier healthModifier,
         AttackResult? attackResult)
     {
-
         // Don't allow healing above max.
         int heal = Math.Min(
             healthModifier.GetHealthModifier(target, attackResult?.Damage),

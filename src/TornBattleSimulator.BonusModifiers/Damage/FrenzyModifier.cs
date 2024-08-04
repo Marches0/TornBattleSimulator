@@ -28,7 +28,7 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
     public bool RequiresDamageToApply { get; } = true;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;

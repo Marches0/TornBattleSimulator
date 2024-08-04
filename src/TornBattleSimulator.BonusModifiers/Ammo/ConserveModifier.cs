@@ -11,7 +11,7 @@ public class ConserveModifier : IModifier, IAmmoModifier
 
     public ConserveModifier(double value)
     {
-        _value = value;
+        _value = 1 - value;
     }
 
     /// <inheritdoc/>
@@ -21,7 +21,7 @@ public class ConserveModifier : IModifier, IAmmoModifier
     public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
