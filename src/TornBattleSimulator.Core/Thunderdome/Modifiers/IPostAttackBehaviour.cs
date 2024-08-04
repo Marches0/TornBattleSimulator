@@ -1,7 +1,4 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+﻿using TornBattleSimulator.Core.Thunderdome.Events;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 
@@ -10,5 +7,5 @@ namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 /// </summary>
 public interface IPostAttackBehaviour
 {
-    List<ThunderdomeEvent> PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon, AttackResult attackResult, bool bonusAction);
+    List<ThunderdomeEvent> PerformAction(AttackContext attack, bool bonusAction);
 }

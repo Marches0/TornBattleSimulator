@@ -1,12 +1,10 @@
 ﻿using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
@@ -21,46 +19,35 @@ public class ModifierApplier : IModifierApplier
 
     public List<ThunderdomeEvent> ApplyModifier(
         IModifier modifier,
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        AttackResult? attackResult)
+        AttackContext attack)
     {
         List<ThunderdomeEvent> events = new();
-        (PlayerContext target, IModifierContext modifierTarget) = GetTarget(modifier, context, active, other, weapon);
+        (PlayerContext target, IModifierContext modifierTarget) = GetTarget(modifier, attack);
 
-        if (modifierTarget.AddModifier(modifier, attackResult))
+        if (modifierTarget.AddModifier(modifier, attack.AttackResult))
         {
-            events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
+            events.Add(attack.Context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
         };
 
         if (modifier is IHealthModifier { AppliesOnActivation: true } healthModifier)
         {
-            events.Add(_healthModifierApplier.ModifyHealth(context, target, healthModifier, attackResult));
+            events.Add(_healthModifierApplier.ModifyHealth(attack.Context, target, healthModifier, attack.AttackResult));
         }
 
         return events;
     }
 
-    public List<ThunderdomeEvent> ApplyOtherHeals(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        AttackResult? attackResult)
+    public List<ThunderdomeEvent> ApplyOtherHeals(AttackContext attack)
     {
         List<ThunderdomeEvent> events = new();
 
-        foreach (IHealthModifier heal in active.Modifiers.Active.Concat(weapon.Modifiers.Active)
+        foreach (IHealthModifier heal in attack.Active.Modifiers.Active.Concat(attack.Weapon.Modifiers.Active)
             .OfType<IHealthModifier>()
             .Where(m => !m.AppliesOnActivation))
         {
-            PlayerContext target = heal.Target == ModifierTarget.Self
-                ? active
-                : other;
+            (PlayerContext target, IModifierContext _) = GetTarget(heal, attack);
 
-            events.Add(_healthModifierApplier.ModifyHealth(context, target, heal, attackResult));
+            events.Add(_healthModifierApplier.ModifyHealth(attack.Context, target, heal, attack.AttackResult));
         }
 
         return events;
@@ -68,17 +55,14 @@ public class ModifierApplier : IModifierApplier
 
     private (PlayerContext target, IModifierContext modifierTarget) GetTarget(
         IModifier modifier,
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
+        AttackContext attack)
     {
         PlayerContext target = modifier.Target == ModifierTarget.Self
-                ? active
-                : other;
+                ? attack.Active
+                : attack.Other;
 
         IModifierContext contextTarget = modifier.Target == ModifierTarget.SelfWeapon
-            ? weapon.Modifiers
+            ? attack.Weapon.Modifiers
             : target.Modifiers;
 
         return (target, contextTarget);

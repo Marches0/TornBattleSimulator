@@ -1,12 +1,8 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Core.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
-using System.Linq;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 
@@ -23,63 +19,43 @@ public class ModifierRoller
         _modifierApplier = modifierApplier;
     }
 
-    public List<ThunderdomeEvent> ApplyPreActionModifiers(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
+    public List<ThunderdomeEvent> ApplyPreActionModifiers(AttackContext attack)
     {
         return ApplyModifiers(
-            context,
-            active,
-            other,
-            weapon,
-            null,
+            attack,
             ModifierApplication.BeforeAction
         );
     }
 
-    public List<ThunderdomeEvent> ApplyPostActionModifiers(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        AttackResult attackResult)
+    public List<ThunderdomeEvent> ApplyPostActionModifiers(AttackContext attack)
     {
         List<ThunderdomeEvent> events = new();
 
         events.AddRange(ApplyModifiers(
-            context,
-            active,
-            other,
-            weapon,
-            attackResult,
+            attack,
             ModifierApplication.AfterAction
         ));
 
         // Some heals are actioned in the PostAction phase,
         // since they require damage data to be run.
-        events.AddRange(_modifierApplier.ApplyOtherHeals(context, active, other, weapon, attackResult));
+        events.AddRange(_modifierApplier.ApplyOtherHeals(attack));
 
         return events;
     }
 
-    private List<ThunderdomeEvent> ApplyModifiers(ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        AttackResult? attackResult,
+    private List<ThunderdomeEvent> ApplyModifiers(
+        AttackContext attack,
         ModifierApplication modifierApplication)
     {
         List<ThunderdomeEvent> events = new();
 
-        IEnumerable<IModifier> triggeredModifiers = weapon.PotentialModifiers
+        IEnumerable<IModifier> triggeredModifiers = attack.Weapon.PotentialModifiers
             .Where(m => _modifierChanceSource.Succeeds(m.Chance))
             .Select(m => m.Modifier) // Make it an IModifier early so we don't have to remember it's Potential
             .Where(m => m.AppliesAt == modifierApplication)
-            .Where(m => SatisfiesCondition(m, active, other, attackResult));
+            .Where(m => SatisfiesCondition(m, attack));
 
-        if (attackResult?.Damage != null && attackResult.Damage.DamageDealt <= 0)
+        if (attack.AttackResult?.Damage != null && attack.AttackResult.Damage.DamageDealt <= 0)
         {
             triggeredModifiers = triggeredModifiers
                 .Where(m => !m.RequiresDamageToApply);
@@ -90,11 +66,7 @@ public class ModifierRoller
             // Make an AttackContext to wrap these all up?
             events.AddRange(_modifierApplier.ApplyModifier(
                 modifier,
-                context,
-                active,
-                other,
-                weapon,
-                attackResult)
+                attack)
             );
         }
 
@@ -103,12 +75,10 @@ public class ModifierRoller
 
     private bool SatisfiesCondition(
         IModifier modifier,
-        PlayerContext active,
-        PlayerContext other,
-        AttackResult? attack)
+        AttackContext attack)
     {
         return modifier is IConditionalModifier conditional
-            ? conditional.CanActivate(active, other, attack)
+            ? conditional.CanActivate(attack.Active, attack.Other, attack.AttackResult)
             : true;
     }
 }

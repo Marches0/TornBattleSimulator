@@ -81,21 +81,22 @@ public class WeaponUsage : IWeaponUsage
         }
 
         List<ThunderdomeEvent> events = new();
+        AttackContext attack = new AttackContext(context, active, other, weapon, null);
 
         // Modifiers can't trigger on bonus actions
         if (!bonusAction)
         {
             events.AddRange(
-                _modifierRoller.ApplyPreActionModifiers(context, active, other, weapon)
+                _modifierRoller.ApplyPreActionModifiers(attack)
             );
         }
 
-        AttackResult attack = CalculateAttack(context, active, other, weapon);
-        events.Add(MakeHit(attack, context, active, other, weapon));
+        attack.AttackResult = CalculateAttack(context, active, other, weapon);
+        events.Add(MakeHit(attack));
 
         if (!bonusAction)
         {
-            events.AddRange(_modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, attack));
+            events.AddRange(_modifierRoller.ApplyPostActionModifiers(attack));
         }
 
         if (weapon.Ammo != null)
@@ -105,46 +106,41 @@ public class WeaponUsage : IWeaponUsage
 
         foreach (var postAttackAction in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IPostAttackBehaviour>())
         {
-            events.AddRange(postAttackAction.PerformAction(context, active, other, weapon, attack, bonusAction));
+            events.AddRange(postAttackAction.PerformAction(attack, bonusAction));
         }
 
         return events;
     }
 
-    private ThunderdomeEvent MakeHit(
-        AttackResult attack,
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
+    private ThunderdomeEvent MakeHit(AttackContext attack)
     {
         // Non-damaging temps are handled specially, since they don't
         // actually miss and are better with a description of their type.
-        if (weapon.Type == WeaponType.Temporary && weapon.Description.Damage == 0)
+        if (attack.Weapon.Type == WeaponType.Temporary && attack.Weapon.Description.Damage == 0)
         {
-            return context.CreateEvent(
-               active,
+            return attack.Context.CreateEvent(
+               attack.Active,
                ThunderdomeEventType.UsedTemporary,
-               new UsedTemporaryEvent(weapon.Description.TemporaryWeaponType!.Value)
+               new UsedTemporaryEvent(attack.Weapon.Description.TemporaryWeaponType!.Value)
            );
         }
 
-        if (attack.Hit)
+        if (attack.AttackResult!.Hit)
         {
-            other.Health.CurrentHealth -= attack.Damage.DamageDealt;
+            attack.Other.Health.CurrentHealth -= attack.AttackResult.Damage.DamageDealt;
 
-            return context.CreateEvent(
-                active,
+            return attack.Context.CreateEvent(
+                attack.Active,
                 ThunderdomeEventType.AttackHit,
-                new AttackHitEvent(weapon.Type, attack.Damage!.DamageDealt, attack.Damage!.BodyPart, attack.Damage!.Flags, attack.HitChance)
+                new AttackHitEvent(attack.Weapon.Type, attack.AttackResult)
             );
         }
         else
         {
-            return context.CreateEvent(
-                active,
+            return attack.Context.CreateEvent(
+                attack.Active,
                 ThunderdomeEventType.AttackMiss,
-                new AttackMissedEvent(weapon.Type, attack.HitChance)
+                new AttackMissedEvent(attack.Weapon.Type, attack.AttackResult.HitChance)
             );
         }
     }

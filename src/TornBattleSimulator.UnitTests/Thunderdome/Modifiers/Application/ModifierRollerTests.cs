@@ -35,17 +35,19 @@ public class ModifierRollerTests
         PlayerContext active = new PlayerContextBuilder().Build();
         PlayerContext other = new PlayerContextBuilder().Build();
         ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
+        AttackContext attack = new AttackContext(context, active, other, weapon, null);
 
         ModifierRoller modifierRoller = new ModifierRoller(FixedChanceSource.AlwaysSucceeds, modifierApplier);
 
         // Act
         if (phase == ModifierApplication.BeforeAction)
         {
-            modifierRoller.ApplyPreActionModifiers(context, active, other, weapon);
+            modifierRoller.ApplyPreActionModifiers(attack);
         }
         else
         {
-            modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, new AttackResult(true, 1, new DamageResult(100, BodyPart.Head, DamageFlags.HitArmour)));
+            attack.AttackResult = new AttackResult(true, 1, new DamageResult(100, BodyPart.Head, DamageFlags.HitArmour));
+            modifierRoller.ApplyPostActionModifiers(attack);
         }
 
         // Assert
@@ -91,16 +93,13 @@ public class ModifierRollerTests
         PlayerContext other = new PlayerContextBuilder().Build();
         ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
         DamageResult damage = new DamageResult(damageDone, BodyPart.Heart, DamageFlags.HitArmour);
+        AttackContext attack = new AttackContext(context, active, other, weapon, new AttackResult(true, 1, damage));
 
         ModifierRoller roller = new ModifierRoller(FixedChanceSource.AlwaysSucceeds, modifierApplier);
 
         // Act
         roller.ApplyPostActionModifiers(
-            context,
-            active,
-            other,
-            weapon,
-            new AttackResult(true, 1, damage));
+            attack);
 
         using (new AssertionScope())
         {
@@ -134,14 +133,10 @@ public class ModifierRollerTests
         PlayerContext other = new PlayerContextBuilder().Build();
         ThunderdomeContext context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
         DamageResult damage = new DamageResult(123, BodyPart.Heart, DamageFlags.HitArmour);
+        AttackContext attack = new AttackContext(context, active, other, weapon, new AttackResult(true, 1, damage));
 
         // Act
-        roller.ApplyPostActionModifiers(
-            context,
-            active,
-            other,
-            weapon,
-            new AttackResult(true, 1, damage));
+        roller.ApplyPostActionModifiers(attack);
 
         // Assert
         var call = GetModifierCall(modifierApplier, conditionalModifier);
@@ -174,11 +169,7 @@ public class ModifierRollerTests
     {
         return A.CallTo(() => modifierApplier.ApplyModifier(
             modifier,
-            A<ThunderdomeContext>._,
-            A<PlayerContext>._,
-            A<PlayerContext>._,
-            A<WeaponContext>._,
-            A<AttackResult>._)
+            A<AttackContext>._)
         );
     }
 }

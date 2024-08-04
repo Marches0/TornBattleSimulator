@@ -29,15 +29,12 @@ public class ModifierApplierTests
         var active = new PlayerContextBuilder().Build();
         var other = new PlayerContextBuilder().Build();
         var context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
+        var attack = new AttackContext(context, active, other, new WeaponContextBuilder().Build(), new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour)));
 
         // Act
         applier.ApplyModifier(
             testHealthModifier,
-            context,
-            active,
-            other,
-            new WeaponContextBuilder().Build(),
-            new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour))
+            attack
         );
 
         // Assert
@@ -69,14 +66,11 @@ public class ModifierApplierTests
         var other = new PlayerContextBuilder().Build();
         var context = new ThunderdomeContextBuilder().WithParticipants(active, other).Build();
         var weapon = new WeaponContextBuilder().WithModifier(testHealthModifier).Build();
-        
+        var attack = new AttackContext(context, active, other, weapon, new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour)));
+
         // Act
         applier.ApplyOtherHeals(
-            context,
-            active,
-            other,
-            weapon,
-            new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour))
+            attack
         );
 
         // Assert

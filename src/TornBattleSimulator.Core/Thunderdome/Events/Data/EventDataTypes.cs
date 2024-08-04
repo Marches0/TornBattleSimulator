@@ -24,13 +24,13 @@ public class UsedTemporaryEvent : IEventData
 
 public class AttackHitEvent : IEventData
 {
-    public AttackHitEvent(WeaponType weapon, int damage, BodyPart bodyPart, DamageFlags flags, double hitChance)
+    public AttackHitEvent(WeaponType weapon, AttackResult attack)
     {
         Weapon = weapon;
-        Damage = damage;
-        BodyPart = bodyPart;
-        Flags = flags;
-        HitChance = hitChance;
+        Damage = attack.Damage.DamageDealt;
+        BodyPart = attack.Damage.BodyPart;
+        Flags = attack.Damage.Flags;
+        HitChance = attack.HitChance;
     }
 
     public WeaponType Weapon { get; }

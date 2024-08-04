@@ -55,23 +55,17 @@ public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier,
         PlayerContext other,
         WeaponContext weapon) => _value;
 
-    public List<ThunderdomeEvent> PerformAction(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        AttackResult attackResult,
-        bool bonusAction)
+    public List<ThunderdomeEvent> PerformAction(AttackContext attack, bool bonusAction)
     {
         // Only clears Focus if you miss with the weapon that has it
         // Using a different weapon means it doesn't change
         // Shoving the tester here is a bit weird. If there are more modifiers
         // that act like this, change it.
-        if (attackResult.Hit)
+        if (attack.AttackResult!.Hit)
         {
-            int removedCount = weapon.Modifiers.RemoveModifier(this);
+            int removedCount = attack.Weapon.Modifiers.RemoveModifier(this);
             return Enumerable.Repeat(
-                context.CreateEvent(active, ThunderdomeEventType.EffectEnd, new EffectEndEvent(ModifierType.Focus)),
+                attack.Context.CreateEvent(attack.Active, ThunderdomeEventType.EffectEnd, new EffectEndEvent(ModifierType.Focus)),
                 removedCount
                 ).ToList();
         }
