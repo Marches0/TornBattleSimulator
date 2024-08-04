@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Modifiers;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
@@ -15,5 +16,5 @@ public class TestConditionalModifier : BaseTestModifier, IConditionalModifier
 
     public override ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
-    public bool CanActivate(PlayerContext active, PlayerContext other) => _willActivate;
+    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => _willActivate;
 }

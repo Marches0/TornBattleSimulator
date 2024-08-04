@@ -45,7 +45,7 @@ public class ModifierRollerTests
         }
         else
         {
-            modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, new DamageResult(100, BodyPart.Head, DamageFlags.HitArmour));
+            modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, new AttackResult(true, 1, new DamageResult(100, BodyPart.Head, DamageFlags.HitArmour)));
         }
 
         // Assert
@@ -100,7 +100,7 @@ public class ModifierRollerTests
             active,
             other,
             weapon,
-            damage);
+            new AttackResult(true, 1, damage));
 
         using (new AssertionScope())
         {
@@ -141,7 +141,7 @@ public class ModifierRollerTests
             active,
             other,
             weapon,
-            damage);
+            new AttackResult(true, 1, damage));
 
         // Assert
         var call = GetModifierCall(modifierApplier, conditionalModifier);
@@ -177,7 +177,8 @@ public class ModifierRollerTests
             A<ThunderdomeContext>._,
             A<PlayerContext>._,
             A<PlayerContext>._,
-            A<DamageResult>._)
+            A<WeaponContext>._,
+            A<AttackResult>._)
         );
     }
 }

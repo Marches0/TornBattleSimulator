@@ -47,5 +47,5 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     }
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other) => other.Health.CurrentHealth == other.Health.MaxHealth;
+    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => other.Health.CurrentHealth == other.Health.MaxHealth;
 }

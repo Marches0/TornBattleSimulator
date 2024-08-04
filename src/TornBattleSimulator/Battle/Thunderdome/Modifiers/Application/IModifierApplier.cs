@@ -14,12 +14,13 @@ public interface IModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        DamageResult? damageResult);
+        WeaponContext weapon,
+        AttackResult? attackResult);
 
     List<ThunderdomeEvent> ApplyOtherHeals(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageResult? damageResult);
+        AttackResult? attackResult);
 }

@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Player;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 
@@ -12,5 +13,6 @@ public interface IConditionalModifier : IModifier
     /// </summary>
     /// <param name="active">The player applying this modifier.</param>
     /// <param name="other">The other player.</param>
-    bool CanActivate(PlayerContext active, PlayerContext other);
+    /// <param name="attack">The attack creating this modifier, if applicable.</param>
+    bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack);
 }

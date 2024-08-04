@@ -31,7 +31,7 @@ public class DamageCalculatorTests
         var weapon = new WeaponContextBuilder().WithModifier(new TestDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
 
         // Act
-        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).Damage;
+        var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).DamageDealt;
 
         // Assert
         damage.Should().Be(75);

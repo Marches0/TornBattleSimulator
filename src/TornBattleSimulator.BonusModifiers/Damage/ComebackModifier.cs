@@ -48,5 +48,5 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
         DamageContext damageContext) => new(_value);
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other) => active.Health.CurrentHealth * 4 < active.Health.MaxHealth;
+    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => active.Health.CurrentHealth * 4 < active.Health.MaxHealth;
 }

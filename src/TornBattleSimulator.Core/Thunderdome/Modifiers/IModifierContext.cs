@@ -23,7 +23,13 @@ public interface IModifierContext : ITickable
     ///  Adds a new modifier.
     /// </summary>
     /// <param name="modifier">The modifier to add.</param>
-    /// <param name="damageResult">The damage caused by the active player, if applicable.</param>
+    /// <param name="attackResult">The attack made by the active player, if applicable.</param>
     /// <returns><see langword="true"/> if the modifier was added, otherwise <see langword="false"/>.</returns>
-    bool AddModifier(IModifier modifier, DamageResult? damageResult);
+    bool AddModifier(IModifier modifier, AttackResult? attackResult);
+
+    /// <summary>
+    ///  Removes a modifier.
+    /// </summary>
+    /// <returns>The number of removed modifiers.</returns>
+    int RemoveModifier(IModifier modifier);
 }

@@ -42,5 +42,5 @@ public class ExecuteModifier : IHealthModifier, IConditionalModifier
     public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -target.Health.CurrentHealth;
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other) => other.Health.MaxHealth * _value >= other.Health.CurrentHealth;
+    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => other.Health.MaxHealth * _value >= other.Health.CurrentHealth;
 }

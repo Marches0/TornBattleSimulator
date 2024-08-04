@@ -26,7 +26,7 @@ public class ActiveDamageOverTimeModifier : ActiveModifier, ITickable
     {
         _damageOverTimeModifier = modifier;
         _target = target;
-        _appliedDamage = damageContext.Damage;
+        _appliedDamage = damageContext.DamageDealt;
     }
 
     /// <inheritdoc/>

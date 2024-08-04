@@ -36,11 +36,12 @@ public class ModifierApplierTests
             context,
             active,
             other,
-            new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour)
+            new WeaponContextBuilder().Build(),
+            new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour))
         );
 
         // Assert
-        var call = A.CallTo(() => healthApplier.ModifyHealth(A<ThunderdomeContext>._, A<PlayerContext>._, testHealthModifier, A<DamageResult>._));
+        var call = A.CallTo(() => healthApplier.ModifyHealth(A<ThunderdomeContext>._, A<PlayerContext>._, testHealthModifier, A<AttackResult>._));
         if (appliesOnActivation)
         {
             call.MustHaveHappenedOnceExactly();
@@ -75,11 +76,11 @@ public class ModifierApplierTests
             active,
             other,
             weapon,
-            new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour)
+            new AttackResult(true, 1, new DamageResult(1, BodyPart.Arms, DamageFlags.HitArmour))
         );
 
         // Assert
-        var call = A.CallTo(() => healthApplier.ModifyHealth(A<ThunderdomeContext>._, A<PlayerContext>._, testHealthModifier, A<DamageResult>._));
+        var call = A.CallTo(() => healthApplier.ModifyHealth(A<ThunderdomeContext>._, A<PlayerContext>._, testHealthModifier, A<AttackResult>._));
         if (appliesOnActivation)
         {
             call.MustNotHaveHappened();

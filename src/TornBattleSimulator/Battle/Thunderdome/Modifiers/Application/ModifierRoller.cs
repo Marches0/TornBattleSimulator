@@ -33,7 +33,7 @@ public class ModifierRoller
             context,
             active,
             other,
-            weapon.PotentialModifiers,
+            weapon,
             null,
             ModifierApplication.BeforeAction
         );
@@ -44,7 +44,7 @@ public class ModifierRoller
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageResult damageResult)
+        AttackResult attackResult)
     {
         List<ThunderdomeEvent> events = new();
 
@@ -52,14 +52,14 @@ public class ModifierRoller
             context,
             active,
             other,
-            weapon.PotentialModifiers,
-            damageResult,
+            weapon,
+            attackResult,
             ModifierApplication.AfterAction
         ));
 
         // Some heals are actioned in the PostAction phase,
         // since they require damage data to be run.
-        events.AddRange(_modifierApplier.ApplyOtherHeals(context, active, other, weapon, damageResult));
+        events.AddRange(_modifierApplier.ApplyOtherHeals(context, active, other, weapon, attackResult));
 
         return events;
     }
@@ -67,19 +67,19 @@ public class ModifierRoller
     private List<ThunderdomeEvent> ApplyModifiers(ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        List<PotentialModifier> potentialModifiers,
-        DamageResult? damageResult,
+        WeaponContext weapon,
+        AttackResult? attackResult,
         ModifierApplication modifierApplication)
     {
         List<ThunderdomeEvent> events = new();
 
-        IEnumerable<IModifier> triggeredModifiers = potentialModifiers
+        IEnumerable<IModifier> triggeredModifiers = weapon.PotentialModifiers
             .Where(m => _modifierChanceSource.Succeeds(m.Chance))
             .Select(m => m.Modifier) // Make it an IModifier early so we don't have to remember it's Potential
             .Where(m => m.AppliesAt == modifierApplication)
-            .Where(m => SatisfiesCondition(m, active, other));
+            .Where(m => SatisfiesCondition(m, active, other, attackResult));
 
-        if (damageResult != null && damageResult.Damage <= 0)
+        if (attackResult?.Damage != null && attackResult.Damage.DamageDealt <= 0)
         {
             triggeredModifiers = triggeredModifiers
                 .Where(m => !m.RequiresDamageToApply);
@@ -87,7 +87,15 @@ public class ModifierRoller
 
         foreach (IModifier modifier in triggeredModifiers)
         {
-            events.AddRange(_modifierApplier.ApplyModifier(modifier, context, active, other, damageResult));
+            // Make an AttackContext to wrap these all up?
+            events.AddRange(_modifierApplier.ApplyModifier(
+                modifier,
+                context,
+                active,
+                other,
+                weapon,
+                attackResult)
+            );
         }
 
         return events;
@@ -96,13 +104,11 @@ public class ModifierRoller
     private bool SatisfiesCondition(
         IModifier modifier,
         PlayerContext active,
-        PlayerContext other)
+        PlayerContext other,
+        AttackResult? attack)
     {
-        if (!(modifier is IConditionalModifier conditional))
-        {
-            return true;
-        }
-
-        return conditional.CanActivate(active, other);
+        return modifier is IConditionalModifier conditional
+            ? conditional.CanActivate(active, other, attack)
+            : true;
     }
 }

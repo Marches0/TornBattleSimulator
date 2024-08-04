@@ -14,12 +14,12 @@ public class HealthModifierApplier : IHealthModifierApplier
         ThunderdomeContext context,
         PlayerContext target,
         IHealthModifier healthModifier,
-        DamageResult? damageResult)
+        AttackResult? attackResult)
     {
 
         // Don't allow healing above max.
         int heal = Math.Min(
-            healthModifier.GetHealthModifier(target, damageResult),
+            healthModifier.GetHealthModifier(target, attackResult?.Damage),
             target.Health.MaxHealth - target.Health.CurrentHealth
         );
 

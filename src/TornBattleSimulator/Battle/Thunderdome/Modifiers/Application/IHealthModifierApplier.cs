@@ -12,5 +12,5 @@ public interface IHealthModifierApplier
         ThunderdomeContext context,
         PlayerContext target,
         IHealthModifier healthModifier,
-        DamageResult? damageResult);
+        AttackResult? attackResult);
 }

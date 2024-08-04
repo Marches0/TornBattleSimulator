@@ -72,7 +72,7 @@ public class AttackModifierApplier
                 attackAction()
             );
 
-            active.Modifiers.AddModifier(blindfire, null);
+            weapon.Modifiers.AddModifier(blindfire, null);
 
             // Should log in AddModifier() instead?
             events.Add(

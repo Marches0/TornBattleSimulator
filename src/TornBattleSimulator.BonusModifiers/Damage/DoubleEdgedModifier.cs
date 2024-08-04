@@ -44,5 +44,5 @@ public class DoubleEdgedModifier : IModifier, IDamageModifier, IHealthModifier
         DamageContext damageContext) => new(2);
 
     /// <inheritdoc/>
-    public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -(int)(damage!.Damage * 0.25);
+    public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -(int)(damage!.DamageDealt * 0.25);
 }

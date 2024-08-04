@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.BonusModifiers.Actions;
+﻿using TornBattleSimulator.BonusModifiers.Accuracy;
+using TornBattleSimulator.BonusModifiers.Actions;
 using TornBattleSimulator.BonusModifiers.Ammo;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Damage;
@@ -48,6 +49,9 @@ public class ModifierFactory
 
             // Stuns
             ModifierType.Shock => new ShockModifier(),
+
+            // Accuracy
+            ModifierType.Focus => new FocusModifier(value),
 
             // Damage
             ModifierType.Assassinate => new AssassinateModifier(value),

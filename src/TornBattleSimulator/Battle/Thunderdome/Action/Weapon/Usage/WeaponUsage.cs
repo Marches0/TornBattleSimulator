@@ -12,6 +12,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -89,30 +90,33 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        DamageResult damageResult = _damageCalculator.CalculateDamage(context, active, other, weapon);
-        double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
-
-        events.Add(MakeHit(context, active, other, weapon, damageResult, hitChance));
+        AttackResult attack = CalculateAttack(context, active, other, weapon);
+        events.Add(MakeHit(attack, context, active, other, weapon));
 
         if (!bonusAction)
         {
-            events.AddRange(_modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, damageResult));
+            events.AddRange(_modifierRoller.ApplyPostActionModifiers(context, active, other, weapon, attack));
         }
 
         if (weapon.Ammo != null)
         {
-            weapon.Ammo!.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(active, weapon);
+            weapon.Ammo.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(active, weapon);
+        }
+
+        foreach (var postAttackAction in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IPostAttackBehaviour>())
+        {
+            events.AddRange(postAttackAction.PerformAction(context, active, other, weapon, attack, bonusAction));
         }
 
         return events;
     }
 
-    private ThunderdomeEvent MakeHit(ThunderdomeContext context,
+    private ThunderdomeEvent MakeHit(
+        AttackResult attack,
+        ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        WeaponContext weapon,
-        DamageResult damageResult,
-        double hitChance)
+        WeaponContext weapon)
     {
         // Non-damaging temps are handled specially, since they don't
         // actually miss and are better with a description of their type.
@@ -125,14 +129,14 @@ public class WeaponUsage : IWeaponUsage
            );
         }
 
-        if (_chanceSource.Succeeds(hitChance))
+        if (attack.Hit)
         {
-            other.Health.CurrentHealth -= damageResult.Damage;
+            other.Health.CurrentHealth -= attack.Damage.DamageDealt;
 
             return context.CreateEvent(
                 active,
                 ThunderdomeEventType.AttackHit,
-                new AttackHitEvent(weapon.Type, damageResult.Damage, damageResult.BodyPart, damageResult.Flags, hitChance)
+                new AttackHitEvent(weapon.Type, attack.Damage!.DamageDealt, attack.Damage!.BodyPart, attack.Damage!.Flags, attack.HitChance)
             );
         }
         else
@@ -140,8 +144,20 @@ public class WeaponUsage : IWeaponUsage
             return context.CreateEvent(
                 active,
                 ThunderdomeEventType.AttackMiss,
-                new AttackMissedEvent(weapon.Type, hitChance)
+                new AttackMissedEvent(weapon.Type, attack.HitChance)
             );
         }
+    }
+
+    private AttackResult CalculateAttack(
+        ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
+    {
+        double hitChance = _accuracyCalculator.GetAccuracy(active, other, weapon);
+        return _chanceSource.Succeeds(hitChance)
+            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(context, active, other, weapon))
+            : new AttackResult(false, hitChance, null);
     }
 }

@@ -24,22 +24,20 @@ public class ModifierApplier : IModifierApplier
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other,
-        DamageResult? damageResult)
+        WeaponContext weapon,
+        AttackResult? attackResult)
     {
         List<ThunderdomeEvent> events = new();
+        (PlayerContext target, IModifierContext modifierTarget) = GetTarget(modifier, context, active, other, weapon);
 
-        PlayerContext target = modifier.Target == ModifierTarget.Self
-                ? active
-                : other;
-
-        if (target.Modifiers.AddModifier(modifier, damageResult))
+        if (modifierTarget.AddModifier(modifier, attackResult))
         {
             events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
         };
 
         if (modifier is IHealthModifier { AppliesOnActivation: true } healthModifier)
         {
-            events.Add(_healthModifierApplier.ModifyHealth(context, target, healthModifier, damageResult));
+            events.Add(_healthModifierApplier.ModifyHealth(context, target, healthModifier, attackResult));
         }
 
         return events;
@@ -50,7 +48,7 @@ public class ModifierApplier : IModifierApplier
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageResult? damageResult)
+        AttackResult? attackResult)
     {
         List<ThunderdomeEvent> events = new();
 
@@ -62,9 +60,27 @@ public class ModifierApplier : IModifierApplier
                 ? active
                 : other;
 
-            events.Add(_healthModifierApplier.ModifyHealth(context, target, heal, damageResult));
+            events.Add(_healthModifierApplier.ModifyHealth(context, target, heal, attackResult));
         }
 
         return events;
+    }
+
+    private (PlayerContext target, IModifierContext modifierTarget) GetTarget(
+        IModifier modifier,
+        ThunderdomeContext context,
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
+    {
+        PlayerContext target = modifier.Target == ModifierTarget.Self
+                ? active
+                : other;
+
+        IModifierContext contextTarget = modifier.Target == ModifierTarget.SelfWeapon
+            ? weapon.Modifiers
+            : target.Modifiers;
+
+        return (target, contextTarget);
     }
 }

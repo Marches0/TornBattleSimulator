@@ -15,5 +15,11 @@ public enum ModifierTarget
     ///  The modifier will be applied to the player who does not own the modifier,
     ///  such as a debuff.
     /// </summary>
-    Other
+    Other,
+
+    /// <summary>
+    ///  The modifier will be applied to the weapon that owns the modifier,
+    ///  such as Focus.
+    /// </summary>
+    SelfWeapon
 }

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.BonusModifiers.Health;
+using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.BonusModifiers;
@@ -24,6 +25,6 @@ public class ExecuteModifierTests
 
         other.Health.CurrentHealth = currentHealth;
 
-        new ExecuteModifier(threshold).CanActivate(new PlayerContextBuilder().Build(), other).Should().Be(expected);
+        new ExecuteModifier(threshold).CanActivate(new PlayerContextBuilder().Build(), other, new AttackResult(true, 1, new DamageResult(1, 0, 0))).Should().Be(expected);
     }
 }

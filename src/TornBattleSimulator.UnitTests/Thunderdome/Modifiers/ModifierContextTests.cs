@@ -43,13 +43,13 @@ public class ModifierContextTests
     {
         TestDoTModifier existingModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
         TestDoTModifier newModifier = new TestDoTModifier(ModifierLifespanDescription.Turns(100));
-        DamageResult damage = new(100, 0, 0);
+        AttackResult attack = new AttackResult(true, 1, new DamageResult(100, 0, 0));
         PlayerContext player = new PlayerContextBuilder().Build();
 
         ModifierContext modifierContext = new(player);
-        modifierContext.AddModifier(existingModifier, damage);
+        modifierContext.AddModifier(existingModifier, attack);
 
-        bool added = modifierContext.AddModifier(newModifier, damage);
+        bool added = modifierContext.AddModifier(newModifier, attack);
 
         using (new AssertionScope())
         {

@@ -41,7 +41,7 @@
 				"accuracy": 60,
 				"modifiers": [
 					{
-						"type": "finale",
+						"type": "focus",
 						"percent": 100
 					}
 				]
@@ -96,7 +96,7 @@
 				"defence2": 999999999999,
 				"defence": 130000,
 				"speed": 50000,
-				"dexterity": 100
+				"dexterity": 1000000
 			},
 			"temporary": "serotonin",
 			"strategy": [

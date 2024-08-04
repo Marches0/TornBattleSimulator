@@ -38,5 +38,5 @@ public class BloodlustModifier : IHealthModifier
     public bool AppliesOnActivation { get; } = false;
 
     /// <inheritdoc/>
-    public int GetHealthModifier(PlayerContext target, DamageResult? damage) => (int)(damage!.Damage * _value);
+    public int GetHealthModifier(PlayerContext target, DamageResult? damage) => (int)(damage!.DamageDealt * _value);
 }

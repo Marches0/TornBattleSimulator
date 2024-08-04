@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.BonusModifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.BonusModifiers;
@@ -17,7 +18,7 @@ public class BlindsideModifierTests
 
         other.Health.CurrentHealth = currentHealth;
 
-        new BlindsideModifier(1).CanActivate(new PlayerContextBuilder().Build(), other)
+        new BlindsideModifier(1).CanActivate(new PlayerContextBuilder().Build(), other, new AttackResult(true, 1, new DamageResult(1, 0, 0)))
             .Should().Be(expected);
     }
 }

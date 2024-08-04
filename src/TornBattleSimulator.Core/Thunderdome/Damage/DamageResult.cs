@@ -9,12 +9,12 @@ public class DamageResult
         BodyPart bodyPart,
         DamageFlags flags)
     {
-        Damage = damage;
+        DamageDealt = damage;
         BodyPart = bodyPart;
         Flags = flags;
     }
 
-    public int Damage { get; }
+    public int DamageDealt { get; }
 
     public BodyPart BodyPart { get; }
 

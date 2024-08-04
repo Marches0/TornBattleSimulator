@@ -40,16 +40,22 @@ public class ModifierContext : IModifierContext
     /// <inheritdoc/>
     public bool AddModifier(
         IModifier modifier,
-        DamageResult? damageResult)
+        AttackResult? attackResult)
     {
         return modifier switch
         {
-            IDamageOverTimeModifier dot => AddDamageOverTime(dot, damageResult!),
+            IDamageOverTimeModifier dot => AddDamageOverTime(dot, attackResult!),
             IStackableStatModifier stackableStat => AddStackingStatModifier(stackableStat),
             IChargeableModifier chargeable => AddChargeable(chargeable),
             IExclusiveModifier exclusive => AddExclusive(exclusive),
             _ => AddRegularModifier(modifier)
         };
+    }
+
+    /// <inheritdoc/>
+    public int RemoveModifier(IModifier modifier)
+    {
+        return _activeModifiers.RemoveAll(am => am.Modifier == modifier);
     }
 
     /// <inheritdoc/>
@@ -105,8 +111,13 @@ public class ModifierContext : IModifierContext
 
     private bool AddDamageOverTime(
         IDamageOverTimeModifier dot,
-        DamageResult damageResult)
+        AttackResult attackResult)
     {
+        if (attackResult.Damage == null)
+        {
+            throw new InvalidOperationException("Cannot apply DoT without damage");
+        }
+
         // Can only have one DoT at a time
         if (_activeModifiers.OfType<ActiveDamageOverTimeModifier>().Any())
         {
@@ -117,7 +128,7 @@ public class ModifierContext : IModifierContext
             dot.CreateLifespan(),
             dot,
             _self,
-            damageResult)
+            attackResult.Damage)
         );
 
         return true;
