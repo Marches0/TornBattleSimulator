@@ -106,7 +106,7 @@ public class WeaponUsage : IWeaponUsage
 
         foreach (var postAttackAction in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IPostAttackBehaviour>())
         {
-            events.AddRange(postAttackAction.PerformAction(attack, bonusAction));
+            events.AddRange(postAttackAction.PerformAction(attack));
         }
 
         return events;

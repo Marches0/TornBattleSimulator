@@ -7,5 +7,5 @@ namespace TornBattleSimulator.Core.Thunderdome.Modifiers;
 /// </summary>
 public interface IPostAttackBehaviour
 {
-    List<ThunderdomeEvent> PerformAction(AttackContext attack, bool bonusAction);
+    List<ThunderdomeEvent> PerformAction(AttackContext attack);
 }

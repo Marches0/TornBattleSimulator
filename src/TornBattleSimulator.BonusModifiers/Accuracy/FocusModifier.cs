@@ -55,7 +55,7 @@ public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier,
         PlayerContext other,
         WeaponContext weapon) => _value;
 
-    public List<ThunderdomeEvent> PerformAction(AttackContext attack, bool bonusAction)
+    public List<ThunderdomeEvent> PerformAction(AttackContext attack)
     {
         // Only clears Focus if you miss with the weapon that has it
         // Using a different weapon means it doesn't change
