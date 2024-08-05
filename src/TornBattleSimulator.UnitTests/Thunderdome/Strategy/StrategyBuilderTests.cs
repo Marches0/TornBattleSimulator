@@ -5,6 +5,7 @@ using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
+using TornBattleSimulator.UnitTests.Chance;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 
@@ -43,7 +44,7 @@ public class StrategyBuilderTests
         };
 
         // Act
-        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder().BuildStrategy(build);
+        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder(new StunStrategy(FixedChanceSource.AlwaysSucceeds)).BuildStrategy(build);
 
         // Assert
         using (new AssertionScope())

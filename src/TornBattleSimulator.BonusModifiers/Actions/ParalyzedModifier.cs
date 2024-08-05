@@ -4,10 +4,10 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 namespace TornBattleSimulator.BonusModifiers.Actions;
 
-public class ShockModifier : IModifier
+public class ParalyzedModifier : IModifier, IExclusiveModifier
 {
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterOwnAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Temporal(300);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply { get; } = true;
@@ -19,7 +19,7 @@ public class ShockModifier : IModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect { get; } = ModifierType.Shock;
+    public ModifierType Effect { get; } = ModifierType.Paralyzed;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;

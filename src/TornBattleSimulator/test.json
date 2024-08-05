@@ -22,7 +22,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "motivation",
+						"type": "paralyzed",
 						"percent": 100
 					}
 				]

@@ -7,11 +7,18 @@ namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 public class StrategyBuilder
 {
+    private readonly StunStrategy _stunStrategy;
+
+    public StrategyBuilder(StunStrategy stunStrategy)
+    {
+        _stunStrategy = stunStrategy;
+    }
+
     public IStrategy BuildStrategy(BattleBuild build)
     {
         // Stun is automatically the highest priority strategy, so
         // we don't act when it's applied.
-        List<IStrategy> strategies = [new StunStrategy(), .. build.Strategy.Select(BuildStrategy)];
+        List<IStrategy> strategies = [_stunStrategy, .. build.Strategy.Select(BuildStrategy)];
         return new CompositeStrategy(strategies);
     }
 

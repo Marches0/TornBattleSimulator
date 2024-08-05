@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
+using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
 namespace TornBattleSimulator.Modules;
 
@@ -9,5 +10,8 @@ public class StrategyModule : Module
     {
         builder.RegisterType<StrategyBuilder>()
             .As<StrategyBuilder>();
+
+        builder.RegisterType<StunStrategy>()
+            .As<StunStrategy>();
     }
 }

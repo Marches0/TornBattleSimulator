@@ -51,6 +51,7 @@ public class ModifierFactory
 
             // Stuns
             ModifierType.Shock => new ShockModifier(),
+            ModifierType.Paralyzed => new ParalyzedModifier(),
 
             // Accuracy
             ModifierType.Focus => new FocusModifier(value),
