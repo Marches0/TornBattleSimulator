@@ -25,6 +25,33 @@ public class BattleStatsExtensions
         }
     }
 
+    [Test]
+    public void WithModifiers_ReturnsAtLeastZero()
+    {
+        // Arrange
+        BattleStats battleStats = new BattleStats()
+        {
+            Strength = 1,
+            Defence = 1,
+            Speed = 1,
+            Dexterity = 1,
+        };
+
+        // Act
+        var low = battleStats.WithModifiers(
+            [new TestStatModifier(-1, -1, -1, -1, StatModificationType.Additive), new TestStatModifier(-1, -1, -1, -1, StatModificationType.Multiplicative)]
+        );
+
+        // Assert
+        using (new AssertionScope())
+        {
+            low.Strength.Should().Be(0);
+            low.Defence.Should().Be(0);
+            low.Speed.Should().Be(0);
+            low.Dexterity.Should().Be(0);
+        }
+    }
+
     private static IEnumerable<(BattleStats baseStats, List<IStatsModifier> modifiers, BattleStats expected, string testName)> WithModifiers_Multipliers_CalculatesCorrectly_TestCases()
     {
         // Expected are slightly off the actual multiple expected results

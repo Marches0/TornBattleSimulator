@@ -47,6 +47,7 @@ public class ModifierFactory
 
             // Stat Buffs
             ModifierType.Empower => new EmpowerModifier(value),
+            ModifierType.Motivation => new MotivationModifier(),
 
             // Stuns
             ModifierType.Shock => new ShockModifier(),

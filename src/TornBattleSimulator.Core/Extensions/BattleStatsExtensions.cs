@@ -9,7 +9,7 @@ public static class BattleStatsExtensions
     {
         return modifiers
             .Where(m => m.Type == StatModificationType.Multiplicative)
-            .Aggregate(ApplyAdditive(stats.Copy(), modifiers), (stats, modifier) => stats.Apply(modifier)); ;
+            .Aggregate(ApplyAdditive(stats.Copy(), modifiers), (stats, modifier) => stats.Apply(modifier));
     }
 
     private static BattleStats ApplyAdditive(BattleStats stats, List<IStatsModifier> modifiers)
@@ -27,10 +27,10 @@ public static class BattleStatsExtensions
             additiveDexterity += additive.GetDexterityModifier() - 1;
         }
 
-        stats.Strength = (ulong)(stats.Strength * additiveStrength);
-        stats.Defence = (ulong)(stats.Defence * additiveDefence);
-        stats.Speed = (ulong)(stats.Speed * additiveSpeed);
-        stats.Dexterity = (ulong)(stats.Dexterity * additiveDexterity);
+        stats.Strength = (ulong) Math.Max(stats.Strength * additiveStrength, 0);
+        stats.Defence = (ulong) Math.Max(stats.Defence * additiveDefence, 0);
+        stats.Speed = (ulong) Math.Max(stats.Speed * additiveSpeed, 0);
+        stats.Dexterity = (ulong)Math.Max(stats.Dexterity * additiveDexterity, 0);
 
         return stats;
     }

@@ -20,10 +20,10 @@ public class BattleStats
             throw new InvalidOperationException($"{nameof(Apply)} does not support {modifier.Type} modifiers.");
         }
 
-        Strength = (ulong)(Strength * modifier.GetStrengthModifier());
-        Defence = (ulong)(Defence * modifier.GetDefenceModifier());
-        Speed = (ulong)(Speed * modifier.GetSpeedModifier());
-        Dexterity = (ulong)(Dexterity * modifier.GetDexterityModifier());
+        Strength = (ulong) Math.Max(Strength * modifier.GetStrengthModifier(), 0);
+        Defence = (ulong) Math.Max(Defence * modifier.GetDefenceModifier(), 0);
+        Speed = (ulong) Math.Max(Speed * modifier.GetSpeedModifier(), 0);
+        Dexterity = (ulong)Math.Max(Dexterity * modifier.GetDexterityModifier(), 0);
 
         return this;
     }
