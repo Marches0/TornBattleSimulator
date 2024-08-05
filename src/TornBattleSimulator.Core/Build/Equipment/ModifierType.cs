@@ -53,7 +53,8 @@ public enum ModifierType
     Grace,
     HomeRun,
     Motivation,
-    Paralyzed
+    Paralyzed,
+    Parry
 }
 
 // Double edge = 25%, Frenzy = multiplicative

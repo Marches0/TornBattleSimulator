@@ -68,6 +68,7 @@ public class ModifierFactory
             ModifierType.Eviscerate => new EviscerateModifier(value),
             ModifierType.Finale => new FinaleModifier(value),
             ModifierType.Frenzy => new FrenzyModifier(value),
+            ModifierType.Parry => new ParryModifier(),
             ModifierType.Smash => new SmashModifier(),
 
             // Body part modifiers

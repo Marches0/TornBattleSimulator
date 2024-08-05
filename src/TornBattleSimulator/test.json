@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "paralyzed",
-						"percent": 100
+						"type": "parry",
+						"percent": 30
 					}
 				]
 			},
