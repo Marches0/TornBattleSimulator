@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "powerful",
-						"percent": 0
+						"type": "parry",
+						"percent": 100
 					}
 				]
 			},

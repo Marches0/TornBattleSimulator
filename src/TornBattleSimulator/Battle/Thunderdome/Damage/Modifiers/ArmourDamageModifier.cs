@@ -33,15 +33,14 @@ public class ArmourDamageModifier : IDamageModifier
             throw new InvalidOperationException("Missing target body part.");
         }
 
-        // - roll for "does it cover"
-        // or sum the coverage of each body part with the armour? since there is some overlap.
+        if (other.Modifiers.Active.OfType<PunctureModifier>().Any())
+        {
+            damageContext.SetFlag(DamageFlags.MissedArmour);
+            return 1d;
+        }
 
-        // Armour can overlap, and each cover the same part.
-        // Not sure how it works. For now, roll against them all
-        // from "strongest armour" to weakest, and use the first
-        // one which procs as the hit armour value.
-
-        // only the strongest armour can mitigate
+        // If multiple pieces of armour cover the same part of the body,
+        // only the strongest one is considered for mitigation.
         // https://www.torn.com/forums.php#/p=threads&f=3&t=16231895&b=0&a=0&to=21594158
         var applicableArmour = other.ArmourSet.Armour
             .Select(a => new

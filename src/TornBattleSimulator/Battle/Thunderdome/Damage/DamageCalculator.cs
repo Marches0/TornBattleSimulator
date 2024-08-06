@@ -1,7 +1,5 @@
 ﻿using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
@@ -30,13 +28,13 @@ public class DamageCalculator : IDamageCalculator
 
         Dictionary<StatModificationType, List<IDamageModifier>> modifiers = _damageModifiers
             // Weapon's active modifiers (e.g. Cupid) are active.
-            .Concat(weapon.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon).OfType<IDamageModifier>())
+            .Concat(weapon.Modifiers.Active.OfType<IDamageModifier>())
 
             // Player damage buffs are active.
-            .Concat(active.Modifiers.Active.Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon).OfType<IDamageModifier>())
+            .Concat(active.Modifiers.Active.OfType<IDamageModifier>())
 
             // Enemy damage debuffs are active.
-            .Concat(other.Modifiers.Active.Where(m => m.Target == ModifierTarget.Other).OfType<IDamageModifier>())
+            //.Concat(other.Modifiers.Active.Where(m => m.Target == ModifierTarget.Other).OfType<IDamageModifier>()) // what is this
             .GroupBy(m => m.Type)
             .ToDictionary(m => m.Key, m => m.ToList());
 

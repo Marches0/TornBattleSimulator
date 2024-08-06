@@ -77,7 +77,7 @@ public class WeaponUsage : IWeaponUsage
             );
         }
 
-        _damageProcessor.PerformAttack(attack);
+        events.Add(_damageProcessor.PerformAttack(attack));
 
         if (!bonusAction)
         {

@@ -75,6 +75,7 @@ public class ModifierFactory
 
             // Armour
             ModifierType.Penetrate => new PenetrateModifier(value),
+            ModifierType.Puncture => new PunctureModifier(),
 
             // Body part modifiers
             ModifierType.Achilles => new AchillesModifier(value),

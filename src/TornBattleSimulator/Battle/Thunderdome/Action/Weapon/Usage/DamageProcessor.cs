@@ -34,26 +34,22 @@ public class DamageProcessor
         _damageCalculator = damageCalculator;
     }
 
-    public void PerformAttack(AttackContext attack)
+    public ThunderdomeEvent PerformAttack(AttackContext attack)
     {
         // Non-damaging temps are handled specially, since they don't
         // actually miss and are better with a description of their type.
         if (attack.Weapon.Type == WeaponType.Temporary && attack.Weapon.Description.Damage == 0)
         {
-            attack.Context.Events.Add(
-                attack.Context.CreateEvent(
-                   attack.Active,
-                   ThunderdomeEventType.UsedTemporary,
-                   new UsedTemporaryEvent(attack.Weapon.Description.TemporaryWeaponType!.Value)
-               )
+            return attack.Context.CreateEvent(
+                attack.Active,
+                ThunderdomeEventType.UsedTemporary,
+                new UsedTemporaryEvent(attack.Weapon.Description.TemporaryWeaponType!.Value)
             );
-
-            return;
         }
 
         (PlayerContext target, PlayerContext source) = GetDamageTarget(attack);
         attack.AttackResult = CalculateAttack(attack, target, source);
-        MakeHit(target, source, attack);
+        return MakeHit(target, source, attack);
     }
 
     private AttackResult CalculateAttack(
@@ -63,7 +59,7 @@ public class DamageProcessor
     {
         double hitChance = _accuracyCalculator.GetAccuracy(target, source, attack.Weapon);
         return _chanceSource.Succeeds(hitChance)
-            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(attack.Context, target, source, attack.Weapon))
+            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(attack.Context, source, target, attack.Weapon))
             : new AttackResult(false, hitChance, null);
     }
 
@@ -76,33 +72,23 @@ public class DamageProcessor
             : (attack.Other, attack.Active);
     }
 
-    private void MakeHit(PlayerContext target, PlayerContext source, AttackContext attack)
+    private ThunderdomeEvent MakeHit(PlayerContext target, PlayerContext source, AttackContext attack)
     {
-        if (attack.AttackResult?.Damage == null)
-        {
-            return;
-        }
-
         if (attack.AttackResult!.Hit)
         {
-            target.Health.CurrentHealth -= attack.AttackResult.Damage.DamageDealt;
-
-            attack.Context.Events.Add(
-                attack.Context.CreateEvent(
-                    source,
-                    ThunderdomeEventType.AttackHit,
-                    new AttackHitEvent(attack.Weapon.Type, attack.AttackResult)
-                )
+            target.Health.CurrentHealth -= attack.AttackResult.Damage!.DamageDealt;
+            return attack.Context.CreateEvent(
+                source,
+                ThunderdomeEventType.AttackHit,
+                new AttackHitEvent(attack.Weapon.Type, attack.AttackResult)
             );
         }
         else
         {
-            attack.Context.Events.Add(
-                attack.Context.CreateEvent(
-                    attack.Active,
-                    ThunderdomeEventType.AttackMiss,
-                    new AttackMissedEvent(attack.Weapon.Type, attack.AttackResult.HitChance)
-                )
+            return attack.Context.CreateEvent(
+                attack.Active,
+                ThunderdomeEventType.AttackMiss,
+                new AttackMissedEvent(attack.Weapon.Type, attack.AttackResult.HitChance)
             );
         }
     }
