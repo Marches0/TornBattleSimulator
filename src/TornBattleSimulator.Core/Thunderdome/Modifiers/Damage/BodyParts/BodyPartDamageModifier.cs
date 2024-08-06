@@ -43,17 +43,15 @@ public abstract class BodyPartDamageModifier : IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext
     )
     {
-        double multiplier = damageContext.TargetBodyPart!.Value == _bodyPart
+        return damageContext.TargetBodyPart!.Value == _bodyPart
             ? _damage
             : 1;
-
-        return new DamageModifierResult(multiplier);
     }
 }

@@ -41,11 +41,11 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new(_value);
+        DamageContext damageContext) => _value;
 
     /// <inheritdoc/>
     public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => active.Health.CurrentHealth * 4 < active.Health.MaxHealth;

@@ -15,7 +15,7 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
@@ -34,7 +34,7 @@ public class StrengthDefenceRatioDamageModifier : IDamageModifier
 
         // Invert to apply to overall damage - 
         // a 10% mitigation = 90% damage 
-        return new DamageModifierResult(1 - Math.Clamp(mitigation, 0, 1));
+        return 1 - Math.Clamp(mitigation, 0, 1);
     }
 
     private double LowerMitigation(double ratio)

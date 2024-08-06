@@ -34,11 +34,11 @@ public class SmashModifier : IChargeableModifier, IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new DamageModifierResult(2);
+        DamageContext damageContext) => 2;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.None;

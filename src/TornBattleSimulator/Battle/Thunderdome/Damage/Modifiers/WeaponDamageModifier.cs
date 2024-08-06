@@ -12,12 +12,12 @@ public class WeaponDamageModifier : IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        return new DamageModifierResult(weapon.Description.Damage / 10);
+        return weapon.Description.Damage / 10;
     }
 }

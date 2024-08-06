@@ -22,7 +22,7 @@ public class ArmourDamageModifier : IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
@@ -56,7 +56,7 @@ public class ArmourDamageModifier : IDamageModifier
         if (applicableArmour == null)
         {
             damageContext.SetFlag(DamageFlags.MissedArmour);
-            return new DamageModifierResult(1d);
+            return 1d;
         }
 
         damageContext.SetFlag(DamageFlags.HitArmour);
@@ -67,6 +67,6 @@ public class ArmourDamageModifier : IDamageModifier
             .OfType<PenetrateModifier>()
             .Aggregate(1d, (total, mod) => total *= mod.ArmourRemaining);
 
-        return new DamageModifierResult(1d - (applicableArmour.Rating * penetrationReduction));
+        return 1d - (applicableArmour.Rating * penetrationReduction);
     }
 }

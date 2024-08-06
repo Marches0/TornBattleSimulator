@@ -41,20 +41,17 @@ public class DamageCalculator : IDamageCalculator
             .ToDictionary(m => m.Key, m => m.ToList());
 
         double baseDamageBonus = modifiers.ContainsKey(StatModificationType.Additive)
-            ? modifiers[StatModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(active, other, weapon, damageContext).Multiplier)
+            ? modifiers[StatModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(active, other, weapon, damageContext))
             : 1d;
 
         // We always have multiplicate modifiers, since those are the always-applicable ones (e.g. Strength ratio)
         var damage = modifiers[StatModificationType.Multiplicative]
-            .Aggregate(new { Damage = baseDamageBonus, BodyPart = (BodyPart)0 },
-                (total, modifier) =>
-                {
-                    DamageModifierResult result = modifier.GetDamageModifier(active, other, weapon, damageContext);
-                    return new { Damage = total.Damage * result.Multiplier, BodyPart = total.BodyPart | result.BodyPart };
-                });
+            .Aggregate(baseDamageBonus,
+                (total, modifier) => total *= modifier.GetDamageModifier(active, other, weapon, damageContext)
+            );
 
-        var actualDamage = Math.Clamp((int)Math.Round(damage.Damage), 0, other.Health.CurrentHealth);
+        var actualDamage = Math.Clamp((int)Math.Round(damage), 0, other.Health.CurrentHealth);
 
-        return new DamageResult(actualDamage, damage.BodyPart, damageContext.Flags);
+        return new DamageResult(actualDamage, damageContext.TargetBodyPart.Value, damageContext.Flags);
     }
 }

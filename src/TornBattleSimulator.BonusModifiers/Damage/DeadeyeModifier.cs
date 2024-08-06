@@ -47,16 +47,14 @@ public class DeadeyeModifier : IModifier, IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        double mod = CriticalBodyParts.Contains(damageContext.TargetBodyPart!.Value)
+        return CriticalBodyParts.Contains(damageContext.TargetBodyPart!.Value)
             ? _value
             : 1;
-
-        return new(mod);
     }
 }

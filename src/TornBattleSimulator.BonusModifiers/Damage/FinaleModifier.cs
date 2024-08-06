@@ -41,7 +41,7 @@ public class FinaleModifier : IDamageModifier, IModifier
     public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
@@ -56,7 +56,7 @@ public class FinaleModifier : IDamageModifier, IModifier
             .TakeWhile(a => !weaponActions.Contains(a))
             .Count();
 
-        return new(1 + (actionsSinceWeaponUsedCount * _value));
+        return 1 + (actionsSinceWeaponUsedCount * _value);
     }
 
     private List<BattleAction> GetUsageActions(WeaponContext weapon)

@@ -33,16 +33,15 @@ public class ParryModifier : IModifier, IDamageModifier
     public StatModificationType Type => StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
         DamageContext damageContext)
     {
         // Treated as an debuff to the attacker rather than a buff to the defender - seems easier.
-        return new(weapon.Type == WeaponType.Melee
+        return weapon.Type == WeaponType.Melee
             ? 0
-            : 1
-        );
+            : 1;
     }
 }

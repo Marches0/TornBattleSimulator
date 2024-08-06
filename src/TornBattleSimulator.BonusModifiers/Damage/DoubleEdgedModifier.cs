@@ -37,11 +37,11 @@ public class DoubleEdgedModifier : IModifier, IDamageModifier, IHealthModifier
     public bool AppliesOnActivation { get; } = false;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new(2);
+        DamageContext damageContext) => 2;
 
     /// <inheritdoc/>
     public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -(int)(damage!.DamageDealt * 0.25);

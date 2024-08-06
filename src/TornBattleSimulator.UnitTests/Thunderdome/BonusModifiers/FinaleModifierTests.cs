@@ -34,7 +34,7 @@ public class FinaleModifierTests
         FinaleModifier finale = new(testData.modifier);
 
         // Act
-        DamageModifierResult damage = finale.GetDamageModifier(
+        double damage = finale.GetDamageModifier(
             attacker,
             new PlayerContextBuilder().Build(),
             weapon,
@@ -42,7 +42,7 @@ public class FinaleModifierTests
         );
 
         // Assert
-        damage.Multiplier.Should().Be(testData.expected);
+        damage.Should().Be(testData.expected);
     }
 
     private static IEnumerable<(

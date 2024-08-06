@@ -35,13 +35,15 @@ public class BodyPartModifierTests
             .OfType(testData.weapon)
             .Build();
 
+        DamageContext damageContext = new();
+        
         // Act
-        DamageModifierResult result = modifier.GetDamageModifier(new PlayerContextBuilder().Build(), new PlayerContextBuilder().Build(), weapon, new DamageContext());
+        modifier.GetDamageModifier(new PlayerContextBuilder().Build(), new PlayerContextBuilder().Build(), weapon, damageContext);
 
         // Assert
         using (new AssertionScope())
         {
-            result.BodyPart.Should().Be(testData.expected);
+            damageContext.TargetBodyPart.Should().Be(testData.expected);
         }
     }
 

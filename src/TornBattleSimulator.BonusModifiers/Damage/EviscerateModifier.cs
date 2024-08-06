@@ -40,9 +40,9 @@ public class EviscerateModifier : IModifier, IDamageModifier, IExclusiveModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new(_value);
+        DamageContext damageContext) => _value;
 }

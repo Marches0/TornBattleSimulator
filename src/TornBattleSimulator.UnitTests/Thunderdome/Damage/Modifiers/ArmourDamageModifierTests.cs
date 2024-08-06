@@ -27,7 +27,7 @@ public class ArmourDamageModifierTests
             defender,
             new WeaponContextBuilder().Build(),
             new DamageContext() { TargetBodyPart = testData.hitLocation }
-        ).Multiplier;
+        );
 
         mitigation.Should().BeApproximately(testData.expected, 0.0001);
     }
@@ -65,7 +65,7 @@ public class ArmourDamageModifierTests
             defender,
             new WeaponContextBuilder().Build(),
             new DamageContext() { TargetBodyPart = BodyPart.Heart }
-        ).Multiplier;
+        );
 
         mitigation.Should().BeApproximately(testData.expected, 0.0001);
     }
@@ -146,7 +146,7 @@ public class ArmourDamageModifierTests
             defender,
             weapon,
             new DamageContext() { TargetBodyPart = BodyPart.Heart }
-        ).Multiplier;
+        );
 
         // Assert
         mitigation.Should().Be(testData.expected);

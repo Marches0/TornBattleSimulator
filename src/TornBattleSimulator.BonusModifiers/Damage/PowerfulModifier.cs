@@ -40,9 +40,9 @@ public class PowerfulModifier : IModifier, IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new(_value);
+        DamageContext damageContext) => _value;
 }

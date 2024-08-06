@@ -2,7 +2,6 @@
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.BonusModifiers;
@@ -19,7 +18,7 @@ public class ParryModifierTests
             .Build();
 
         // Act
-        DamageModifierResult damage = new ParryModifier()
+        double damage = new ParryModifier()
             .GetDamageModifier(
                 new PlayerContextBuilder().Build(),
                 new PlayerContextBuilder().Build(),
@@ -30,11 +29,11 @@ public class ParryModifierTests
         // Assert
         if (weaponType == WeaponType.Melee)
         {
-            damage.Multiplier.Should().Be(0);
+            damage.Should().Be(0);
         }
         else
         {
-            damage.Multiplier.Should().Be(1);
+            damage.Should().Be(1);
         }
     }
 }

@@ -37,5 +37,5 @@ public class GraceModifier : IModifier, IAccuracyModifier, IDamageModifier
 
     public double GetAccuracyModifier(PlayerContext active, PlayerContext other, WeaponContext weapon) => _accuracyModifier;
 
-    public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => new(_damageModifier);
+    public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => _damageModifier;
 }

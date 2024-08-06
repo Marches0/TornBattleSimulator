@@ -16,14 +16,14 @@ public class BodyPartDamageModifierTests
         TestBodyPartDamageModifier testBodyPartDamageModifier = new(testData.target, testData.bonus);
 
         // Act
-        DamageModifierResult modifier = testBodyPartDamageModifier.GetDamageModifier(
+        double modifier = testBodyPartDamageModifier.GetDamageModifier(
             new PlayerContextBuilder().Build(),
             new PlayerContextBuilder().Build(),
             new WeaponContextBuilder().Build(),
             new DamageContext() { TargetBodyPart = testData.actual });
 
         // Assert
-        modifier.Multiplier.Should().Be(testData.expected);
+        modifier.Should().Be(testData.expected);
     }
 
     private static IEnumerable<(double bonus, BodyPart target, BodyPart actual, double expected, string testName)>

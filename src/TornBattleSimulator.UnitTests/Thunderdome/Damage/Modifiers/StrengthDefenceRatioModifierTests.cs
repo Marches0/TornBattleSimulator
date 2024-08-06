@@ -18,7 +18,7 @@ public class StrengthDefenceRatioModifierTests
         PlayerContext defender = new PlayerContextBuilder().WithStats(new BattleStats() { Defence = testData.defenderDefence }).Build();
 
         // Act
-        double mod = _strengthDefenceRatioModifier.GetDamageModifier(attacker, defender, null, null).Multiplier;
+        double mod = _strengthDefenceRatioModifier.GetDamageModifier(attacker, defender, null, null);
 
         // Assert
         mod.Should().BeApproximately(testData.expected, 0.0001);

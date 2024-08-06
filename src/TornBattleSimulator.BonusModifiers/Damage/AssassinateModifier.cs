@@ -41,8 +41,5 @@ public class AssassinateModifier : IModifier, IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
-    {
-        return new DamageModifierResult(_value);
-    }
+    public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => _value;
 }

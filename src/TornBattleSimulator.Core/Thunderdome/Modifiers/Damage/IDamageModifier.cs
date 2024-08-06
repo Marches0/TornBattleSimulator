@@ -22,7 +22,7 @@ public interface IDamageModifier
     /// <param name="other">The target of the action.</param>
     /// <param name="weapon">The weapon being used for the attack.</param>
     /// <param name="damageContext">Transient damage information.</param>
-    DamageModifierResult GetDamageModifier(
+    double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,

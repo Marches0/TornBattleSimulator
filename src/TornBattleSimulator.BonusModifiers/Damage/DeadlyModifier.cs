@@ -33,9 +33,9 @@ public class DeadlyModifier : IDamageModifier, IModifier
     public StatModificationType Type { get; } = StatModificationType.Additive;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => new(5);
+        DamageContext damageContext) => 5;
 }

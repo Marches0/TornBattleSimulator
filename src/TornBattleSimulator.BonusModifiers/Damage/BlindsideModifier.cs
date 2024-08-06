@@ -41,10 +41,7 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
-    {
-        return new(_value);
-    }
+    public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => _value;
 
     /// <inheritdoc/>
     public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => other.Health.CurrentHealth == other.Health.MaxHealth;

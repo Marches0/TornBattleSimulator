@@ -39,7 +39,7 @@ public class BodyPartModifier : IDamageModifier
     public StatModificationType Type { get; } = StatModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public DamageModifierResult GetDamageModifier(
+    public double GetDamageModifier(
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
@@ -47,8 +47,7 @@ public class BodyPartModifier : IDamageModifier
     {
         BodyPartDamage option = GetTargetBodyPart(weapon);
         damageContext.TargetBodyPart = option.Part;
-
-        return new DamageModifierResult(option.DamageMultiplier, option.Part);
+        return option.DamageMultiplier;
     }
 
     private BodyPartDamage GetTargetBodyPart(WeaponContext weapon)
