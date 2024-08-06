@@ -105,6 +105,7 @@ public class ModifierFactory
             //  All modifiers in Torn can be created, but those that have no use
             //  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
+            ModifierType.Plunder => new NoOpModifier(ModifierType.Plunder),
 
             0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),
         };
