@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Chance;
+﻿using TornBattleSimulator.BonusModifiers.Armour;
+using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
@@ -52,16 +53,20 @@ public class ArmourDamageModifier : IDamageModifier
             .OrderByDescending(x => x.Rating)
             .FirstOrDefault(x => _chanceSource.Succeeds(x.ApplicableCoverage!.Coverage));
 
-        if (applicableArmour != null)
-        {
-            // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses
-            damageContext.SetFlag(DamageFlags.HitArmour); 
-            return new DamageModifierResult(1d - applicableArmour.Rating);
-        }
-        else
+        if (applicableArmour == null)
         {
             damageContext.SetFlag(DamageFlags.MissedArmour);
             return new DamageModifierResult(1d);
         }
+
+        damageContext.SetFlag(DamageFlags.HitArmour);
+
+        // You can't really have more than one of these, but muliply them
+        // anyway because that's how we roll.
+        double penetrationReduction = weapon.Modifiers.Active
+            .OfType<PenetrateModifier>()
+            .Aggregate(1d, (total, mod) => total *= mod.ArmourRemaining);
+
+        return new DamageModifierResult(1d - (applicableArmour.Rating * penetrationReduction));
     }
 }

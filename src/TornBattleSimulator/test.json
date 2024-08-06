@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "parry",
-						"percent": 30
+						"type": "penetrate",
+						"percent": 20
 					}
 				]
 			},

@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.BonusModifiers.Accuracy;
 using TornBattleSimulator.BonusModifiers.Actions;
 using TornBattleSimulator.BonusModifiers.Ammo;
+using TornBattleSimulator.BonusModifiers.Armour;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
@@ -70,6 +71,9 @@ public class ModifierFactory
             ModifierType.Frenzy => new FrenzyModifier(value),
             ModifierType.Parry => new ParryModifier(),
             ModifierType.Smash => new SmashModifier(),
+
+            // Armour
+            ModifierType.Penetrate => new PenetrateModifier(value),
 
             // Body part modifiers
             ModifierType.Achilles => new AchillesModifier(value),
