@@ -30,7 +30,7 @@ public class ParryModifier : IModifier, IDamageModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     /// <inheritdoc/>
-    public StatModificationType Type => StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public double GetDamageModifier(

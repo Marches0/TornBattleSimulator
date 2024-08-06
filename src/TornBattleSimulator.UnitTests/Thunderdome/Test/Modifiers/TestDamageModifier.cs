@@ -14,7 +14,7 @@ public class TestDamageModifier : BaseTestModifier, IDamageModifier
 
     public TestDamageModifier(
         double multipler,
-        StatModificationType type,
+        ModificationType type,
         BodyPart? targetBodyPart = null)
     {
         _multipler = multipler;
@@ -22,7 +22,7 @@ public class TestDamageModifier : BaseTestModifier, IDamageModifier
         _targetBodyPart = targetBodyPart;
     }
 
-    public StatModificationType Type { get; }
+    public ModificationType Type { get; }
 
     public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext)
     {

@@ -1,9 +1,9 @@
 ﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 
 /// <summary>
-///  How a stat modifier is applied to the target's stats.
+///  How a modifier is applied to its target.
 /// </summary>
-public enum StatModificationType
+public enum ModificationType
 {
     /// <summary>
     ///  Applies an additive bonus.

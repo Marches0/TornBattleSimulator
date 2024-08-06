@@ -40,7 +40,7 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Additive;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack)
     {

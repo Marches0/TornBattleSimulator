@@ -26,7 +26,7 @@ public class DamageCalculator : IDamageCalculator
     {
         DamageContext damageContext = new();
 
-        Dictionary<StatModificationType, List<IDamageModifier>> modifiers = _damageModifiers
+        Dictionary<ModificationType, List<IDamageModifier>> modifiers = _damageModifiers
             // Weapon's active modifiers (e.g. Cupid) are active.
             .Concat(weapon.Modifiers.Active.OfType<IDamageModifier>())
 
@@ -38,12 +38,12 @@ public class DamageCalculator : IDamageCalculator
             .GroupBy(m => m.Type)
             .ToDictionary(m => m.Key, m => m.ToList());
 
-        double baseDamageBonus = modifiers.ContainsKey(StatModificationType.Additive)
-            ? modifiers[StatModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(active, other, weapon, damageContext))
+        double baseDamageBonus = modifiers.ContainsKey(ModificationType.Additive)
+            ? modifiers[ModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(active, other, weapon, damageContext))
             : 1d;
 
         // We always have multiplicate modifiers, since those are the always-applicable ones (e.g. Strength ratio)
-        var damage = modifiers[StatModificationType.Multiplicative]
+        var damage = modifiers[ModificationType.Multiplicative]
             .Aggregate(baseDamageBonus,
                 (total, modifier) => total *= modifier.GetDamageModifier(active, other, weapon, damageContext)
             );

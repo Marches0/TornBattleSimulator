@@ -33,7 +33,7 @@ public class EmpowerModifier : IStatsModifier, IModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Additive;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public double GetDefenceModifier() => 1f;

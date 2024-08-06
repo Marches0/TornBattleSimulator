@@ -33,7 +33,7 @@ public class GraceModifier : IModifier, IAccuracyModifier, IDamageModifier
 
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
-    public StatModificationType Type { get; } = StatModificationType.Additive;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     public double GetAccuracyModifier(PlayerContext active, PlayerContext other, WeaponContext weapon) => _accuracyModifier;
 

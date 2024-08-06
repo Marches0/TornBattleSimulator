@@ -48,7 +48,7 @@ internal class TestStackableStatModifier : IStackableStatModifier
 
     public double GetStrengthModifier() => _strMod;
 
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 }

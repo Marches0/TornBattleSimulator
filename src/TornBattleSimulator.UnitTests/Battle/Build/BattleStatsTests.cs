@@ -20,7 +20,7 @@ public class BattleStatsTests
             Dexterity = 10
         };
 
-        TestStatModifier mul = new TestStatModifier(0.5f, 3, 4, 5, StatModificationType.Multiplicative);
+        TestStatModifier mul = new TestStatModifier(0.5f, 3, 4, 5, ModificationType.Multiplicative);
 
         stats.Apply(mul);
 

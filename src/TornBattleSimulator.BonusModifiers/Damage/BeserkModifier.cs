@@ -46,7 +46,7 @@ public class BeserkModifier : IModifier, IDamageModifier, IAccuracyModifier
     }
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => _damageModifier;

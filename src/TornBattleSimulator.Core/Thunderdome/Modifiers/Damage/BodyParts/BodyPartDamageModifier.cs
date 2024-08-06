@@ -40,7 +40,7 @@ public abstract class BodyPartDamageModifier : IDamageModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public double GetDamageModifier(

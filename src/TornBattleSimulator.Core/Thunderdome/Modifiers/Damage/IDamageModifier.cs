@@ -13,7 +13,7 @@ public interface IDamageModifier
     /// <summary>
     /// How this modifier is applied to the target's stats.
     /// </summary>
-    StatModificationType Type { get; }
+    ModificationType Type { get; }
 
     /// <summary>
     ///  Gets the damage modifier.

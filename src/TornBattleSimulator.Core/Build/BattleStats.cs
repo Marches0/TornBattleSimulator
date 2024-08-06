@@ -15,7 +15,7 @@ public class BattleStats
 
     public BattleStats Apply(IStatsModifier modifier)
     {
-        if (modifier.Type != StatModificationType.Multiplicative)
+        if (modifier.Type != ModificationType.Multiplicative)
         {
             throw new InvalidOperationException($"{nameof(Apply)} does not support {modifier.Type} modifiers.");
         }

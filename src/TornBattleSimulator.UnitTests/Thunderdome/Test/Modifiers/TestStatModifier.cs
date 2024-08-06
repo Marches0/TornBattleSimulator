@@ -14,7 +14,7 @@ internal class TestStatModifier : BaseTestModifier, IStatsModifier
         double defenceModifier,
         double speedModifier,
         double dexterityModifier,
-        StatModificationType type)
+        ModificationType type)
     {
         _strengthModifier = strengthModifier;
         _defenceModifier = defenceModifier;
@@ -31,5 +31,5 @@ internal class TestStatModifier : BaseTestModifier, IStatsModifier
 
     public double GetStrengthModifier() => _strengthModifier;
 
-    public StatModificationType Type { get; }
+    public ModificationType Type { get; }
 }

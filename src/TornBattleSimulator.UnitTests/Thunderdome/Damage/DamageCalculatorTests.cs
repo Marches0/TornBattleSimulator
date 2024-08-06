@@ -19,17 +19,17 @@ public class DamageCalculatorTests
         using AutoFake autoFake = new();
         autoFake.Provide<IEnumerable<IDamageModifier>>(new List<IDamageModifier>()
         {
-            new TestDamageModifier(20, StatModificationType.Additive, BodyPart.Head),
-            new TestDamageModifier(10, StatModificationType.Additive),
-            new TestDamageModifier(10, StatModificationType.Multiplicative),
-            new TestDamageModifier(0.5, StatModificationType.Multiplicative),
+            new TestDamageModifier(20, ModificationType.Additive, BodyPart.Head),
+            new TestDamageModifier(10, ModificationType.Additive),
+            new TestDamageModifier(10, ModificationType.Multiplicative),
+            new TestDamageModifier(0.5, ModificationType.Multiplicative),
         });
 
         DamageCalculator damageCalculator = autoFake.Resolve<DamageCalculator>();
 
         var attacker = new PlayerContextBuilder().Build();
         var defender = new PlayerContextBuilder().WithHealth(10000).Build();
-        var weapon = new WeaponContextBuilder().WithModifier(new TestDamageModifier(0.5, StatModificationType.Multiplicative)).Build();
+        var weapon = new WeaponContextBuilder().WithModifier(new TestDamageModifier(0.5, ModificationType.Multiplicative)).Build();
 
         // Act
         var damage = damageCalculator.CalculateDamage(new ThunderdomeContext(attacker, defender), attacker, defender, weapon).DamageDealt;

@@ -38,7 +38,7 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public double GetDamageModifier(

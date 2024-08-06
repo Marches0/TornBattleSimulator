@@ -41,7 +41,7 @@ public class HardenedModifier : IStatsModifier, IHealthModifier
     public ModifierType Effect { get; } = ModifierType.Hardened;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Additive;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;

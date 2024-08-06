@@ -27,7 +27,7 @@ public class MotivationModifier : IModifier, IStatsModifier, IStackableStatModif
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Additive;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public int MaxStacks { get; } = 5;

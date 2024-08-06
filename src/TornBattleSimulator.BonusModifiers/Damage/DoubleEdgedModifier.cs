@@ -31,7 +31,7 @@ public class DoubleEdgedModifier : IModifier, IDamageModifier, IHealthModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public bool AppliesOnActivation { get; } = false;

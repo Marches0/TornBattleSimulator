@@ -35,7 +35,7 @@ public class GassedModifier : IStatsModifier
     public ModifierType Effect { get; } = ModifierType.Gassed;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;

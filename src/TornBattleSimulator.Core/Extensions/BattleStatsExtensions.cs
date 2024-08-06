@@ -8,7 +8,7 @@ public static class BattleStatsExtensions
     public static BattleStats WithModifiers(this BattleStats stats, List<IStatsModifier> modifiers)
     {
         return modifiers
-            .Where(m => m.Type == StatModificationType.Multiplicative)
+            .Where(m => m.Type == ModificationType.Multiplicative)
             .Aggregate(ApplyAdditive(stats.Copy(), modifiers), (stats, modifier) => stats.Apply(modifier));
     }
 
@@ -19,7 +19,7 @@ public static class BattleStatsExtensions
         double additiveSpeed = 1;
         double additiveDexterity = 1;
 
-        foreach (IStatsModifier additive in modifiers.Where(m => m.Type == StatModificationType.Additive))
+        foreach (IStatsModifier additive in modifiers.Where(m => m.Type == ModificationType.Additive))
         {
             additiveStrength += additive.GetStrengthModifier() - 1;
             additiveDefence += additive.GetDefenceModifier() - 1;

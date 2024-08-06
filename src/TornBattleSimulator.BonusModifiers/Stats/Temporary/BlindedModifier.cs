@@ -35,7 +35,7 @@ public class BlindedModifier : IStatsModifier
     public ModifierType Effect { get; } = ModifierType.Blinded;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;

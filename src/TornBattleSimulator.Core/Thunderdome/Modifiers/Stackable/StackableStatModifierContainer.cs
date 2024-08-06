@@ -57,7 +57,7 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public double GetStrengthModifier() => GetStackedModifier(Modifier.GetStrengthModifier());
 
-    public StatModificationType Type => Modifier.Type;
+    public ModificationType Type => Modifier.Type;
 
     public ModifierValueBehaviour ValueBehaviour => Modifier.ValueBehaviour;
 

@@ -30,5 +30,5 @@ public interface IStatsModifier : IModifier
     /// <summary>
     /// How this modifier is applied to the target's stats.
     /// </summary>
-    StatModificationType Type { get; }
+    ModificationType Type { get; }
 }

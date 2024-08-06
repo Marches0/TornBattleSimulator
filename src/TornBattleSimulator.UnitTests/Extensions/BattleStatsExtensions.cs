@@ -39,7 +39,7 @@ public class BattleStatsExtensions
 
         // Act
         var low = battleStats.WithModifiers(
-            [new TestStatModifier(-1, -1, -1, -1, StatModificationType.Additive), new TestStatModifier(-1, -1, -1, -1, StatModificationType.Multiplicative)]
+            [new TestStatModifier(-1, -1, -1, -1, ModificationType.Additive), new TestStatModifier(-1, -1, -1, -1, ModificationType.Multiplicative)]
         );
 
         // Assert
@@ -67,8 +67,8 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [ 
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Additive)
             ],
             new BattleStats()
             {
@@ -83,8 +83,8 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative),
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Multiplicative),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Multiplicative)
             ],
             new BattleStats()
             {
@@ -99,9 +99,9 @@ public class BattleStatsExtensions
         yield return (
             baseStats,
             [
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Additive),
-                new TestStatModifier(1.4, 1.3, 1.2, 1.1, StatModificationType.Multiplicative)
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Additive),
+                new TestStatModifier(1.4, 1.3, 1.2, 1.1, ModificationType.Multiplicative)
             ],
             new BattleStats()
             {

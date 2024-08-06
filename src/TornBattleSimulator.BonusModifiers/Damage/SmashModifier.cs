@@ -31,7 +31,7 @@ public class SmashModifier : IChargeableModifier, IDamageModifier
     public bool StartsCharged { get; } = true;
 
     /// <inheritdoc/>
-    public StatModificationType Type { get; } = StatModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
     public double GetDamageModifier(
