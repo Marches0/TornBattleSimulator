@@ -107,6 +107,7 @@ public class ModifierFactory
             //  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
             ModifierType.Plunder => new NoOpModifier(ModifierType.Plunder),
+            ModifierType.Proficience => new NoOpModifier(ModifierType.Proficience),
 
             0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),
         };

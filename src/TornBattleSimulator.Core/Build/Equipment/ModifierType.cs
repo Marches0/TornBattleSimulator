@@ -57,7 +57,8 @@ public enum ModifierType
     Parry,
     Penetrate,
     Plunder,
-    Powerful
+    Powerful,
+    Proficience
 }
 
 // Double edge = 25%, Frenzy = multiplicative
