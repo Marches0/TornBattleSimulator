@@ -70,6 +70,7 @@ public class ModifierFactory
             ModifierType.Finale => new FinaleModifier(value),
             ModifierType.Frenzy => new FrenzyModifier(value),
             ModifierType.Parry => new ParryModifier(),
+            ModifierType.Powerful => new PowerfulModifier(value),
             ModifierType.Smash => new SmashModifier(),
 
             // Armour

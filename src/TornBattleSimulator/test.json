@@ -22,8 +22,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "penetrate",
-						"percent": 20
+						"type": "powerful",
+						"percent": 0
 					}
 				]
 			},
