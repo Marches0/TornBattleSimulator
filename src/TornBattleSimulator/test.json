@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "sureShot",
+						"type": "throttle",
 						"percent": 50
 					}
 				]

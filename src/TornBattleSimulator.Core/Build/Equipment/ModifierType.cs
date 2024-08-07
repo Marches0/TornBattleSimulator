@@ -69,7 +69,8 @@ public enum ModifierType
     Stricken,
     Stun,
     Suppress,
-    SureShot
+    SureShot,
+    Throttle
 }
 
 // Double edge = 25%, Frenzy = multiplicative
