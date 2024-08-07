@@ -28,82 +28,69 @@ public class ModifierFactory
         IModifier modifier = modifierType switch
         {
             // Temps
-            ModifierType.Blinded => new BlindedModifier(),
-            ModifierType.Concussed => new ConcussedModifier(),
-            ModifierType.Gassed => new GassedModifier(),
-            ModifierType.Maced => new MacedModifier(),
-            ModifierType.SevereBurning => new SevereBurningModifier(),
-            ModifierType.Smoked => new SmokedModifier(),
-
-            // Needles
-            ModifierType.Hardened => new HardenedModifier(),
-            ModifierType.Strengthened => new StrengthenedModifier(),
-            ModifierType.Hastened => new HastenedModifier(),
-            ModifierType.Sharpened => new SharpenedModifier(),
-
-            // Stat Debuffs
-            ModifierType.Cripple => new CrippleModifier(),
-            ModifierType.Demoralized => new DemoralizedModifier(),
-            ModifierType.Freeze => new FreezeModifier(),
-
-            // Stat Buffs
-            ModifierType.Empower => new EmpowerModifier(value),
-            ModifierType.Motivation => new MotivationModifier(),
-            ModifierType.Quicken => new QuickenModifier(value),
-
-            // Stuns
-            ModifierType.Shock => new ShockModifier(),
-            ModifierType.Paralyzed => new ParalyzedModifier(),
-
-            // Accuracy
-            ModifierType.Focus => new FocusModifier(value),
-            ModifierType.Grace => new GraceModifier(value),
-
-            // Damage
-            ModifierType.Assassinate => new AssassinateModifier(value),
-            ModifierType.Beserk => new BeserkModifier(value),
-            ModifierType.Blindside => new BlindsideModifier(value),
-            ModifierType.Comeback => new ComebackModifier(value),
-            ModifierType.Deadeye => new DeadeyeModifier(value),
-            ModifierType.Deadly => new DeadlyModifier(),
-            ModifierType.DoubleEdged => new DoubleEdgedModifier(),
-            ModifierType.Eviscerate => new EviscerateModifier(value),
-            ModifierType.Finale => new FinaleModifier(value),
-            ModifierType.Frenzy => new FrenzyModifier(value),
-            ModifierType.Parry => new ParryModifier(),
-            ModifierType.Powerful => new PowerfulModifier(value),
-            ModifierType.Smash => new SmashModifier(),
-
-            // Armour
-            ModifierType.Penetrate => new PenetrateModifier(value),
-            ModifierType.Puncture => new PunctureModifier(),
-
-            // Body part modifiers
             ModifierType.Achilles => new AchillesModifier(value),
+            ModifierType.Assassinate => new AssassinateModifier(value),
+
+            ModifierType.Beserk => new BeserkModifier(value),
+            ModifierType.Bleed => new BleedModifier(),
+            ModifierType.Blinded => new BlindedModifier(),
+            ModifierType.Blindfire => new BlindfireModifier(),
+            ModifierType.Blindside => new BlindsideModifier(value),
+            ModifierType.Bloodlust => new BloodlustModifier(value),
+            ModifierType.Burning => new BurningModifier(),
+
+            ModifierType.Comeback => new ComebackModifier(value),
+            ModifierType.Concussed => new ConcussedModifier(),
+            ModifierType.Conserve => new ConserveModifier(value),
+            ModifierType.Cripple => new CrippleModifier(),
             ModifierType.Crusher => new CrusherModifier(value),
             ModifierType.Cupid => new CupidModifier(value),
 
-            // DoTs
-            ModifierType.Bleed => new BleedModifier(),
-            ModifierType.Burning => new BurningModifier(),
-            ModifierType.Laceration => new LacerationModifier(),
-            ModifierType.Poisoned => new PoisonedModifier(),
+            ModifierType.Deadeye => new DeadeyeModifier(value),
+            ModifierType.Deadly => new DeadlyModifier(),
+            ModifierType.Demoralized => new DemoralizedModifier(),
+            ModifierType.DoubleEdged => new DoubleEdgedModifier(),
+            ModifierType.DoubleTap => new DoubleTapModifier(),
 
-            // Health
-            ModifierType.Bloodlust => new BloodlustModifier(value),
+            ModifierType.Empower => new EmpowerModifier(value),
+            ModifierType.Eviscerate => new EviscerateModifier(value),
             ModifierType.Execute => new ExecuteModifier(value),
 
-            // Action buffs
-            ModifierType.Blindfire => new BlindfireModifier(),
-            ModifierType.DoubleTap => new DoubleTapModifier(),
+            ModifierType.Focus => new FocusModifier(value),
+            ModifierType.Finale => new FinaleModifier(value),
+            ModifierType.Frenzy => new FrenzyModifier(value),
+            ModifierType.Freeze => new FreezeModifier(),
             ModifierType.Fury => new FuryModifier(),
+
+            ModifierType.Gassed => new GassedModifier(),
+            ModifierType.Grace => new GraceModifier(value),
+
+            ModifierType.Hardened => new HardenedModifier(),
+            ModifierType.Hastened => new HastenedModifier(),
+            ModifierType.HomeRun => new HomeRunModifier(),
+
+            ModifierType.Laceration => new LacerationModifier(),
+
+            ModifierType.Maced => new MacedModifier(),
+            ModifierType.Motivation => new MotivationModifier(),
+
+            ModifierType.Paralyzed => new ParalyzedModifier(),
+            ModifierType.Parry => new ParryModifier(),
+            ModifierType.Penetrate => new PenetrateModifier(value),
+            ModifierType.Puncture => new PunctureModifier(),
+            ModifierType.Poisoned => new PoisonedModifier(),
+            ModifierType.Powerful => new PowerfulModifier(value),
+
+            ModifierType.Quicken => new QuickenModifier(value),
+
             ModifierType.Rage => new RageModifier(),
 
-            // Ammo
-            ModifierType.Conserve => new ConserveModifier(value),
-
-            // Target
-            ModifierType.HomeRun => new HomeRunModifier(),
+            ModifierType.SevereBurning => new SevereBurningModifier(),
+            ModifierType.Sharpened => new SharpenedModifier(),
+            ModifierType.Shock => new ShockModifier(),
+            ModifierType.Smash => new SmashModifier(),
+            ModifierType.Smoked => new SmokedModifier(),
+            ModifierType.Strengthened => new StrengthenedModifier(),
 
             //  All modifiers in Torn can be created, but those that have no use
             //  (e.g. Pluder) are no-ops so we can support them being added without throwing.

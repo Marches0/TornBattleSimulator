@@ -12,4 +12,6 @@ public class TestModifierApplicationModifier : BaseTestModifier
     public override ModifierApplication AppliesAt { get; }
 
     public override ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Chance;
+
+    public override ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
 }

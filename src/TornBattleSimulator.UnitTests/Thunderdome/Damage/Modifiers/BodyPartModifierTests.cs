@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers.BodyPart;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers.BodyParts;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Options;
 using TornBattleSimulator.UnitTests.Chance;
@@ -29,7 +28,7 @@ public class BodyPartModifierTests
             RegularHits = new() { new BodyPartDamage() { DamageMultiplier = 1, Part = BodyPart.Stomach }, new BodyPartDamage() { DamageMultiplier = 1, Part = BodyPart.Chest } }
         };
 
-        BodyPartModifier modifier = new(options, new(), chanceSource);
+        BodyPartModifier modifier = new(options, chanceSource);
 
         WeaponContext weapon = new WeaponContextBuilder()
             .OfType(testData.weapon)
