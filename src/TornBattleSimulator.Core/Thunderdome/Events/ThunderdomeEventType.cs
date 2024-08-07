@@ -15,5 +15,6 @@ public enum ThunderdomeEventType
     FightEnd,
     ChargeWeapon,
     ExtraDamage,
-    Disarmed
+    Disarmed,
+    ReplenishTemporary
 }

@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "toxin",
+						"type": "frenzy",
 						"percent": 50
 					}
 				]
@@ -124,7 +124,10 @@
 				"damage": 40,
 				"accuracy": 60,
 				"modifiers": [
-
+					{
+						"type": "storage",
+						"percent": 50
+					}
 				]
 			}
 		}

@@ -23,7 +23,7 @@ public enum ModifierType
     Shock,
     Smash,
     Spray,
-    //Storage, // todo
+    Storage,
     Toxin,
     Achilles,
     Assassinate,

@@ -6,6 +6,9 @@ using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Attacks;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.BonusModifiers.Ammo;
+using TornBattleSimulator.Core.Extensions;
+using TornBattleSimulator.Core.Thunderdome.Events.Data;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
@@ -68,6 +71,18 @@ public class WeaponUsage : IWeaponUsage
 
         List<ThunderdomeEvent> events = new();
         AttackContext attack = new AttackContext(context, active, other, weapon, null);
+
+        // todo move to its own class
+        StorageModifier? storage = weapon.Modifiers.Active.OfType<StorageModifier>().FirstOrDefault();
+        if (storage != null && active.Weapons.Temporary != null)
+        {
+            active.Weapons.Temporary.Ammo.MagazineAmmoRemaining = 1;
+            storage.Consumed = true;
+            active.Modifiers.AttackComplete(attack);
+            weapon.Modifiers.AttackComplete(attack);
+
+            return [ context.CreateEvent(active, ThunderdomeEventType.ReplenishTemporary, new ReplenishedTemporaryData()) ];
+        }
 
         // Modifiers can't trigger on bonus actions
         if (!bonusAction)

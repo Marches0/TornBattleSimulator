@@ -234,3 +234,11 @@ public class DisarmedData : IEventData
         return $"Disarmed {WeaponType}".ToColouredString("#c49bdd");
     }
 }
+
+public class ReplenishedTemporaryData : IEventData
+{
+    public string Format()
+    {
+        return $"Replenished Temporary".ToColouredString("#c49bdd");
+    }
+}

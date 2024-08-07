@@ -98,6 +98,7 @@ public class ModifierFactory
             ModifierType.Smoked => new SmokedModifier(),
             ModifierType.Smurf => new SmurfModifier(value),
             ModifierType.Specialist => new SpecialistModifier(value),
+            ModifierType.Storage => new StorageModifier(),
             ModifierType.Spray => new SprayModifier(),
             ModifierType.Strengthened => new StrengthenedModifier(),
             ModifierType.Stun => new StunModifier(),

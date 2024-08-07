@@ -25,6 +25,7 @@ public class ThunderdomeResultWriter
         {ThunderdomeEventType.FightEnd, "#ffffff" }, // white
         {ThunderdomeEventType.ChargeWeapon, "#c49bdd" }, // purple
         {ThunderdomeEventType.Disarmed, "#c49bdd" }, // purple
+        {ThunderdomeEventType.ReplenishTemporary, "#c49bdd" }, // purple
     };
 
     public void Write(ThunderdomeContext context)
