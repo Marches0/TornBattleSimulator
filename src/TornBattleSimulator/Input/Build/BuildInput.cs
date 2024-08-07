@@ -9,6 +9,8 @@ public class BuildInput
 
     public int? Health { get; set; }
 
+    public int? Level { get; set; }
+
     public BattleStatsInput? BattleStats { get; set; }
 
     public WeaponInput? Primary { get; set; }

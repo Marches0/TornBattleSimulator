@@ -12,6 +12,8 @@ public class BattleBuild
 
     public int Health { get; set; }
 
+    public int Level { get; set; }
+
     public BattleStats BattleStats { get; set; }
 
     // Make these nullable to support not having the weapon?

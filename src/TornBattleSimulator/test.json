@@ -9,6 +9,7 @@
 				"speed": 10000099,
 				"dexterity": 0
 			},
+			"level": 10,
 			"primary": {
 				"damage": 50,
 				"accuracy": 100,
@@ -22,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "slow",
+						"type": "smurf",
 						"percent": 20
 					}
 				]
@@ -95,6 +96,7 @@
 				"speed": 50000,
 				"dexterity": 1000000
 			},
+			"level": 20,
 			"temporary": "serotonin",
 			"strategy": [
 				{

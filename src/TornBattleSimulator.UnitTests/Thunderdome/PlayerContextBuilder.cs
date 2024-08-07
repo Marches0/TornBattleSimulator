@@ -16,6 +16,7 @@ public class PlayerContextBuilder
     private WeaponContext? _temporary;
     private EquippedWeapons? _equippedWeapons;
     private List<ArmourContext> _armour = new();
+    private int _level = 1;
 
     public PlayerContextBuilder WithStats(BattleStats battleStats)
     {
@@ -89,6 +90,12 @@ public class PlayerContextBuilder
         return this;
     }
 
+    public PlayerContextBuilder WithLevel(int level)
+    {
+        _level = level;
+        return this;
+    }
+
     public PlayerContext Build()
     {
         return new PlayerContext(
@@ -96,9 +103,7 @@ public class PlayerContextBuilder
             {
                 BattleStats = _battleStats,
                 Health = _health,
-                /*Primary = _primary,
-                Secondary = _secondary,
-                Melee = _melee*/
+                Level = _level
             },
             0,
             _equippedWeapons ?? new EquippedWeapons(
