@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using TornBattleSimulator.Battle.Thunderdome.Damage;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers.BodyParts;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 
@@ -22,7 +23,11 @@ public class DamageModule : Module
         builder.RegisterType<WeaponDamageModifier>()
             .As<IDamageModifier>();
 
-        builder.RegisterType<BodyPartModifier>()
+        /*builder.RegisterType<BodyPartModifier>()
+            .As<IDamageModifier>();*/
+
+        // Debugging
+        builder.RegisterType<FixedBodyPartModifier>()
             .As<IDamageModifier>();
 
         // Must be after BodyPartModifier
