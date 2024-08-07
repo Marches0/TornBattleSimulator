@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.BonusModifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
@@ -19,8 +20,8 @@ public class ComebackModifierTests
             .Build();
 
         owner.Health.CurrentHealth = currentHealth;
-
-        new ComebackModifier(1).CanActivate(owner, new PlayerContextBuilder().Build(), new AttackResult(true, 1, new DamageResult(1, 0, 0)))
+        
+        new ComebackModifier(1).CanActivate(new AttackContext(new ThunderdomeContextBuilder().Build(), owner, new PlayerContextBuilder().Build(), new WeaponContextBuilder().Build(), new AttackResult(true, 1, new DamageResult(1, 0, 0))))
             .Should().Be(expected);
     }
 }

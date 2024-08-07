@@ -22,7 +22,7 @@ public enum ModifierType
     Poisoned,
     Shock,
     Smash,
-    //Spray, // todo
+    Spray,
     //Storage, // todo
     //Toxin, // todo
     Achilles,

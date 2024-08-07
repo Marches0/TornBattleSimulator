@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
@@ -42,5 +43,5 @@ public class ExecuteModifier : IHealthModifier, IConditionalModifier
     public int GetHealthModifier(PlayerContext target, DamageResult? damage) => -target.Health.CurrentHealth;
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => other.Health.MaxHealth * _value >= other.Health.CurrentHealth;
+    public bool CanActivate(AttackContext attack) => attack.Other.Health.MaxHealth * _value >= attack.Other.Health.CurrentHealth;
 }

@@ -20,7 +20,7 @@ public class AmmoCalculator : IAmmoCalculator
         WeaponContext weapon)
     {
         double baseConsumed = _chanceSource.ChooseRange(weapon.Description.RateOfFire.Min, weapon.Description.RateOfFire.Max + 1);
-        int ammoConsumed = (int)weapon.Modifiers.Active
+        int ammoConsumed = (int)weapon.Modifiers.Active.Concat(active.Modifiers.Active)
             .OfType<IAmmoModifier>()
             .Aggregate(baseConsumed, (total, modifier) => total * modifier.GetModifier());
 

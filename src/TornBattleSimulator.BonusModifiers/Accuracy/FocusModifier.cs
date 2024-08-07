@@ -38,12 +38,9 @@ public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier,
     public ModifierValueBehaviour ValueBehaviour => ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public bool CanActivate(
-        PlayerContext active,
-        PlayerContext other,
-        AttackResult? attack)
+    public bool CanActivate(AttackContext attack)
     {
-        return !attack!.Hit;
+        return attack!.AttackResult!.Hit == false;
     }
 
     /// <inheritdoc/>

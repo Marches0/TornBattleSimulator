@@ -15,11 +15,17 @@ public class FrenzyModifierTests
     [TestCase(false, false)]
     public void CanActivate_BasedOnHit(bool isHit, bool shouldActivate)
     {
+        //new AttackResult(isHit, 1, new DamageResult(1, 0, 0))
+
         new FrenzyModifier(1)
             .CanActivate(
-                new PlayerContextBuilder().Build(),
-                new PlayerContextBuilder().Build(),
-                new AttackResult(isHit, 1, new DamageResult(1, 0, 0))
+                new AttackContext(
+                    new ThunderdomeContextBuilder().Build(),
+                    new PlayerContextBuilder().Build(),
+                    new PlayerContextBuilder().Build(),
+                    new WeaponContextBuilder().Build(),
+                    new AttackResult(isHit, 1, new DamageResult(1, 0, 0))
+                )
             ).Should().Be(shouldActivate);
     }
 

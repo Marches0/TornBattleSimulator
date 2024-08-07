@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "wither",
-						"percent": 50
+						"type": "spray",
+						"percent": 100
 					}
 				]
 			},

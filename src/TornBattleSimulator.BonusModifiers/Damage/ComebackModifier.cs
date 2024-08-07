@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
@@ -48,5 +49,5 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
         DamageContext damageContext) => _value;
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => active.Health.CurrentHealth * 4 < active.Health.MaxHealth;
+    public bool CanActivate(AttackContext attack) => attack.Active.Health.CurrentHealth * 4 < attack.Active.Health.MaxHealth;
 }

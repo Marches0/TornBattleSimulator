@@ -78,7 +78,7 @@ public class ModifierRoller
         AttackContext attack)
     {
         return modifier is IConditionalModifier conditional
-            ? conditional.CanActivate(attack.Active, attack.Other, attack.AttackResult)
+            ? conditional.CanActivate(attack)
             : true;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
@@ -44,5 +45,5 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     public double GetDamageModifier(PlayerContext active, PlayerContext other, WeaponContext weapon, DamageContext damageContext) => _value;
 
     /// <inheritdoc/>
-    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack) => other.Health.CurrentHealth == other.Health.MaxHealth;
+    public bool CanActivate(AttackContext attack) => attack.Other.Health.CurrentHealth == attack.Other.Health.MaxHealth;
 }

@@ -42,13 +42,10 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
     /// <inheritdoc/>
     public ModificationType Type { get; } = ModificationType.Additive;
 
-    public bool CanActivate(PlayerContext active, PlayerContext other, AttackResult? attack)
-    {
-        return attack!.Hit;
-    }
+    public bool CanActivate(AttackContext attack) => attack.AttackResult!.Hit;
 
     /// <inheritdoc/>
-    public bool Expired(AttackContext attack) => !attack.AttackResult.Hit;
+    public bool Expired(AttackContext attack) => attack.AttackResult!.Hit == false;
 
     /// <inheritdoc/>
     public double GetAccuracyModifier(
