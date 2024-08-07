@@ -97,6 +97,7 @@ public class ModifierFactory
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
             ModifierType.Plunder => new NoOpModifier(ModifierType.Plunder),
             ModifierType.Proficience => new NoOpModifier(ModifierType.Proficience),
+            ModifierType.Revitalize => new NoOpModifier(ModifierType.Revitalize)
 
             0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),
         };
