@@ -73,7 +73,8 @@ public enum ModifierType
     Throttle,
     Warlord,
     Weaken,
-    WindUp
+    WindUp,
+    Wither
 }
 
 // Double edge = 25%, Frenzy = multiplicative

@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "windUp",
+						"type": "wither",
 						"percent": 50
 					}
 				]
