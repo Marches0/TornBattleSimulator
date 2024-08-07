@@ -18,7 +18,7 @@ public class WeaponContext : ITickable
         Ammo = weapon.Ammo != null ? new CurrentAmmo()
         {
             Magazines = weapon.Ammo.Magazines,
-            MagazinesRemaining = weapon.Ammo.Magazines,
+            MagazinesRemaining = weapon.Ammo.Magazines - 1, // The intial magazine is considered loaded in
 
             MagazineSize = weapon.Ammo.MagazineSize,
             MagazineAmmoRemaining = weapon.Ammo.MagazineSize
