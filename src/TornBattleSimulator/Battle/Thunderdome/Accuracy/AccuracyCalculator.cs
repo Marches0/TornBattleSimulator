@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Accuracy.Modifiers;
+using TornBattleSimulator.BonusModifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -23,6 +24,11 @@ public class AccuracyCalculator : IAccuracyCalculator
         PlayerContext other,
         WeaponContext weapon)
     {
+        if (active.Modifiers.Active.OfType<SureShotModifier>().Any()) 
+        {
+            return 1;
+        }
+
         double baseAccuracy = GetBaseAccuracy(active, other, weapon);
         return Math.Clamp(
             GetModifiedAccuracy(active, other, weapon, baseAccuracy),

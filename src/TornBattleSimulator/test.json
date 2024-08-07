@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "suppress",
+						"type": "sureShot",
 						"percent": 50
 					}
 				]
