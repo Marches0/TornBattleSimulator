@@ -64,7 +64,8 @@ public enum ModifierType
     Revitalize,
     Roshambo,
     Slow,
-    Smurf
+    Smurf,
+    Specialist
 }
 
 // Double edge = 25%, Frenzy = multiplicative

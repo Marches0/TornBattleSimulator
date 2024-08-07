@@ -93,6 +93,7 @@ public class ModifierFactory
             ModifierType.Smash => new SmashModifier(),
             ModifierType.Smoked => new SmokedModifier(),
             ModifierType.Smurf => new SmurfModifier(value),
+            ModifierType.Specialist => new SpecialistModifier(value),
             ModifierType.Strengthened => new StrengthenedModifier(),
 
             //  All modifiers in Torn can be created, but those that have no use
