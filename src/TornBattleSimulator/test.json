@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "spray",
-						"percent": 100
+						"type": "hazardous",
+						"percent": 50
 					}
 				]
 			},

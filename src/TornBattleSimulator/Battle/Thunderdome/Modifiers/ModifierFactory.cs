@@ -67,6 +67,7 @@ public class ModifierFactory
 
             ModifierType.Hardened => new HardenedModifier(),
             ModifierType.Hastened => new HastenedModifier(),
+            ModifierType.Hazardous => new HazardousModifier(value),
             ModifierType.HomeRun => new HomeRunModifier(),
 
             ModifierType.Laceration => new LacerationModifier(),

@@ -17,7 +17,7 @@ public enum ModifierType
     Burning,
     Demoralized,
     Freeze,
-    //Hazardous, // todo
+    Hazardous,
     Laceration,
     Poisoned,
     Shock,
