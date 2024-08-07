@@ -22,6 +22,9 @@ public class ModifierModule : Module
         builder.RegisterType<HealthModifierApplier>()
             .As<IHealthModifierApplier>();
 
+        builder.RegisterType<ToxinModifierApplier>()
+            .As<IToxinModifierApplier>();
+
         builder.RegisterType<AttackModifierApplier>()
             .As<AttackModifierApplier>();
 

@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Target;
+using TornBattleSimulator.BonusModifiers.Stats.Weapon;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
@@ -13,13 +14,16 @@ namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 public class ModifierApplier : IModifierApplier
 {
     private readonly IHealthModifierApplier _healthModifierApplier;
+    private readonly IToxinModifierApplier _toxinModifierApplier;
     private readonly TargetSelector _targetSelector;
 
     public ModifierApplier(
         IHealthModifierApplier healthModifierApplier,
+        IToxinModifierApplier toxinModifierApplier,
         TargetSelector targetSelector)
     {
         _healthModifierApplier = healthModifierApplier;
+        _toxinModifierApplier = toxinModifierApplier;
         _targetSelector = targetSelector;
     }
 
@@ -27,6 +31,15 @@ public class ModifierApplier : IModifierApplier
         IModifier modifier,
         AttackContext attack)
     {
+        // meh
+        if (modifier is ToxinModifier)
+        {
+            return ApplyModifier(
+                _toxinModifierApplier.GetModifier(),
+                attack
+            );
+        }
+
         List<ThunderdomeEvent> events = new();
         (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
 

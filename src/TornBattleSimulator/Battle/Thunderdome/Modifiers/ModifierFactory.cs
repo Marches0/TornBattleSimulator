@@ -105,6 +105,7 @@ public class ModifierFactory
             ModifierType.SureShot => new SureShotModifier(),
 
             ModifierType.Throttle => new ThrottleModifier(value),
+            ModifierType.Toxin => new ToxinModifier(),
 
             ModifierType.Weaken => new WeakenModifier(),
             ModifierType.WindUp => new WindUpModifier(value),

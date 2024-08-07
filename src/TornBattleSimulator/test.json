@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "disarm",
-						"percent": 3
+						"type": "toxin",
+						"percent": 50
 					}
 				]
 			},
