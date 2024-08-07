@@ -45,7 +45,7 @@ public enum ModifierType
     Empower,
     Eviscerate,
     Execute,
-    // Expose, // todo
+    Expose,
     Finale,
     Focus,
     Frenzy,

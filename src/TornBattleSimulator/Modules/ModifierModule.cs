@@ -2,6 +2,7 @@
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Attacks;
+using TornBattleSimulator.Core.Thunderdome.Damage.Critical;
 
 namespace TornBattleSimulator.Modules;
 
@@ -23,5 +24,8 @@ public class ModifierModule : Module
 
         builder.RegisterType<AttackModifierApplier>()
             .As<AttackModifierApplier>();
+
+        builder.RegisterType<CritChanceCalculator>()
+            .As<ICritChanceCalculator>();
     }
 }

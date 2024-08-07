@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Damage.Critical;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
@@ -12,6 +13,7 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers.BodyParts;
 
 public class BodyPartModifier : IDamageModifier
 {
+    private readonly ICritChanceCalculator _critChanceCalculator;
     private readonly IChanceSource _modifierChanceSource;
 
     private readonly List<OptionChance<BodyPartDamage>> _criticalOptions;
@@ -19,6 +21,7 @@ public class BodyPartModifier : IDamageModifier
 
     public BodyPartModifier(
         BodyModifierOptions bodyModifierOptions,
+        ICritChanceCalculator critChanceCalculator,
         IChanceSource modifierChanceSource)
     {
         _criticalOptions = bodyModifierOptions.CriticalHits
@@ -29,6 +32,7 @@ public class BodyPartModifier : IDamageModifier
             .Select(h => new OptionChance<BodyPartDamage>(h, h.Chance))
             .ToList();
 
+        _critChanceCalculator = critChanceCalculator;
         _modifierChanceSource = modifierChanceSource;
     }
 
@@ -42,12 +46,15 @@ public class BodyPartModifier : IDamageModifier
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        BodyPartDamage option = GetTargetBodyPart(weapon);
+        BodyPartDamage option = GetTargetBodyPart(active, other, weapon);
         damageContext.TargetBodyPart = option.Part;
         return option.DamageMultiplier;
     }
 
-    private BodyPartDamage GetTargetBodyPart(WeaponContext weapon)
+    private BodyPartDamage GetTargetBodyPart(
+        PlayerContext active,
+        PlayerContext other,
+        WeaponContext weapon)
     {
         if (weapon.Type == WeaponType.Temporary)
         {
@@ -55,9 +62,7 @@ public class BodyPartModifier : IDamageModifier
             return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
         }
 
-        // temp.
-        bool isCrit = _modifierChanceSource.Succeeds(0.2d);
-
+        bool isCrit = _modifierChanceSource.Succeeds(_critChanceCalculator.GetCritChance(active, other, weapon));
         return isCrit
            ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
            : _modifierChanceSource.ChooseWeighted(_regularOptions);

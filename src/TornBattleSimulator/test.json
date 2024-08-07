@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "hazardous",
-						"percent": 50
+						"type": "expose",
+						"percent": 100
 					}
 				]
 			},

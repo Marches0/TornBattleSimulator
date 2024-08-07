@@ -3,6 +3,7 @@ using TornBattleSimulator.BonusModifiers.Actions;
 using TornBattleSimulator.BonusModifiers.Ammo;
 using TornBattleSimulator.BonusModifiers.Armour;
 using TornBattleSimulator.BonusModifiers.Attacks;
+using TornBattleSimulator.BonusModifiers.CritChance;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
 using TornBattleSimulator.BonusModifiers.DamageOverTime;
@@ -55,6 +56,7 @@ public class ModifierFactory
             ModifierType.Empower => new EmpowerModifier(value),
             ModifierType.Eviscerate => new EviscerateModifier(value),
             ModifierType.Execute => new ExecuteModifier(value),
+            ModifierType.Expose => new ExposeModifier(value),
 
             ModifierType.Focus => new FocusModifier(value),
             ModifierType.Finale => new FinaleModifier(value),
