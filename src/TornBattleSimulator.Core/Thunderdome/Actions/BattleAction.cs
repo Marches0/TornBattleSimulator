@@ -11,5 +11,5 @@ public enum BattleAction
     ChargePrimary,
     ChargeSecondary,
     ChargeMelee,
-    Stunned
+    MissedTurn
 }

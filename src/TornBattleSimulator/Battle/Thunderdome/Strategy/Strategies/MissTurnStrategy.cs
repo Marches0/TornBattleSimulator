@@ -7,11 +7,11 @@ using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 
-public class StunStrategy : IStrategy
+public class MissTurnStrategy : IStrategy
 {
     private readonly IChanceSource _chanceSource;
 
-    public StunStrategy(IChanceSource chanceSource)
+    public MissTurnStrategy(IChanceSource chanceSource)
     {
         _chanceSource = chanceSource;
     }
@@ -19,7 +19,7 @@ public class StunStrategy : IStrategy
     public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
         return IsShocked(self) || IsParalysed(self)
-            ? BattleAction.Stunned
+            ? BattleAction.MissedTurn
             : null;
     }
 

@@ -6,7 +6,7 @@ public enum ThunderdomeEventType
     AttackMiss,
     UsedTemporary,
     Reload,
-    Stunned,
+    MissedTurn,
     EffectBegin,
     EffectEnd,
     DamageOverTime,

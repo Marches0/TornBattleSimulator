@@ -7,13 +7,13 @@ using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action;
 
-public class StunnedAction : IAction
+public class MissTurnAction : IAction
 {
     public List<ThunderdomeEvent> PerformAction(
         ThunderdomeContext context,
         PlayerContext active,
         PlayerContext other)
     {
-        return [ context.CreateEvent(active, ThunderdomeEventType.Stunned, new StunnedData()) ];
+        return [ context.CreateEvent(active, ThunderdomeEventType.MissedTurn, new MissedTurn()) ];
     }
 }

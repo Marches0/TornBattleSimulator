@@ -11,7 +11,7 @@ using TornBattleSimulator.UnitTests.Chance;
 namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 
 [TestFixture]
-public class StunStrategyTests
+public class MissTurnStrategyTests
 {
     [TestCaseSource(nameof(GetMove_BasedOnModifier_ReturnsAction_TestCases))]
     public void GetMove_BasedOnModifier_ReturnsAction((
@@ -22,7 +22,7 @@ public class StunStrategyTests
         ) testData)
     {
         // Arrange
-        StunStrategy stun = new(testData.chanceSource);
+        MissTurnStrategy turnMiss = new(testData.chanceSource);
 
         PlayerContext self = new PlayerContextBuilder()
             .Build();
@@ -30,7 +30,7 @@ public class StunStrategyTests
         self.Modifiers.AddModifier(testData.modifier, null);
 
         // Act
-        var action = stun.GetMove(
+        var action = turnMiss.GetMove(
             new ThunderdomeContextBuilder().Build(),
             self,
             new PlayerContextBuilder().Build()
@@ -47,9 +47,9 @@ public class StunStrategyTests
         string testName
         )> GetMove_BasedOnModifier_ReturnsAction_TestCases()
     {
-        yield return (new GassedModifier(), FixedChanceSource.AlwaysSucceeds, null, "No stunning actions -> null");
-        yield return (new ShockModifier(), FixedChanceSource.AlwaysFails, BattleAction.Stunned, "Shocked -> Stunned");
+        yield return (new GassedModifier(), FixedChanceSource.AlwaysSucceeds, null, "No turn missing actions -> null");
+        yield return (new ShockModifier(), FixedChanceSource.AlwaysFails, BattleAction.MissedTurn, "Shocked -> Turn Missed");
         yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysFails, null, "Paralyzed fails roll -> null");
-        yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysSucceeds, BattleAction.Stunned, "Paralyzed passes roll -> Stunned");
+        yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysSucceeds, BattleAction.MissedTurn, "Paralyzed passes roll -> Turn Missed");
     }
 }

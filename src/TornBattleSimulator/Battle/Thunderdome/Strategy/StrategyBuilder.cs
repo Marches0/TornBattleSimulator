@@ -7,18 +7,18 @@ namespace TornBattleSimulator.Battle.Thunderdome.Strategy;
 
 public class StrategyBuilder
 {
-    private readonly StunStrategy _stunStrategy;
+    private readonly MissTurnStrategy _missTurn;
 
-    public StrategyBuilder(StunStrategy stunStrategy)
+    public StrategyBuilder(MissTurnStrategy missTurn)
     {
-        _stunStrategy = stunStrategy;
+        _missTurn = missTurn;
     }
 
     public IStrategy BuildStrategy(BattleBuild build)
     {
-        // Stun is automatically the highest priority strategy, so
+        // Turn Miss is automatically the highest priority strategy, so
         // we don't act when it's applied.
-        List<IStrategy> strategies = [_stunStrategy, .. build.Strategy.Select(BuildStrategy)];
+        List<IStrategy> strategies = [_missTurn, .. build.Strategy.Select(BuildStrategy)];
         return new CompositeStrategy(strategies);
     }
 

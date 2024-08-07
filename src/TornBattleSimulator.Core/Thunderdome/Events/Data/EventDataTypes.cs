@@ -195,11 +195,11 @@ public class FightEndEvent : IEventData
     }
 }
 
-public class StunnedData : IEventData
+public class MissedTurn : IEventData
 {
     public string Format()
     {
-        return "Stunned".ToColouredString("#c49bdd");
+        return "Missed Turn".ToColouredString("#c49bdd");
     }
 }
 

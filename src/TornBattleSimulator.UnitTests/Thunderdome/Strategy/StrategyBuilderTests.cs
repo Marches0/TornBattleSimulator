@@ -44,12 +44,12 @@ public class StrategyBuilderTests
         };
 
         // Act
-        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder(new StunStrategy(FixedChanceSource.AlwaysSucceeds)).BuildStrategy(build);
+        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder(new MissTurnStrategy(FixedChanceSource.AlwaysSucceeds)).BuildStrategy(build);
 
         // Assert
         using (new AssertionScope())
         {
-            strategy.Inner[0].Should().BeOfType<StunStrategy>();
+            strategy.Inner[0].Should().BeOfType<MissTurnStrategy>();
             strategy.Inner[1].Should().BeOfType<PrimaryWeaponStrategy>();
             strategy.Inner[2].Should().BeOfType<SecondaryWeaponStrategy>();
             strategy.Inner[3].Should().BeOfType<PrimaryWeaponStrategy>();

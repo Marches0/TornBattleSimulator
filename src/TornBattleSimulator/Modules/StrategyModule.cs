@@ -11,7 +11,7 @@ public class StrategyModule : Module
         builder.RegisterType<StrategyBuilder>()
             .As<StrategyBuilder>();
 
-        builder.RegisterType<StunStrategy>()
-            .As<StunStrategy>();
+        builder.RegisterType<MissTurnStrategy>()
+            .As<MissTurnStrategy>();
     }
 }
