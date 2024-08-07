@@ -106,6 +106,8 @@ public class WeaponStrategyTests : LoadableWeaponTests
 
         yield return (10, 1, false, false, BattleAction.ChargePrimary, "Charges when ammo remaining and needs charge");
         yield return (0, 1, true, false, BattleAction.ChargePrimary, "Charges when needs reload and needs charge");
+
+        yield return (0, 0, false, false, null, "Does nothing when needs to charge, but cannot reload or attack");
     }
 
     private static IEnumerable<(int currentMagazineAmmo, int magazinesRemaining, bool canReload, bool charged, BattleAction? expected, string testName)> SecondaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()
@@ -121,6 +123,8 @@ public class WeaponStrategyTests : LoadableWeaponTests
 
         yield return (10, 1, false, false, BattleAction.ChargeSecondary, "Charges when ammo remaining and needs charge");
         yield return (0, 1, true, false, BattleAction.ChargeSecondary, "Charges when needs reload and needs charge");
+
+        yield return (0, 0, false, false, null, "Does nothing when needs to charge, but cannot reload or attack");
     }
 
     private static IEnumerable<(int currentMagazineAmmo, BattleAction? expected, string testName)> TemporaryWeaponStrategy_BasedOnStatus_PerformsAction_TestData()

@@ -18,13 +18,9 @@ public class PrimaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
         PlayerContext self,
         PlayerContext other)
     {
-        if (NeedsCharge(self.Weapons.Primary!))
-        {
-            return BattleAction.ChargePrimary;
-        }
-
         return GetMove(context, self, other, self.Weapons.Primary!) switch
         {
+            { } when NeedsCharge(self.Weapons.Primary!) => BattleAction.ChargePrimary,
             LoadableWeaponAction.Attack => BattleAction.AttackPrimary,
             LoadableWeaponAction.Reload => BattleAction.ReloadPrimary,
             null => null,
