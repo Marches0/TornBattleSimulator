@@ -89,6 +89,7 @@ public class ModifierFactory
             ModifierType.SevereBurning => new SevereBurningModifier(),
             ModifierType.Sharpened => new SharpenedModifier(),
             ModifierType.Shock => new ShockModifier(),
+            ModifierType.Slow => new SlowModifier(),
             ModifierType.Smash => new SmashModifier(),
             ModifierType.Smoked => new SmokedModifier(),
             ModifierType.Strengthened => new StrengthenedModifier(),

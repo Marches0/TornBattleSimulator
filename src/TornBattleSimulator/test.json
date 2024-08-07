@@ -18,12 +18,12 @@
 				},
 				"ammo": {
 					"magazines": 3,
-					"magazineSize": 6
+					"magazineSize": 60
 				},
 				"modifiers": [
 					{
-						"type": "roshambo",
-						"percent": 100
+						"type": "slow",
+						"percent": 20
 					}
 				]
 			},
