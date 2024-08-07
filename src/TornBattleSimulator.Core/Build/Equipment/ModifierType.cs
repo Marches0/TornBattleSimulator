@@ -61,7 +61,8 @@ public enum ModifierType
     Proficience,
     Puncture,
     Quicken,
-    Revitalize
+    Revitalize,
+    Roshambo
 }
 
 // Double edge = 25%, Frenzy = multiplicative
