@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "expose",
-						"percent": 100
+						"type": "disarm",
+						"percent": 3
 					}
 				]
 			},

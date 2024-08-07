@@ -16,8 +16,15 @@ public class MeleeWeaponStrategy : ChargeableWeaponStrategy, IStrategy
 
     public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
-        return NeedsCharge(self.Weapons.Melee!)
-            ? BattleAction.ChargeMelee
-            : BattleAction.AttackMelee;
+        if (Disarmed(self.Weapons.Melee!))
+        {
+            return BattleAction.DisarmMelee;
+        }
+        else if (NeedsCharge(self.Weapons.Melee!))
+        {
+            return BattleAction.ChargeMelee;
+        }
+
+        return BattleAction.AttackMelee;
     }
 }

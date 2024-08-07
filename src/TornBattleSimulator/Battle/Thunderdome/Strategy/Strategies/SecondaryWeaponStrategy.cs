@@ -19,6 +19,7 @@ public class SecondaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
     {
         return GetMove(context, self, other, self.Weapons.Secondary!) switch
         {
+            { } when Disarmed(self.Weapons.Secondary!) => BattleAction.DisarmSecondary,
             { } when NeedsCharge(self.Weapons.Secondary!) => BattleAction.ChargeSecondary,
             LoadableWeaponAction.Attack => BattleAction.AttackSecondary,
             LoadableWeaponAction.Reload => BattleAction.ReloadSecondary,

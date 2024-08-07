@@ -21,10 +21,19 @@ public class TargetSelector
             target = attack.Active;
         }
 
-        IModifierContext contextTarget = modifier.Target == ModifierTarget.SelfWeapon
-            ? attack.Weapon.Modifiers
-            : target.Modifiers;
-
+        IModifierContext contextTarget;
+        if (modifier.Target == ModifierTarget.OtherWeapon)
+        {
+            // target is Other here, so take their weapon.
+            contextTarget = target.ActiveWeapon!.Modifiers;
+        }
+        else
+        {
+            contextTarget = modifier.Target == ModifierTarget.SelfWeapon
+                ? attack.Weapon.Modifiers
+                : target.Modifiers;
+        }
+        
         return (target, contextTarget);
     }
 

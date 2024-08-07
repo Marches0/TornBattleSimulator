@@ -13,6 +13,7 @@ public class ActionModule : Module
         RegisterAttacks(builder);
         RegisterReloads(builder);
         RegisterCharges(builder);
+        RegisterDisarms(builder);
 
         builder.RegisterType<UseTemporaryAction>()
             .Keyed<IAction>(BattleAction.UseTemporary);
@@ -61,5 +62,17 @@ public class ActionModule : Module
 
         builder.RegisterType<ChargeMeleeAction>()
             .Keyed<IAction>(BattleAction.ChargeMelee);
+    }
+
+    private void RegisterDisarms(ContainerBuilder builder)
+    {
+        builder.RegisterType<DisarmedPrimaryAction>()
+            .Keyed<IAction>(BattleAction.DisarmPrimary);
+
+        builder.RegisterType<DisarmedSecondaryAction>()
+            .Keyed<IAction>(BattleAction.DisarmSecondary);
+
+        builder.RegisterType<DisarmedMeleeAction>()
+            .Keyed<IAction>(BattleAction.DisarmMelee);
     }
 }

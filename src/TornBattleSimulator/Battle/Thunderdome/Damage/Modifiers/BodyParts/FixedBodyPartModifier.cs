@@ -17,7 +17,7 @@ public class FixedBodyPartModifier : IDamageModifier
         WeaponContext weapon,
         DamageContext damageContext)
     {
-        damageContext.TargetBodyPart = BodyPart.Heart;
+        damageContext.TargetBodyPart = BodyPart.Hands;
         return 1;
     }
 }

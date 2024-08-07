@@ -21,5 +21,11 @@ public enum ModifierTarget
     ///  The modifier will be applied to the weapon that owns the modifier,
     ///  such as Focus.
     /// </summary>
-    SelfWeapon
+    SelfWeapon,
+
+    /// <summary>
+    ///  The modifier will be applied to the last used weapon of the player
+    ///  who does not own the modifier, such as Disarm.
+    /// </summary>
+    OtherWeapon
 }

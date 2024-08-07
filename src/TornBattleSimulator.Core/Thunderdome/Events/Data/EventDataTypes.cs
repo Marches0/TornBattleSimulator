@@ -218,3 +218,19 @@ public class WeaponChargeData : IEventData
         return $"Charged {WeaponType}".ToColouredString("#c49bdd");
     }
 }
+
+public class DisarmedData : IEventData
+{
+    public WeaponType WeaponType { get; }
+
+    public DisarmedData(
+        WeaponType weaponType)
+    {
+        WeaponType = weaponType;
+    }
+
+    public string Format()
+    {
+        return $"Disarmed {WeaponType}".ToColouredString("#c49bdd");
+    }
+}

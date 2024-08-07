@@ -50,6 +50,7 @@ public class ModifierFactory
             ModifierType.Deadeye => new DeadeyeModifier(value),
             ModifierType.Deadly => new DeadlyModifier(),
             ModifierType.Demoralized => new DemoralizedModifier(),
+            ModifierType.Disarm => new DisarmModifier(value),
             ModifierType.DoubleEdged => new DoubleEdgedModifier(),
             ModifierType.DoubleTap => new DoubleTapModifier(),
 

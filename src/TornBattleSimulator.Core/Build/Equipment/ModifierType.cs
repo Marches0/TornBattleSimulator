@@ -39,7 +39,7 @@ public enum ModifierType
     Cupid,
     Deadeye,
     Deadly,
-    // Disarm // todo
+    Disarm,
     DoubleEdged,
     DoubleTap,
     Empower,

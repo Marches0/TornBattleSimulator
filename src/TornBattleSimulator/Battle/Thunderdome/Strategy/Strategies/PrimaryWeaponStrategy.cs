@@ -20,6 +20,7 @@ public class PrimaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
     {
         return GetMove(context, self, other, self.Weapons.Primary!) switch
         {
+            { } when Disarmed(self.Weapons.Primary!) => BattleAction.DisarmPrimary,
             { } when NeedsCharge(self.Weapons.Primary!) => BattleAction.ChargePrimary,
             LoadableWeaponAction.Attack => BattleAction.AttackPrimary,
             LoadableWeaponAction.Reload => BattleAction.ReloadPrimary,
