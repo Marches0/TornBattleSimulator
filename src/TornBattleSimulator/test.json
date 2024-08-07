@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "throttle",
+						"type": "windUp",
 						"percent": 50
 					}
 				]

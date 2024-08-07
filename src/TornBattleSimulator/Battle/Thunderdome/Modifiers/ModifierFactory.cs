@@ -101,6 +101,9 @@ public class ModifierFactory
 
             ModifierType.Throttle => new ThrottleModifier(value),
 
+            ModifierType.Weaken => new WeakenModifier(),
+            ModifierType.WindUp => new WindUpModifier(value),
+
             //  All modifiers in Torn can be created, but those that have no use
             //  (e.g. Pluder) are no-ops so we can support them being added without throwing.
             ModifierType.Backstab => new NoOpModifier(ModifierType.Backstab),
