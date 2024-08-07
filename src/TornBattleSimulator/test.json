@@ -23,8 +23,8 @@
 				},
 				"modifiers": [
 					{
-						"type": "specialist",
-						"percent": 20
+						"type": "stun",
+						"percent": 50
 					}
 				]
 			},

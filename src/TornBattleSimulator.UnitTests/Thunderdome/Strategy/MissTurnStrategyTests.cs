@@ -22,7 +22,7 @@ public class MissTurnStrategyTests
         ) testData)
     {
         // Arrange
-        MissTurnStrategy turnMiss = new(testData.chanceSource);
+        MissTurnStrategy missTurn = new(testData.chanceSource);
 
         PlayerContext self = new PlayerContextBuilder()
             .Build();
@@ -30,7 +30,7 @@ public class MissTurnStrategyTests
         self.Modifiers.AddModifier(testData.modifier, null);
 
         // Act
-        var action = turnMiss.GetMove(
+        var action = missTurn.GetMove(
             new ThunderdomeContextBuilder().Build(),
             self,
             new PlayerContextBuilder().Build()
@@ -49,6 +49,7 @@ public class MissTurnStrategyTests
     {
         yield return (new GassedModifier(), FixedChanceSource.AlwaysSucceeds, null, "No turn missing actions -> null");
         yield return (new ShockModifier(), FixedChanceSource.AlwaysFails, BattleAction.MissedTurn, "Shocked -> Turn Missed");
+        yield return (new StunModifier(), FixedChanceSource.AlwaysFails, BattleAction.MissedTurn, "Stun -> Turn Missed");
         yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysFails, null, "Paralyzed fails roll -> null");
         yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysSucceeds, BattleAction.MissedTurn, "Paralyzed passes roll -> Turn Missed");
     }

@@ -18,7 +18,7 @@ public class MissTurnStrategy : IStrategy
 
     public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
-        return IsShocked(self) || IsParalysed(self)
+        return IsShocked(self) || IsParalysed(self) || IsStunned(self)
             ? BattleAction.MissedTurn
             : null;
     }
@@ -27,4 +27,6 @@ public class MissTurnStrategy : IStrategy
 
     private bool IsParalysed(PlayerContext self) => self.Modifiers.Active.Any(m => m is ParalyzedModifier)
         && _chanceSource.Succeeds(0.5);
+
+    private bool IsStunned(PlayerContext self) => self.Modifiers.Active.Any(m => m is StunModifier);
 }
