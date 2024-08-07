@@ -103,9 +103,13 @@ public class ModifierApplier : IModifierApplier
         foreach (var modifier in weapon.PotentialModifiers
             .Select(m => m.Modifier)
             .Where(m => m.AppliesAt == ModifierApplication.FightStart)
-            .Where(m => m.Target == ModifierTarget.Self || m.Target == ModifierTarget.SelfWeapon)) // todo: self weapon only.
+            .Where(m => m.Target != ModifierTarget.Other))
         {
-            if (weapon.Modifiers.AddModifier(modifier, null))
+            IModifierContext target = modifier.Target == ModifierTarget.Self
+                ? player.Modifiers
+                : weapon.Modifiers;
+
+            if (target.AddModifier(modifier, null))
             {
                 events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }

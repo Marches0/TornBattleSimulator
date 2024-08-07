@@ -5,11 +5,11 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 
 namespace TornBattleSimulator.BonusModifiers.Stats.Weapon;
 
-public class EmpowerModifier : IStatsModifier, IModifier
+public class QuickenModifier : IModifier, IStatsModifier
 {
     private readonly double _value;
 
-    public EmpowerModifier(double value)
+    public QuickenModifier(double value)
     {
         _value = 1 + value;
     }
@@ -27,7 +27,7 @@ public class EmpowerModifier : IStatsModifier, IModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
 
     /// <inheritdoc/>
-    public ModifierType Effect { get; } = ModifierType.Empower;
+    public ModifierType Effect { get; } = ModifierType.Quicken;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
@@ -42,8 +42,8 @@ public class EmpowerModifier : IStatsModifier, IModifier
     public double GetDexterityModifier() => 1f;
 
     /// <inheritdoc/>
-    public double GetSpeedModifier() => 1f;
+    public double GetSpeedModifier() => _value;
 
     /// <inheritdoc/>
-    public double GetStrengthModifier() => _value;
+    public double GetStrengthModifier() => 1f;
 }

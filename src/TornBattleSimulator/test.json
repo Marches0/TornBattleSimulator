@@ -18,11 +18,11 @@
 				},
 				"ammo": {
 					"magazines": 3,
-					"magazineSize": 100
+					"magazineSize": 6
 				},
 				"modifiers": [
 					{
-						"type": "parry",
+						"type": "quicken",
 						"percent": 100
 					}
 				]
