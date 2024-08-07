@@ -67,7 +67,8 @@ public enum ModifierType
     Smurf,
     Specialist,
     Stricken,
-    Stun
+    Stun,
+    Suppress
 }
 
 // Double edge = 25%, Frenzy = multiplicative

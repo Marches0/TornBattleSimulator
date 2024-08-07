@@ -23,7 +23,7 @@
 				},
 				"modifiers": [
 					{
-						"type": "stun",
+						"type": "suppress",
 						"percent": 50
 					}
 				]

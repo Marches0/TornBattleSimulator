@@ -96,6 +96,7 @@ public class ModifierFactory
             ModifierType.Specialist => new SpecialistModifier(value),
             ModifierType.Strengthened => new StrengthenedModifier(),
             ModifierType.Stun => new StunModifier(),
+            ModifierType.Suppress => new SuppressModifier(),
 
             //  All modifiers in Torn can be created, but those that have no use
             //  (e.g. Pluder) are no-ops so we can support them being added without throwing.

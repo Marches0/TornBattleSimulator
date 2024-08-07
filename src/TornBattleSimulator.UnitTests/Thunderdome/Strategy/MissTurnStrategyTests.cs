@@ -48,9 +48,14 @@ public class MissTurnStrategyTests
         )> GetMove_BasedOnModifier_ReturnsAction_TestCases()
     {
         yield return (new GassedModifier(), FixedChanceSource.AlwaysSucceeds, null, "No turn missing actions -> null");
+
         yield return (new ShockModifier(), FixedChanceSource.AlwaysFails, BattleAction.MissedTurn, "Shocked -> Turn Missed");
         yield return (new StunModifier(), FixedChanceSource.AlwaysFails, BattleAction.MissedTurn, "Stun -> Turn Missed");
+
         yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysFails, null, "Paralyzed fails roll -> null");
         yield return (new ParalyzedModifier(), FixedChanceSource.AlwaysSucceeds, BattleAction.MissedTurn, "Paralyzed passes roll -> Turn Missed");
+
+        yield return (new SuppressModifier(), FixedChanceSource.AlwaysFails, null, "Supress fails roll -> null");
+        yield return (new SuppressModifier(), FixedChanceSource.AlwaysSucceeds, BattleAction.MissedTurn, "Supress passes roll -> Turn Missed");
     }
 }
