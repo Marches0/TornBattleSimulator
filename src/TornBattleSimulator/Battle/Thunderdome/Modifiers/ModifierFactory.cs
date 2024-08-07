@@ -108,6 +108,7 @@ public class ModifierFactory
             ModifierType.Proficience => new NoOpModifier(ModifierType.Proficience),
             ModifierType.Revitalize => new NoOpModifier(ModifierType.Revitalize),
             ModifierType.Stricken => new NoOpModifier(ModifierType.Stricken),
+            ModifierType.Warlord => new NoOpModifier(ModifierType.Warlord),
 
             0 => throw new NotImplementedException($"{modifierType} is not registered in ${nameof(ModifierFactory)}"),
         };
