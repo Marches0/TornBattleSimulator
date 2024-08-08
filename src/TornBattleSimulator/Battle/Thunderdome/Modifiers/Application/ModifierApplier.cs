@@ -7,6 +7,7 @@ using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Armours;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
@@ -74,57 +75,79 @@ public class ModifierApplier : IModifierApplier
 
     public List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context)
     {
-        return ApplyFightStartModifiers(context, context.Attacker)
-            .Concat(ApplyFightStartModifiers(context, context.Defender)
+        return ApplyFightStartModifiers(context, context.Attacker, context.Defender)
+            .Concat(ApplyFightStartModifiers(context, context.Defender, context.Attacker)
             ).ToList();
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player)
+    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
         List<ThunderdomeEvent> events = new();
 
-        if (player.Weapons.Primary != null)
+        if (active.Weapons.Primary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, player, player.Weapons.Primary));
+            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Primary, other));
         }
 
-        if (player.Weapons.Secondary != null)
+        if (active.Weapons.Secondary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, player, player.Weapons.Secondary));
+            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Secondary, other));
         }
 
-        if (player.Weapons.Melee != null)
+        if (active.Weapons.Melee != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, player, player.Weapons.Melee));
+            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Melee, other));
         }
 
-        if (player.Weapons.Temporary != null)
+        if (active.Weapons.Temporary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, player, player.Weapons.Temporary));
+            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Temporary, other));
         }
+
+        events.AddRange(ApplyFightStartModifiers(context, active, active.ArmourSet, other));
 
         return events;
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, WeaponContext weapon)
+    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, WeaponContext weapon, PlayerContext other)
     {
         // Not good. but here we are.
         weapon.Modifiers = new ModifierContext(player);
 
         List<ThunderdomeEvent> events = new();
 
+        // make an attackcontext just to reuse other logic
+        AttackContext attack = new AttackContext(context, player, other, weapon, null);
+
         foreach (var modifier in weapon.PotentialModifiers
             .Select(m => m.Modifier)
-            .Where(m => m.AppliesAt == ModifierApplication.FightStart)
-            .Where(m => m.Target != ModifierTarget.Other))
+            .Where(m => m.AppliesAt == ModifierApplication.FightStart))
         {
-            IModifierContext target = modifier.Target == ModifierTarget.Self
-                ? player.Modifiers
-                : weapon.Modifiers;
-
-            if (target.AddModifier(modifier, null))
+            (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
+            if (modifierTarget.AddModifier(modifier, null))
             {
-                events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
+                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
+            }
+        }
+
+        return events;
+    }
+
+    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, ArmourSetContext armour, PlayerContext other)
+    {
+        List<ThunderdomeEvent> events = new();
+
+        // make an attackcontext just to reuse other logic
+        AttackContext attack = new AttackContext(context, player, other, null, null);
+
+        foreach (var modifier in armour.PotentialModifiers
+            .Select(m => m.Modifier)
+            .Where(m => m.AppliesAt == ModifierApplication.FightStart))
+        {
+            (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
+            if (modifierTarget.AddModifier(modifier, null))
+            {
+                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }
         }
 

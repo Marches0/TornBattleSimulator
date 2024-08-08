@@ -3,6 +3,7 @@ using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Target;
 
@@ -42,6 +43,12 @@ public class TargetSelector
         AttackContext attack,
         PlayerContext target)
     {
+        if (attack.Weapon == null)
+        {
+            // some hack for so armour application can use this
+            return false;
+        }
+
         // Temp weapons are deflected if the target has HomeRun
         return attack.Weapon.Type == WeaponType.Temporary
             && modifier.Target == ModifierTarget.Other // Only ones that effect the other player - can't deflect needles

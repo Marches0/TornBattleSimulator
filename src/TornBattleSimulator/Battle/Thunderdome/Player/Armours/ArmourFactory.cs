@@ -1,5 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
+﻿using Spectre.Console;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
 using TornBattleSimulator.Options;
 
@@ -7,13 +8,20 @@ namespace TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 
 public class ArmourFactory
 {
-    Dictionary<string, ArmourCoverageOption> _armourCoverage;
+    private readonly ModifierFactory _modifierFactory;
+    private Dictionary<string, ArmourCoverageOption> _armourCoverage;
+    private Dictionary<ModifierType, double> _modifierSetBonus = new()
+    {
+        { ModifierType.Impregnable, 15 }
+    };
 
     public ArmourFactory(
-        List<ArmourCoverageOption> armourCoverage)
+        List<ArmourCoverageOption> armourCoverage,
+        ModifierFactory modifierFactory)
     {
         _armourCoverage = armourCoverage
             .ToDictionary(c => c.Name, StringComparer.InvariantCultureIgnoreCase);
+        _modifierFactory = modifierFactory;
     }
 
     public ArmourSetContext Create(ArmourSet armourSet)
@@ -26,7 +34,24 @@ public class ArmourFactory
             Create(armourSet.Boots),
         ];
 
-        return new ArmourSetContext(set.Where(a => a != null).ToList()!);
+
+        ArmourSetContext ctx = new(set.Where(a => a != null).ToList()!);
+        AddSetBonus(ctx);
+
+        return ctx;
+    }
+
+    private void AddSetBonus(ArmourSetContext armourSetContext)
+    {
+        // If you have a full set of the same modifier, you get a bonus one.
+        var modifiers = armourSetContext.PotentialModifiers
+            .GroupBy(m => m.Modifier.Effect)
+            .Where(x => x.Count() >= 5)
+            .IntersectBy(_modifierSetBonus.Keys, x => x.Key)
+            .Select(x => _modifierFactory.GetModifier(x.Key, _modifierSetBonus[x.Key]));
+
+        // Just add them to the first piece of armour, since it doesn't actually matter.
+        armourSetContext.Armour[0].PotentialModifiers.AddRange(modifiers);
     }
 
     private ArmourContext? Create(Armour? armour)
@@ -36,6 +61,10 @@ public class ArmourFactory
             return null;
         }
 
-        return new ArmourContext(armour.Rating / 100d, _armourCoverage[armour.Name].Coverage, new List<PotentialModifier>());
+        return new ArmourContext(
+            armour.Rating / 100d,
+            _armourCoverage[armour.Name].Coverage,
+            armour.Modifiers.Select(m => _modifierFactory.GetModifier(m.Type, m.Percent)).ToList()
+        );
     }
 }

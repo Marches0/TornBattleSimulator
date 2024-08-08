@@ -51,7 +51,29 @@
 			"armour": {
 				"helmet": {
 					"name": "combathelmet",
-					"rating": 39.5
+					"rating": 39.5,
+					"modifiers": [
+						{
+							"type": "impregnable",
+							"percent": 50
+						},
+						{
+							"type": "impregnable",
+							"percent": 50
+						},
+						{
+							"type": "impregnable",
+							"percent": 50
+						},
+						{
+							"type": "impregnable",
+							"percent": 50
+						},
+						{
+							"type": "impregnable",
+							"percent": 50
+						}
+					]
 				},
 				"body": {
 					"name": "combatvest",

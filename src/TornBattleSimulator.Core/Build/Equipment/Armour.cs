@@ -3,7 +3,8 @@
 public class Armour
 {
     public string Name { get; set; }
+
     public double Rating { get; set; }
 
-    // todo: modifiers. rename the weapon modifier classes
+    public List<ModifierDescription> Modifiers { get; set; }
 }

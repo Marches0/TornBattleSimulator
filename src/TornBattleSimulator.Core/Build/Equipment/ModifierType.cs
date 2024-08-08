@@ -25,6 +25,7 @@ public enum ModifierType
     Spray,
     Storage,
     Toxin,
+
     Achilles,
     Assassinate,
     Backstab,
@@ -74,6 +75,8 @@ public enum ModifierType
     Warlord,
     Weaken,
     WindUp,
-    Wither
+    Wither,
+
+    Impregnable
 }
 // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses

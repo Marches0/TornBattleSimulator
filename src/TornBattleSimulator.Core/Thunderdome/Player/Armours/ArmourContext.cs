@@ -11,11 +11,11 @@ public class ArmourContext
     {
         Rating = rating;
         Coverage = coverage;
-        Modifiers = modifiers;
+        PotentialModifiers = modifiers;
     }
 
     public double Rating { get; set; }
 
     public List<ArmourCoverage> Coverage { get; set; }
-    public List<PotentialModifier> Modifiers { get; set; }
+    public List<PotentialModifier> PotentialModifiers { get; set; }
 }
