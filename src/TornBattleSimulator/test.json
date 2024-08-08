@@ -19,12 +19,12 @@
 				},
 				"ammo": {
 					"magazines": 3,
-					"magazineSize": 6
+					"magazineSize": 60
 				},
 				"modifiers": [
 					{
-						"type": "frenzy",
-						"percent": 50
+						"type": "motivation",
+						"percent": 100
 					}
 				]
 			},
@@ -76,8 +76,7 @@
 					"reload": true,
 					"until": [
 						{
-							"condition": "effect",
-							"statusName": "wow",
+							"effect": "motivation",
 							"count": 2
 						}
 					]

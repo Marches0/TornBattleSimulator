@@ -96,8 +96,7 @@ public class SimulationBuilderTests
                     {
                         new StrategyUntilInput()
                         {
-                            Condition = "effect",
-                            StatusName = "bleed",
+                            Effect = "bleed",
                             Count = 1,
                         }
                     }

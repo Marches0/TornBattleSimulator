@@ -8,5 +8,5 @@ public class StrategyDescription
 
     public bool Reload { get; set; }
 
-    public List<StrategyUntil> Until { get; set; }
+    public List<StrategyUntil> Until { get; set; } = new();
 }

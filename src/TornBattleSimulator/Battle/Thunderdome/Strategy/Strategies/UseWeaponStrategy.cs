@@ -12,12 +12,16 @@ namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 public class UseWeaponStrategy : IStrategy
 {
     private readonly StrategyDescription _strategyDescription;
+    private readonly IUntilConditionResolver _untilConditionResolver;
 
     public WeaponType Weapon => _strategyDescription.Weapon;
 
-    public UseWeaponStrategy(StrategyDescription strategyDescription)
+    public UseWeaponStrategy(
+        StrategyDescription strategyDescription,
+        IUntilConditionResolver untilConditionResolver)
     {
         _strategyDescription = strategyDescription;
+        _untilConditionResolver = untilConditionResolver;
     }
 
     public TurnAction? GetMove(
@@ -27,6 +31,12 @@ public class UseWeaponStrategy : IStrategy
     {
         WeaponContext? weapon = GetWeapon(self);
         if (weapon == null)
+        {
+            return null;
+        }
+
+        if (_untilConditionResolver.Fulfilled(
+            new AttackContext(context, self, other, weapon, null), _strategyDescription))
         {
             return null;
         }

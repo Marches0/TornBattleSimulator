@@ -1,9 +1,12 @@
-﻿using FluentAssertions;
+﻿using FakeItEasy;
+using FluentAssertions;
 using FluentAssertions.Execution;
+using NUnit.Framework.Interfaces;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 using TornBattleSimulator.BonusModifiers.Actions;
 using TornBattleSimulator.BonusModifiers.Ammo;
 using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player;
@@ -33,6 +36,10 @@ public class UseWeaponStrategyTests
             Reload = testData.canReload
         };
 
+        var unfulfilledStrategy = A.Fake<IUntilConditionResolver>();
+        A.CallTo(() => unfulfilledStrategy.Fulfilled(A<AttackContext>._, A<StrategyDescription>._))
+            .Returns(false);
+
         WeaponContext weapon = new WeaponContextBuilder()
             .OfType(testData.weaponType)
             .WithModifiers(testData.weaponModifiers)
@@ -44,7 +51,7 @@ public class UseWeaponStrategyTests
             .WithWeapon(weapon)
             .Build();
 
-        var useWeapon = new UseWeaponStrategy(strategy);
+        var useWeapon = new UseWeaponStrategy(strategy, unfulfilledStrategy);
 
         TurnAction? action = useWeapon.GetMove(
             new ThunderdomeContextBuilder().Build(),
@@ -64,6 +71,45 @@ public class UseWeaponStrategyTests
                 action.Action.Should().Be(testData.expected);
                 action.Weapon.Should().Be(weapon);
             }
+        }
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public void GetMove_BasedOnStrategyFulfillment_ReturnsMove(bool fulfilled)
+    {
+        // Arrange
+        StrategyDescription strategy = new()
+        {
+            Weapon = WeaponType.Melee
+        };
+
+        WeaponContext weapon = new WeaponContextBuilder()
+            .OfType(WeaponType.Melee)
+            .Build();
+
+        weapon.Ammo = null;
+
+        PlayerContext active = new PlayerContextBuilder()
+            .WithWeapon(weapon)
+            .Build();
+
+        var strategyFulfullment = A.Fake<IUntilConditionResolver>();
+        A.CallTo(() => strategyFulfullment.Fulfilled(A<AttackContext>._, A<StrategyDescription>._))
+            .Returns(fulfilled);
+
+        var action = new UseWeaponStrategy(strategy, strategyFulfullment)
+            .GetMove(new ThunderdomeContextBuilder().Build(), active, new PlayerContextBuilder().Build()
+        );
+
+        // Assert
+        if (fulfilled)
+        {
+            action.Should().BeNull();
+        }
+        else
+        {
+            action.Action.Should().Be(BattleAction.Attack);
         }
     }
 

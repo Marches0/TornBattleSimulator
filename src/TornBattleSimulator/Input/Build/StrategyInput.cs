@@ -9,7 +9,6 @@ public class StrategyInput
 
 public class StrategyUntilInput
 {
-    public string? Condition { get; set; }
-    public string? StatusName { get; set; }
+    public string? Effect { get; set; }
     public int? Count { get; set; }
 }

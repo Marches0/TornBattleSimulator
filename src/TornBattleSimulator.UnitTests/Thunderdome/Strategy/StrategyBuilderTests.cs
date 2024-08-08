@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using FakeItEasy;
+using FluentAssertions;
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Strategy;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
@@ -48,7 +49,7 @@ public class StrategyBuilderTests
         };
 
         // Act
-        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder(new MissTurnStrategy(FixedChanceSource.AlwaysSucceeds)).BuildStrategy(build);
+        CompositeStrategy strategy = (CompositeStrategy)new StrategyBuilder(new MissTurnStrategy(FixedChanceSource.AlwaysSucceeds), A.Fake<IUntilConditionResolver>()).BuildStrategy(build);
 
         // Assert
         using (new AssertionScope())

@@ -13,5 +13,8 @@ public class StrategyModule : Module
 
         builder.RegisterType<MissTurnStrategy>()
             .As<MissTurnStrategy>();
+
+        builder.RegisterType<UntilConditionResolver>()
+            .As<IUntilConditionResolver>();
     }
 }
