@@ -14,5 +14,6 @@ public enum BattleAction
     DisarmPrimary,
     DisarmSecondary,
     DisarmMelee,
-    MissedTurn
+    MissedTurn,
+    ReplenishTemporary
 }

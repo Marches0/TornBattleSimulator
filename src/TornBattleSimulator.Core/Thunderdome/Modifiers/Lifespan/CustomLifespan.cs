@@ -1,4 +1,6 @@
-﻿namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+
+namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
 /// <summary>
 ///  A <see cref="ModifierLifespanType.Custom"/> <see cref="IModifierLifespan"/>.
@@ -9,7 +11,7 @@ public class CustomLifespan : IModifierLifespan
 
     public float Remaining => 1f;
 
-    public void SetExpiry(AttackContext attack, IOwnedLifespan modifier)
+    public void SetExpiry(AttackResult? attack, IOwnedLifespan modifier)
     {
         Expired = modifier.Expired(attack);
     }

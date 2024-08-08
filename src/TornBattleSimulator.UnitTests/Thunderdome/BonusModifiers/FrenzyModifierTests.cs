@@ -35,24 +35,8 @@ public class FrenzyModifierTests
     {
         // Arrange
         FrenzyModifier frenzy = new FrenzyModifier(1);
-        WeaponContext weapon = new WeaponContextBuilder()
-            .WithModifier(frenzy)
-            .WithModifier(frenzy)
-            .Build();
-
-        PlayerContext active = new PlayerContextBuilder()
-            .WithPrimary(weapon)
-            .Build();
-
-        PlayerContext other = new PlayerContextBuilder().Build();
-        AttackContext attack = new AttackContext(
-            new ThunderdomeContextBuilder().WithParticipants(active, other).Build(),
-            active,
-            other,
-            weapon,
-            new AttackResult(isHit, 1, new DamageResult(1, 0, 0)));
 
         // Act
-        frenzy.Expired(attack).Should().Be(expired);
+        frenzy.Expired(new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
     }
 }

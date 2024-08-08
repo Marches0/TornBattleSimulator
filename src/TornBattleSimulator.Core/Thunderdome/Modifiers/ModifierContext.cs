@@ -54,25 +54,6 @@ public class ModifierContext : IModifierContext
     }
 
     /// <inheritdoc/>
-    public void AttackComplete(AttackContext attack)
-    {
-        // Should this be in ITickable? Would require
-        // rearranging bits to include Attack in some events
-        var customExpired = _activeModifiers
-            .Where(am => am.Modifier.Lifespan.LifespanType == ModifierLifespanType.Custom)
-            .Select(am => new
-            {
-                Lifespan = (CustomLifespan)am.CurrentLifespan,
-                Modifier = (IOwnedLifespan)am.Modifier
-            });
-            
-        foreach (var custom in customExpired)
-        {
-            custom.Lifespan.SetExpiry(attack, custom.Modifier);
-        }
-    }
-
-    /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context)
     {
         foreach (ITickable tickable in _tickables)
@@ -102,6 +83,19 @@ public class ModifierContext : IModifierContext
             tickable.OwnActionComplete(context);
         }
 
+        var customExpired = _activeModifiers
+            .Where(am => am.Modifier.Lifespan.LifespanType == ModifierLifespanType.Custom)
+            .Select(am => new
+            {
+                Lifespan = (CustomLifespan)am.CurrentLifespan,
+                Modifier = (IOwnedLifespan)am.Modifier
+            });
+
+        foreach (var custom in customExpired)
+        {
+            custom.Lifespan.SetExpiry(_self.LastAttack, custom.Modifier);
+        }
+
         ExpireModifiers(context);
     }
 
@@ -114,6 +108,11 @@ public class ModifierContext : IModifierContext
         }
 
         ExpireModifiers(context);
+    }
+
+    private void ExpireCustom()
+    {
+
     }
 
     private bool AddExclusive(IExclusiveModifier exclusive)

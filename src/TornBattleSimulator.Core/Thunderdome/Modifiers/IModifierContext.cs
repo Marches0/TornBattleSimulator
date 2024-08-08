@@ -26,9 +26,4 @@ public interface IModifierContext : ITickable
     /// <param name="attackResult">The attack made by the active player, if applicable.</param>
     /// <returns><see langword="true"/> if the modifier was added, otherwise <see langword="false"/>.</returns>
     bool AddModifier(IModifier modifier, AttackResult? attackResult);
-
-    /// <summary>
-    ///  Processes post-attack events.
-    /// </summary>
-    void AttackComplete(AttackContext attack);
 }

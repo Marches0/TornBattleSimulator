@@ -105,7 +105,7 @@ public class ModifierContextTests
     }
 
     [Test]
-    public void AttackComplete_MarksCustomModifiersWithExpiry()
+    public void OwnActionComplete_MarksCustomModifiersWithExpiry()
     {
         // Arrange
         TestOwnedLifespanModifier expired = new(true);
@@ -125,8 +125,7 @@ public class ModifierContextTests
         modifierContext.Active.Should().HaveCount(2);
 
         // Act
-        modifierContext.AttackComplete(null);
-        modifierContext.TurnComplete(context);
+        modifierContext.OwnActionComplete(context);
 
         // Assert
         modifierContext.Active.Should().OnlyContain(m => m == active);

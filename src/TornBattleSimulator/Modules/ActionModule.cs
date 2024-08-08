@@ -21,6 +21,9 @@ public class ActionModule : Module
         builder.RegisterType<MissTurnAction>()
             .Keyed<IAction>(BattleAction.MissedTurn);
 
+        builder.RegisterType<ReplenishTemporaryAction>()
+            .Keyed<IAction>(BattleAction.ReplenishTemporary);
+
         builder.RegisterType<WeaponUsage>()
             .As<IWeaponUsage>();
 

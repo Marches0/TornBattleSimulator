@@ -33,24 +33,8 @@ public class FocusModifierTests
     {
         // Arrange
         FocusModifier focus = new FocusModifier(1);
-        WeaponContext weapon = new WeaponContextBuilder()
-            .WithModifier(focus)
-            .WithModifier(focus)
-            .Build();
-
-        PlayerContext active = new PlayerContextBuilder()
-            .WithPrimary(weapon)
-            .Build();
-
-        PlayerContext other = new PlayerContextBuilder().Build();
-        AttackContext attack = new AttackContext(
-            new ThunderdomeContextBuilder().WithParticipants(active, other).Build(),
-            active,
-            other,
-            weapon,
-            new AttackResult(isHit, 1, new DamageResult(1, 0, 0)));
 
         // Act
-        focus.Expired(attack).Should().Be(expired);
+        focus.Expired(new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
     }
 }

@@ -45,7 +45,7 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
     public bool CanActivate(AttackContext attack) => attack.AttackResult!.Hit;
 
     /// <inheritdoc/>
-    public bool Expired(AttackContext attack) => attack.AttackResult!.Hit == false;
+    public bool Expired(AttackResult? attack) => attack == null || attack!.Hit == false;
 
     /// <inheritdoc/>
     public double GetAccuracyModifier(

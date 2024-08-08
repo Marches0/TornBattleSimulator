@@ -1,5 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
@@ -28,5 +28,5 @@ public class StorageModifier : IModifier, IOwnedLifespan
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.None;
 
     /// <inheritdoc/>
-    public bool Expired(AttackContext attack) => Consumed;
+    public bool Expired(AttackResult? attack) => Consumed;
 }

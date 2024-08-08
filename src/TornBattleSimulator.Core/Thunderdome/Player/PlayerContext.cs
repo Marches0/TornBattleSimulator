@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Actions;
+using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
@@ -50,6 +51,8 @@ public class PlayerContext : ITickable
     public PlayerType PlayerType { get; }
 
     public WeaponContext? ActiveWeapon { get; set; }
+
+    public AttackResult? LastAttack { get; set; }
 
     /// <summary>
     ///  The actions taken by this player over the course

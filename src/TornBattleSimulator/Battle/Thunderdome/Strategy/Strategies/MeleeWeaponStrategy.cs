@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome;
+﻿using TornBattleSimulator.BonusModifiers.Ammo;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
@@ -20,9 +21,15 @@ public class MeleeWeaponStrategy : ChargeableWeaponStrategy, IStrategy
         {
             return BattleAction.DisarmMelee;
         }
-        else if (NeedsCharge(self.Weapons.Melee!))
+
+        if (NeedsCharge(self.Weapons.Melee!))
         {
             return BattleAction.ChargeMelee;
+        }
+
+        if (self.Weapons.Melee!.Modifiers.Active.OfType<StorageModifier>().Any())
+        {
+            return BattleAction.ReplenishTemporary;
         }
 
         return BattleAction.AttackMelee;
