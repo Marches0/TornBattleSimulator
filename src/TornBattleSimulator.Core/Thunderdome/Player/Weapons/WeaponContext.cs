@@ -29,7 +29,7 @@ public class WeaponContext : ITickable
 
     public Weapon Description { get; }
     public WeaponType Type { get; }
-    public CurrentAmmo? Ammo { get; }
+    public CurrentAmmo? Ammo { get; set; }
     public bool CanReload => Ammo?.MagazinesRemaining > 0;
     public bool RequiresReload => Ammo?.MagazineAmmoRemaining == 0;
 
