@@ -37,4 +37,12 @@ public interface IModifier
     ///  How this modifier interacts with its associated value.
     /// </summary>
     public ModifierValueBehaviour ValueBehaviour { get; }
+
+    /// <summary>
+    ///  How many times this specific modifier is in effect.
+    /// </summary>
+    /// <remarks>
+    ///  Stackable modifiers may return more than 1.
+    /// </remarks>
+    public int Count => 1;
 }

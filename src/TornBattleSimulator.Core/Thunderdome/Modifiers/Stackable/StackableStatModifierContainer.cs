@@ -49,6 +49,8 @@ public class StackableStatModifierContainer : IStatsModifier, IModifierLifespan
 
     public ModifierType Effect => Modifier.Effect;
 
+    public int Count => Stacks;
+
     public double GetDefenceModifier() => GetStackedModifier(Modifier.GetDefenceModifier());
 
     public double GetDexterityModifier() => GetStackedModifier(Modifier.GetDexterityModifier());

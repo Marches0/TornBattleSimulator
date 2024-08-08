@@ -19,14 +19,15 @@ public class UntilConditionResolver : IUntilConditionResolver
         // For other - check on them.
         // Have to retrieve the modifiers first, so we can check against the
         // target on the instance.
-        var selfFulfilled = attack.Active.Modifiers.Active.Concat(attack.Weapon.Modifiers.Active)
+        IEnumerable<IModifier> selfFulfilled = attack.Active.Modifiers.Active.Concat(attack.Weapon.Modifiers.Active)
             .Where(m => m.Effect == condition.Effect 
                      && m.Target is ModifierTarget.Self or ModifierTarget.SelfWeapon);
 
-        var otherFulfilled = attack.Other.Modifiers.Active.Concat(attack.Other.ActiveWeapon?.Modifiers.Active ?? Enumerable.Empty<IModifier>())
+        IEnumerable<IModifier> otherFulfilled = attack.Other.Modifiers.Active.Concat(attack.Other.ActiveWeapon?.Modifiers.Active ?? Enumerable.Empty<IModifier>())
             .Where(m => m.Effect == condition.Effect
                      && m.Target is ModifierTarget.Other or ModifierTarget.OtherWeapon);
 
-        return selfFulfilled.Any() || otherFulfilled.Any();
+        return selfFulfilled.Sum(m => m.Count)  >= condition.Count 
+            || otherFulfilled.Sum(m => m.Count) >= condition.Count;
     }
 }

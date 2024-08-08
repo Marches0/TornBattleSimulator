@@ -10,11 +10,12 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Strategy;
 [TestFixture]
 public class UntilConditionResolverTests
 {
-    [TestCaseSource(nameof(Fulfilled_BasedOnModifierTargetAndActualTarget_ReturnsFulfilled_TestCases))]
+    [TestCaseSource(nameof(Fulfilled_BasedOnModifierTargetActualTargetAndCount_ReturnsFulfilled_TestCases))]
     public void Fulfilled_BasedOnModifierTargetAndActualTarget_ReturnsFulfilled((
         List<IModifier> selfModifiers,
         List<IModifier> otherModifiers,
         ModifierTarget target,
+        int targetCount,
         bool expected,
         string testName
     ) testData)
@@ -23,7 +24,7 @@ public class UntilConditionResolverTests
         TestTargetModifier modifier = new TestTargetModifier(testData.target);
         StrategyDescription strategy = new StrategyDescription()
         {
-            Until = [new StrategyUntil() { Effect = modifier.Effect }]
+            Until = [new StrategyUntil() { Effect = modifier.Effect, Count = testData.targetCount }],
         };
 
         PlayerContext active = new PlayerContextBuilder()
@@ -55,14 +56,16 @@ public class UntilConditionResolverTests
         List<IModifier> selfModifiers,
         List<IModifier> otherModifiers,
         ModifierTarget target,
+        int targetCount,
         bool expected,
         string testName
-    )> Fulfilled_BasedOnModifierTargetAndActualTarget_ReturnsFulfilled_TestCases()
+    )> Fulfilled_BasedOnModifierTargetActualTargetAndCount_ReturnsFulfilled_TestCases()
     {
         yield return (
             [],
             [],
             ModifierTarget.Self,
+            1,
             false,
             "Nothing applied - false"
         );
@@ -71,6 +74,7 @@ public class UntilConditionResolverTests
             [new TestTargetModifier(ModifierTarget.Self)],
             [],
             ModifierTarget.Self,
+            1,
             true,
             "Applied to self on self modifier - true"
         );
@@ -79,6 +83,7 @@ public class UntilConditionResolverTests
             [],
             [new TestTargetModifier(ModifierTarget.Self)],
             ModifierTarget.Self,
+            1,
             false,
             "Applied to other on self modifier - false"
         );
@@ -87,6 +92,7 @@ public class UntilConditionResolverTests
             [],
             [new TestTargetModifier(ModifierTarget.Other)],
             ModifierTarget.Other,
+            1,
             true,
             "Applied to other on other modifier - true"
         );
@@ -95,8 +101,36 @@ public class UntilConditionResolverTests
             [new TestTargetModifier(ModifierTarget.Other)],
             [],
             ModifierTarget.Other,
+            1,
             false,
             "Applied to self on other modifier - false"
+        );
+
+        yield return (
+            [new TestTargetModifier(ModifierTarget.Self)],
+            [],
+            ModifierTarget.Self,
+            2,
+            false,
+            "1 modifier where 2 wanted - false"
+        );
+
+        yield return (
+            [new TestTargetModifier(ModifierTarget.Self), new TestTargetModifier(ModifierTarget.Self)],
+            [],
+            ModifierTarget.Self,
+            2,
+            true,
+            "2 modifiers where 2 wanted - true"
+        );
+
+        yield return (
+            [new TestTargetModifier(ModifierTarget.Self), new TestTargetModifier(ModifierTarget.Self), new TestTargetModifier(ModifierTarget.Self)],
+            [],
+            ModifierTarget.Self,
+            2,
+            true,
+            "3 modifiers where 2 wanted - true"
         );
     }
 }
