@@ -18,19 +18,7 @@ public class StrategyBuilder
     {
         // Turn Miss is automatically the highest priority strategy, so
         // we don't act when it's applied.
-        List<IStrategy> strategies = [_missTurn, .. build.Strategy.Select(BuildStrategy)];
+        List<IStrategy> strategies = [_missTurn, .. build.Strategy.Select(s => new UseWeaponStrategy(s))];
         return new CompositeStrategy(strategies);
-    }
-
-    private IStrategy BuildStrategy(StrategyDescription strategyDescription)
-    {
-        return strategyDescription.Weapon switch
-        {
-            WeaponType.Primary => new PrimaryWeaponStrategy(strategyDescription),
-            WeaponType.Secondary => new SecondaryWeaponStrategy(strategyDescription),
-            WeaponType.Melee => new MeleeWeaponStrategy(strategyDescription),
-            WeaponType.Temporary => new TemporaryWeaponStrategy(strategyDescription),
-            _ => throw new NotImplementedException($"Strategy {strategyDescription.Weapon}")
-        };
     }
 }

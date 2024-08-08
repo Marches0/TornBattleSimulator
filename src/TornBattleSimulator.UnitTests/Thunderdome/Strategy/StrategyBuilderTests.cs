@@ -39,6 +39,10 @@ public class StrategyBuilderTests
                 new()
                 {
                     Weapon = WeaponType.Secondary
+                },
+                new()
+                {
+                    Weapon = WeaponType.Temporary
                 }
             }
         };
@@ -50,11 +54,18 @@ public class StrategyBuilderTests
         using (new AssertionScope())
         {
             strategy.Inner[0].Should().BeOfType<MissTurnStrategy>();
-            strategy.Inner[1].Should().BeOfType<PrimaryWeaponStrategy>();
-            strategy.Inner[2].Should().BeOfType<SecondaryWeaponStrategy>();
-            strategy.Inner[3].Should().BeOfType<PrimaryWeaponStrategy>();
-            strategy.Inner[4].Should().BeOfType<MeleeWeaponStrategy>();
-            strategy.Inner[5].Should().BeOfType<SecondaryWeaponStrategy>();
+            strategy.Inner[1].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Primary));
+            strategy.Inner[2].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Secondary));
+            strategy.Inner[3].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Primary));
+            strategy.Inner[4].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Melee));
+            strategy.Inner[5].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Secondary));
+            strategy.Inner[6].Should().Match(s => IsUseWeaponStrategy(s, WeaponType.Temporary));
         }
+    }
+
+    private bool IsUseWeaponStrategy(object strategy, WeaponType weaponType)
+    {
+        return strategy is UseWeaponStrategy s 
+            && s.Weapon == weaponType;
     }
 }
