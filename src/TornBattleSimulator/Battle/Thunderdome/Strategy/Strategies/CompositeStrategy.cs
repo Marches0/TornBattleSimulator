@@ -1,5 +1,4 @@
 ﻿using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
 
@@ -14,10 +13,10 @@ public class CompositeStrategy : IStrategy
         Inner = inner;
     }
 
-    public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
+    public TurnAction GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
         return Inner
             .Select(s => s.GetMove(context, self, other))
-            .First(m => m != null);
+            .First(m => m != null)!;
     }
 }

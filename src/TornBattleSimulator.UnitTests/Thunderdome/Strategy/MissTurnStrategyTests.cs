@@ -30,14 +30,14 @@ public class MissTurnStrategyTests
         self.Modifiers.AddModifier(testData.modifier, null);
 
         // Act
-        var action = missTurn.GetMove(
+        var turn = missTurn.GetMove(
             new ThunderdomeContextBuilder().Build(),
             self,
             new PlayerContextBuilder().Build()
         );
 
         // Assert
-        action.Should().Be(testData.expected);
+        turn?.Action.Should().Be(testData.expected);
     }
 
     private static IEnumerable<(

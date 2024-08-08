@@ -7,6 +7,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;
 
@@ -49,24 +50,11 @@ public class FinaleModifier : IDamageModifier, IModifier
     {
         // Finale: For every turn that this weapon wasn't used,
         // add a stack of value.
-        List<BattleAction> weaponActions = GetUsageActions(weapon);
-
         int actionsSinceWeaponUsedCount = active.Actions
-            .Reverse<BattleAction>() // Latest actions at end
-            .TakeWhile(a => !weaponActions.Contains(a))
+            .Reverse<TurnActionHistory>() // Latest actions at end
+            .TakeWhile(a => a.Weapon != weapon.Type)
             .Count();
 
         return 1 + (actionsSinceWeaponUsedCount * _value);
-    }
-
-    private List<BattleAction> GetUsageActions(WeaponContext weapon)
-    {
-        return weapon.Type switch
-        {
-            WeaponType.Primary => [ BattleAction.AttackPrimary, BattleAction.ReloadPrimary, BattleAction.ChargePrimary ],
-            WeaponType.Secondary => [BattleAction.AttackSecondary, BattleAction.ReloadSecondary, BattleAction.ChargeSecondary],
-            WeaponType.Melee => [BattleAction.AttackMelee, BattleAction.ChargeMelee],
-            _ => throw new ArgumentOutOfRangeException($"{weapon.Type} is not valid for {nameof(FinaleModifier)}")
-        };
     }
 }

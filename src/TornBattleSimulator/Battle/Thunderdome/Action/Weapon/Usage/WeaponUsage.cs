@@ -28,25 +28,22 @@ public class WeaponUsage : IWeaponUsage
         _damageProcessor = damageProcessor;
     }
 
-    public List<ThunderdomeEvent> UseWeapon(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
+    public List<ThunderdomeEvent> UseWeapon(AttackContext attack)
     {
-        active.ActiveWeapon = weapon;
+        attack.Active.ActiveWeapon = attack.Weapon;
 
-        List<ThunderdomeEvent> events = UseWeapon(context, active, other, weapon, false);
+        List<ThunderdomeEvent> events = UseWeapon(attack, false);
 
-        Func<List<ThunderdomeEvent>> bonusAttackAction = () => UseWeapon(context, active, other, weapon, true);
-        foreach (IAttacksModifier attackModifier in active.Modifiers.Active.Concat(weapon.Modifiers.Active).OfType<IAttacksModifier>())
+        Func<List<ThunderdomeEvent>> bonusAttackAction = () => UseWeapon(attack, true);
+        foreach (IAttacksModifier attackModifier in attack.Active.Modifiers.Active.Concat(attack.Weapon.Modifiers.Active).OfType<IAttacksModifier>())
         {
+            // todo this bit use attackcontext
             events.AddRange(
-                _attackModifierApplier.MakeBonusAttacks(attackModifier, context, active, other, weapon, bonusAttackAction)
+                _attackModifierApplier.MakeBonusAttacks(attackModifier, attack.Context, attack.Active, attack.Other, attack.Weapon, bonusAttackAction)
             );
         }
 
-        foreach (ChargedModifierContainer charge in weapon.Modifiers.ChargeModifiers)
+        foreach (ChargedModifierContainer charge in attack.Weapon.Modifiers.ChargeModifiers)
         {
             charge.Charged = false;
         }
@@ -55,19 +52,15 @@ public class WeaponUsage : IWeaponUsage
     }
 
     private List<ThunderdomeEvent> UseWeapon(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
+        AttackContext attack,
         bool bonusAction)
     {
-        if (weapon.Ammo != null && weapon.Ammo.MagazineAmmoRemaining == 0)
+        if (attack.Weapon.Ammo != null && attack.Weapon.Ammo.MagazineAmmoRemaining == 0)
         {
             throw new InvalidOperationException("Cannot use loaded weapon without ammo.");
         }
 
         List<ThunderdomeEvent> events = new();
-        AttackContext attack = new AttackContext(context, active, other, weapon, null);
 
         // Modifiers can't trigger on bonus actions
         if (!bonusAction)
@@ -84,12 +77,12 @@ public class WeaponUsage : IWeaponUsage
             events.AddRange(_modifierRoller.ApplyPostActionModifiers(attack));
         }
 
-        if (weapon.Ammo != null)
+        if (attack.Weapon.Ammo != null)
         {
-            weapon.Ammo.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(active, weapon);
+            attack.Weapon.Ammo.MagazineAmmoRemaining = _ammoCalculator.GetAmmoRemaining(attack.Active, attack.Weapon);
         }
 
-        active.LastAttack = attack.AttackResult;
+        attack.Active.LastAttack = attack.AttackResult;
         return events;
     }
 }

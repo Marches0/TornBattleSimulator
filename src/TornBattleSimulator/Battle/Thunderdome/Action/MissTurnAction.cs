@@ -9,11 +9,8 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action;
 
 public class MissTurnAction : IAction
 {
-    public List<ThunderdomeEvent> PerformAction(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other)
+    public List<ThunderdomeEvent> PerformAction(AttackContext attack)
     {
-        return [ context.CreateEvent(active, ThunderdomeEventType.MissedTurn, new MissedTurn()) ];
+        return [ attack.Context.CreateEvent(attack.Active, ThunderdomeEventType.MissedTurn, new MissedTurn()) ];
     }
 }

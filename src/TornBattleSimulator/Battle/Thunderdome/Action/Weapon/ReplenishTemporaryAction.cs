@@ -10,17 +10,16 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;
 
 public class ReplenishTemporaryAction : IAction
 {
-    public List<ThunderdomeEvent> PerformAction(ThunderdomeContext context, PlayerContext active, PlayerContext other)
+    public List<ThunderdomeEvent> PerformAction(AttackContext attack)
     {
-        if (active.Weapons.Temporary != null)
+        if (attack.Active.Weapons.Temporary != null)
         {
-            active.Weapons.Temporary.Ammo.MagazineAmmoRemaining = 1;
+            attack.Active.Weapons.Temporary.Ammo!.MagazineAmmoRemaining = 1;
         }
 
-        // todo: get the correct weapon? maybe inject into IAction.
-        var storage = active.Weapons.Melee.Modifiers.Active.OfType<StorageModifier>().First();
+        StorageModifier storage = attack.Weapon.Modifiers.Active.OfType<StorageModifier>().First();
         storage.Consumed = true;
 
-        return [context.CreateEvent(active, ThunderdomeEventType.ReplenishTemporary, new ReplenishedTemporaryData())];
+        return [ attack.Context.CreateEvent(attack.Active, ThunderdomeEventType.ReplenishTemporary, new ReplenishedTemporaryData()) ];
     }
 }

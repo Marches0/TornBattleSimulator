@@ -45,10 +45,13 @@ public class AttackContextBuilder
 
     public AttackContext Build()
     {
+        var active = _active ?? new PlayerContextBuilder().Build();
+        var other = _other ?? new PlayerContextBuilder().Build();
+
         return new AttackContext(
-            _context ?? new ThunderdomeContextBuilder().Build(),
-            _active ?? new PlayerContextBuilder().Build(),
-            _other ?? new PlayerContextBuilder().Build(),
+            _context ?? new ThunderdomeContextBuilder().WithParticipants(active, other).Build(),
+            active,
+            other,
             _weapon ?? new WeaponContextBuilder().Build(),
             _attack
         );

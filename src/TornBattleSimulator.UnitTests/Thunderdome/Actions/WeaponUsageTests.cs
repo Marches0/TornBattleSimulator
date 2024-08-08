@@ -36,9 +36,16 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         WeaponUsage weaponUsage = autoFake.Resolve<WeaponUsage>();
 
+        var attack = new AttackContextBuilder()
+            .WithContext(new ThunderdomeContext(attacker, defender))
+            .WithActive(attacker)
+            .WithOther(defender)
+            .WithWeapon(attacker.Weapons.Primary)
+            .Build();
+
         // Act
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Primary.Ammo.MagazineSize);
-        weaponUsage.UseWeapon(new ThunderdomeContext(attacker, defender), attacker, defender, attacker.Weapons.Primary);
+        weaponUsage.UseWeapon(attack);
 
         // Assert
         using (new AssertionScope())
@@ -69,9 +76,16 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         WeaponUsage weaponUsage = autoFake.Resolve<WeaponUsage>();
 
+        var attack = new AttackContextBuilder()
+            .WithContext(new ThunderdomeContext(attacker, defender))
+            .WithActive(attacker)
+            .WithOther(defender)
+            .WithWeapon(attacker.Weapons.Primary)
+            .Build();
+
         // Act
         attacker.Weapons.Primary!.Ammo.MagazineAmmoRemaining.Should().Be(attacker.Weapons.Primary.Ammo.MagazineSize);
-        weaponUsage.UseWeapon(new ThunderdomeContext(attacker, defender), attacker, defender, attacker.Weapons.Primary);
+        weaponUsage.UseWeapon(attack);
 
         // Assert
         using (new AssertionScope())
@@ -96,8 +110,15 @@ public class WeaponUsageTests : LoadableWeaponTests
 
         WeaponUsage weaponUsage = autoFake.Resolve<WeaponUsage>();
 
+        var attack = new AttackContextBuilder()
+            .WithContext(new ThunderdomeContext(attacker, defender))
+            .WithActive(attacker)
+            .WithOther(defender)
+            .WithWeapon(attacker.Weapons.Melee)
+            .Build();
+
         // Act
-        weaponUsage.UseWeapon(new ThunderdomeContext(attacker, defender), attacker, defender, attacker.Weapons.Melee!);
+        weaponUsage.UseWeapon(attack);
 
         // Assert
         using (new AssertionScope())

@@ -2,6 +2,7 @@
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
@@ -15,23 +16,25 @@ public class MeleeWeaponStrategy : ChargeableWeaponStrategy, IStrategy
         _strategyDescription = strategyDescription;
     }
 
-    public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
+    public TurnAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
-        if (Disarmed(self.Weapons.Melee!))
+        WeaponContext weapon = self.Weapons.Melee!;
+
+        if (Disarmed(weapon))
         {
-            return BattleAction.DisarmMelee;
+            return new(BattleAction.Disarmed, self.Weapons.Melee);
         }
 
-        if (NeedsCharge(self.Weapons.Melee!))
+        if (NeedsCharge(weapon))
         {
-            return BattleAction.ChargeMelee;
+            return new(BattleAction.Charge, self.Weapons.Melee);
         }
 
-        if (self.Weapons.Melee!.Modifiers.Active.OfType<StorageModifier>().Any())
+        if (weapon.Modifiers.Active.OfType<StorageModifier>().Any())
         {
-            return BattleAction.ReplenishTemporary;
+            return new(BattleAction.ReplenishTemporary, self.Weapons.Melee);
         }
 
-        return BattleAction.AttackMelee;
+        return new(BattleAction.Attack, self.Weapons.Melee);
     }
 }

@@ -16,7 +16,7 @@ public class CompositeStrategyTests
     public void CompositeStrategy_UsesFirstAcceptableStrategy()
     {
         // Arrange
-        BattleAction expected = BattleAction.UseTemporary;
+        TurnAction expected = new(BattleAction.Attack, null);
 
         IStrategy firstUnusable = NullStrategy(A.Fake<IStrategy>());
         IStrategy secondUnusable = NullStrategy(A.Fake<IStrategy>());
@@ -33,7 +33,7 @@ public class CompositeStrategyTests
         CompositeStrategy compositeStrategy = new CompositeStrategy([firstUnusable, secondUnusable, firstUsable, firstIgnored]);
 
         // Act
-        BattleAction? action = compositeStrategy.GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
+        var action = compositeStrategy.GetMove(new ThunderdomeContext(attacker, defender), attacker, defender);
 
         // Assert
         using (new AssertionScope())

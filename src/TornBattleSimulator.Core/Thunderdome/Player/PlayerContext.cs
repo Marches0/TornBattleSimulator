@@ -58,7 +58,7 @@ public class PlayerContext : ITickable
     ///  The actions taken by this player over the course
     ///  of the fight.
     /// </summary>
-    public List<BattleAction> Actions { get; } = new();
+    public List<TurnActionHistory> Actions { get; } = new();
 
     /// <summary>
     ///  The build's current stats.

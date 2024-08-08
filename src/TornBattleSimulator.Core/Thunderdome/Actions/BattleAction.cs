@@ -2,18 +2,10 @@
 
 public enum BattleAction
 {
-    AttackPrimary = 1,
-    AttackSecondary,
-    AttackMelee,
-    UseTemporary,
-    ReloadPrimary,
-    ReloadSecondary,
-    ChargePrimary,
-    ChargeSecondary,
-    ChargeMelee,
-    DisarmPrimary,
-    DisarmSecondary,
-    DisarmMelee,
+    Attack = 1,
+    Reload,
+    Charge,
+    Disarmed,
     MissedTurn,
-    ReplenishTemporary
+    ReplenishTemporary,
 }

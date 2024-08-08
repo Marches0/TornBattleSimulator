@@ -1,6 +1,7 @@
 ﻿using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
@@ -13,19 +14,25 @@ public class PrimaryWeaponStrategy : LoadableWeaponStrategy, IStrategy
 
     }
 
-    public BattleAction? GetMove(
+    public TurnAction? GetMove(
         ThunderdomeContext context,
         PlayerContext self,
         PlayerContext other)
     {
-        return GetMove(context, self, other, self.Weapons.Primary!) switch
+        WeaponContext weapon = self.Weapons.Primary!;
+
+        BattleAction? action = GetMove(context, self, other, weapon) switch
         {
-            { } when Disarmed(self.Weapons.Primary!) => BattleAction.DisarmPrimary,
-            { } when NeedsCharge(self.Weapons.Primary!) => BattleAction.ChargePrimary,
-            LoadableWeaponAction.Attack => BattleAction.AttackPrimary,
-            LoadableWeaponAction.Reload => BattleAction.ReloadPrimary,
+            { } when Disarmed(weapon) => BattleAction.Disarmed,
+            { } when NeedsCharge(weapon) => BattleAction.Charge,
+            LoadableWeaponAction.Attack => BattleAction.Attack,
+            LoadableWeaponAction.Reload => BattleAction.Reload,
             null => null,
             var x => throw new ArgumentOutOfRangeException($"{x} is not a valid value.")
         };
+
+        return action != null
+            ? new TurnAction(action.Value, weapon)
+            : null;
     }
 }

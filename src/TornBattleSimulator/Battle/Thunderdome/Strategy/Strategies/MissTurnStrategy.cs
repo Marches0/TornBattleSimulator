@@ -16,10 +16,10 @@ public class MissTurnStrategy : IStrategy
         _chanceSource = chanceSource;
     }
 
-    public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
+    public TurnAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
         return IsShocked(self) || IsParalysed(self) || IsStunned(self) || IsSuppressed(self)
-            ? BattleAction.MissedTurn
+            ? new (BattleAction.MissedTurn, null)
             : null;
     }
 

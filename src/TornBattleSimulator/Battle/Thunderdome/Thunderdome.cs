@@ -9,6 +9,7 @@ using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
+using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.Battle.Thunderdome;
 
@@ -64,12 +65,12 @@ public class Thunderdome
 
     private void MakeMove(PlayerContext active, PlayerContext other)
     {
-        BattleAction move = active.Strategy.GetMove(_context, active, other)!.Value;
+        TurnAction move = active.Strategy.GetMove(_context, active, other)!;
 
-        IAction action = _actions[active.Strategy.GetMove(_context, active, other)!.Value];
-        List<ThunderdomeEvent> result = action.PerformAction(_context, active, other);
+        IAction action = _actions[active.Strategy.GetMove(_context, active, other).Action!.Value];
+        List<ThunderdomeEvent> result = action.PerformAction(new AttackContext(_context, active, other, move.Weapon!, null)); // check if weapon can benull
 
-        active.Actions.Add(move);
+        active.Actions.Add(new TurnActionHistory(move.Action.Value, move.Weapon!.Type));
         _context.Events.AddRange(result);
     }
 }

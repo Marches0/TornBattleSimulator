@@ -14,10 +14,10 @@ public class TemporaryWeaponStrategy : IStrategy
         _strategyDescription = strategyDescription;
     }
 
-    public BattleAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
+    public TurnAction? GetMove(ThunderdomeContext context, PlayerContext self, PlayerContext other)
     {
         return self.Weapons.Temporary != null && self.Weapons.Temporary.Ammo!.MagazineAmmoRemaining > 0
-            ? BattleAction.UseTemporary
+            ? new TurnAction(BattleAction.Attack, self.Weapons.Temporary)
             : null;
     }
 }

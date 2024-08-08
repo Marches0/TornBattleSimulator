@@ -7,9 +7,5 @@ namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon.Usage;
 
 public interface IWeaponUsage
 {
-    public List<ThunderdomeEvent> UseWeapon(
-        ThunderdomeContext context,
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon);
+    public List<ThunderdomeEvent> UseWeapon(AttackContext attack);
 }

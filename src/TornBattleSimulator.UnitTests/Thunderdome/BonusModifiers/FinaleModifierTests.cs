@@ -6,6 +6,7 @@ using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
+using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.BonusModifiers;
 
@@ -14,7 +15,7 @@ public class FinaleModifierTests
 {
     [TestCaseSource(nameof(GetDamageModifier_BasedOnActionsSinceWeaponUsed_ReturnsModifier_TestCase))]
     public void GetDamageModifier_BasedOnActionsSinceWeaponUsed_ReturnsModifier((
-        List<BattleAction> actions,
+        List<TurnActionHistory> actions,
         WeaponType weaponType,
         double modifier,
         double expected,
@@ -46,7 +47,7 @@ public class FinaleModifierTests
     }
 
     private static IEnumerable<(
-        List<BattleAction> actions,
+        List<TurnActionHistory> actions,
         WeaponType weaponType,
         double modifier,
         double expected,
@@ -78,7 +79,7 @@ public class FinaleModifierTests
         );
 
         yield return (
-            [BattleAction.UseTemporary, BattleAction.AttackPrimary],
+            [ new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Attack, WeaponType.Primary) ],
             WeaponType.Primary,
             1,
             1,
@@ -86,7 +87,7 @@ public class FinaleModifierTests
         );
 
         yield return (
-           [BattleAction.UseTemporary, BattleAction.AttackSecondary],
+           [ new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Attack, WeaponType.Secondary)],
            WeaponType.Secondary,
            1,
            1,
@@ -94,7 +95,7 @@ public class FinaleModifierTests
        );
 
         yield return (
-           [BattleAction.UseTemporary, BattleAction.AttackMelee],
+           [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Attack, WeaponType.Melee)],
            WeaponType.Melee,
            1,
            1,
@@ -102,7 +103,7 @@ public class FinaleModifierTests
        );
 
         yield return (
-            [BattleAction.UseTemporary, BattleAction.ReloadPrimary],
+            [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Reload, WeaponType.Primary)],
             WeaponType.Primary,
             1,
             1,
@@ -110,7 +111,7 @@ public class FinaleModifierTests
         );
 
         yield return (
-           [BattleAction.UseTemporary, BattleAction.ReloadSecondary],
+           [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Reload, WeaponType.Secondary)],
            WeaponType.Secondary,
            1,
            1,
@@ -118,7 +119,7 @@ public class FinaleModifierTests
        );
 
         yield return (
-            [BattleAction.UseTemporary, BattleAction.ChargePrimary],
+            [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Charge, WeaponType.Primary)],
             WeaponType.Primary,
             1,
             1,
@@ -126,7 +127,7 @@ public class FinaleModifierTests
         );
 
         yield return (
-           [BattleAction.UseTemporary, BattleAction.ChargeSecondary],
+           [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Charge, WeaponType.Secondary)],
            WeaponType.Secondary,
            1,
            1,
@@ -134,7 +135,7 @@ public class FinaleModifierTests
        );
 
         yield return (
-           [BattleAction.UseTemporary, BattleAction.ChargeMelee],
+           [new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary), new TurnActionHistory(BattleAction.Charge, WeaponType.Melee)],
            WeaponType.Melee,
            1,
            1,
@@ -142,7 +143,13 @@ public class FinaleModifierTests
        );
 
         yield return (
-            [BattleAction.AttackPrimary, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary ],
+            [
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Primary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary)
+            ],
             WeaponType.Primary,
             1,
             5,
@@ -150,7 +157,13 @@ public class FinaleModifierTests
         );
 
         yield return (
-            [BattleAction.AttackSecondary, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary],
+            [
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Secondary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary)
+            ],
             WeaponType.Secondary,
             1,
             5,
@@ -158,7 +171,13 @@ public class FinaleModifierTests
         );
 
         yield return (
-            [BattleAction.AttackMelee, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary, BattleAction.UseTemporary],
+            [
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Melee),
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary),
+                 new TurnActionHistory(BattleAction.Attack, WeaponType.Temporary)
+            ],
             WeaponType.Melee,
             1,
             5,
