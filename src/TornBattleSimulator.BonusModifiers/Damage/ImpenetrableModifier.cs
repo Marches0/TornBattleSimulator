@@ -9,11 +9,11 @@ using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;
 
-public class ImpregnableModifier : IModifier, IDamageModifier
+public class ImpenetrableModifier : IModifier, IDamageModifier
 {
     private readonly double _value;
 
-    public ImpregnableModifier(double value)
+    public ImpenetrableModifier(double value)
     {
         _value = -value;
     }
@@ -31,7 +31,7 @@ public class ImpregnableModifier : IModifier, IDamageModifier
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
 
     /// <inheritdoc/>
-    public ModifierType Effect { get; } = ModifierType.Impregnable;
+    public ModifierType Effect { get; } = ModifierType.Impenetrable;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
@@ -44,7 +44,12 @@ public class ImpregnableModifier : IModifier, IDamageModifier
         PlayerContext active,
         PlayerContext other,
         WeaponContext weapon,
-        DamageContext damageContext) => weapon.Type == WeaponType.Melee
-            ?  _value
+        DamageContext damageContext)
+    {
+        // todo - needs to be Pistol, Rifle, Shotgun, Machine Gun, or SMG
+        // not primary or secondary
+        return weapon.Type is WeaponType.Primary or WeaponType.Secondary
+            ? _value
             : 1;
+    }
 }

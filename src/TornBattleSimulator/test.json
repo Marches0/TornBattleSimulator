@@ -55,23 +55,7 @@
 					"modifiers": [
 						{
 							"type": "impregnable",
-							"percent": 50
-						},
-						{
-							"type": "impregnable",
-							"percent": 50
-						},
-						{
-							"type": "impregnable",
-							"percent": 50
-						},
-						{
-							"type": "impregnable",
-							"percent": 50
-						},
-						{
-							"type": "impregnable",
-							"percent": 50
+							"percent": 20
 						}
 					]
 				},

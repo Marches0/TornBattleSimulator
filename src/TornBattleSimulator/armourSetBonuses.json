@@ -1,5 +1,6 @@
 {
   "ArmourSetBonuses": {
-    "Impregnable": 10
+    "Impregnable": 10,
+    "Impenetrable": 10
   }
 }

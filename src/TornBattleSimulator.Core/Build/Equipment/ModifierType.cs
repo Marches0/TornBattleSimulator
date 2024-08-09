@@ -77,6 +77,7 @@ public enum ModifierType
     WindUp,
     Wither,
 
-    Impregnable
+    Impregnable,
+    Impenetrable
 }
 // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses
