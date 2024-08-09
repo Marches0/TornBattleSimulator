@@ -9,19 +9,20 @@ namespace TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 public class ArmourFactory
 {
     private readonly ModifierFactory _modifierFactory;
-    private Dictionary<string, ArmourCoverageOption> _armourCoverage;
-    private Dictionary<ModifierType, double> _modifierSetBonus = new()
-    {
-        { ModifierType.Impregnable, 15 }
-    };
+    private readonly Dictionary<string, ArmourCoverageOption> _armourCoverage;
+    private readonly Dictionary<ModifierType, double> _modifierSetBonus;
 
     public ArmourFactory(
         List<ArmourCoverageOption> armourCoverage,
-        ModifierFactory modifierFactory)
+        ModifierFactory modifierFactory,
+        RootConfig rootConfig)
     {
         _armourCoverage = armourCoverage
             .ToDictionary(c => c.Name, StringComparer.InvariantCultureIgnoreCase);
+
         _modifierFactory = modifierFactory;
+
+        _modifierSetBonus = rootConfig.ArmourSetBonuses;
     }
 
     public ArmourSetContext Create(ArmourSet armourSet)
@@ -33,7 +34,6 @@ public class ArmourFactory
             Create(armourSet.Gloves),
             Create(armourSet.Boots),
         ];
-
 
         ArmourSetContext ctx = new(set.Where(a => a != null).ToList()!);
         AddSetBonus(ctx);

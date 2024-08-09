@@ -147,7 +147,9 @@ public class ModifierApplier : IModifierApplier
             (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
             if (modifierTarget.AddModifier(modifier, null))
             {
-                events.Add(context.CreateEvent(target, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
+                // Log armour effects as being applied to the player, so logs don't look
+                // as confusing. The fact debuffs apply to the enemy is an implementation detail.
+                events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }
         }
 

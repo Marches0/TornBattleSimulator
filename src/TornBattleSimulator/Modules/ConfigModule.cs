@@ -12,6 +12,7 @@ public class ConfigModule : Module
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile("armourCoverage.json")
                 .AddJsonFile("temporaryWeapons.json")
+                .AddJsonFile("armourSetBonuses.json")
                 .Build()
             )
             .As<IConfiguration>()
