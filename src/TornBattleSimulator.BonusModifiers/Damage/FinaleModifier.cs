@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
@@ -42,17 +44,13 @@ public class FinaleModifier : IDamageModifier, IModifier
     public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
         // Finale: For every turn that this weapon wasn't used,
         // add a stack of value.
-        int actionsSinceWeaponUsedCount = active.Actions
+        int actionsSinceWeaponUsedCount = attack.Active.Actions
             .Reverse<TurnActionHistory>() // Latest actions at end
-            .TakeWhile(a => a.Weapon != weapon.Type)
+            .TakeWhile(a => a.Weapon != attack.Weapon.Type)
             .Count();
 
         return 1 + (actionsSinceWeaponUsedCount * _value);

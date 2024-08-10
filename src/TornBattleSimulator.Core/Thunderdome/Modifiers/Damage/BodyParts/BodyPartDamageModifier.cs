@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
@@ -44,14 +45,9 @@ public abstract class BodyPartDamageModifier : IDamageModifier
     public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext
-    )
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
-        return damageContext.TargetBodyPart!.Value == _bodyPart
+        return hitLocation.BodyPartStruck == _bodyPart
             ? _damage
             : 1;
     }

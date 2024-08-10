@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
@@ -40,15 +42,11 @@ public class ImpenetrableModifier : IModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
         // todo - needs to be Pistol, Rifle, Shotgun, Machine Gun, or SMG
         // not primary or secondary
-        return weapon.Type is WeaponType.Primary or WeaponType.Secondary
+        return attack.Weapon.Type is WeaponType.Primary or WeaponType.Secondary
             ? _value
             : 1;
     }

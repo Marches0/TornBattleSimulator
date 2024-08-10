@@ -73,6 +73,7 @@ public class ModifierFactory
             ModifierType.Hazardous => new HazardousModifier(value),
             ModifierType.HomeRun => new HomeRunModifier(),
 
+            ModifierType.Impenetrable => new ImpenetrableModifier(value),
             ModifierType.Impregnable => new ImpregnableModifier(value),
 
             ModifierType.Laceration => new LacerationModifier(),

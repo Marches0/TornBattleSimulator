@@ -1,7 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 
@@ -18,13 +16,5 @@ public interface IDamageModifier
     /// <summary>
     ///  Gets the damage modifier.
     /// </summary>
-    /// <param name="active">The player taking action.</param>
-    /// <param name="other">The target of the action.</param>
-    /// <param name="weapon">The weapon being used for the attack.</param>
-    /// <param name="damageContext">Transient damage information.</param>
-    double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext);
+    double GetDamageModifier(AttackContext attack, HitLocation hitLocation);
 }

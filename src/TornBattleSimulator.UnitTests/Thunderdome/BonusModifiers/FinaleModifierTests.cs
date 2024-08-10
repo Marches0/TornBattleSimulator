@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
@@ -34,13 +36,13 @@ public class FinaleModifierTests
 
         FinaleModifier finale = new(testData.modifier);
 
+        AttackContext attack = new AttackContextBuilder()
+            .WithActive(attacker)
+            .WithWeapon(weapon)
+            .Build();
+
         // Act
-        double damage = finale.GetDamageModifier(
-            attacker,
-            new PlayerContextBuilder().Build(),
-            weapon,
-            new DamageContext()
-        );
+        double damage = finale.GetDamageModifier(attack, new HitLocation(0, null));
 
         // Assert
         damage.Should().Be(testData.expected);

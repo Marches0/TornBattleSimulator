@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
@@ -33,14 +35,10 @@ public class ParryModifier : IModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
         // Treated as an debuff to the attacker rather than a buff to the defender - seems easier.
-        return weapon.Type == WeaponType.Melee
+        return attack.Weapon.Type == WeaponType.Melee
             ? 0
             : 1;
     }

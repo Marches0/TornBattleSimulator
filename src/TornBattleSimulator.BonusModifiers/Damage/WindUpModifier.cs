@@ -7,6 +7,8 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Player;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Thunderdome;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;
 
@@ -41,11 +43,7 @@ public class WindUpModifier : IChargeableModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext) => _value;
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => _value;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;

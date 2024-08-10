@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
@@ -47,13 +49,9 @@ public class DeadeyeModifier : IModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
-        return CriticalBodyParts.Contains(damageContext.TargetBodyPart!.Value)
+        return CriticalBodyParts.Contains(hitLocation.BodyPartStruck)
             ? _value
             : 1;
     }

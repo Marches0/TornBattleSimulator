@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
@@ -40,17 +42,13 @@ public class SpecialistModifier : IModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
         // Could do a custom behaviour interface for this,
         // but just do it here for ease of use.
-        if (weapon.Ammo != null)
+        if (attack.Weapon.Ammo != null)
         {
-            weapon.Ammo.MagazinesRemaining = 0;
+            attack.Weapon.Ammo.MagazinesRemaining = 0;
         }
         
         return _value;

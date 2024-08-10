@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Thunderdome;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -14,7 +15,7 @@ public class StaticDamageCalculator : IDamageCalculator
         _damage = damage;
     }
 
-    public DamageResult CalculateDamage(ThunderdomeContext context, PlayerContext active, PlayerContext other, WeaponContext weapon)
+    public DamageResult CalculateDamage(AttackContext attack)
     {
         return new DamageResult(_damage, 0, 0);
     }

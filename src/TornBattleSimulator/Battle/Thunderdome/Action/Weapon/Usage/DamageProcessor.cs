@@ -47,19 +47,20 @@ public class DamageProcessor
             );
         }
 
+        // Make a new context with whoever is actually being targeted (i.e. because of HomeRun)
         (PlayerContext target, PlayerContext source) = GetDamageTarget(attack);
-        attack.AttackResult = CalculateAttack(attack, target, source);
+        AttackContext targetContext = new AttackContext(attack.Context, source, target, attack.Weapon, null);
+
+        attack.AttackResult = CalculateAttack(targetContext);
         return MakeHit(target, source, attack);
     }
 
-    private AttackResult CalculateAttack(
-        AttackContext attack,
-        PlayerContext target,
-        PlayerContext source)
+    private AttackResult CalculateAttack(AttackContext attack)
     {
-        double hitChance = _accuracyCalculator.GetAccuracy(target, source, attack.Weapon);
+        // double check all this
+        double hitChance = _accuracyCalculator.GetAccuracy(attack.Active, attack.Other, attack.Weapon);
         return _chanceSource.Succeeds(hitChance)
-            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(attack.Context, source, target, attack.Weapon))
+            ? new AttackResult(true, hitChance, _damageCalculator.CalculateDamage(attack))
             : new AttackResult(false, hitChance, null);
     }
 

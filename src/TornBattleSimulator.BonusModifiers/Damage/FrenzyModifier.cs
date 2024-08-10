@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
@@ -54,9 +55,5 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
         WeaponContext weapon) => _value;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext) => _value;
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => _value;
 }

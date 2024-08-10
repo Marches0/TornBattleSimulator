@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.Core.Build;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Damage.Modifiers;
@@ -17,8 +19,13 @@ public class StrengthDamageModifierTests
         PlayerContext attacker = new PlayerContextBuilder().WithStats(new BattleStats() { Strength = testData.strength }).Build();
         PlayerContext defender = new PlayerContextBuilder().Build();
 
+        AttackContext attack = new AttackContextBuilder()
+            .WithActive(attacker)
+            .WithOther(defender)
+            .Build();
+
         // Act
-        double multiplier = _strengthDamageModifier.GetDamageModifier(attacker, defender, null, null);
+        double multiplier = _strengthDamageModifier.GetDamageModifier(attack, new HitLocation(0, null));
 
         // Assert
         multiplier.Should().BeApproximately(testData.damage, 0.0001);

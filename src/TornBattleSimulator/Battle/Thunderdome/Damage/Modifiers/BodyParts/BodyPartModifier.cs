@@ -1,4 +1,6 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Damage.Critical;
@@ -13,58 +15,21 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers.BodyParts;
 
 public class BodyPartModifier : IDamageModifier
 {
-    private readonly ICritChanceCalculator _critChanceCalculator;
-    private readonly IChanceSource _modifierChanceSource;
-
-    private readonly List<OptionChance<BodyPartDamage>> _criticalOptions;
-    private readonly List<OptionChance<BodyPartDamage>> _regularOptions;
+    private Dictionary<BodyPart, double> _damageMap;
 
     public BodyPartModifier(
-        BodyModifierOptions bodyModifierOptions,
-        ICritChanceCalculator critChanceCalculator,
-        IChanceSource modifierChanceSource)
+        BodyModifierOptions bodyModifierOptions)
     {
-        _criticalOptions = bodyModifierOptions.CriticalHits
-            .Select(h => new OptionChance<BodyPartDamage>(h, h.Chance))
-            .ToList();
-
-        _regularOptions = bodyModifierOptions.RegularHits
-            .Select(h => new OptionChance<BodyPartDamage>(h, h.Chance))
-            .ToList();
-
-        _critChanceCalculator = critChanceCalculator;
-        _modifierChanceSource = modifierChanceSource;
+        _damageMap = bodyModifierOptions.CriticalHits.Concat(bodyModifierOptions.RegularHits)
+            .ToDictionary(d => d.Part, d => d.DamageMultiplier);
     }
 
     /// <inheritdoc/>
     public ModificationType Type { get; } = ModificationType.Multiplicative;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext)
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
     {
-        BodyPartDamage option = GetTargetBodyPart(active, other, weapon);
-        damageContext.TargetBodyPart = option.Part;
-        return option.DamageMultiplier;
-    }
-
-    private BodyPartDamage GetTargetBodyPart(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon)
-    {
-        if (weapon.Type == WeaponType.Temporary)
-        {
-            // Temps hit chest. Thanks Staphy!
-            return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
-        }
-
-        bool isCrit = _modifierChanceSource.Succeeds(_critChanceCalculator.GetCritChance(active, other, weapon));
-        return isCrit
-           ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
-           : _modifierChanceSource.ChooseWeighted(_regularOptions);
+        return _damageMap[hitLocation.BodyPartStruck];
     }
 }

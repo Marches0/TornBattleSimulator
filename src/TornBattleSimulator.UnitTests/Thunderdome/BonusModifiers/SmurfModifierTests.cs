@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.BonusModifiers.Damage;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -29,9 +31,14 @@ public class SmurfModifierTests
         WeaponContext weapon = new WeaponContextBuilder()
             .Build();
 
+        AttackContext attack = new AttackContextBuilder()
+            .WithActive(attacker)
+            .WithOther(defender)
+            .WithWeapon(weapon)
+            .Build();
+
         // Act
-        double modifier = new SmurfModifier(testData.modifierValue)
-            .GetDamageModifier(attacker, defender, weapon, new DamageContext());
+        double modifier = new SmurfModifier(testData.modifierValue).GetDamageModifier(attack, new HitLocation(0, null));
 
         // Assert
         modifier.Should().Be(testData.expected);

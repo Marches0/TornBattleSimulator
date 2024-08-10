@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
@@ -17,14 +19,13 @@ public class ParryModifierTests
             .OfType(weaponType)
             .Build();
 
+        AttackContext attack = new AttackContextBuilder()
+            .WithWeapon(weapon)
+            .Build();
+
         // Act
         double damage = new ParryModifier()
-            .GetDamageModifier(
-                new PlayerContextBuilder().Build(),
-                new PlayerContextBuilder().Build(),
-                weapon,
-                new DamageContext()
-        );
+            .GetDamageModifier(attack, new HitLocation(0, null));
 
         // Assert
         if (weaponType == WeaponType.Melee)

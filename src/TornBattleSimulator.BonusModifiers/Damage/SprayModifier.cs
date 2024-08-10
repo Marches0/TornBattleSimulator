@@ -1,4 +1,5 @@
-﻿using TornBattleSimulator.Core.Build.Equipment;
+﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
@@ -31,11 +32,7 @@ public class SprayModifier : IModifier, IDamageModifier, IConditionalModifier, I
     // Must have a full magazine
     public bool CanActivate(AttackContext attack) => attack.Weapon.Ammo!.MagazineAmmoRemaining == attack.Weapon.Ammo.MagazineSize;
 
-    public double GetDamageModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon,
-        DamageContext damageContext) => 2;
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => 2;
 
     public double GetModifier() => double.MaxValue;
 }
