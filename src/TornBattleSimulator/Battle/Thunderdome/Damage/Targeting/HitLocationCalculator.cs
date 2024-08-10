@@ -32,17 +32,17 @@ public class HitLocationCalculator : IHitLocationCalculator
         _modifierChanceSource = modifierChanceSource;
     }
 
-    public BodyPartDamage GetHitLocation(AttackContext attack)
+    public BodyPart GetHitLocation(AttackContext attack)
     {
         if (attack.Weapon.Type == WeaponType.Temporary)
         {
             // Temps hit chest. Thanks Staphy!
-            return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option;
+            return _regularOptions.First(r => r.Option.Part == BodyPart.Chest).Option.Part;
         }
 
         bool isCrit = _modifierChanceSource.Succeeds(_critChanceCalculator.GetCritChance(attack.Active, attack.Other, attack.Weapon));
         return isCrit
-           ? _modifierChanceSource.ChooseWeighted(_criticalOptions)
-           : _modifierChanceSource.ChooseWeighted(_regularOptions);
+           ? _modifierChanceSource.ChooseWeighted(_criticalOptions).Part
+           : _modifierChanceSource.ChooseWeighted(_regularOptions).Part;
     }
 }

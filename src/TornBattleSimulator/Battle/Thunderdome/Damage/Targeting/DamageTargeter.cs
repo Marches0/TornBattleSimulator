@@ -1,6 +1,6 @@
 ﻿using TornBattleSimulator.Core.Thunderdome;
+using TornBattleSimulator.Core.Thunderdome.Damage.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
-using TornBattleSimulator.Options;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 
@@ -19,8 +19,8 @@ public class DamageTargeter : IDamageTargeter
 
     public HitLocation GetDamageTarget(AttackContext attack)
     {
-        BodyPartDamage struckPart = _hitLocationCalculator.GetHitLocation(attack);
-        ArmourContext? armourStruck = _hitArmourCalculator.GetHitArmour(attack, struckPart.Part);
-        return new(struckPart.Part, armourStruck);
+        BodyPart struckPart = _hitLocationCalculator.GetHitLocation(attack);
+        ArmourContext? armourStruck = _hitArmourCalculator.GetHitArmour(attack, struckPart);
+        return new(struckPart, armourStruck);
     }
 }
