@@ -10,8 +10,4 @@ public class ArmourSetContext
     }
 
     public List<ArmourContext> Armour { get; }
-
-    public List<PotentialModifier> PotentialModifiers => Armour
-        .SelectMany(a => a.PotentialModifiers)
-        .ToList();
 }

@@ -40,7 +40,7 @@ public class ComebackModifier : IModifier, IDamageModifier, IConditionalModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public ModificationType Type { get; } = ModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => _value;

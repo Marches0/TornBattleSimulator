@@ -17,7 +17,7 @@ public class ImpenetrableModifier : IModifier, IDamageModifier
 
     public ImpenetrableModifier(double value)
     {
-        _value = -value;
+        _value = 1 - value;
     }
 
     /// <inheritdoc/>

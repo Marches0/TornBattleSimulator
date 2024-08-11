@@ -17,7 +17,7 @@ public class ImpregnableModifier : IModifier, IDamageModifier
 
     public ImpregnableModifier(double value)
     {
-        _value = -value;
+        _value = 1 - value;
     }
 
     /// <inheritdoc/>

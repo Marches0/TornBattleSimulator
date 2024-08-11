@@ -48,7 +48,7 @@ public class BeserkModifier : IModifier, IDamageModifier, IAccuracyModifier
     }
 
     /// <inheritdoc/>
-    public ModificationType Type { get; } = ModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => _damageModifier;

@@ -32,15 +32,14 @@ public class DamageCalculator : IDamageCalculator
             // Player damage buffs are active.
             .Concat(attack.Active.Modifiers.Active.OfType<IDamageModifier>())
 
+            // Target's armour buffs are active.
+            .Concat(hitLocation.ArmourStruck?.Modifiers?.Active?.OfType<IDamageModifier>() ?? Enumerable.Empty<IDamageModifier>())
+
             .GroupBy(m => m.Type)
             .ToDictionary(m => m.Key, m => m.ToList());
 
-        // ARMOUR BONUS MODS ONLY TRIGGER IF THEY ARE THE STRUCK PIECE.
-        // Calculate the targetted body part + struck armour piece to 
-        // pass down
-
-        double baseDamageBonus = modifiers.ContainsKey(ModificationType.Additive)
-            ? modifiers[ModificationType.Additive].Aggregate(0d, (total, modifier) => total + modifier.GetDamageModifier(attack, hitLocation))
+        double baseDamageBonus = modifiers.TryGetValue(ModificationType.Additive, out List<IDamageModifier>? value) 
+            ? value.Aggregate(1d, (total, modifier) => total + modifier.GetDamageModifier(attack, hitLocation) - 1)
             : 1d;
 
         // We always have multiplicate modifiers, since those are the always-applicable ones (e.g. Strength ratio)

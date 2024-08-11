@@ -61,19 +61,43 @@
 				},
 				"body": {
 					"name": "combatvest",
-					"rating": 39.24
+					"rating": 39.24,
+					"modifiers": [
+						{
+							"type": "impregnable",
+							"percent": 20
+						}
+					]
 				},
 				"pants": {
 					"name": "combatpants",
-					"rating": 40.06
+					"rating": 40.06,
+					"modifiers": [
+						{
+							"type": "impregnable",
+							"percent": 20
+						}
+					]
 				},
 				"boots": {
 					"name": "combatboots",
-					"rating": 38.94
+					"rating": 38.94,
+					"modifiers": [
+						{
+							"type": "impregnable",
+							"percent": 20
+						}
+					]
 				},
 				"gloves": {
 					"name": "combatgloves",
-					"rating": 39.4
+					"rating": 39.4,
+					"modifiers": [
+						{
+							"type": "impregnable",
+							"percent": 20
+						}
+					]
 				}
 			},
 			"strategy": [

@@ -46,7 +46,7 @@ public class DeadeyeModifier : IModifier, IDamageModifier
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
 
     /// <inheritdoc/>
-    public ModificationType Type { get; } = ModificationType.Multiplicative;
+    public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
     public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)

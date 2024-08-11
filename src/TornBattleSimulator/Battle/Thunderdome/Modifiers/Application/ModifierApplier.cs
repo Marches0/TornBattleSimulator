@@ -104,7 +104,10 @@ public class ModifierApplier : IModifierApplier
             events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Temporary, other));
         }
 
-        events.AddRange(ApplyFightStartModifiers(context, active, active.ArmourSet, other));
+        foreach (ArmourContext armourPiece in active.ArmourSet.Armour)
+        {
+            events.AddRange(ApplyFightStartModifiers(context, active, armourPiece, other));
+        }
 
         return events;
     }
@@ -133,25 +136,21 @@ public class ModifierApplier : IModifierApplier
         return events;
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, ArmourSetContext armour, PlayerContext other)
+    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, ArmourContext armour, PlayerContext other)
     {
-        List<ThunderdomeEvent> events = new();
+        armour.Modifiers = new ModifierContext(player);
 
-        // make an attackcontext just to reuse other logic
-        /*AttackContext attack = new AttackContext(context, player, other, null, null);
+        List<ThunderdomeEvent> events = new();
 
         foreach (var modifier in armour.PotentialModifiers
             .Select(m => m.Modifier)
             .Where(m => m.AppliesAt == ModifierApplication.FightStart))
         {
-            (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
-            if (modifierTarget.AddModifier(modifier, null))
+            if (armour.Modifiers.AddModifier(modifier, null))
             {
-                // Log armour effects as being applied to the player, so logs don't look
-                // as confusing. The fact debuffs apply to the enemy is an implementation detail.
                 events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }
-        }*/
+        }
 
         return events;
     }
