@@ -1,5 +1,6 @@
 ﻿using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
@@ -17,6 +18,7 @@ public class PlayerContextBuilder
     private EquippedWeapons? _equippedWeapons;
     private List<ArmourContext> _armour = new();
     private int _level = 1;
+    private IEnumerable<IModifier> _modifiers = Enumerable.Empty<IModifier>();
 
     public PlayerContextBuilder WithStats(BattleStats battleStats)
     {
@@ -96,9 +98,15 @@ public class PlayerContextBuilder
         return this;
     }
 
+    public PlayerContextBuilder WithModifiers(IEnumerable<IModifier> modifiers)
+    {
+        _modifiers = modifiers;
+        return this;
+    }
+
     public PlayerContext Build()
     {
-        return new PlayerContext(
+        var player = new PlayerContext(
             new BattleBuild()
             {
                 BattleStats = _battleStats,
@@ -114,5 +122,15 @@ public class PlayerContextBuilder
             new ArmourSetContext(_armour),
             null
         );
+
+        foreach (var modifier in _modifiers)
+        {
+            if (!player.Modifiers.AddModifier(modifier, null))
+            {
+                throw new InvalidOperationException($"Unable to add modifier {modifier.Effect}");
+            }
+        }
+
+        return player;
     }
 }

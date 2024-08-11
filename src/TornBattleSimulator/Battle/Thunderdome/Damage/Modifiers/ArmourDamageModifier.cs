@@ -1,7 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.BonusModifiers.Armour;
 using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Chance;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 
@@ -9,14 +8,6 @@ namespace TornBattleSimulator.Battle.Thunderdome.Damage.Modifiers;
 
 public class ArmourDamageModifier : IDamageModifier
 {
-    private readonly IChanceSource _chanceSource;
-
-    public ArmourDamageModifier(
-        IChanceSource chanceSource)
-    {
-        _chanceSource = chanceSource;
-    }
-
     /// <inheritdoc/>
     public ModificationType Type { get; } = ModificationType.Multiplicative;
 
