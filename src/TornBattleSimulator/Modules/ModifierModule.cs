@@ -11,7 +11,7 @@ public class ModifierModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<ModifierFactory>()
-            .As<ModifierFactory>();
+            .As<IModifierFactory>();
 
         builder.RegisterType<ModifierApplier>()
             .As<IModifierApplier>();

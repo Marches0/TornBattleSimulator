@@ -18,4 +18,6 @@ public class ArmourContext
 
     public List<ArmourCoverage> Coverage { get; set; }
     public List<PotentialModifier> PotentialModifiers { get; set; }
+
+    public ModifierContext Modifiers { get; set; }
 }

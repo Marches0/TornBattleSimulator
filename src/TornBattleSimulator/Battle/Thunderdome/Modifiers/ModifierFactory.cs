@@ -17,7 +17,7 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Modifiers;
 
-public class ModifierFactory
+public class ModifierFactory : IModifierFactory
 {
     public PotentialModifier GetModifier(ModifierType modifierType, double percent)
     {

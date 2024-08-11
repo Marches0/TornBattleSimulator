@@ -8,13 +8,13 @@ namespace TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 
 public class ArmourFactory
 {
-    private readonly ModifierFactory _modifierFactory;
+    private readonly IModifierFactory _modifierFactory;
     private readonly Dictionary<string, ArmourCoverageOption> _armourCoverage;
     private readonly Dictionary<ModifierType, double> _modifierSetBonus;
 
     public ArmourFactory(
         List<ArmourCoverageOption> armourCoverage,
-        ModifierFactory modifierFactory,
+        IModifierFactory modifierFactory,
         RootConfig rootConfig)
     {
         _armourCoverage = armourCoverage
@@ -27,34 +27,41 @@ public class ArmourFactory
 
     public ArmourSetContext Create(ArmourSet armourSet)
     {
+        List<ModifierType> setBonuses = GetTriggeredSetBonuses(armourSet);
+
         List<ArmourContext?> set = [
-            Create(armourSet.Helmet),
-            Create(armourSet.Body),
-            Create(armourSet.Pants),
-            Create(armourSet.Gloves),
-            Create(armourSet.Boots),
+            Create(armourSet.Helmet, setBonuses),
+            Create(armourSet.Body, setBonuses),
+            Create(armourSet.Pants, setBonuses),
+            Create(armourSet.Gloves, setBonuses),
+            Create(armourSet.Boots, setBonuses),
         ];
 
-        ArmourSetContext ctx = new(set.Where(a => a != null).ToList()!);
-        AddSetBonus(ctx);
-
-        return ctx;
+        return new(set.Where(a => a != null).ToList()!);
     }
 
-    private void AddSetBonus(ArmourSetContext armourSetContext)
+    private List<ModifierType> GetTriggeredSetBonuses(ArmourSet armourSet)
     {
-        // If you have a full set of the same modifier, you get a bonus one.
-        var modifiers = armourSetContext.PotentialModifiers
-            .GroupBy(m => m.Modifier.Effect)
+        List<Armour?> pieces = [
+            armourSet.Helmet,
+            armourSet.Body,
+            armourSet.Pants,
+            armourSet.Gloves,
+            armourSet.Boots,
+        ];
+
+        return pieces
+            .Where(p => p != null)
+            .SelectMany(p => p.Modifiers)
+            .GroupBy(m => m.Type)
             .Where(x => x.Count() >= 5)
             .IntersectBy(_modifierSetBonus.Keys, x => x.Key)
-            .Select(x => _modifierFactory.GetModifier(x.Key, _modifierSetBonus[x.Key]));
-
-        // Just add them to the first piece of armour, since it doesn't actually matter.
-        armourSetContext.Armour[0].PotentialModifiers.AddRange(modifiers);
+            .Select(m => m.Key)
+            .ToList();
     }
 
-    private ArmourContext? Create(Armour? armour)
+    private ArmourContext? Create(
+        Armour? armour, List<ModifierType> setBonuses)
     {
         if (armour == null)
         {
@@ -64,7 +71,9 @@ public class ArmourFactory
         return new ArmourContext(
             armour.Rating / 100d,
             _armourCoverage[armour.Name].Coverage,
-            armour.Modifiers.Select(m => _modifierFactory.GetModifier(m.Type, m.Percent)).ToList()
+            armour.Modifiers.Select(m =>
+                _modifierFactory.GetModifier(m.Type, setBonuses.Contains(m.Type) ? m.Percent + _modifierSetBonus[m.Type] : m.Percent)
+            ).ToList()
         );
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Autofac.Extras.FakeItEasy;
+using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
+using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
 using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.Core.Build.Equipment;
@@ -13,10 +15,13 @@ namespace TornBattleSimulator.UnitTests.Thunderdome.Player;
 [TestFixture]
 public class ArmourFactoryTests
 {
-    //[Test]
-    public void Create_WhenHasSetBonus_GetsAdditionalModifier()
+    [TestCaseSource(nameof(Create_BasedOnBonuses_MayApplySetBonus_TestCases))]
+    public void Create_BasedOnBonuses_MayApplySetBonus((
+        ArmourSet armourSet,
+        double expectedBonus,
+        int armourPieceCount,
+        string testName) testData)
     {
-        // redo this
         // Arrange
         List<ArmourCoverageOption> armourCoverage = [ new ArmourCoverageOption() { Name = "test", Coverage = new() }];
 
@@ -28,47 +33,67 @@ public class ArmourFactoryTests
             }
         };
 
-        Armour standardPiece = new Armour()
-        {
-            Name = "test",
-            Rating = 10,
-            Modifiers = [new ModifierDescription() { Percent = 1, Type = ModifierType.Impregnable }]
-        };
-
-        ArmourSet armourSet = new()
-        {
-            Helmet = standardPiece,
-            Body = standardPiece,
-            Pants = standardPiece,
-            Gloves = standardPiece,
-            Boots = standardPiece
-        };
+        IModifierFactory modifierFactory = A.Fake<IModifierFactory>();
 
         using AutoFake autofake = new();
         autofake.Provide(armourCoverage);
         autofake.Provide(rootConfig);
+        autofake.Provide(modifierFactory);
 
         ArmourFactory armourFactory = autofake.Resolve<ArmourFactory>();
 
         // Act
-        var armourContext = armourFactory.Create(armourSet);
+        var armourContext = armourFactory.Create(testData.armourSet);
 
         // Assert
         using (new AssertionScope())
         {
-            armourContext.PotentialModifiers.Count().Should()
-                .Be(armourContext.Armour.Count + 1);
-
-            // Should just use IModifierFactory to return a test modifier that we
-            // don't have to jump through hoops for.
-            AttackContext attack = new AttackContextBuilder()
-                .WithWeapon(new WeaponContextBuilder().OfType(WeaponType.Melee).Build())
-                .Build();
-
-            armourContext.PotentialModifiers.Should()
-                .Contain(pm => ((ImpregnableModifier)pm.Modifier).GetDamageModifier(
-                    attack,
-                    new HitLocation(0, null)) == 0.8);
+            A.CallTo(() => modifierFactory.GetModifier(ModifierType.Impregnable, testData.expectedBonus))
+                .MustHaveHappened(testData.armourPieceCount, Times.Exactly);
         }
+    }
+
+    private static IEnumerable<(
+        ArmourSet armourSet,
+        double expectedBonus,
+        int armourPieceCount,
+        string testName)> Create_BasedOnBonuses_MayApplySetBonus_TestCases()
+    {
+        double regularPercent = 10;
+        double bonusPercent = 30;
+
+        Armour standardPiece = new Armour()
+        {
+            Name = "test",
+            Rating = 2,
+            Modifiers = [new ModifierDescription() { Percent = regularPercent, Type = ModifierType.Impregnable }]
+        };
+
+        yield return (
+            new ArmourSet()
+            {
+                Helmet = standardPiece,
+                Body = standardPiece,
+                Pants = standardPiece,
+                Gloves = standardPiece,
+                Boots = standardPiece
+            },
+            bonusPercent,
+            5,
+            "All pieces with effect gives bonus"
+        );
+
+        yield return (
+            new ArmourSet()
+            {
+                Helmet = standardPiece,
+                Body = standardPiece,
+                Pants = standardPiece,
+                Gloves = standardPiece
+            },
+            regularPercent,
+            4,
+            "Fewer pieces with effect gives no bonus"
+        );
     }
 }

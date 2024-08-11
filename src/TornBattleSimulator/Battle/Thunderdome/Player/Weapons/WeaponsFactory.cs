@@ -7,11 +7,11 @@ using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 namespace TornBattleSimulator.Battle.Thunderdome.Player.Weapons;
 public class WeaponsFactory
 {
-    private readonly ModifierFactory _modifierFactory;
+    private readonly IModifierFactory _modifierFactory;
     private readonly TemporaryWeaponFactory _temporaryWeaponFactory;
 
     public WeaponsFactory(
-        ModifierFactory modifierFactory,
+        IModifierFactory modifierFactory,
         TemporaryWeaponFactory temporaryWeaponFactory)
     {
         _modifierFactory = modifierFactory;

@@ -138,7 +138,7 @@ public class ModifierApplier : IModifierApplier
         List<ThunderdomeEvent> events = new();
 
         // make an attackcontext just to reuse other logic
-        AttackContext attack = new AttackContext(context, player, other, null, null);
+        /*AttackContext attack = new AttackContext(context, player, other, null, null);
 
         foreach (var modifier in armour.PotentialModifiers
             .Select(m => m.Modifier)
@@ -151,7 +151,7 @@ public class ModifierApplier : IModifierApplier
                 // as confusing. The fact debuffs apply to the enemy is an implementation detail.
                 events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }
-        }
+        }*/
 
         return events;
     }
