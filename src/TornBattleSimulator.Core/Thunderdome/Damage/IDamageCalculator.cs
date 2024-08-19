@@ -1,7 +1,4 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
-
-namespace TornBattleSimulator.Core.Thunderdome.Damage;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Damage;
 
 public interface IDamageCalculator
 {

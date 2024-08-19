@@ -1,13 +1,9 @@
 ﻿using Autofac.Extras.FakeItEasy;
 using FakeItEasy;
-using FluentAssertions;
 using FluentAssertions.Execution;
-using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Player.Armours;
-using TornBattleSimulator.BonusModifiers.Damage;
 using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Options;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.Player;

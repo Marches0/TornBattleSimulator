@@ -2,8 +2,6 @@
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Extensions;
 
 namespace TornBattleSimulator.Battle.Thunderdome.Action.Weapon;

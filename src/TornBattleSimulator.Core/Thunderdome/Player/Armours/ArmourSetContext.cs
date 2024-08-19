@@ -1,6 +1,4 @@
-﻿using TornBattleSimulator.Core.Thunderdome.Modifiers;
-
-namespace TornBattleSimulator.Core.Thunderdome.Player.Armours;
+﻿namespace TornBattleSimulator.Core.Thunderdome.Player.Armours;
 
 public class ArmourSetContext : ITickable
 {

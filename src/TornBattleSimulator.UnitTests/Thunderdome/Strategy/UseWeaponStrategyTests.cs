@@ -1,7 +1,6 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using NUnit.Framework.Interfaces;
 using TornBattleSimulator.Battle.Thunderdome.Strategy.Strategies;
 using TornBattleSimulator.BonusModifiers.Actions;
 using TornBattleSimulator.BonusModifiers.Ammo;

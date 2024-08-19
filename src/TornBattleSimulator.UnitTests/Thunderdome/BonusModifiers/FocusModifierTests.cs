@@ -1,11 +1,7 @@
 ﻿using FluentAssertions;
-using FluentAssertions.Execution;
 using TornBattleSimulator.BonusModifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
-using TornBattleSimulator.Core.Thunderdome.Events;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.UnitTests.Thunderdome.BonusModifiers;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using TornBattleSimulator.Battle.Thunderdome.Target;
+﻿using TornBattleSimulator.Battle.Thunderdome.Target;
 using TornBattleSimulator.BonusModifiers.Stats.Weapon;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;

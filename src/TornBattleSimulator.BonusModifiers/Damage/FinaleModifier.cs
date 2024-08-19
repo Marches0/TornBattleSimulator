@@ -1,14 +1,10 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Actions;
-using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;

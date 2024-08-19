@@ -1,5 +1,4 @@
-﻿using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Damage;
+﻿using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Player;

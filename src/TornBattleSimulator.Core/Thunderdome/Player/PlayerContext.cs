@@ -1,6 +1,5 @@
 ﻿using TornBattleSimulator.Core.Build;
 using TornBattleSimulator.Core.Extensions;
-using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;

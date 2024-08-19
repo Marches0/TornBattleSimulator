@@ -1,6 +1,4 @@
-﻿using System;
-using TornBattleSimulator.Core.Build.Equipment;
-using TornBattleSimulator.Core.Extensions;
+﻿using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Actions;
 using TornBattleSimulator.Core.Thunderdome.Events;

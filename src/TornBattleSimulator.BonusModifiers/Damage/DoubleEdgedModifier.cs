@@ -8,7 +8,6 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
 namespace TornBattleSimulator.BonusModifiers.Damage;
 

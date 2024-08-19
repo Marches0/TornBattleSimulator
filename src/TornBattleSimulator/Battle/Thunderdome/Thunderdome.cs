@@ -6,8 +6,6 @@ using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
-using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
 using TornBattleSimulator.Core.Thunderdome.Strategy;
 

@@ -1,6 +1,4 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Modifiers.Application;
-using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Charge;

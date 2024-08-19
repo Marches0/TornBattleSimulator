@@ -1,7 +1,6 @@
 ﻿using TornBattleSimulator.Battle.Thunderdome.Damage.Targeting;
 using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
-using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
