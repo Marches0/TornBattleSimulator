@@ -76,6 +76,7 @@ public class PlayerContext : ITickable
     {
         Modifiers.FightBegin(context);
         Weapons.FightBegin(context);
+        ArmourSet.FightBegin(context);
     }
 
     /// <inheritdoc/>
@@ -83,6 +84,7 @@ public class PlayerContext : ITickable
     {
         Modifiers.OwnActionComplete(context);
         Weapons.OwnActionComplete(context);
+        ArmourSet.OwnActionComplete(context);
     }
 
     /// <inheritdoc/>
@@ -90,6 +92,7 @@ public class PlayerContext : ITickable
     {
         Modifiers.OpponentActionComplete(context);
         Weapons.OpponentActionComplete(context);
+        ArmourSet.OpponentActionComplete(context);
     }
 
     /// <inheritdoc/>
@@ -97,5 +100,6 @@ public class PlayerContext : ITickable
     {
         Modifiers.TurnComplete(context);
         Weapons.TurnComplete(context);
+        ArmourSet.TurnComplete(context);
     }
 }

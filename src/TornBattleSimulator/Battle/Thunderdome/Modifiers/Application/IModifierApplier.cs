@@ -11,4 +11,6 @@ public interface IModifierApplier
     List<ThunderdomeEvent> ApplyOtherHeals(AttackContext attack);
 
     List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context);
+
+    List<ThunderdomeEvent> ApplyBetweenActionModifiers(ThunderdomeContext context);
 }

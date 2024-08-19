@@ -35,6 +35,6 @@ public class FocusModifierTests
         FocusModifier focus = new FocusModifier(1);
 
         // Act
-        focus.Expired(new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
+        focus.Expired(new PlayerContextBuilder().Build(), new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
     }
 }

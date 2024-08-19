@@ -5,6 +5,7 @@ using TornBattleSimulator.BonusModifiers.Armour;
 using TornBattleSimulator.BonusModifiers.Attacks;
 using TornBattleSimulator.BonusModifiers.CritChance;
 using TornBattleSimulator.BonusModifiers.Damage;
+using TornBattleSimulator.BonusModifiers.Damage.Armour;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
 using TornBattleSimulator.BonusModifiers.DamageOverTime;
 using TornBattleSimulator.BonusModifiers.Health;
@@ -75,6 +76,7 @@ public class ModifierFactory : IModifierFactory
 
             ModifierType.Impenetrable => new ImpenetrableModifier(value),
             ModifierType.Impregnable => new ImpregnableModifier(value),
+            ModifierType.Insurmountable => new InsurmountableModifier(value),
 
             ModifierType.Laceration => new LacerationModifier(),
 

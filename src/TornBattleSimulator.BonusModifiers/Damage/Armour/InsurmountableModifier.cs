@@ -3,39 +3,37 @@ using TornBattleSimulator.Core.Build.Equipment;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
-using TornBattleSimulator.Core.Thunderdome.Modifiers.Accuracy;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
-using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.BonusModifiers.Damage;
+namespace TornBattleSimulator.BonusModifiers.Damage.Armour;
 
-public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, IConditionalModifier, IOwnedLifespan
+public class InsurmountableModifier : IModifier, IDamageModifier, IConditionalModifier, IExclusiveModifier, IOwnedLifespan
 {
     private readonly double _value;
 
-    public FrenzyModifier(double value)
+    public InsurmountableModifier(double value)
     {
-        _value = 1 + value;
+        _value = 1 - value;
     }
 
     /// <inheritdoc/>
     public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.Custom);
 
     /// <inheritdoc/>
-    public bool RequiresDamageToApply { get; } = true;
+    public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.SelfWeapon;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
-    public ModifierApplication AppliesAt { get; } = ModifierApplication.AfterAction;
+    public ModifierApplication AppliesAt { get; } = ModifierApplication.BetweenAction;
 
     /// <inheritdoc/>
-    public ModifierType Effect { get; } = ModifierType.Frenzy;
+    public ModifierType Effect { get; } = ModifierType.Insurmountable;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
@@ -43,16 +41,12 @@ public class FrenzyModifier : IModifier, IDamageModifier, IAccuracyModifier, ICo
     /// <inheritdoc/>
     public ModificationType Type { get; } = ModificationType.Additive;
 
-    public bool CanActivate(AttackContext attack) => attack.AttackResult!.Hit;
-
     /// <inheritdoc/>
-    public bool Expired(PlayerContext owner, AttackResult? attack) => attack == null || attack!.Hit == false;
+    public bool CanActivate(AttackContext attack) => Active(attack.Active);
 
-    /// <inheritdoc/>
-    public double GetAccuracyModifier(
-        PlayerContext active,
-        PlayerContext other,
-        WeaponContext weapon) => _value;
+    public bool Expired(PlayerContext owner, AttackResult? attack) => !Active(owner);
+
+    private bool Active(PlayerContext target) => target.Health.CurrentHealth * 4 < target.Health.MaxHealth;
 
     /// <inheritdoc/>
     public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => _value;

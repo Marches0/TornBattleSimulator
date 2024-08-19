@@ -15,8 +15,6 @@ public class FrenzyModifierTests
     [TestCase(false, false)]
     public void CanActivate_BasedOnHit(bool isHit, bool shouldActivate)
     {
-        //new AttackResult(isHit, 1, new DamageResult(1, 0, 0))
-
         new FrenzyModifier(1)
             .CanActivate(
                 new AttackContext(
@@ -37,6 +35,6 @@ public class FrenzyModifierTests
         FrenzyModifier frenzy = new FrenzyModifier(1);
 
         // Act
-        frenzy.Expired(new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
+        frenzy.Expired(new PlayerContextBuilder().Build(), new AttackResult(isHit, 1, new DamageResult(1, 0, 0))).Should().Be(expired);
     }
 }

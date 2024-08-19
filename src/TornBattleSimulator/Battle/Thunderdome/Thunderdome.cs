@@ -44,6 +44,10 @@ public class Thunderdome
         
         while (_context.GetResult() == null)
         {
+            _context.Events.AddRange(
+                _modifierApplier.ApplyBetweenActionModifiers(_context)
+            );
+
             MakeMove(_context.Attacker, _context.Defender);
             _context.AttackerActionComplete();
 
@@ -52,6 +56,10 @@ public class Thunderdome
             {
                 break;
             }
+
+            _context.Events.AddRange(
+                _modifierApplier.ApplyBetweenActionModifiers(_context)
+            );
 
             MakeMove(_context.Defender, _context.Attacker);
 

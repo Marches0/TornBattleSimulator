@@ -9,13 +9,13 @@ using TornBattleSimulator.Core.Thunderdome.Modifiers.Stats;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Weapons;
 
-namespace TornBattleSimulator.BonusModifiers.Damage;
+namespace TornBattleSimulator.BonusModifiers.Damage.Armour;
 
-public class ImpregnableModifier : IModifier, IDamageModifier
+public class ImpenetrableModifier : IModifier, IDamageModifier
 {
     private readonly double _value;
 
-    public ImpregnableModifier(double value)
+    public ImpenetrableModifier(double value)
     {
         _value = 1 - value;
     }
@@ -27,13 +27,13 @@ public class ImpregnableModifier : IModifier, IDamageModifier
     public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Other;
+    public ModifierTarget Target { get; } = ModifierTarget.Self;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;
 
     /// <inheritdoc/>
-    public ModifierType Effect { get; } = ModifierType.Impregnable;
+    public ModifierType Effect { get; } = ModifierType.Impenetrable;
 
     /// <inheritdoc/>
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.Potency;
@@ -42,7 +42,12 @@ public class ImpregnableModifier : IModifier, IDamageModifier
     public ModificationType Type { get; } = ModificationType.Additive;
 
     /// <inheritdoc/>
-    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation) => attack.Weapon.Type == WeaponType.Melee
-            ?  _value
+    public double GetDamageModifier(AttackContext attack, HitLocation hitLocation)
+    {
+        // todo - needs to be Pistol, Rifle, Shotgun, Machine Gun, or SMG
+        // not primary or secondary
+        return attack.Weapon.Type is WeaponType.Primary or WeaponType.Secondary
+            ? _value
             : 1;
+    }
 }

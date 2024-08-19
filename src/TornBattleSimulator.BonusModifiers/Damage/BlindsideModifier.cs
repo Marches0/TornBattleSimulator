@@ -22,7 +22,7 @@ public class BlindsideModifier : IDamageModifier, IConditionalModifier, IModifie
     }
 
     /// <inheritdoc/>
-    public ModifierLifespanDescription Lifespan { get; } =   ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
+    public ModifierLifespanDescription Lifespan { get; } = ModifierLifespanDescription.Fixed(ModifierLifespanType.AfterNextEnemyAction);
 
     /// <inheritdoc/>
     public bool RequiresDamageToApply { get; } = false;

@@ -1,4 +1,5 @@
 ﻿using TornBattleSimulator.Core.Thunderdome.Damage;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
 
@@ -11,9 +12,12 @@ public class CustomLifespan : IModifierLifespan
 
     public float Remaining => 1f;
 
-    public void SetExpiry(AttackResult? attack, IOwnedLifespan modifier)
+    public void SetExpiry(
+        PlayerContext owner,
+        AttackResult? attack,
+        IOwnedLifespan modifier)
     {
-        Expired = modifier.Expired(attack);
+        Expired = modifier.Expired(owner, attack);
     }
 
     public void FightBegin(ThunderdomeContext context) { }

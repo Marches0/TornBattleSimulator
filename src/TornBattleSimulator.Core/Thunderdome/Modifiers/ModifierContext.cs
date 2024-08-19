@@ -93,7 +93,7 @@ public class ModifierContext : IModifierContext
 
         foreach (var custom in customExpired)
         {
-            custom.Lifespan.SetExpiry(_self.LastAttack, custom.Modifier);
+            custom.Lifespan.SetExpiry(_self, _self.LastAttack, custom.Modifier);
         }
 
         ExpireModifiers(context);

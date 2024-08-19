@@ -2,7 +2,7 @@
 
 namespace TornBattleSimulator.Core.Thunderdome.Player.Armours;
 
-public class ArmourContext
+public class ArmourContext : ITickable
 {
     public ArmourContext(
         double rating,
@@ -20,4 +20,24 @@ public class ArmourContext
     public List<PotentialModifier> PotentialModifiers { get; set; }
 
     public ModifierContext Modifiers { get; set; }
+
+    public void FightBegin(ThunderdomeContext context)
+    {
+        Modifiers.FightBegin(context);
+    }
+
+    public void OpponentActionComplete(ThunderdomeContext context)
+    {
+        Modifiers.OpponentActionComplete(context);
+    }
+
+    public void OwnActionComplete(ThunderdomeContext context)
+    {
+        Modifiers.OwnActionComplete(context);
+    }
+
+    public void TurnComplete(ThunderdomeContext context)
+    {
+        Modifiers.TurnComplete(context);
+    }
 }

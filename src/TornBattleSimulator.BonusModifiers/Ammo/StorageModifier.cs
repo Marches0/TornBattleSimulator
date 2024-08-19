@@ -2,6 +2,7 @@
 using TornBattleSimulator.Core.Thunderdome.Damage;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Lifespan;
+using TornBattleSimulator.Core.Thunderdome.Player;
 
 namespace TornBattleSimulator.BonusModifiers.Ammo;
 
@@ -28,5 +29,5 @@ public class StorageModifier : IModifier, IOwnedLifespan
     public ModifierValueBehaviour ValueBehaviour { get; } = ModifierValueBehaviour.None;
 
     /// <inheritdoc/>
-    public bool Expired(AttackResult? attack) => Consumed;
+    public bool Expired(PlayerContext owner, AttackResult? attack) => Consumed;
 }

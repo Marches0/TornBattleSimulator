@@ -1,4 +1,4 @@
-{
+ {
 	"builds": [
 		{
 			"name": "base",
@@ -22,10 +22,7 @@
 					"magazineSize": 60
 				},
 				"modifiers": [
-					{
-						"type": "motivation",
-						"percent": 100
-					}
+					
 				]
 			},
 			"secondary": {
@@ -54,7 +51,7 @@
 					"rating": 39.5,
 					"modifiers": [
 						{
-							"type": "impregnable",
+							"type": "insurmountable",
 							"percent": 20
 						}
 					]
@@ -64,7 +61,7 @@
 					"rating": 39.24,
 					"modifiers": [
 						{
-							"type": "impregnable",
+							"type": "insurmountable",
 							"percent": 20
 						}
 					]
@@ -74,7 +71,7 @@
 					"rating": 40.06,
 					"modifiers": [
 						{
-							"type": "impregnable",
+							"type": "insurmountable",
 							"percent": 20
 						}
 					]
@@ -84,7 +81,7 @@
 					"rating": 38.94,
 					"modifiers": [
 						{
-							"type": "impregnable",
+							"type": "insurmountable",
 							"percent": 20
 						}
 					]
@@ -94,7 +91,7 @@
 					"rating": 39.4,
 					"modifiers": [
 						{
-							"type": "impregnable",
+							"type": "insurmountable",
 							"percent": 20
 						}
 					]

@@ -20,6 +20,8 @@ public enum ModifierApplication
     /// </summary>
     FightStart,
 
+    BetweenAction,
+
     /// <summary>
     ///  The modifier is never applied.
     /// </summary>

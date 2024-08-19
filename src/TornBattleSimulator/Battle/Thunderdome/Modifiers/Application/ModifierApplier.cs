@@ -1,10 +1,12 @@
-﻿using TornBattleSimulator.Battle.Thunderdome.Target;
+﻿using System;
+using TornBattleSimulator.Battle.Thunderdome.Target;
 using TornBattleSimulator.BonusModifiers.Stats.Weapon;
 using TornBattleSimulator.Core.Extensions;
 using TornBattleSimulator.Core.Thunderdome;
 using TornBattleSimulator.Core.Thunderdome.Events;
 using TornBattleSimulator.Core.Thunderdome.Events.Data;
 using TornBattleSimulator.Core.Thunderdome.Modifiers;
+using TornBattleSimulator.Core.Thunderdome.Modifiers.Conditional;
 using TornBattleSimulator.Core.Thunderdome.Modifiers.Health;
 using TornBattleSimulator.Core.Thunderdome.Player;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
@@ -73,49 +75,56 @@ public class ModifierApplier : IModifierApplier
         return events;
     }
 
-    public List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context)
+    public List<ThunderdomeEvent> ApplyBetweenActionModifiers(ThunderdomeContext context)
     {
-        return ApplyFightStartModifiers(context, context.Attacker, context.Defender)
-            .Concat(ApplyFightStartModifiers(context, context.Defender, context.Attacker)
+        return ApplyBulkModifiers(ModifierApplication.BetweenAction, context, context.Attacker, context.Defender)
+            .Concat(ApplyBulkModifiers(ModifierApplication.BetweenAction, context, context.Defender, context.Attacker)
             ).ToList();
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext active, PlayerContext other)
+    public List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context)
+    {
+        return ApplyBulkModifiers(ModifierApplication.FightStart, context, context.Attacker, context.Defender)
+            .Concat(ApplyBulkModifiers(ModifierApplication.FightStart, context, context.Defender, context.Attacker)
+            ).ToList();
+    }
+
+    private List<ThunderdomeEvent> ApplyBulkModifiers(ModifierApplication appliesAt, ThunderdomeContext context, PlayerContext active, PlayerContext other)
     {
         List<ThunderdomeEvent> events = new();
 
         if (active.Weapons.Primary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Primary, other));
+            events.AddRange(ApplyBulkModifiers(appliesAt, context, active, active.Weapons.Primary, other));
         }
 
         if (active.Weapons.Secondary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Secondary, other));
+            events.AddRange(ApplyBulkModifiers(appliesAt, context, active, active.Weapons.Secondary, other));
         }
 
         if (active.Weapons.Melee != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Melee, other));
+            events.AddRange(ApplyBulkModifiers(appliesAt, context, active, active.Weapons.Melee, other));
         }
 
         if (active.Weapons.Temporary != null)
         {
-            events.AddRange(ApplyFightStartModifiers(context, active, active.Weapons.Temporary, other));
+            events.AddRange(ApplyBulkModifiers(appliesAt, context, active, active.Weapons.Temporary, other));
         }
 
         foreach (ArmourContext armourPiece in active.ArmourSet.Armour)
         {
-            events.AddRange(ApplyFightStartModifiers(context, active, armourPiece, other));
+            events.AddRange(ApplyBulkModifiers(appliesAt, context, active, armourPiece, other));
         }
 
         return events;
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, WeaponContext weapon, PlayerContext other)
+    private List<ThunderdomeEvent> ApplyBulkModifiers(ModifierApplication appliesAt, ThunderdomeContext context, PlayerContext player, WeaponContext weapon, PlayerContext other)
     {
         // Not good. but here we are.
-        weapon.Modifiers = new ModifierContext(player);
+        weapon.Modifiers ??= new ModifierContext(player);
 
         List<ThunderdomeEvent> events = new();
 
@@ -124,7 +133,7 @@ public class ModifierApplier : IModifierApplier
 
         foreach (var modifier in weapon.PotentialModifiers
             .Select(m => m.Modifier)
-            .Where(m => m.AppliesAt == ModifierApplication.FightStart))
+            .Where(m => m.AppliesAt == appliesAt))
         {
             (PlayerContext target, IModifierContext modifierTarget) = _targetSelector.GetModifierTarget(modifier, attack);
             if (modifierTarget.AddModifier(modifier, null))
@@ -136,15 +145,19 @@ public class ModifierApplier : IModifierApplier
         return events;
     }
 
-    private List<ThunderdomeEvent> ApplyFightStartModifiers(ThunderdomeContext context, PlayerContext player, ArmourContext armour, PlayerContext other)
+    private List<ThunderdomeEvent> ApplyBulkModifiers(ModifierApplication appliesAt, ThunderdomeContext context, PlayerContext player, ArmourContext armour, PlayerContext other)
     {
-        armour.Modifiers = new ModifierContext(player);
+        armour.Modifiers ??= new ModifierContext(player);
 
         List<ThunderdomeEvent> events = new();
 
+        // How sketchy
+        AttackContext attack = new AttackContext(context, player, other, null, null);
+
         foreach (var modifier in armour.PotentialModifiers
             .Select(m => m.Modifier)
-            .Where(m => m.AppliesAt == ModifierApplication.FightStart))
+            .Where(m => m.AppliesAt == appliesAt)
+            .Where(m => IsSatisfied(m, attack)))
         {
             if (armour.Modifiers.AddModifier(modifier, null))
             {
@@ -153,5 +166,14 @@ public class ModifierApplier : IModifierApplier
         }
 
         return events;
+    }
+
+    // Not cool how this is in ModifierRoller as well as here.
+    // Move both to here.
+    private bool IsSatisfied(IModifier modifier, AttackContext attackContext)
+    {
+        return modifier is IConditionalModifier conditional
+            ? conditional.CanActivate(attackContext)
+            : true;
     }
 }

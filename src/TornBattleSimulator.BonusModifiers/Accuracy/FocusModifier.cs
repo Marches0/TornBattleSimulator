@@ -44,7 +44,7 @@ public class FocusModifier : IModifier, IConditionalModifier, IAccuracyModifier,
     }
 
     /// <inheritdoc/>
-    public bool Expired(AttackResult? attack) => attack == null || attack.Hit;
+    public bool Expired(PlayerContext owner, AttackResult? attack) => attack == null || attack.Hit;
 
     /// <inheritdoc/>
     public double GetAccuracyModifier(

@@ -78,6 +78,7 @@ public enum ModifierType
     Wither,
 
     Impregnable,
-    Impenetrable
+    Impenetrable,
+    Insurmountable
 }
 // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses
