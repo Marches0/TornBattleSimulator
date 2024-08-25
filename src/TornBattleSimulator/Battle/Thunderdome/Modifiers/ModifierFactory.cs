@@ -9,6 +9,7 @@ using TornBattleSimulator.BonusModifiers.Damage.Armour;
 using TornBattleSimulator.BonusModifiers.Damage.BodyParts;
 using TornBattleSimulator.BonusModifiers.DamageOverTime;
 using TornBattleSimulator.BonusModifiers.Health;
+using TornBattleSimulator.BonusModifiers.Stats;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary;
 using TornBattleSimulator.BonusModifiers.Stats.Temporary.Needles;
 using TornBattleSimulator.BonusModifiers.Stats.Weapon;
@@ -77,6 +78,7 @@ public class ModifierFactory : IModifierFactory
             ModifierType.Impenetrable => new ImpenetrableModifier(value),
             ModifierType.Impregnable => new ImpregnableModifier(value),
             ModifierType.Insurmountable => new InsurmountableModifier(value),
+            ModifierType.Invulnerable => new InvulnerableModifier(value),
 
             ModifierType.Laceration => new LacerationModifier(),
 

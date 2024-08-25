@@ -68,7 +68,10 @@ public class PlayerContext : ITickable
         Defence = Build.BattleStats.Defence,
         Speed = Build.BattleStats.Speed,
         Dexterity = Build.BattleStats.Dexterity,
-    }.WithModifiers(Modifiers.Active.Concat(ActiveWeapon?.Modifiers?.Active ?? Enumerable.Empty<IModifier>()).OfType<IStatsModifier>().ToList());
+    }.WithModifiers(
+        Modifiers.Active.Concat(ActiveWeapon?.Modifiers?.Active ?? Enumerable.Empty<IModifier>()).OfType<IStatsModifier>().ToList(),
+        Modifiers.Active.OfType<IStatsModifierModifier>().FirstOrDefault()
+    );
 
     /// <inheritdoc/>
     public void FightBegin(ThunderdomeContext context) 

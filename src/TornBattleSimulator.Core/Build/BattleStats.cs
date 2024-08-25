@@ -13,19 +13,30 @@ public class BattleStats
 
     public ulong Dexterity { get; set; }
 
-    public BattleStats Apply(IStatsModifier modifier)
+    public BattleStats Apply(IStatsModifier modifier, IStatsModifierModifier? statsModifierModifier)
     {
         if (modifier.Type != ModificationType.Multiplicative)
         {
             throw new InvalidOperationException($"{nameof(Apply)} does not support {modifier.Type} modifiers.");
         }
 
-        Strength = (ulong) Math.Max(Strength * modifier.GetStrengthModifier(), 0);
-        Defence = (ulong) Math.Max(Defence * modifier.GetDefenceModifier(), 0);
-        Speed = (ulong) Math.Max(Speed * modifier.GetSpeedModifier(), 0);
-        Dexterity = (ulong)Math.Max(Dexterity * modifier.GetDexterityModifier(), 0);
+        Strength = (ulong)Math.Max(Strength * GetModifier(m => m.GetStrengthModifier(), modifier, statsModifierModifier), 0);
+        Defence = (ulong)Math.Max(Defence * GetModifier(m => m.GetDefenceModifier(), modifier, statsModifierModifier), 0);
+        Speed = (ulong)Math.Max(Speed * GetModifier(m => m.GetSpeedModifier(), modifier, statsModifierModifier), 0);
+        Dexterity = (ulong)Math.Max(Dexterity * GetModifier(m => m.GetDexterityModifier(), modifier, statsModifierModifier), 0);
 
         return this;
+    }
+
+    private double GetModifier(Func<IStatsModifier, double> modifierGetter, IStatsModifier modifier, IStatsModifierModifier? statsModifierModifier)
+    {
+        double modifierValue = modifierGetter(modifier);
+        
+        // Invert to find out the raw amount it decreases it by, apply the modifier modifier, then invert
+        // again to get the used multiplier.
+        return statsModifierModifier != null && modifierValue < 1
+            ? 1 - ((1 - modifierValue) * statsModifierModifier.StatsModifierModifier)
+            : modifierValue;
     }
 
     public BattleStats Copy()

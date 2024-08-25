@@ -1,6 +1,7 @@
 ﻿using Spectre.Console;
 using TornBattleSimulator.Battle.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Build.Equipment;
+using TornBattleSimulator.Core.Thunderdome.Modifiers;
 using TornBattleSimulator.Core.Thunderdome.Player.Armours;
 using TornBattleSimulator.Options;
 
@@ -11,6 +12,10 @@ public class ArmourFactory
     private readonly IModifierFactory _modifierFactory;
     private readonly Dictionary<string, ArmourCoverageOption> _armourCoverage;
     private readonly Dictionary<ModifierType, double> _modifierSetBonus;
+
+    // Modifiers which apply to the player as a whole, rather than
+    // the piece of armour they are attached to.
+    private static readonly List<ModifierType> FlatModifiers = [ModifierType.Invulnerable];
 
     public ArmourFactory(
         List<ArmourCoverageOption> armourCoverage,
@@ -27,17 +32,22 @@ public class ArmourFactory
 
     public ArmourSetContext Create(ArmourSet armourSet)
     {
-        List<ModifierType> setBonuses = GetTriggeredSetBonuses(armourSet);
+        List<ModifierType> bonuses = GetTriggeredSetBonuses(armourSet);
 
         List<ArmourContext?> set = [
-            Create(armourSet.Helmet, setBonuses),
-            Create(armourSet.Body, setBonuses),
-            Create(armourSet.Pants, setBonuses),
-            Create(armourSet.Gloves, setBonuses),
-            Create(armourSet.Boots, setBonuses),
+            Create(armourSet.Helmet, bonuses),
+            Create(armourSet.Body, bonuses),
+            Create(armourSet.Pants, bonuses),
+            Create(armourSet.Gloves, bonuses),
+            Create(armourSet.Boots, bonuses),
         ];
 
-        return new(set.Where(a => a != null).ToList()!);
+        ArmourSetContext ac = new ArmourSetContext(set.Where(a => a != null).ToList()!);
+
+        // Add flat modifiers to any piece, because it doesn't matter which one they
+        // are on - they'll be applied to the player later.
+        ac.Armour.First().PotentialModifiers.AddRange(GetFlatModifiers(armourSet, bonuses));
+        return ac;
     }
 
     private List<ModifierType> GetTriggeredSetBonuses(ArmourSet armourSet)
@@ -61,7 +71,8 @@ public class ArmourFactory
     }
 
     private ArmourContext? Create(
-        Armour? armour, List<ModifierType> setBonuses)
+        Armour? armour,
+        List<ModifierType> setBonuses)
     {
         if (armour == null)
         {
@@ -71,9 +82,33 @@ public class ArmourFactory
         return new ArmourContext(
             armour.Rating / 100d,
             _armourCoverage[armour.Name].Coverage,
-            armour.Modifiers.Select(m =>
+            armour.Modifiers.Where(m => !FlatModifiers.Contains(m.Type)).Select(m =>
                 _modifierFactory.GetModifier(m.Type, setBonuses.Contains(m.Type) ? m.Percent + _modifierSetBonus[m.Type] : m.Percent)
             ).ToList()
         );
+    }
+
+    private List<PotentialModifier> GetFlatModifiers(
+        ArmourSet armourSet, List<ModifierType> setBonuses)
+    {
+        IEnumerable<ModifierDescription> empty = Enumerable.Empty<ModifierDescription>();
+
+        IEnumerable<ModifierDescription> allModifiers = (armourSet.Helmet?.Modifiers ?? empty)
+            .Concat(armourSet.Body?.Modifiers ?? empty)
+            .Concat(armourSet.Pants?.Modifiers ?? empty)
+            .Concat(armourSet.Gloves?.Modifiers ?? empty)
+            .Concat(armourSet.Boots?.Modifiers ?? empty);
+
+        IEnumerable<IGrouping<ModifierType, ModifierDescription>> flatModifiers = allModifiers.GroupBy(m => m.Type)
+            .IntersectBy(FlatModifiers, a => a.Key);
+
+        return flatModifiers
+            .Select(m => _modifierFactory.GetModifier(
+                m.Key,
+                m.Sum(d => d.Percent) 
+                    + (setBonuses.Contains(m.Key) ? _modifierSetBonus[m.Key] : 0)
+                )
+            )
+            .ToList();
     }
 }

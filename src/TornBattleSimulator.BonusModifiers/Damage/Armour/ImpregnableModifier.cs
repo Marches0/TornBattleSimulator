@@ -24,7 +24,7 @@ public class ImpregnableModifier : IModifier, IDamageModifier
     public bool RequiresDamageToApply { get; } = false;
 
     /// <inheritdoc/>
-    public ModifierTarget Target { get; } = ModifierTarget.Self;
+    public ModifierTarget Target { get; } = ModifierTarget.SelfArmour;
 
     /// <inheritdoc/>
     public ModifierApplication AppliesAt { get; } = ModifierApplication.FightStart;

@@ -7,7 +7,7 @@
 				"strength": 100000,
 				"defence": 100,
 				"speed": 10000099,
-				"dexterity": 0
+				"dexterity": 100000
 			},
 			"level": 10,
 			"primary": {
@@ -51,8 +51,8 @@
 					"rating": 39.5,
 					"modifiers": [
 						{
-							"type": "insurmountable",
-							"percent": 20
+							"type": "invulnerable",
+							"percent": 10
 						}
 					]
 				},
@@ -61,8 +61,8 @@
 					"rating": 39.24,
 					"modifiers": [
 						{
-							"type": "insurmountable",
-							"percent": 20
+							"type": "invulnerable",
+							"percent": 10
 						}
 					]
 				},
@@ -71,8 +71,8 @@
 					"rating": 40.06,
 					"modifiers": [
 						{
-							"type": "insurmountable",
-							"percent": 20
+							"type": "invulnerable",
+							"percent": 10
 						}
 					]
 				},
@@ -81,8 +81,8 @@
 					"rating": 38.94,
 					"modifiers": [
 						{
-							"type": "insurmountable",
-							"percent": 20
+							"type": "invulnerable",
+							"percent": 10
 						}
 					]
 				},
@@ -91,8 +91,8 @@
 					"rating": 39.4,
 					"modifiers": [
 						{
-							"type": "insurmountable",
-							"percent": 20
+							"type": "invulnerable",
+							"percent": 10
 						}
 					]
 				}
@@ -123,7 +123,7 @@
 				"dexterity": 1000000
 			},
 			"level": 20,
-			"temporary": "serotonin",
+			"temporary": "tearGas",
 			"strategy": [
 				{
 					"weapon": "temporary"

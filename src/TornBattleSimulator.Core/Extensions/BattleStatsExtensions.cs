@@ -5,14 +5,17 @@ namespace TornBattleSimulator.Core.Extensions;
 
 public static class BattleStatsExtensions
 {
-    public static BattleStats WithModifiers(this BattleStats stats, List<IStatsModifier> modifiers)
+    public static BattleStats WithModifiers(
+        this BattleStats stats,
+        List<IStatsModifier> modifiers,
+        IStatsModifierModifier? statsModifierModifier)
     {
         return modifiers
             .Where(m => m.Type == ModificationType.Multiplicative)
-            .Aggregate(ApplyAdditive(stats.Copy(), modifiers), (stats, modifier) => stats.Apply(modifier));
+            .Aggregate(ApplyAdditive(stats.Copy(), modifiers, statsModifierModifier), (stats, modifier) => stats.Apply(modifier, statsModifierModifier));
     }
 
-    private static BattleStats ApplyAdditive(BattleStats stats, List<IStatsModifier> modifiers)
+    private static BattleStats ApplyAdditive(BattleStats stats, List<IStatsModifier> modifiers, IStatsModifierModifier? statsModifierModifier)
     {
         double additiveStrength = 1;
         double additiveDefence = 1;
@@ -21,10 +24,10 @@ public static class BattleStatsExtensions
 
         foreach (IStatsModifier additive in modifiers.Where(m => m.Type == ModificationType.Additive))
         {
-            additiveStrength += additive.GetStrengthModifier() - 1;
-            additiveDefence += additive.GetDefenceModifier() - 1;
-            additiveSpeed += additive.GetSpeedModifier() - 1;
-            additiveDexterity += additive.GetDexterityModifier() - 1;
+            additiveStrength += GetAdditiveContribution(m => m.GetStrengthModifier(), additive, statsModifierModifier);
+            additiveDefence += GetAdditiveContribution(m => m.GetDefenceModifier(), additive, statsModifierModifier);
+            additiveSpeed += GetAdditiveContribution(m => m.GetSpeedModifier(), additive, statsModifierModifier);
+            additiveDexterity += GetAdditiveContribution(m => m.GetDexterityModifier(), additive, statsModifierModifier);
         }
 
         stats.Strength = (ulong) Math.Max(stats.Strength * additiveStrength, 0);
@@ -33,5 +36,16 @@ public static class BattleStatsExtensions
         stats.Dexterity = (ulong)Math.Max(stats.Dexterity * additiveDexterity, 0);
 
         return stats;
+    }
+
+    private static double GetAdditiveContribution(
+        Func<IStatsModifier, double> modifierGetter,
+        IStatsModifier statsModifier,
+        IStatsModifierModifier? statsModifierModifier)
+    {
+        double modifier = modifierGetter(statsModifier) - 1;
+        return statsModifierModifier != null && modifier < 0
+            ? statsModifierModifier.StatsModifierModifier * modifier
+            : modifier;
     }
 }

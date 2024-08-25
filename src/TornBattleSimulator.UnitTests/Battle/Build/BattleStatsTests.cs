@@ -22,7 +22,7 @@ public class BattleStatsTests
 
         TestStatModifier mul = new TestStatModifier(0.5f, 3, 4, 5, ModificationType.Multiplicative);
 
-        stats.Apply(mul);
+        stats.Apply(mul, null);
 
         using (new AssertionScope())
         {

@@ -158,7 +158,11 @@ public class ModifierApplier : IModifierApplier
             .Where(m => m.AppliesAt == appliesAt)
             .Where(m => IsSatisfied(m, attack)))
         {
-            if (armour.Modifiers.AddModifier(modifier, null))
+            IModifierContext target = modifier.Target == ModifierTarget.Self
+                ? player.Modifiers
+                : armour.Modifiers;
+
+            if (target.AddModifier(modifier, null))
             {
                 events.Add(context.CreateEvent(player, ThunderdomeEventType.EffectBegin, new EffectBeginEvent(modifier.Effect)));
             }

@@ -79,6 +79,7 @@ public enum ModifierType
 
     Impregnable,
     Impenetrable,
-    Insurmountable
+    Insurmountable,
+    Invulnerable
 }
 // https://wiki.torn.com/wiki/Armor#Advanced_Armor_Bonuses

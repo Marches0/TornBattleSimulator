@@ -27,5 +27,11 @@ public enum ModifierTarget
     ///  The modifier will be applied to the last used weapon of the player
     ///  who does not own the modifier, such as Disarm.
     /// </summary>
-    OtherWeapon
+    OtherWeapon,
+
+    /// <summary>
+    ///  The modifier will be applied to the armour that owns the modifier,
+    ///  such as Impregnable.
+    /// </summary>
+    SelfArmour
 }
